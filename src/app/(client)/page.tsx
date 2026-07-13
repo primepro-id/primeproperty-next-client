@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import { Search } from "./properties/_components/fillters/search";
-import { FilterDialog } from "./properties/_components/fillters";
 import { Faq } from "./properties/_components/faq";
 import { createWebsiteSchema } from "@/lib/schema";
 import Script from "next/script";
@@ -26,38 +25,26 @@ const Hero = () => {
           __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c"),
         }}
       />
-      <div className="flex flex-col gap-4 " id="website">
-        <div className="w-fit mx-auto flex flex-col gap-8 md:flex-row items-center justify-center ">
-          <Image
-            src="/images/primepro.png"
-            alt="Primepro Hero"
-            width={175}
-            height={175}
-            className="size-40 md:size-28"
-          />
-          <div className="flex flex-col gap-4 text-center md:text-left">
-            <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight lg:tracking-normal">
-              PRIMEPRO INDONESIA
-            </h1>
-            <h2 className="underline text-lg lg:text-xl tracking-tight text-muted-foreground lg:tracking-normal font-sans">
-              Your Private Key to Exceptional Properties
-            </h2>
-          </div>
-        </div>
+      <div
+        className="flex flex-col gap-4 pt-16 lg:pb-16 lg:bg-gradient-to-b from-primary to-transparent "
+        id="website"
+      >
+        <h1 className="text-center font-bold lg:text-2xl">
+          The Private Key to Exceptional Properties
+        </h1>
         <div className="flex flex-col gap-4">
-          <div className="flex items-center mx-auto p-2 bg-secondary md:max-w-2xl w-full rounded gap-1">
+          <div className="rounded-md border border-primary w-full max-w-lg mx-auto">
             <Search />
-            <FilterDialog searchParams={{}} />
           </div>
           <Link
             href="/properties"
             className={cn(
               buttonVariants({ variant: "default" }),
-              "w-fit mx-auto font-sans",
+              "w-fit mx-auto",
             )}
           >
             <LuHouse />
-            Semua Properti
+            Lihat Semua
           </Link>
         </div>
       </div>
@@ -83,11 +70,11 @@ const Partners = async () => {
   ];
 
   return (
-    <div className="my-16 flex flex-col gap-4 lg:gap-8">
-      <h3 className="text-3xl font-bold text-center lg:text-left">
+    <div className="my-16 lg:my-0 flex flex-col gap-4 ">
+      <h3 className="text-3xl font-bold text-center lg:text-left lg:invisible">
         Our Partners
       </h3>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {BANKS.map((bank, index) => (
           <Image
             key={`partner_${index}`}
@@ -95,7 +82,7 @@ const Partners = async () => {
             alt={bank}
             width={576}
             height={576}
-            className="w-full  object-contain aspect-square rounded "
+            className="w-full  object-contain aspect-square rounded dark:bg-white dark:p-1"
           />
         ))}
         {developers?.data?.data.map((dev) => (
@@ -105,7 +92,7 @@ const Partners = async () => {
             alt={dev.name}
             width={576}
             height={576}
-            className="w-full object-contain aspect-square rounded "
+            className="w-full object-contain aspect-square rounded dark:bg-white dark:p-1"
           />
         ))}
       </div>
@@ -134,13 +121,15 @@ const VideoThumbnail = () => {
 
 const HomePage = () => {
   return (
-    <div className="container mx-auto flex flex-col gap-12 px-4">
-      <Banner />
+    <div className="container mx-auto flex flex-col gap-16 px-4">
       <Hero />
+      <Banner className="lg:hidden" />
       <PopularProperties />
-      <Partners />
+      <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12">
+        <VideoThumbnail />
+        <Partners />
+      </div>
       <Faq defaultTab="PRIMEPRO" />
-      <VideoThumbnail />
     </div>
   );
 };

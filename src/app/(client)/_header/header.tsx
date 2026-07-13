@@ -12,7 +12,7 @@ export const Header = () => {
         <div className="flex items-center justify-between lg:gap-2 w-full lg:w-fit">
           <LogoLink />
 
-          <Link href="/" className="text-center font-bold">
+          <Link href="/" className="text-center font-bold text-2xl ">
             PRIMEPRO INDONESIA
           </Link>
           <HeaderSheet />

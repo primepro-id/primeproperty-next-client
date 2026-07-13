@@ -1,15 +1,22 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-export const Banner = () => {
+type BannerProps = {
+  className?: string;
+};
+
+export const Banner = ({ className }: BannerProps) => {
   return (
-    <Link href="/properties/402">
+    <Link
+      href="/properties/402"
+      className={cn("relative w-full h-48 sm:h-64 md:h-80 lg:h-96", className)}
+    >
       <Image
         src="/images/banner.jpeg"
-        alt="Primepro Indonesia"
-        width={2048}
-        height={1024}
-        className="object-cover w-full h-auto sm:h-64 md:h-80 lg:h-96 xl:object-fill rounded-b"
+        alt="Citra Homes Halim"
+        fill
+        className="object-contain"
         priority
       />
     </Link>
