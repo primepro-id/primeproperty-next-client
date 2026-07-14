@@ -12,8 +12,6 @@ import { findManyDevelopers } from "@/lib/api/developers";
 import { env } from "@/lib/env";
 import { Banner } from "@/components/custom-ui/banner";
 
-export const revalidate = 0;
-
 const Hero = () => {
   const websiteSchema = createWebsiteSchema();
   return (
@@ -105,7 +103,7 @@ const Partners = async () => {
 const HomePage = () => {
   return (
     <div className="flex flex-col gap-4">
-      <div className="bg-gradient-to-b from-primary via-transparent to-transparent px-4">
+      <div className="bg-gradient-to-b from-primary/50 via-transparent to-transparent px-4">
         <Hero />
       </div>
       <div className="container mx-auto flex flex-col gap-40 px-4">
