@@ -236,14 +236,17 @@ export const Navigation = () => {
             <Link
               href="/properties"
               title="Properti"
-              className={cn(buttonVariants({ variant: "ghost" }), "font-sans")}
+              className={cn(
+                buttonVariants({ variant: "ghost" }),
+                "text-sm font-sans",
+              )}
             >
               PROPERTI
             </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger className="font-sans">
+        <NavigationMenuItem className="lg:hidden xl:block">
+          <NavigationMenuTrigger className="font-sans ">
             DIJUAL
           </NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -254,7 +257,7 @@ export const Navigation = () => {
             />
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        <NavigationMenuItem className="lg:hidden xl:block">
           <NavigationMenuTrigger className="font-sans">
             DISEWA
           </NavigationMenuTrigger>

@@ -25,12 +25,16 @@ const Hero = () => {
           __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c"),
         }}
       />
-      <div
-        className="flex flex-col gap-4 pt-16 lg:pb-16 lg:bg-gradient-to-b from-primary to-transparent "
-        id="website"
-      >
+      <div className="flex flex-col gap-4 pt-16 lg:pb-16 " id="website">
+        <Image
+          src="/images/primepro.png"
+          alt="PRIMEPRO INDONESIA"
+          width={576}
+          height={576}
+          className="object-cover aspect-square size-48 mx-auto"
+        />
         <h1 className="text-center font-bold lg:text-2xl">
-          The Private Key to Exceptional Properties
+          Your Private Key to Exceptional Properties
         </h1>
         <div className="flex flex-col gap-4">
           <div className="rounded-md border border-primary w-full max-w-lg mx-auto">
@@ -70,11 +74,9 @@ const Partners = async () => {
   ];
 
   return (
-    <div className="my-16 lg:my-0 flex flex-col gap-4 ">
-      <h3 className="text-3xl font-bold text-center lg:text-left lg:invisible">
-        Our Partners
-      </h3>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <div className="flex flex-col gap-4 ">
+      <h3 className="text-3xl font-bold text-center font-sans">PARTNERS</h3>
+      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {BANKS.map((bank, index) => (
           <Image
             key={`partner_${index}`}
@@ -100,36 +102,18 @@ const Partners = async () => {
   );
 };
 
-const VideoThumbnail = () => {
-  return (
-    <div className="flex flex-col gap-4 container mx-auto">
-      <h3 className="text-3xl font-bold text-center lg:text-left lg:text-3xl">
-        A Real Estate Company
-      </h3>
-      <iframe
-        width="100%"
-        src="https://www.youtube.com/embed/ivN7BfhMv4g?si=zLm4yBwIrF7So1wM"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-        className="h-96 md:h-[400px] lg:h-[600px] rounded"
-      />
-    </div>
-  );
-};
-
 const HomePage = () => {
   return (
-    <div className="container mx-auto flex flex-col gap-16 px-4">
-      <Hero />
-      <Banner className="lg:hidden" />
-      <PopularProperties />
-      <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12">
-        <VideoThumbnail />
-        <Partners />
+    <div className="flex flex-col gap-4">
+      <div className="bg-gradient-to-b from-primary via-transparent to-transparent px-4">
+        <Hero />
       </div>
-      <Faq defaultTab="PRIMEPRO" />
+      <div className="container mx-auto flex flex-col gap-40 px-4">
+        <Banner className="lg:hidden" />
+        <PopularProperties />
+        <Partners />
+        <Faq defaultTab="PRIMEPRO" />
+      </div>
     </div>
   );
 };
