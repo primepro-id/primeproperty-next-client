@@ -20,7 +20,7 @@ export const LogoLink = ({ onClickAction }: LogoLinkProps) => {
         alt="PrimePro Indonesia"
         width={75}
         height={75}
-        className="size-8 lg:size-6"
+        className="size-6"
       />
     </Link>
   );

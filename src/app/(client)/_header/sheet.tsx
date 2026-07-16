@@ -13,15 +13,10 @@ import {
 import { cn } from "@/lib/utils";
 import { LogoLink } from "./logo-link";
 import { useRef } from "react";
-import { IoIosArrowForward, IoIosArrowUp, IoIosMenu } from "react-icons/io";
+import { IoIosArrowForward, IoIosMenu } from "react-icons/io";
 import Link from "next/link";
 import ThemeButton from "./theme-button";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { LuCopyright } from "react-icons/lu";
 
 type SheetMenuProps = {
   onClick?: () => void;
@@ -29,6 +24,10 @@ type SheetMenuProps = {
 
 const SheetMenu = ({ onClick }: SheetMenuProps) => {
   const MENU = [
+    {
+      title: "Properti",
+      href: "/properties",
+    },
     {
       title: "Agen",
       href: "/agents",
@@ -52,46 +51,12 @@ const SheetMenu = ({ onClick }: SheetMenuProps) => {
   ];
   return (
     <div className="flex flex-col border-y border-primary ">
-      <Accordion>
-        <AccordionItem value="property" className="border-b-0">
-          <AccordionTrigger className="p-4">Properti</AccordionTrigger>
-          <AccordionContent className="border-y">
-            <Link
-              href="/properties"
-              title="Semua Properti"
-              className="p-4 pr-2 flex items-center justify-between hover:bg-primary text-foreground"
-              onClick={onClick}
-            >
-              Semua Properti
-              <IoIosArrowForward />
-            </Link>
-            <Link
-              href="/properties/filter/dijual"
-              title="Semua Properti Dijual"
-              className="p-4 pr-2 flex items-center justify-between hover:bg-primary text-foreground"
-              onClick={onClick}
-            >
-              Semua Properti Dijual
-              <IoIosArrowForward />
-            </Link>
-            <Link
-              href="/properties/filter/disewa"
-              title="Semua Properti Disewa"
-              className="p-4 pr-2 flex items-center justify-between hover:bg-primary text-foreground"
-              onClick={onClick}
-            >
-              Semua Properti Disewa
-              <IoIosArrowForward />
-            </Link>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
       {MENU.map((item) => (
         <Link
           key={item.title}
           href={item.href}
           title={item.title}
-          className="p-4 flex items-center justify-between hover:bg-primary"
+          className="px-4 py-3 flex items-center justify-between hover:bg-primary text-sm"
           onClick={onClick}
         >
           {item.title}
@@ -112,25 +77,29 @@ export const HeaderSheet = () => {
       <SheetTrigger
         aria-label="PrimePro Menu"
         title="Menu"
-        className={cn(buttonVariants({ size: "icon" }), "lg:hidden")}
+        className={cn(
+          buttonVariants({ size: "icon", variant: "ghost" }),
+          "lg:hidden",
+        )}
       >
         <IoIosMenu />
       </SheetTrigger>
       <SheetContent className="p-0" side="top">
-        <SheetHeader className="flex-row items-center w-full justify-between space-y-0 p-2">
+        <SheetHeader className="flex-row items-center w-full justify-between space-y-0 px-2 py-1">
           <LogoLink onClickAction={closeSheet} />
-          <SheetTitle className="text-xl">PRIMEPRO INDONESIA</SheetTitle>
+          <SheetTitle className="text-base">PRIMEPRO INDONESIA</SheetTitle>
           <SheetClose
             ref={closeRef}
-            className={cn(buttonVariants({ size: "icon" }))}
+            className={cn(buttonVariants({ size: "icon", variant: "ghost" }))}
           >
-            <IoIosArrowUp />
+            <IoIosMenu />
           </SheetClose>
         </SheetHeader>
         <SheetDescription />
         <SheetMenu onClick={closeSheet} />
-        <SheetFooter className="flex-row items-center justify-between w-full p-2">
-          <span className="text-xs text-muted-foreground">
+        <SheetFooter className="flex-row items-center justify-between w-full px-2 py-1">
+          <LuCopyright className="text-muted-foreground" />
+          <span className="text-xs text-muted-foreground flex items-center">
             PRIMEPRO INDONESIA {new Date().getFullYear()}
           </span>
           <ThemeButton />

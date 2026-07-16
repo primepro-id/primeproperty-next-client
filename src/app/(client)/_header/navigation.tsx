@@ -100,15 +100,18 @@ const PropertyNavigationMenuContent = ({
   );
 
   return (
-    <div className="w-[800px] grid grid-cols-4 divide-x-2 overflow-x-hidden">
+    <div className="w-[800px] grid grid-cols-4 divide-x-2 divide-x-primary overflow-x-hidden">
       <div className="flex flex-col divide-y">
         {Array.from(buildingTypes?.values()).map((item) => (
           <Link
             href={`/properties/filter${item.value}`}
             key={item.value}
+            title={`Lihat semua ${item.label}`}
             className={cn(
-              "p-4 flex items-center justify-between gap-2 capitalize hover:bg-primary",
-              selectedBuildType === item.label ? "bg-primary" : "",
+              "px-4 py-2 flex items-center justify-between gap-2 capitalize hover:bg-primary/50 dark:hover:text-primary-foreground",
+              selectedBuildType === item.label
+                ? "bg-primary text-primary-foreground"
+                : "",
             )}
             onMouseEnter={() => {
               setSelectedBuildType(item.label);
@@ -132,9 +135,12 @@ const PropertyNavigationMenuContent = ({
           <Link
             href={`/properties/filter${item.value}`}
             key={item.value}
+            title={`Lihat ${selectedBuildType} di ${item.label}`}
             className={cn(
-              "p-4 flex items-center justify-between gap-2 capitalize hover:bg-primary",
-              selectedProvince === item.label ? "bg-primary" : "",
+              "px-4 py-2 flex items-center justify-between gap-2 capitalize hover:bg-primary/50 dark:hover:text-primary-foreground",
+              selectedProvince === item.label
+                ? "bg-primary text-primary-foreground"
+                : "",
             )}
             onMouseEnter={() => {
               setSelectedProvince(item.label);
@@ -157,9 +163,12 @@ const PropertyNavigationMenuContent = ({
           <Link
             href={`/properties/filter${item.value}`}
             key={item.value}
+            title={`Lihat ${selectedBuildType} di ${item.label}`}
             className={cn(
-              "p-4 flex items-center justify-between gap-2 capitalize hover:bg-primary",
-              selectedRegency === item.label ? "bg-primary" : "",
+              "px-4 py-2 flex items-center justify-between gap-2 capitalize hover:bg-primary/50 dark:hover:text-primary-foreground",
+              selectedRegency === item.label
+                ? "bg-primary text-primary-foreground"
+                : "",
             )}
             onMouseEnter={() => setSelectedRegency(item.label)}
           >
@@ -179,8 +188,9 @@ const PropertyNavigationMenuContent = ({
           <Link
             href={`/properties/filter${item.value}`}
             key={item.value}
+            title={`Lihat ${selectedBuildType} di ${item.label}`}
             className={cn(
-              "p-4 flex items-center justify-between gap-2 capitalize hover:bg-primary",
+              "px-4 py-2 flex items-center justify-between gap-2 capitalize hover:bg-primary/50 dark:hover:text-primary-foreground",
             )}
           >
             {item.label}
@@ -237,8 +247,8 @@ export const Navigation = () => {
               href="/properties"
               title="Properti"
               className={cn(
-                buttonVariants({ variant: "ghost" }),
-                "text-sm font-sans",
+                buttonVariants({ variant: "ghost", size: "sm" }),
+                "font-sans",
               )}
             >
               PROPERTI
@@ -246,10 +256,10 @@ export const Navigation = () => {
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem className="lg:hidden xl:block">
-          <NavigationMenuTrigger className="font-sans ">
+          <NavigationMenuTrigger className="font-sans bg-transparent">
             DIJUAL
           </NavigationMenuTrigger>
-          <NavigationMenuContent>
+          <NavigationMenuContent className="bg-gradient-to-br from-primary/50 to-transparent">
             <PropertyNavigationMenuContent
               isLoading={nav.isLoading}
               data={forSaleNav}
@@ -258,10 +268,10 @@ export const Navigation = () => {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem className="lg:hidden xl:block">
-          <NavigationMenuTrigger className="font-sans">
+          <NavigationMenuTrigger className="font-sans bg-transparent">
             DISEWA
           </NavigationMenuTrigger>
-          <NavigationMenuContent>
+          <NavigationMenuContent className="bg-gradient-to-br from-primary/50 to-transparent">
             <PropertyNavigationMenuContent
               isLoading={nav.isLoading}
               data={forRentNav}
@@ -276,7 +286,7 @@ export const Navigation = () => {
                 href={item.href}
                 title={item.title}
                 className={cn(
-                  buttonVariants({ variant: "ghost" }),
+                  buttonVariants({ variant: "ghost", size: "sm" }),
                   "font-sans",
                 )}
               >

@@ -7,7 +7,7 @@ import ThemeButton from "./theme-button";
 
 export const Header = () => {
   return (
-    <div className="border-b border-primary ">
+    <div className="bg-primary/50">
       <div className="flex items-center justify-between container mx-auto p-2 ">
         <div className="flex items-center justify-between lg:gap-2 w-full lg:w-fit">
           <LogoLink />
