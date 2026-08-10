@@ -31,7 +31,6 @@ export const FIND_ARTICLE_BY_SLUG_QUERY = gql`
   }
 `;
 
-
 export const FIND_ARTICLES_QUERY = gql`
   query {
     allArticles(orderBy: _publishedAt_DESC, first: 500) {
