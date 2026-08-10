@@ -1,3 +1,4 @@
+'use client'
 import { gql } from "@apollo/client";
 
 export const FIND_ARTICLE_BY_SLUG_QUERY = gql`
