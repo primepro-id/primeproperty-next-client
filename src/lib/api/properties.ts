@@ -1,12 +1,30 @@
-import { DataAndPagination, JsonResponse, Property, PropertyBuildingCondition, PropertyConfigurations, PropertyCurrency, PropertyFacilities, PropertyFurnitureCapacity, PropertyImage, PropertyJoinAgent, PropertyMeasurements, PropertyNavigation, PropertyPurchaseStatus, PropertyRentTime, PropertySoldChannel, PropertySoldStatus, PropertySpecifications } from "../types";
+import {
+  DataAndPagination,
+  JsonResponse,
+  Property,
+  PropertyBuildingCondition,
+  PropertyConfigurations,
+  PropertyCurrency,
+  PropertyFacilities,
+  PropertyFurnitureCapacity,
+  PropertyImage,
+  PropertyJoinAgent,
+  PropertyMeasurements,
+  PropertyNavigation,
+  PropertyPurchaseStatus,
+  PropertyRentTime,
+  PropertySoldChannel,
+  PropertySoldStatus,
+  PropertySpecifications,
+} from "../types";
 import { fetchJsonApi } from "./fetch-api";
 import { getAccessToken } from "./token";
-import qs from 'qs';
+import qs from "qs";
 
 export enum FindQuerySort {
-  LowestPrice = 'LowestPrice',
-  HighestPrice = 'HighestPrice'
-};
+  LowestPrice = "LowestPrice",
+  HighestPrice = "HighestPrice",
+}
 
 // Request Query & Payloads
 export type FindQuery = {
@@ -91,7 +109,7 @@ export const findUniqueJoinAgent = async (
 export const findJoinAgent = async (
   query: FindQuery = {},
 ): Promise<DataAndPagination<PropertyJoinAgent[]>> => {
-  const searchParams = qs.stringify(query, {addQueryPrefix: true});
+  const searchParams = qs.stringify(query, { addQueryPrefix: true });
   const endpoint = `/properties/join-agents${searchParams}`;
 
   return fetchJsonApi(endpoint, {
@@ -99,15 +117,15 @@ export const findJoinAgent = async (
   });
 };
 
-export const findSitePaths = async (
-): Promise<JsonResponse<string[]>> => {
+export const findSitePaths = async (): Promise<JsonResponse<string[]>> => {
   return fetchJsonApi("/properties/site-paths", {
     method: "GET",
   });
 };
 
-export const findNavigation = async (
-): Promise<JsonResponse<PropertyNavigation[]>> => {
+export const findNavigation = async (): Promise<
+  JsonResponse<PropertyNavigation[]>
+> => {
   return fetchJsonApi("/properties/navigations", {
     method: "GET",
   });
