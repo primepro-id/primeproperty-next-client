@@ -102,3 +102,12 @@ export enum PropertyRentTime {
   Monthly = "Monthly",
   Yearly = "Yearly",
 }
+
+export type PropertyNavigation = {
+  site_path: string;
+  purchase_status: PropertyPurchaseStatus;
+  building_type: string;
+  province: string;
+  regency: string;
+  street: string;
+};

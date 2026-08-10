@@ -7,18 +7,18 @@ import { getAccessToken } from "./token";
  * POST /leads
  */
 
- export type CreateLeadPayload = {
-   property_id: number;
-   name: string;
-   phone: string;
-   email?: string | null;
- };
+export type CreateLeadPayload = {
+  property_id: number;
+  name: string;
+  phone: string;
+  email?: string | null;
+};
 
 export async function createLead(
-  payload: CreateLeadPayload
+  payload: CreateLeadPayload,
 ): Promise<JsonResponse<Lead>> {
-  return fetchJsonApi('/leads', {
-    method: 'POST',
+  return fetchJsonApi("/leads", {
+    method: "POST",
     body: JSON.stringify(payload),
   });
 }
@@ -28,10 +28,10 @@ export async function createLead(
  * GET /leads
  */
 export async function getLeads(): Promise<DataAndPagination<Lead[]>> {
-  return fetchJsonApi('/leads', {
-    method: 'GET',
+  return fetchJsonApi("/leads", {
+    method: "GET",
     headers: {
-      "x-access-token": await getAccessToken()
+      "x-access-token": await getAccessToken(),
     },
   });
 }

@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import { env } from "../env";
 
 const BASE_URL = env.NEXT_PUBLIC_API_URL;
 
 export const fetchJsonApi = async (endpoint: string, options?: RequestInit) => {
   const defaultHeaders = {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   };
 
   const response = await fetch(`${BASE_URL}${endpoint}`, {
@@ -23,4 +23,4 @@ export const fetchJsonApi = async (endpoint: string, options?: RequestInit) => {
   }
 
   return data;
-}
+};

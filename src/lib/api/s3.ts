@@ -1,15 +1,15 @@
-'use client'
+"use client";
 import { env } from "../env";
 import { JsonResponse, S3 } from "../types";
 
 const ALLOWED_MIME_TYPES = new Set([
-  'image/png',
-  'image/jpeg',
-  'image/jpg',
-  'image/webp'
+  "image/png",
+  "image/jpeg",
+  "image/jpg",
+  "image/webp",
 ]);
 
-const ALLOWED_EXTENSIONS = ['.png', '.jpeg', '.jpg', '.webp'];
+const ALLOWED_EXTENSIONS = [".png", ".jpeg", ".jpg", ".webp"];
 
 /**
  * Validates files against backend MIME and extension rules.
@@ -37,7 +37,7 @@ export async function uploadS3Images(
   files: File[],
 ): Promise<JsonResponse<S3.Image[]>> {
   if (!files || files.length === 0) {
-    throw new Error('No files provided for upload.');
+    throw new Error("No files provided for upload.");
   }
 
   // Optional: Perform client-side validation first to save bandwidth
@@ -49,21 +49,21 @@ export async function uploadS3Images(
   const formData = new FormData();
   files.forEach((file) => {
     // Append each file; 'images' or 'file' field name is repeated
-    formData.append('images', file);
+    formData.append("images", file);
   });
 
   const response = await fetch(`${env.NEXT_PUBLIC_API_URL}/s3/images`, {
-    method: 'POST',
+    method: "POST",
     // DO NOT set 'Content-Type' manually!
     // Fetch automatically sets 'multipart/form-data; boundary=...'
     body: formData,
   });
 
-  const result= await response.json();
+  const result = await response.json();
 
   if (!response.ok) {
     throw new Error(
-      result.error || `Upload failed with status ${response.status}`
+      result.error || `Upload failed with status ${response.status}`,
     );
   }
 

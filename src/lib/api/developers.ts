@@ -6,8 +6,8 @@ import { getAccessToken } from "./token";
  * Fetches all developers along with pagination metadata.
  */
 export async function getDevelopers(): Promise<DataAndPagination<Developer[]>> {
-  return fetchJsonApi('/developers', {
-    method: 'GET',
+  return fetchJsonApi("/developers", {
+    method: "GET",
   });
 }
 
@@ -15,9 +15,11 @@ export async function getDevelopers(): Promise<DataAndPagination<Developer[]>> {
  * GET /developers/{id}
  * Fetches a single developer by ID.
  */
-export async function getDeveloperById(id: string | number): Promise<JsonResponse<Developer>> {
+export async function getDeveloperById(
+  id: string | number,
+): Promise<JsonResponse<Developer>> {
   return fetchJsonApi(`/developers/${id}`, {
-    method: 'GET',
+    method: "GET",
   });
 }
 
@@ -26,18 +28,18 @@ export async function getDeveloperById(id: string | number): Promise<JsonRespons
  * Creates a new developer (Admin endpoint).
  */
 
- type CreateDeveloperPayload = {
-   name: string;
-   logo_path: string;
- }
+type CreateDeveloperPayload = {
+  name: string;
+  logo_path: string;
+};
 
 export async function createDeveloper(
   payload: CreateDeveloperPayload,
 ): Promise<JsonResponse<Developer>> {
-  return fetchJsonApi('/developers', {
-    method: 'POST',
+  return fetchJsonApi("/developers", {
+    method: "POST",
     headers: {
-      "x-access-token": await getAccessToken()
+      "x-access-token": await getAccessToken(),
     },
     body: JSON.stringify(payload),
   });
@@ -48,11 +50,10 @@ export async function createDeveloper(
  * Updates an existing developer by ID (Admin endpoint).
  */
 
- type UpdateDeveloperPayload = {
-   name: string;
-   logo_path: string;
- }
-
+type UpdateDeveloperPayload = {
+  name: string;
+  logo_path: string;
+};
 
 export async function updateDeveloper(
   id: string | number,
@@ -60,9 +61,9 @@ export async function updateDeveloper(
 ): Promise<JsonResponse<Developer>> {
   return fetchJsonApi(`/developers/${id}`, {
     headers: {
-      "x-access-token": await getAccessToken()
+      "x-access-token": await getAccessToken(),
     },
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify(payload),
   });
 }
@@ -76,8 +77,8 @@ export async function deleteDeveloper(
 ): Promise<JsonResponse<Developer>> {
   return fetchJsonApi(`/developers/${id}`, {
     headers: {
-      "x-access-token": await getAccessToken()
+      "x-access-token": await getAccessToken(),
     },
-    method: 'DELETE',
+    method: "DELETE",
   });
 }
