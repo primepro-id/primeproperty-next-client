@@ -9,14 +9,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { createPropertiesSchema } from "@/lib/schema/create-properties-schema";
-import { useProperties } from "@/hooks";
 import { useQuery } from "@tanstack/react-query";
-import { bookmarkedPropertyOptions } from "@/hooks/local-storage/bookmark";
+import { findPropertyJoinAgentQueryOptions, getBookmarkedPropertyOptions } from "@/lib/hooks";
 
 export const PopularProperties = () => {
-  const properties = useProperties({ is_popular: "true" });
-  const bookmarkedProperties = useQuery(bookmarkedPropertyOptions());
-  if (properties.data?.data && properties.data?.data?.data.length > 0) {
+  const properties = useQuery(findPropertyJoinAgentQueryOptions({is_popular: true}));
+  const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
+  if (properties.data?.data.data && properties.data?.data?.data.length > 0) {
     const jsonLd = createPropertiesSchema(properties?.data.data.data, {});
     return (
       <>

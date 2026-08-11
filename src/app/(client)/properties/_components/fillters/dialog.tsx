@@ -11,15 +11,16 @@ import {
 import { cn } from "@/lib/utils";
 import { LuListFilter, LuX } from "react-icons/lu";
 import { FilterForm } from "./form";
-import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
-import { usePropertiesNavigation } from "@/hooks/properties/use-properties-navigation";
+import { FindPropertyQuery } from "@/lib/api";
+import { useQuery } from "@tanstack/react-query";
+import { findPropertyNavigationQueryOptions } from "@/lib/hooks";
 
 type FilterDialogProps = {
   searchParams: FindPropertyQuery;
 };
 
 export const FilterDialog = ({ searchParams }: FilterDialogProps) => {
-  const { data } = usePropertiesNavigation();
+  const { data } = useQuery(findPropertyNavigationQueryOptions());
   return (
     <Dialog>
       <DialogTrigger

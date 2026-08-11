@@ -1,5 +1,5 @@
 "use client";
-import { Article } from "@/lib/dato/types";
+import { Article } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

@@ -1,29 +1,27 @@
 "use client";
 import React from "react";
 import { PropertyCard } from "./card";
-import {
-  FindPropertyQuery,
-  PropertyWithAgent,
-} from "@/lib/api/properties/find-properties";
 import { LuHouse, LuSearch } from "react-icons/lu";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { FilterDialog } from "./fillters";
 import { useQuery } from "@tanstack/react-query";
-import { bookmarkedPropertyOptions } from "@/hooks/local-storage/bookmark";
+import { FindPropertyQuery } from "@/lib/api";
+import { PropertyJoinAgent } from "@/lib/types";
+import { getBookmarkedPropertyOptions } from "@/lib/hooks";
 
 type PropertyListProps = {
   searchParams: FindPropertyQuery;
-  propertiesWithAgent: PropertyWithAgent[];
+  propertiesWithAgent: PropertyJoinAgent[] | null;
 };
 
 export const PropertyList = ({
   searchParams,
   propertiesWithAgent,
 }: PropertyListProps) => {
-  const bookmarkedProperties = useQuery(bookmarkedPropertyOptions());
-  if (propertiesWithAgent.length === 0) {
+  const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
+  if (!propertiesWithAgent || propertiesWithAgent?.length === 0) {
     return (
       <div className="w-full h-96 flex flex-col items-center justify-center">
         <LuSearch className="text-5xl mb-2" />

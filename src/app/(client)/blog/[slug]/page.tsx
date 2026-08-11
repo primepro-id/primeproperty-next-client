@@ -1,4 +1,3 @@
-import { findArticle } from "@/lib/dato/find-article";
 import Image from "next/image";
 import { generateBlogMetadata } from "../_lib/generate-blog-metadata";
 import { Metadata } from "next";
@@ -7,6 +6,7 @@ import { BlogPost } from "./_components/blog-post";
 import { BlogRelated } from "./_components/blog-related";
 import { BlogRelatedProperties } from "./_components/blog-related-properties";
 import { Faq } from "../../properties/_components/faq";
+import { findArticleBySlug } from "@/lib/api";
 
 export const revalidate = 0;
 
@@ -22,7 +22,7 @@ export const generateMetadata = async ({
 
 const BlogSlug = async ({ params }: BlogSlugProps) => {
   const { slug } = await params;
-  const { article, allArticles } = await findArticle(slug);
+  const { article, allArticles } = await findArticleBySlug(slug);
   const schema = generateBlogSchema(article);
   return (
     <>

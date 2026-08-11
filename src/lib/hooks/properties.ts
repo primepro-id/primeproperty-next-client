@@ -5,23 +5,24 @@ import {
   UseMutationOptions,
 } from "@tanstack/react-query";
 import {
-  findUniqueJoinAgent,
-  findJoinAgent,
-  findSitePaths,
-  findNavigation,
   createProperty,
   updateProperty,
   removeProperty,
-  FindQuery,
+  FindPropertyQuery,
   CreatePropertyPayload,
   UpdatePropertyPayload,
+  findUniquePropertyJoinAgent,
+  findPropertyJoinAgent,
+  findPropertySitePaths,
+  findPropertyNavigation,
 } from "../api"; // adjust import path as needed
 
 // Query Key Factory for clear cache scoping
 export const propertyKeys = {
   all: ["properties"] as const,
   joinAgents: () => [...propertyKeys.all, "join-agents"] as const,
-  joinAgentList: (query?: FindQuery) => [...propertyKeys.joinAgents(), { query }] as const,
+  joinAgentList: (query?: FindPropertyQuery) =>
+    [...propertyKeys.joinAgents(), { query }] as const,
   joinAgentDetail: (id: number) => [...propertyKeys.joinAgents(), id] as const,
   sitePaths: () => [...propertyKeys.all, "site-paths"] as const,
   navigations: () => [...propertyKeys.all, "navigations"] as const,
@@ -31,53 +32,53 @@ export const propertyKeys = {
  * Query Options
  */
 
-export const findUniqueJoinAgentQueryOptions = (
+export const findUniquePropertyJoinAgentQueryOptions = (
   id: number,
   options?: Omit<
-    UseQueryOptions<Awaited<ReturnType<typeof findUniqueJoinAgent>>>,
+    UseQueryOptions<Awaited<ReturnType<typeof findUniquePropertyJoinAgent>>>,
     "queryKey" | "queryFn"
-  >
+  >,
 ) =>
   queryOptions({
     queryKey: propertyKeys.joinAgentDetail(id),
-    queryFn: () => findUniqueJoinAgent(id),
+    queryFn: () => findUniquePropertyJoinAgent(id),
     ...options,
   });
 
-export const findJoinAgentQueryOptions = (
-  query: FindQuery = {},
+export const findPropertyJoinAgentQueryOptions = (
+  query: FindPropertyQuery = {},
   options?: Omit<
-    UseQueryOptions<Awaited<ReturnType<typeof findJoinAgent>>>,
+    UseQueryOptions<Awaited<ReturnType<typeof findPropertyJoinAgent>>>,
     "queryKey" | "queryFn"
-  >
+  >,
 ) =>
   queryOptions({
     queryKey: propertyKeys.joinAgentList(query),
-    queryFn: () => findJoinAgent(query),
+    queryFn: () => findPropertyJoinAgent(query),
     ...options,
   });
 
-export const findSitePathsQueryOptions = (
+export const findPropertySitePathsQueryOptions = (
   options?: Omit<
-    UseQueryOptions<Awaited<ReturnType<typeof findSitePaths>>>,
+    UseQueryOptions<Awaited<ReturnType<typeof findPropertySitePaths>>>,
     "queryKey" | "queryFn"
-  >
+  >,
 ) =>
   queryOptions({
     queryKey: propertyKeys.sitePaths(),
-    queryFn: () => findSitePaths(),
+    queryFn: () => findPropertySitePaths(),
     ...options,
   });
 
-export const findNavigationQueryOptions = (
+export const findPropertyNavigationQueryOptions = (
   options?: Omit<
-    UseQueryOptions<Awaited<ReturnType<typeof findNavigation>>>,
+    UseQueryOptions<Awaited<ReturnType<typeof findPropertyNavigation>>>,
     "queryKey" | "queryFn"
-  >
+  >,
 ) =>
   queryOptions({
     queryKey: propertyKeys.navigations(),
-    queryFn: () => findNavigation(),
+    queryFn: () => findPropertyNavigation(),
     ...options,
   });
 
@@ -90,7 +91,7 @@ export const createPropertyMutationOptions = (
     Awaited<ReturnType<typeof createProperty>>,
     Error,
     CreatePropertyPayload
-  >
+  >,
 ) =>
   mutationOptions({
     mutationFn: (payload: CreatePropertyPayload) => createProperty(payload),
@@ -102,7 +103,7 @@ export const updatePropertyMutationOptions = (
     Awaited<ReturnType<typeof updateProperty>>,
     Error,
     { id: number; payload: UpdatePropertyPayload }
-  >
+  >,
 ) =>
   mutationOptions({
     mutationFn: ({ id, payload }) => updateProperty(id, payload),
@@ -114,7 +115,7 @@ export const removePropertyMutationOptions = (
     Awaited<ReturnType<typeof removeProperty>>,
     Error,
     number
-  >
+  >,
 ) =>
   mutationOptions({
     mutationFn: (id: number) => removeProperty(id),

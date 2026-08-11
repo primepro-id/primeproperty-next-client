@@ -1,5 +1,4 @@
 "use client";
-import { Article } from "@/lib/dato/types";
 import { env } from "@/lib/env";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { LuArrowRight } from "react-icons/lu";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { Article } from "@/lib/types";
 
 type SpotlightProps = {
   article: Article;

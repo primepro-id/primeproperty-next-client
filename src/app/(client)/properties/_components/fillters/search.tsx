@@ -7,16 +7,13 @@ import { ChangeEvent, useRef, useState } from "react";
 import Link from "next/link";
 import { useDismiss, useFloating, useInteractions } from "@floating-ui/react";
 import { sendGAEvent } from "@next/third-parties/google";
-import {
-  findProperties,
-  PropertyWithAgent,
-} from "@/lib/api/properties/find-properties";
 import { useMutation } from "@tanstack/react-query";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { PropertyJoinAgent, PropertyPurchaseStatus } from "@/lib/types";
+import { findPropertyJoinAgent } from "@/lib/api";
 
 type SearchResultProps = {
   isLoading: boolean;
-  results: PropertyWithAgent[];
+  results: PropertyJoinAgent[];
 };
 
 export const SearchResult = ({ isLoading, results }: SearchResultProps) => {
@@ -38,7 +35,7 @@ export const SearchResult = ({ isLoading, results }: SearchResultProps) => {
             onClick={() => sendGAEvent("event", "search_redirect")}
           >
             {result[0].building_type}{" "}
-            {result[0].purchase_status === PurchaseStatus.ForRent
+            {result[0].purchase_status === PropertyPurchaseStatus.ForRent
               ? "disewa"
               : "dijual"}{" "}
             {result[0].street} {result[0].regency}
@@ -63,7 +60,7 @@ export const Search = () => {
   const searchMutation = useMutation({
     mutationFn: async (keyword: string) => {
       if (keyword) {
-        return await findProperties({ s: keyword });
+        return await findPropertyJoinAgent({ keyword });
       }
       return null;
     },

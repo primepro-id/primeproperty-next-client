@@ -1,5 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
-import { Article } from "@/lib/dato/types";
+import { Article } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";

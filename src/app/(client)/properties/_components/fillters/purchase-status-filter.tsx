@@ -6,10 +6,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { PropertyPurchaseStatus } from "@/lib/types";
 
 type PurchaseStatusFilterProps = {
-  defaultValue?: PurchaseStatus;
+  defaultValue?: PropertyPurchaseStatus;
   onValueChange: (status: string) => void;
 };
 
@@ -30,8 +30,8 @@ export const PurchaseStatusFilter = ({
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="-">SEMUA</SelectItem>
-          <SelectItem value={PurchaseStatus.ForSale}>DIJUAL</SelectItem>
-          <SelectItem value={PurchaseStatus.ForRent}>DISEWA</SelectItem>
+          <SelectItem value={PropertyPurchaseStatus.ForSale}>DIJUAL</SelectItem>
+          <SelectItem value={PropertyPurchaseStatus.ForRent}>DISEWA</SelectItem>
         </SelectContent>
       </Select>
     </div>

@@ -1,4 +1,4 @@
-import { findPropertyByAgent } from "@/lib/api/properties/find-property-by-agent";
+import { getAgentByFullname } from "@/lib/api";
 import { env } from "@/lib/env";
 import { toTitleCase } from "@/lib/to-title-case";
 import { Metadata } from "next";
@@ -9,34 +9,38 @@ export const createAgentMetadata = async (
   }>,
 ): Promise<Metadata> => {
   const { name } = await params;
-  const agentWithProperties = await findPropertyByAgent(name);
-  return {
-    title:
-      toTitleCase(agentWithProperties.data?.agent.fullname ?? "") +
-      "- Agen Properti PRIMEPRO INDONESIA",
-    description:
-      agentWithProperties.data?.agent.description ||
-      `Agen properti ${agentWithProperties.data?.agent.fullname} dari Primepro Indonesia.`,
-    twitter: {
-      title: agentWithProperties.data?.agent.fullname,
-      site: "@primeproindonesia",
-      creator: "@primeproindonesia",
-      card: "summary_large_image",
-      images: [
-        `${env.NEXT_PUBLIC_HOST_URL}${agentWithProperties.data?.agent.profile_picture_url}`,
-      ],
-    },
-    openGraph: {
-      title: agentWithProperties.data?.agent.fullname,
-      description: agentWithProperties.data?.agent.description || "",
-      siteName: "Primepro Indonesia",
-      locale: "id_ID",
-    },
-    appleWebApp: true,
-    applicationName: "Primepro Indonesia",
-    alternates: {
-      canonical: `${env.NEXT_PUBLIC_HOST_URL}/agents/${agentWithProperties.data?.agent.fullname.replaceAll(" ", "-")}`,
-    },
-    robots: "index, follow",
-  };
+  const agent = await getAgentByFullname(name)
+  if (agent.data) {
+    return {
+      title:
+        toTitleCase(agent.data?.fullname ?? "") +
+        "- Agen Properti PRIMEPRO INDONESIA",
+      description:
+        agent.data?.description ||
+        `Agen properti ${agent.data?.fullname} dari Primepro Indonesia.`,
+      twitter: {
+        title: agent.data?.fullname,
+        site: "@primeproindonesia",
+        creator: "@primeproindonesia",
+        card: "summary_large_image",
+        images: [
+          `${env.NEXT_PUBLIC_HOST_URL}${agent.data?.profile_picture_url}`,
+        ],
+      },
+      openGraph: {
+        title: agent.data?.fullname,
+        description: agent.data?.description || "",
+        siteName: "Primepro Indonesia",
+        locale: "id_ID",
+      },
+      appleWebApp: true,
+      applicationName: "Primepro Indonesia",
+      alternates: {
+        canonical: `${env.NEXT_PUBLIC_HOST_URL}/agents/${agent.data?.fullname.replaceAll(" ", "-")}`,
+      },
+      robots: "index, follow",
+    };
+
+  }
+  return {}
 };

@@ -1,5 +1,5 @@
-import { Article } from "@/lib/dato/types";
 import { env } from "@/lib/env";
+import { Article } from "@/lib/types";
 
 export const generateBlogSchema = async (article: Article) => {
   const url = `${env.NEXT_PUBLIC_HOST_URL}/blog/${article.slug}`;

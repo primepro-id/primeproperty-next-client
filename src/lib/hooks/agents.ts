@@ -4,12 +4,7 @@ import {
   UseQueryOptions,
   UseMutationOptions,
 } from "@tanstack/react-query";
-import {
-  Agent,
-  DataAndPagination,
-  JsonResponse,
-  Supertokens,
-} from "../types";
+import { Agent, DataAndPagination, JsonResponse, Supertokens } from "../types";
 import {
   getAgents,
   getAgentById,
@@ -39,13 +34,11 @@ export const agentKeys = {
 // ==========================================
 // Query Options
 // ==========================================
-export function getAgentsQueryOptions<
-  TData = DataAndPagination<Agent[]>
->(
+export function getAgentsQueryOptions<TData = DataAndPagination<Agent[]>>(
   options?: Omit<
     UseQueryOptions<DataAndPagination<Agent[]>, Error, TData>,
     "queryKey" | "queryFn"
-  >
+  >,
 ) {
   return queryOptions({
     queryKey: agentKeys.lists(),
@@ -54,14 +47,12 @@ export function getAgentsQueryOptions<
   });
 }
 
-export function getAgentByIdQueryOptions<
-  TData = JsonResponse<Agent>
->(
+export function getAgentByIdQueryOptions<TData = JsonResponse<Agent>>(
   id: string,
   options?: Omit<
     UseQueryOptions<JsonResponse<Agent>, Error, TData>,
     "queryKey" | "queryFn"
-  >
+  >,
 ) {
   return queryOptions({
     queryKey: agentKeys.detailById(id),
@@ -71,14 +62,12 @@ export function getAgentByIdQueryOptions<
   });
 }
 
-export function getAgentByFullnameQueryOptions<
-  TData = JsonResponse<Agent>
->(
+export function getAgentByFullnameQueryOptions<TData = JsonResponse<Agent>>(
   fullname: string,
   options?: Omit<
     UseQueryOptions<JsonResponse<Agent>, Error, TData>,
     "queryKey" | "queryFn"
-  >
+  >,
 ) {
   return queryOptions({
     queryKey: agentKeys.detailByFullname(fullname),
@@ -99,7 +88,7 @@ export function signinAgentMutationOptions(
       Parameters<typeof signinAgent>[0]
     >,
     "mutationFn"
-  >
+  >,
 ) {
   return mutationOptions({
     mutationFn: (credentials) => signinAgent(credentials),
@@ -109,13 +98,9 @@ export function signinAgentMutationOptions(
 
 export function createAgentPasswordResetTokenMutationOptions(
   options?: Omit<
-    UseMutationOptions<
-      JsonResponse<string>,
-      Error,
-      string
-    >,
+    UseMutationOptions<JsonResponse<string>, Error, string>,
     "mutationFn"
-  >
+  >,
 ) {
   return mutationOptions({
     mutationFn: (email) => createAgentPasswordResetToken(email),
@@ -131,7 +116,7 @@ export function resetAgentPasswordMutationOptions(
       PasswordResetPayload
     >,
     "mutationFn"
-  >
+  >,
 ) {
   return mutationOptions({
     mutationFn: (payload) => resetAgentPassword(payload),
@@ -147,7 +132,7 @@ export function refreshAgentSessionMutationOptions(
       string
     >,
     "mutationFn"
-  >
+  >,
 ) {
   return mutationOptions({
     mutationFn: (refreshToken) => refreshAgentSession(refreshToken),
@@ -163,7 +148,7 @@ export function updateAgentMutationOptions(
       { id: string; updateData: Parameters<typeof updateAgent>[1] }
     >,
     "mutationFn"
-  >
+  >,
 ) {
   return mutationOptions({
     mutationFn: ({ id, updateData }) => updateAgent(id, updateData),
@@ -179,7 +164,7 @@ export function createAgentMutationOptions(
       Parameters<typeof createAgent>[0]
     >,
     "mutationFn"
-  >
+  >,
 ) {
   return mutationOptions({
     mutationFn: (agentData) => createAgent(agentData),
@@ -189,13 +174,9 @@ export function createAgentMutationOptions(
 
 export function deleteAgentMutationOptions(
   options?: Omit<
-    UseMutationOptions<
-      JsonResponse<Agent>,
-      Error,
-      string
-    >,
+    UseMutationOptions<JsonResponse<Agent>, Error, string>,
     "mutationFn"
-  >
+  >,
 ) {
   return mutationOptions({
     mutationFn: (id) => deleteAgent(id),

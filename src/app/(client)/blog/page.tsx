@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { env } from "@/lib/env";
-import { findAllArticles } from "@/lib/dato/find-all-articles";
 import { generateBlogHomeSchema } from "./_lib/generate-blog-home-schema";
 import Image from "next/image";
 import { AllArticles, Latest, Spotlight } from "./_components";
 import { PopularProperties } from "../properties/_components";
+import { findArticles } from "@/lib/api";
 
 export const revalidate = 0;
 
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 const Blog = async () => {
-  const { allArticles } = await findAllArticles();
+  const { allArticles } = await findArticles();
   const { homeSchema, breadcrumbSchema } = generateBlogHomeSchema(allArticles);
 
   return (

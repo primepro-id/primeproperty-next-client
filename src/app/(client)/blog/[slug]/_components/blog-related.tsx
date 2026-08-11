@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Article } from "@/lib/dato/types";
 import Image from "next/image";
 import { generateBlogRelatedSchema } from "../../_lib/generate-blog-related-schema";
+import { Article } from "@/lib/types";
 
 type BlogRelatedProps = {
   slug: string;

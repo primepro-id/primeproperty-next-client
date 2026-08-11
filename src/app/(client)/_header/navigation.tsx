@@ -10,16 +10,16 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
-import { usePropertiesNavigation } from "@/hooks/properties/use-properties-navigation";
-import { PropertyNavigation } from "@/lib/api/properties/find-property-navigation";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import { useState } from "react";
 import { toSlug } from "@/lib/utils";
+import { PropertyNavigation, PropertyPurchaseStatus } from "@/lib/types";
+import { useQuery } from "@tanstack/react-query";
+import { findPropertyNavigationQueryOptions } from "@/lib/hooks";
 
 type PropertyNavigationMenuContentProps = {
   isLoading: boolean;
   data?: PropertyNavigation[];
-  purchaseStatus: PurchaseStatus;
+  purchaseStatus: PropertyPurchaseStatus;
 };
 
 const PropertyNavigationMenuContent = ({
@@ -28,7 +28,7 @@ const PropertyNavigationMenuContent = ({
   purchaseStatus,
 }: PropertyNavigationMenuContentProps) => {
   const purchaseStatusPath =
-    purchaseStatus === PurchaseStatus.ForSale ? "/dijual" : "/disewa";
+    purchaseStatus === PropertyPurchaseStatus.ForSale ? "/dijual" : "/disewa";
   const [selectedBuildType, setSelectedBuildType] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedRegency, setSelectedRegency] = useState("");
@@ -231,12 +231,12 @@ export const Navigation = () => {
     },
   ];
 
-  const nav = usePropertiesNavigation();
+  const nav = useQuery(findPropertyNavigationQueryOptions());
   const forSaleNav = nav?.data?.data?.filter(
-    (b) => b.purchase_status === PurchaseStatus.ForSale,
+    (b) => b.purchase_status === PropertyPurchaseStatus.ForSale,
   );
   const forRentNav = nav?.data?.data?.filter(
-    (b) => b.purchase_status === PurchaseStatus.ForRent,
+    (b) => b.purchase_status === PropertyPurchaseStatus.ForRent,
   );
   return (
     <NavigationMenu>
@@ -263,7 +263,7 @@ export const Navigation = () => {
             <PropertyNavigationMenuContent
               isLoading={nav.isLoading}
               data={forSaleNav}
-              purchaseStatus={PurchaseStatus.ForSale}
+              purchaseStatus={PropertyPurchaseStatus.ForSale}
             />
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -275,7 +275,7 @@ export const Navigation = () => {
             <PropertyNavigationMenuContent
               isLoading={nav.isLoading}
               data={forRentNav}
-              purchaseStatus={PurchaseStatus.ForRent}
+              purchaseStatus={PropertyPurchaseStatus.ForRent}
             />
           </NavigationMenuContent>
         </NavigationMenuItem>

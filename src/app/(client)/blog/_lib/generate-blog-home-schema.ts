@@ -1,5 +1,5 @@
-import { Article } from "@/lib/dato/types";
 import { env } from "@/lib/env";
+import { Article } from "@/lib/types";
 
 export const generateBlogHomeSchema = (articles: Article[]) => {
   const homeSchema = {

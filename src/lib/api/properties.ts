@@ -27,7 +27,7 @@ export enum FindQuerySort {
 }
 
 // Request Query & Payloads
-export type FindQuery = {
+export type FindPropertyQuery = {
   id?: number;
   agent_id?: string;
   province?: string;
@@ -98,7 +98,7 @@ export type UpdatePropertyPayload = {
  * Public Routes
  */
 
-export const findUniqueJoinAgent = async (
+export const findUniquePropertyJoinAgent = async (
   id: number,
 ): Promise<JsonResponse<PropertyJoinAgent>> => {
   return fetchJsonApi(`/properties/${id}/join-agents`, {
@@ -106,8 +106,8 @@ export const findUniqueJoinAgent = async (
   });
 };
 
-export const findJoinAgent = async (
-  query: FindQuery = {},
+export const findPropertyJoinAgent = async (
+  query: FindPropertyQuery = {},
 ): Promise<DataAndPagination<PropertyJoinAgent[]>> => {
   const searchParams = qs.stringify(query, { addQueryPrefix: true });
   const endpoint = `/properties/join-agents${searchParams}`;
@@ -117,13 +117,13 @@ export const findJoinAgent = async (
   });
 };
 
-export const findSitePaths = async (): Promise<JsonResponse<string[]>> => {
+export const findPropertySitePaths = async (): Promise<JsonResponse<string[]>> => {
   return fetchJsonApi("/properties/site-paths", {
     method: "GET",
   });
 };
 
-export const findNavigation = async (): Promise<
+export const findPropertyNavigation = async (): Promise<
   JsonResponse<PropertyNavigation[]>
 > => {
   return fetchJsonApi("/properties/navigations", {

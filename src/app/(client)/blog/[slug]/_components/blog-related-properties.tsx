@@ -1,6 +1,6 @@
 "use client";
 import { PropertyCard } from "@/app/(client)/properties/_components/card";
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -10,8 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { createPropertiesSchema } from "@/lib/schema/create-properties-schema";
 import { useQuery } from "@tanstack/react-query";
-import { bookmarkedPropertyOptions } from "@/hooks/local-storage/bookmark";
-import { useProperties } from "@/hooks";
+import { findPropertyJoinAgentQueryOptions, getBookmarkedPropertyOptions } from "@/lib/hooks";
 
 type RelatedPropertiesProps = {
   relatedProperties: string;
@@ -20,19 +19,19 @@ type RelatedPropertiesProps = {
 export const BlogRelatedProperties = ({
   relatedProperties,
 }: RelatedPropertiesProps) => {
-  const getRelatedParams = () => {
+  const relatedParams = useMemo(() => {
     if (relatedProperties.includes("jakarta")) {
-      return { regency: relatedProperties, limit: "10" };
+      return { regency:  relatedProperties };
     }
     if (relatedProperties === "terbaru") {
-      return { limit: "10" };
+      return {  };
     }
-    return { street: relatedProperties, limit: "10" };
-  };
+    return { street: relatedProperties, limit: 10 };
+  }, [relatedProperties])
 
-  const bookmarkedProperties = useQuery(bookmarkedPropertyOptions());
-  const properties = useProperties(getRelatedParams());
-  if (properties.data?.data && properties.data?.data.data.length > 0) {
+  const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
+  const properties = useQuery(findPropertyJoinAgentQueryOptions(relatedParams));
+  if (properties.data?.data.data && properties.data?.data.data?.length > 0) {
     const jsonLd = createPropertiesSchema(properties?.data.data.data, {});
     return (
       <>

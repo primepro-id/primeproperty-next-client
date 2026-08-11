@@ -1,8 +1,6 @@
 "use client";
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
-import { Agent } from "@/lib/api/properties/find-property-by-agent";
-import { BuildingType } from "@/lib/enums/building-type";
 import { env } from "@/lib/env";
+import { Agent, PropertyJoinAgent } from "@/lib/types";
 import Image from "next/image";
 import { useMemo } from "react";
 import { LuCircleUser, LuInstagram, LuMail } from "react-icons/lu";
@@ -12,7 +10,7 @@ export const AgentBio = ({
   propertiesWithAgent,
 }: {
   agent: Agent;
-  propertiesWithAgent: PropertyWithAgent[];
+  propertiesWithAgent: PropertyJoinAgent[] | null;
 }) => {
   const groupedProperties = useMemo(() => {
     if (propertiesWithAgent) {
@@ -65,7 +63,7 @@ export const AgentBio = ({
                     {key}:
                   </h3>
                   <div className="font-bold">
-                    {groupedProperties?.[key as BuildingType]?.length}
+                    {groupedProperties?.[key]?.length}
                   </div>
                 </div>
               ))

@@ -13,15 +13,16 @@ import { cn } from "@/lib/utils";
 import { LuPhone, LuX } from "react-icons/lu";
 import { MdOutlinePhotoLibrary, MdWhatsapp } from "react-icons/md";
 import { FormEvent, useState } from "react";
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { z } from "zod";
-import { createLead } from "@/lib/api/leads/create-lead";
 import { env } from "@/lib/env";
 import { sendGAEvent } from "@next/third-parties/google";
+import { PropertyJoinAgent } from "@/lib/types";
+import { useMutation } from "@tanstack/react-query";
+import { createLeadMutationOptions } from "@/lib/hooks";
 
 type ContactAgentDialogProps = {
   isWhatsapp: boolean;
-  propertyWithAgent: PropertyWithAgent;
+  propertyWithAgent: PropertyJoinAgent;
   isPhotoRequest?: boolean;
 };
 
@@ -32,6 +33,7 @@ export const ContactAgentDialog = ({
 }: ContactAgentDialogProps) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [open, setOpen] = useState(false);
+  const leadMutation = useMutation(createLeadMutationOptions())
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -75,7 +77,7 @@ export const ContactAgentDialog = ({
         ...(email && { email }),
       };
 
-      const lead = await createLead(payload);
+      const lead = await leadMutation.mutateAsync(payload);
       if (lead.data?.id) {
         sendGAEvent("event", "leads_submit");
       }

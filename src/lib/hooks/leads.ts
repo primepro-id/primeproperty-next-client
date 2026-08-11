@@ -20,7 +20,7 @@ export function getLeadsQueryOptions(
   options?: Omit<
     UseQueryOptions<DataAndPagination<Lead[]>, Error>,
     "queryKey" | "queryFn"
-  >
+  >,
 ) {
   return queryOptions({
     queryKey: leadKeys.lists(),
@@ -34,7 +34,7 @@ export function getLeadsQueryOptions(
  * Allows passing additional TanStack Query mutation options (e.g., onSuccess, onError).
  */
 export function createLeadMutationOptions(
-  options?: UseMutationOptions<JsonResponse<Lead>, Error, CreateLeadPayload>
+  options?: UseMutationOptions<JsonResponse<Lead>, Error, CreateLeadPayload>,
 ) {
   return {
     mutationFn: (payload: CreateLeadPayload) => createLead(payload),

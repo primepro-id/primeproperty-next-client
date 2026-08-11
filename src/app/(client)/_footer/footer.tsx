@@ -13,11 +13,11 @@ import {
   LuPhone,
 } from "react-icons/lu";
 import { buttonVariants } from "@/components/ui/button";
-import { usePropertiesNavigation } from "@/hooks/properties/use-properties-navigation";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import { cn, toSlug } from "@/lib/utils";
-import { PropertyNavigation } from "@/lib/api/properties/find-property-navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { PropertyNavigation, PropertyPurchaseStatus } from "@/lib/types";
+import { useQuery } from "@tanstack/react-query";
+import { findPropertyNavigationQueryOptions } from "@/lib/hooks";
 
 const Organization = () => {
   return (
@@ -280,13 +280,13 @@ const ForRentList = ({ navigations }: ForSaleListProps) => {
 };
 
 const FooterNavigation = () => {
-  const nav = usePropertiesNavigation();
+  const nav = useQuery(findPropertyNavigationQueryOptions());
   const forSaleNav = nav?.data?.data?.filter(
-    (b) => b.purchase_status === PurchaseStatus.ForSale,
+    (b) => b.purchase_status === PropertyPurchaseStatus.ForSale,
   );
 
   const forRentNav = nav?.data?.data?.filter(
-    (b) => b.purchase_status === PurchaseStatus.ForRent,
+    (b) => b.purchase_status === PropertyPurchaseStatus.ForRent,
   );
 
   return (

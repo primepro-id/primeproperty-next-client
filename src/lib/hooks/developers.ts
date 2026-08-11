@@ -20,7 +20,8 @@ export const developerKeys = {
   all: ["developers"] as const,
   lists: () => [...developerKeys.all, "list"] as const,
   details: () => [...developerKeys.all, "detail"] as const,
-  detail: (id: string | number) => [...developerKeys.details(), String(id)] as const,
+  detail: (id: string | number) =>
+    [...developerKeys.details(), String(id)] as const,
 };
 
 // ==========================================
@@ -34,7 +35,7 @@ export function developersQueryOptions<TData = DataAndPagination<Developer[]>>(
   options?: Omit<
     UseQueryOptions<DataAndPagination<Developer[]>, Error, TData>,
     "queryKey" | "queryFn"
-  >
+  >,
 ) {
   return queryOptions({
     queryKey: developerKeys.lists(),
@@ -51,7 +52,7 @@ export function developerByIdQueryOptions<TData = JsonResponse<Developer>>(
   options?: Omit<
     UseQueryOptions<JsonResponse<Developer>, Error, TData>,
     "queryKey" | "queryFn"
-  >
+  >,
 ) {
   return queryOptions({
     queryKey: developerKeys.detail(id),
@@ -73,7 +74,7 @@ export function createDeveloperMutationOptions(
     JsonResponse<Developer>,
     Error,
     Parameters<typeof createDeveloper>[0]
-  >
+  >,
 ) {
   return mutationOptions({
     mutationFn: createDeveloper,
@@ -89,7 +90,7 @@ export function updateDeveloperMutationOptions(
     JsonResponse<Developer>,
     Error,
     { id: string | number; payload: Parameters<typeof updateDeveloper>[1] }
-  >
+  >,
 ) {
   return mutationOptions({
     mutationFn: ({ id, payload }) => updateDeveloper(id, payload),
@@ -101,7 +102,7 @@ export function updateDeveloperMutationOptions(
  * Mutation options for deleting a developer.
  */
 export function deleteDeveloperMutationOptions(
-  options?: UseMutationOptions<JsonResponse<Developer>, Error, string | number>
+  options?: UseMutationOptions<JsonResponse<Developer>, Error, string | number>,
 ) {
   return mutationOptions({
     mutationFn: (id) => deleteDeveloper(id),
