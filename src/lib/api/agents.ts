@@ -2,7 +2,7 @@ import { Agent, DataAndPagination, JsonResponse, Supertokens } from "../types";
 import { fetchJsonApi } from "./fetch-api";
 import { getAccessToken } from "./token";
 
-export async function getAgents(): Promise<DataAndPagination<Agent[]>> {
+export async function getAgents(): Promise<JsonResponse<DataAndPagination<Agent[]>>> {
   return fetchJsonApi("/agents");
 }
 

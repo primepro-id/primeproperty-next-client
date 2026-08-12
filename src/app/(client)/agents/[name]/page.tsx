@@ -12,5 +12,5 @@ export const generateMetadata = async ({
 
 export default async function Page({ params }: AgentPageProps) {
   const { name } = await params;
-  return <AgentPage name={name} />
+  return <AgentPage name={name} />;
 }

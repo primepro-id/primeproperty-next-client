@@ -1,5 +1,5 @@
-import { Property } from "@/lib/api/properties/type";
 import { env } from "@/lib/env";
+import { Property } from "../types";
 
 export const createDynamicPropertySchema = (property: Property) => {
   const jsonLd = {

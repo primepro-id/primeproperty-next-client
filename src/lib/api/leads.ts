@@ -27,7 +27,7 @@ export async function createLead(
  * Authenticated endpoint to retrieve leads for the session agent.
  * GET /leads
  */
-export async function getLeads(): Promise<DataAndPagination<Lead[]>> {
+export async function getLeads(): Promise<JsonResponse<DataAndPagination<Lead[]>>> {
   return fetchJsonApi("/leads", {
     method: "GET",
     headers: {

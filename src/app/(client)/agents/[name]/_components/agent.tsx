@@ -1,6 +1,9 @@
-'use client'
+"use client";
 
-import { findPropertyJoinAgentQueryOptions, getAgentByFullnameQueryOptions } from "@/lib/hooks";
+import {
+  findPropertyJoinAgentQueryOptions,
+  getAgentByFullnameQueryOptions,
+} from "@/lib/hooks";
 import { useQuery } from "@tanstack/react-query";
 import { AgentBreadcrumb } from "./agent-breadcrumb";
 import { AgentBio } from "./agent-bio";
@@ -9,22 +12,25 @@ import { PropertyList } from "@/app/(client)/properties/_components/list";
 import { Faq } from "@/app/(client)/properties/_components/faq";
 
 type AgentPageProps = {
-  name: string
-}
+  name: string;
+};
 
-export const AgentPage = ({name}: AgentPageProps) => {
-
-  const agent = useQuery(getAgentByFullnameQueryOptions(name))
-  const agentWithProperties = useQuery(findPropertyJoinAgentQueryOptions({agent_id: agent?.data?.data?.id}, {enabled: !!agent?.data?.data}));
+export const AgentPage = ({ name }: AgentPageProps) => {
+  const agent = useQuery(getAgentByFullnameQueryOptions(name));
+  const agentWithProperties = useQuery(
+    findPropertyJoinAgentQueryOptions(
+      { agent_id: agent?.data?.data?.id },
+      { enabled: !!agent?.data?.data },
+    ),
+  );
 
   if (agent.isLoading || agentWithProperties.isLoading) {
-    return <Loading />
+    return <Loading />;
   }
 
   if (!agent.data?.data || !agentWithProperties?.data) {
-    return <></>
+    return <></>;
   }
-
 
   return (
     <div className="flex flex-col gap-8 container mx-auto p-4">
@@ -44,4 +50,4 @@ export const AgentPage = ({name}: AgentPageProps) => {
       <Faq defaultTab="PRIMEPRO" />
     </div>
   );
-}
+};

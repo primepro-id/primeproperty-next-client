@@ -12,6 +12,6 @@ type Pagination = {
 };
 
 export type DataAndPagination<T> = {
-  data: JsonResponse<T>;
+  data: T;
   pagination: Pagination;
 };

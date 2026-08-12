@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { env } from "@/lib/env";
 import { useRouter } from "next/navigation";
 import { LuArrowLeft, LuEye, LuTag } from "react-icons/lu";
@@ -10,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
 import React from "react";
-import { PropertyImage } from "@/lib/enums/property-image";
+import { PropertyImage, PropertyJoinAgent } from "@/lib/types";
 
 const baseImgPath = env.NEXT_PUBLIC_S3_ENDPOINT;
 
@@ -141,7 +140,7 @@ const ImageThumbnail = ({
 };
 
 type PropertyCarouselProps = {
-  propertyWithAgent: PropertyWithAgent;
+  propertyWithAgent: PropertyJoinAgent;
   onImageClick: (imageIndex: number) => void;
 };
 

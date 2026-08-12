@@ -33,7 +33,7 @@ export const ContactAgentDialog = ({
 }: ContactAgentDialogProps) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [open, setOpen] = useState(false);
-  const leadMutation = useMutation(createLeadMutationOptions())
+  const leadMutation = useMutation(createLeadMutationOptions());
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

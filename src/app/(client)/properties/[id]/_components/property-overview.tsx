@@ -1,12 +1,8 @@
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { PropertyInformation } from "./property-information";
-import { FACILITY_ICON } from "@/lib/enums/facilities";
 import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
 import { cn } from "@/lib/utils";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
-import { RENT_TIME } from "@/lib/enums/rent_time";
-import { Property } from "@/lib/api/properties/type";
 import { GoogleTranslateElement } from "@/components/custom-ui/google-translate-element";
+import { Property, PropertyJoinAgent, PropertyPurchaseStatus } from "@/lib/types";
 
 type PriceTagProps = {
   property: Property;
@@ -17,8 +13,8 @@ const PriceTag = ({ property }: PriceTagProps) => {
     <div className="text-primary flex flex-row gap-2 font-bold">
       <div className="text-2xl flex items-center gap-2 ">
         <span>{formatToCurrencyUnit(property.price, property.currency)}</span>
-        {property.purchase_status === PurchaseStatus.ForRent &&
-          property.rent_time && <span>{RENT_TIME[property.rent_time]}</span>}
+        {property.purchase_status === PropertyPurchaseStatus.ForRent &&
+          property.rent_time && <span>{property.rent_time}</span>}
       </div>
       <span
         className={cn(
@@ -39,7 +35,7 @@ const PriceTag = ({ property }: PriceTagProps) => {
 };
 
 type PropertyOverviewProps = {
-  property: PropertyWithAgent;
+  property: PropertyJoinAgent;
 };
 
 export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
@@ -72,7 +68,7 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
                 className="flex items-center text-lg gap-2 capitalize"
               >
                 <span className="text-muted-foreground">
-                  {FACILITY_ICON[facility.value]}
+                  {facility.value}
                 </span>
                 <span>{facility.indonesian_label}</span>
               </li>

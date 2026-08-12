@@ -1,4 +1,4 @@
-import { findPropertyById } from "@/lib/api/properties/find-property-by-id";
+import { findUniquePropertyJoinAgent } from "@/lib/api";
 import { env } from "@/lib/env";
 import { Metadata } from "next";
 
@@ -8,7 +8,7 @@ export const generateDynamicPropertyMetadata = async (
   const { id } = await params;
   const [propertyId] = id.split("-");
 
-  const property = await findPropertyById(Number(propertyId));
+  const property = await findUniquePropertyJoinAgent(Number(propertyId));
   if (property.data) {
     const title =
       property.data[0].title + `. Property ${propertyId} - PRIMEPRO INDONESIA`;

@@ -5,13 +5,13 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import React, { useState } from "react";
 import { PropertyCarousel } from "./property-carousel";
 import { PropertyDialogCarousel } from "./property-dialog-carousel";
+import { PropertyJoinAgent } from "@/lib/types";
 
 type PropertyImagesProps = {
-  propertyWithAgent: PropertyWithAgent;
+  propertyWithAgent: PropertyJoinAgent;
 };
 
 export const PropertyImages = ({ propertyWithAgent }: PropertyImagesProps) => {

@@ -3,7 +3,6 @@ import { env } from "@/lib/env";
 import { cn } from "@/lib/utils";
 import { LuTag } from "react-icons/lu";
 import { PropertyDialogCarousel } from "../../[id]/_components/property-dialog-carousel";
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { useState } from "react";
 import {
   Dialog,
@@ -11,9 +10,10 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { PropertyJoinAgent } from "@/lib/types";
 
 type PropertyComparisonImagesProps = {
-  propertyWithAgent: PropertyWithAgent;
+  propertyWithAgent: PropertyJoinAgent;
 };
 
 export const PropertyComparisonImages = ({

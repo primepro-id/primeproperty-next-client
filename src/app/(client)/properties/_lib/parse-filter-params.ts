@@ -1,24 +1,24 @@
-import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { FindPropertyQuery } from "@/lib/api";
+import { PropertyPurchaseStatus } from "@/lib/types";
 
-export const parseFilterParams = (params: string[]): FindPropertyQuery => {
+export const parseFilterParams = (params: string[]): FindPropertyQuery=> {
   const baseQuery: FindPropertyQuery = {};
 
   if (params?.[0]) {
     const purchaseStatusQuery = params?.[0] as "dijual" | "disewa";
     switch (purchaseStatusQuery) {
       case "dijual":
-        baseQuery.purchase_status = PurchaseStatus.ForSale;
+        baseQuery.purchase_status = PropertyPurchaseStatus.ForSale;
         break;
       case "disewa":
-        baseQuery.purchase_status = PurchaseStatus.ForRent;
+        baseQuery.purchase_status = PropertyPurchaseStatus.ForRent;
         break;
     }
   }
 
   if (params?.[1]) {
     const buildingTypeQuery = params?.[1];
-    baseQuery.buiding_type = buildingTypeQuery
+    baseQuery.building_type = buildingTypeQuery
       .toLowerCase()
       .replaceAll("-", " ");
   }

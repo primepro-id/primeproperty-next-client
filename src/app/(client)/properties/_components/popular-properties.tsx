@@ -10,10 +10,15 @@ import {
 } from "@/components/ui/carousel";
 import { createPropertiesSchema } from "@/lib/schema/create-properties-schema";
 import { useQuery } from "@tanstack/react-query";
-import { findPropertyJoinAgentQueryOptions, getBookmarkedPropertyOptions } from "@/lib/hooks";
+import {
+  findPropertyJoinAgentQueryOptions,
+  getBookmarkedPropertyOptions,
+} from "@/lib/hooks";
 
 export const PopularProperties = () => {
-  const properties = useQuery(findPropertyJoinAgentQueryOptions({is_popular: true}));
+  const properties = useQuery(
+    findPropertyJoinAgentQueryOptions({ is_popular: true }),
+  );
   const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
   if (properties.data?.data.data && properties.data?.data?.data.length > 0) {
     const jsonLd = createPropertiesSchema(properties?.data.data.data, {});

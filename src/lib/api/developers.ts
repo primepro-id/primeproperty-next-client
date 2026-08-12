@@ -5,7 +5,7 @@ import { getAccessToken } from "./token";
  * GET /developers
  * Fetches all developers along with pagination metadata.
  */
-export async function getDevelopers(): Promise<DataAndPagination<Developer[]>> {
+export async function getDevelopers(): Promise<JsonResponse<DataAndPagination<Developer[]>>> {
   return fetchJsonApi("/developers", {
     method: "GET",
   });

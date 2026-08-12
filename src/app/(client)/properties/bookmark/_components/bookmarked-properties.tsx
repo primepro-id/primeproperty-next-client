@@ -1,6 +1,4 @@
 "use client";
-import { useProperties } from "@/hooks";
-import { bookmarkedPropertyOptions } from "@/hooks/local-storage/bookmark";
 import { useQuery } from "@tanstack/react-query";
 import { EmptyBookmarkedProperties } from "./empty-bookmarked-properties";
 import Loading from "@/app/(client)/loading";
@@ -8,18 +6,16 @@ import { BookmarkedPropertyTable } from "./bookmarked-property-table";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { findPropertyJoinAgentQueryOptions, getBookmarkedPropertyOptions } from "@/lib/hooks";
 
 export const BookmarkedProperties = () => {
   const router = useRouter();
   const [selectedProperties, setSelectedProperties] = useState<number[]>([]);
-  const bookmarkedProperties = useQuery(bookmarkedPropertyOptions());
-  const properties = useProperties(
-    { ids: bookmarkedProperties.data?.join(",") },
-    {
-      enabled:
-        !!bookmarkedProperties.data && bookmarkedProperties?.data?.length > 0,
-    },
-  );
+  const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
+  const properties = useQuery(findPropertyJoinAgentQueryOptions({ ids: bookmarkedProperties.data?.join(",") }, {
+
+    enabled:      !!bookmarkedProperties.data && bookmarkedProperties?.data?.length > 0,
+  }))
 
   if (bookmarkedProperties.isLoading || properties.isLoading) {
     return <Loading />;

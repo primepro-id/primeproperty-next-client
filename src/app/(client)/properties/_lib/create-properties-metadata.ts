@@ -1,17 +1,17 @@
-import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
-import { PURCHASE_STATUS, PurchaseStatus } from "@/lib/enums/purchase-status";
 import { env } from "@/lib/env";
 import { Metadata } from "next";
 import { toTitleCase } from "@/lib/to-title-case";
+import { FindPropertyQuery } from "@/lib/api";
+import qs from 'qs'
 
 export const generateTitle = (searchParams: FindPropertyQuery) => {
-  const propertyType = searchParams.buiding_type
-    ? searchParams.buiding_type
+  const propertyType = searchParams.building_type
+    ? searchParams.building_type
     : "Properti";
   const purchaseType = searchParams.purchase_status
-    ? PURCHASE_STATUS[
-        searchParams.purchase_status as PurchaseStatus
-      ].toLowerCase()
+    ?
+        searchParams.purchase_status
+      .toLowerCase()
     : "dijual";
   let location = "";
   if (searchParams.street) {
@@ -37,13 +37,12 @@ export const generateTitle = (searchParams: FindPropertyQuery) => {
 };
 
 export const generateDescription = (searchParams: FindPropertyQuery) => {
-  const propertyType = searchParams.buiding_type
-    ? searchParams.buiding_type
+  const propertyType = searchParams.building_type
+    ? searchParams.building_type
     : "Properti";
   const purchaseType = searchParams.purchase_status
-    ? PURCHASE_STATUS[
-        searchParams.purchase_status as PurchaseStatus
-      ].toLowerCase()
+    ?
+        searchParams.purchase_status.toLowerCase()
     : "dijual";
   let location = "";
   if (searchParams.street) {
@@ -71,13 +70,12 @@ export const generateDescription = (searchParams: FindPropertyQuery) => {
 };
 
 export const generateKeyword = (searchParams: FindPropertyQuery) => {
-  const propertyType = searchParams.buiding_type
-    ? searchParams.buiding_type
+  const propertyType = searchParams.building_type
+    ? searchParams.building_type
     : "Properti";
   const purchaseType = searchParams.purchase_status
-    ? PURCHASE_STATUS[
-        searchParams.purchase_status as PurchaseStatus
-      ].toLowerCase()
+    ?
+        searchParams.purchase_status
     : "dijual";
 
   let location = "";
@@ -99,8 +97,7 @@ export const generateKeyword = (searchParams: FindPropertyQuery) => {
 
 export const generateCanonical = (searchParams: FindPropertyQuery) => {
   if (Object.values(searchParams).length > 0) {
-    const searchParamsStr = new URLSearchParams(searchParams);
-    return `?${searchParamsStr.toString()}`;
+    return qs.stringify(searchParams);
   }
 
   return "";

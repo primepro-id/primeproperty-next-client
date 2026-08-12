@@ -1,7 +1,4 @@
-import { Property } from "@/lib/api/properties/type";
-import { buildingConditionToIndonesian } from "@/lib/enums/building-condition";
-import { FURNITURE_CAPACITY_LABELS } from "@/lib/enums/furniture-capacity";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { Property, PropertyPurchaseStatus } from "@/lib/types";
 
 type KeyValueProps = {
   label: string;
@@ -25,7 +22,7 @@ export const PropertyInformation = ({ property }: PropertyInformationProps) => {
     <div className="flex flex-col gap-2">
       <h3 className="uppercase font-sans">
         INFORMASI {property.building_type}{" "}
-        {property.purchase_status === PurchaseStatus.ForSale
+        {property.purchase_status === PropertyPurchaseStatus.ForSale
           ? "DIJUAL"
           : "DISEWA"}
       </h3>
@@ -35,7 +32,7 @@ export const PropertyInformation = ({ property }: PropertyInformationProps) => {
         <KeyValue label="Sertifikat" value={property.building_certificate} />
         <KeyValue
           label="Kondisi"
-          value={buildingConditionToIndonesian(property.building_condition)}
+          value={property.building_condition}
         />
         <KeyValue
           label="Luas Tanah"
@@ -91,7 +88,7 @@ export const PropertyInformation = ({ property }: PropertyInformationProps) => {
           <div className="flex items-center gap-1">
             <p className="w-32 text-muted-foreground">Perabotan</p>
             <p className="capitalize">
-              {FURNITURE_CAPACITY_LABELS[property.building_furniture_capacity]}
+              {property.building_furniture_capacity}
             </p>
           </div>
         )}

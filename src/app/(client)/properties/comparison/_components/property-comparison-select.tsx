@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
+import { PropertyJoinAgent } from "@/lib/types";
 
 export const PropertyComparisonSelect = ({
   selectedId,
@@ -13,7 +13,7 @@ export const PropertyComparisonSelect = ({
   onValueChange,
 }: {
   selectedId: string;
-  properties?: PropertyWithAgent[];
+  properties?: PropertyJoinAgent[];
   onValueChange: (val: string) => void;
 }) => {
   return (

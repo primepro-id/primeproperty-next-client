@@ -1,6 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
-import { Property } from "@/lib/api/properties/type";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { Property, PropertyPurchaseStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { LuChevronRight } from "react-icons/lu";
@@ -12,7 +11,7 @@ type RelatedSearchProps = {
 
 export const RelatedSearch = ({ property, className }: RelatedSearchProps) => {
   const purchaseStatus =
-    property.purchase_status === PurchaseStatus.ForRent ? "dijual" : "disewa";
+    property.purchase_status === PropertyPurchaseStatus.ForRent ? "dijual" : "disewa";
   const buildingType = property.building_type.replaceAll(" ", "-");
   const province = property.province.replaceAll(" ", "-");
   const regency = property.regency.replaceAll(" ", "-");

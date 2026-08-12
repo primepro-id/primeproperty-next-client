@@ -9,7 +9,7 @@ export const createAgentMetadata = async (
   }>,
 ): Promise<Metadata> => {
   const { name } = await params;
-  const agent = await getAgentByFullname(name)
+  const agent = await getAgentByFullname(name);
   if (agent.data) {
     return {
       title:
@@ -40,7 +40,6 @@ export const createAgentMetadata = async (
       },
       robots: "index, follow",
     };
-
   }
-  return {}
+  return {};
 };

@@ -29,6 +29,7 @@ export enum FindQuerySort {
 // Request Query & Payloads
 export type FindPropertyQuery = {
   id?: number;
+  ids?: string;
   agent_id?: string;
   province?: string;
   regency?: string;
@@ -108,7 +109,7 @@ export const findUniquePropertyJoinAgent = async (
 
 export const findPropertyJoinAgent = async (
   query: FindPropertyQuery = {},
-): Promise<DataAndPagination<PropertyJoinAgent[]>> => {
+): Promise<JsonResponse<DataAndPagination<PropertyJoinAgent[]>>> => {
   const searchParams = qs.stringify(query, { addQueryPrefix: true });
   const endpoint = `/properties/join-agents${searchParams}`;
 
@@ -117,7 +118,9 @@ export const findPropertyJoinAgent = async (
   });
 };
 
-export const findPropertySitePaths = async (): Promise<JsonResponse<string[]>> => {
+export const findPropertySitePaths = async (): Promise<
+  JsonResponse<string[]>
+> => {
   return fetchJsonApi("/properties/site-paths", {
     method: "GET",
   });

@@ -20,12 +20,13 @@ export type Property = {
   building_furniture_capacity: PropertyFurnitureCapacity;
   building_certificate: string;
   specifications: PropertySpecifications;
-  facilities: PropertyFacilities;
+  facilities: PropertyFacilities[];
   is_deleted: boolean;
   sold_channel: PropertySoldChannel | null;
   configurations: PropertyConfigurations;
   currency: string;
   rent_time: PropertyRentTime | null;
+  price_down_payment: number | null
   description_seo: string | null;
 };
 

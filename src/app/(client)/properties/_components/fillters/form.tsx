@@ -1,5 +1,4 @@
 "use client";
-import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 import { useState } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
@@ -11,12 +10,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createAskUrl } from "@/lib/create-ask-url";
 import { sendGAEvent } from "@next/third-parties/google";
-import { PropertyNavigation } from "@/lib/api/properties/find-property-navigation";
 import { PurchaseStatusFilter } from "./purchase-status-filter";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import { ProvinceFilter } from "./province-filter";
 import { RegencyFilter } from "./regency-filter";
 import { StreetFilter } from "./street-filter";
+import { FindPropertyQuery } from "@/lib/api";
+import { PropertyNavigation, PropertyPurchaseStatus } from "@/lib/types";
+import qs from 'qs';
 
 type FilterFormProps = {
   searchParams: FindPropertyQuery;
@@ -33,7 +33,7 @@ export const FilterForm = ({
 
   const onSearchClick = () => {
     sendGAEvent("event", "filter_submit");
-    const newParams = new URLSearchParams(filterParams);
+    const newParams = new URLSearchParams(filterParams as Record<string, string>);
     newParams.set("page", "1");
     router.replace(`/properties?${newParams}`);
   };
@@ -42,18 +42,18 @@ export const FilterForm = ({
     <div className="flex flex-col gap-4">
       <div className="md:grid md:grid-cols-3 gap-4">
         <PropertyTypeFilter
-          defaultValue={searchParams.buiding_type}
+          defaultValue={searchParams.building_type}
           propertyNavigations={propertyNavigations}
-          onValueChange={(buiding_type) => {
+          onValueChange={(building_type) => {
             setFilterParams({
               ...filterParams,
-              buiding_type,
+              building_type,
             });
           }}
         />
         <PurchaseStatusFilter
           defaultValue={
-            searchParams.purchase_status as PurchaseStatus | undefined
+            searchParams.purchase_status as PropertyPurchaseStatus | undefined
           }
           onValueChange={(purchase_status) => {
             setFilterParams({

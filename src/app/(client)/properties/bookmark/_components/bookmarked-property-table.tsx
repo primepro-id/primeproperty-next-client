@@ -1,11 +1,11 @@
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import React, { Dispatch, SetStateAction } from "react";
 import { PropertyCard } from "../../_components/card";
 import { cn } from "@/lib/utils";
+import { PropertyJoinAgent } from "@/lib/types";
 
 type BookmarkedPropertyTableProps = {
   bookmarkedProperties?: number[];
-  properties: PropertyWithAgent[];
+  properties: PropertyJoinAgent[];
   onBookmarkClickAction: () => void;
   selectedProperties: number[];
   setSelectedProperties: Dispatch<SetStateAction<number[]>>;

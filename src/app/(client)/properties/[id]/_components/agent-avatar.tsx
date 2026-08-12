@@ -2,11 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { LuCircleUser } from "react-icons/lu";
 import { env } from "@/lib/env";
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { cn } from "@/lib/utils";
+import { PropertyJoinAgent } from "@/lib/types";
 
 type AgentAvatarProps = {
-  property: PropertyWithAgent;
+  property: PropertyJoinAgent;
   className?: string;
 };
 

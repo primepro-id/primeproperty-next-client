@@ -1,4 +1,3 @@
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { env } from "@/lib/env";
 import { LuTag, LuX } from "react-icons/lu";
 import {
@@ -13,10 +12,11 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ContactAgentDialog } from "../../_components/contact-agent-dialog";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
+import { PropertyJoinAgent } from "@/lib/types";
 
 type PropertyDialogCarouselProps = {
   startIndex: number;
-  propertyWithAgent: PropertyWithAgent;
+  propertyWithAgent: PropertyJoinAgent;
   onCloseClick: () => void;
 };
 

@@ -10,7 +10,10 @@ import {
 } from "@/components/ui/carousel";
 import { createPropertiesSchema } from "@/lib/schema/create-properties-schema";
 import { useQuery } from "@tanstack/react-query";
-import { findPropertyJoinAgentQueryOptions, getBookmarkedPropertyOptions } from "@/lib/hooks";
+import {
+  findPropertyJoinAgentQueryOptions,
+  getBookmarkedPropertyOptions,
+} from "@/lib/hooks";
 
 type RelatedPropertiesProps = {
   relatedProperties: string;
@@ -21,13 +24,13 @@ export const BlogRelatedProperties = ({
 }: RelatedPropertiesProps) => {
   const relatedParams = useMemo(() => {
     if (relatedProperties.includes("jakarta")) {
-      return { regency:  relatedProperties };
+      return { regency: relatedProperties };
     }
     if (relatedProperties === "terbaru") {
-      return {  };
+      return {};
     }
     return { street: relatedProperties, limit: 10 };
-  }, [relatedProperties])
+  }, [relatedProperties]);
 
   const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
   const properties = useQuery(findPropertyJoinAgentQueryOptions(relatedParams));

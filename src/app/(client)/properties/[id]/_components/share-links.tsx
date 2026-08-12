@@ -9,13 +9,13 @@ import { env } from "@/lib/env";
 import { MdWhatsapp } from "react-icons/md";
 import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { useMemo } from "react";
 import { cn } from "@/lib/utils";
+import { PropertyJoinAgent } from "@/lib/types";
 
 type ShareLinksProps = {
   title: string;
-  property: PropertyWithAgent;
+  property: PropertyJoinAgent;
   className?: string;
 };
 

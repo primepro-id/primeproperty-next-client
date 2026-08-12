@@ -7,8 +7,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useProperties, usePropertyById } from "@/hooks";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import React from "react";
 import {
   LuBath,
@@ -34,11 +32,11 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
-import { bookmarkedPropertyOptions } from "@/hooks/local-storage/bookmark";
 import { PropertyComparisonSelect } from "./property-comparison-select";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/(client)/loading";
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
+import { findPropertyJoinAgentQueryOptions, findUniquePropertyJoinAgentQueryOptions, getBookmarkedPropertyOptions } from "@/lib/hooks";
+import { PropertyJoinAgent, PropertyPurchaseStatus } from "@/lib/types";
 
 type ComparisonRowProps = {
   icon: React.ReactNode;
@@ -77,13 +75,16 @@ type PropertyComparisonProps = { ids: string };
 export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
   const router = useRouter();
   const [firstID, secondID] = ids.split(",");
-  const bookmarks = useQuery(bookmarkedPropertyOptions());
-  const bookmarkedProperties = useProperties(
+  const bookmarks = useQuery(getBookmarkedPropertyOptions());
+  const bookmarkedProperties = useQuery(findPropertyJoinAgentQueryOptions(
+
     { ids: bookmarks.data?.join(",") },
     { enabled: !!bookmarks.data },
-  );
-  const firstProperty = usePropertyById(+firstID);
-  const secondProperty = usePropertyById(+secondID);
+  )
+  )
+
+  const firstProperty = useQuery(findUniquePropertyJoinAgentQueryOptions(+firstID))
+  const secondProperty = useQuery(findUniquePropertyJoinAgentQueryOptions(+secondID));
 
   if (firstProperty.isLoading || secondProperty.isLoading) {
     return <Loading />;
@@ -92,8 +93,8 @@ export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
   if (!firstProperty.data || !secondProperty.data) {
     return <></>;
   }
-  const firstProp = firstProperty.data.data as PropertyWithAgent;
-  const secondProp = secondProperty.data.data as PropertyWithAgent;
+  const firstProp = firstProperty.data.data as PropertyJoinAgent;
+  const secondProp = secondProperty.data.data as PropertyJoinAgent;
 
   const ROWS: ComparisonRowProps[] = [
     {
@@ -130,11 +131,11 @@ export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
       icon: <LuHandshake />,
       title: "Purchase Status",
       firstCell:
-        firstProp[0].purchase_status === PurchaseStatus.ForSale
+        firstProp[0].purchase_status === PropertyPurchaseStatus.ForSale
           ? "DIJUAL"
           : "DISEWA",
       secondCell:
-        secondProp[0].purchase_status === PurchaseStatus.ForSale
+        secondProp[0].purchase_status === PropertyPurchaseStatus.ForSale
           ? "DIJUAL"
           : "DISEWA",
     },
