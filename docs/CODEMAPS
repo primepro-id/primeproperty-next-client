@@ -1,0 +1,322 @@
+# PrimeProperty Next Client Codemap
+
+Last verified: 2026-08-13
+
+This file is the high-level map of the repository. Keep it focused on stable
+boundaries and update it whenever routes, data sources, shared providers, or
+domain entry points change.
+
+## Quick orientation
+
+PrimeProperty is a Next.js 15 App Router application for browsing Indonesian
+property listings, viewing agents and articles, saving and comparing
+properties, and submitting contact leads.
+
+The application has four main layers:
+
+1. `src/app` owns routes, layouts, route-local components, metadata, and
+   structured data.
+2. `src/components` owns shared providers and reusable UI.
+3. `src/lib/api` owns REST and DatoCMS GraphQL access.
+4. `src/lib/hooks` and `src/lib/types` own TanStack Query configuration and
+   shared domain contracts.
+
+```text
+Browser / Next.js route
+        |
+        +-- Server component ----------> src/lib/api ----------> REST API
+        |                                      |                DatoCMS
+        |                                      +--------------> S3
+        |
+        +-- Client component ----------> src/lib/hooks
+                                               |
+                                               +--> TanStack Query
+                                               +--> src/lib/api
+```
+
+## Top-level structure
+
+```text
+.
+|-- src/
+|   |-- app/                  App Router pages, layouts, sitemaps, and CSS
+|   |-- components/
+|   |   |-- ui/               Shared shadcn/Radix/Base UI primitives
+|   |   `-- custom-ui/        Product-specific shared components
+|   |-- lib/
+|   |   |-- api/              Backend and DatoCMS clients
+|   |   |-- hooks/            TanStack Query keys/options
+|   |   |-- intl/             Currency and date formatters
+|   |   |-- metadata/         Shared Next.js metadata builder
+|   |   |-- schema/           Schema.org JSON-LD builders
+|   |   `-- types/            Shared domain and response types
+|   `-- instrumentation.ts    Server/edge Sentry registration
+|-- public/                   Static images and other public assets
+|-- instrumentation-client.ts Client Sentry initialization
+|-- next.config.mjs           Standalone build and Sentry configuration
+|-- tailwind.config.ts        Tailwind theme configuration
+|-- components.json           shadcn project configuration
+|-- Dockerfile                Two-stage Node 22 standalone image
+`-- docker-compose.yaml       Local/container deployment on host port 4137
+```
+
+The `@/*` TypeScript alias maps to `src/*`.
+
+## Application shell
+
+- `src/app/layout.tsx` is the root layout. It loads PT Sans, global CSS, and
+  `src/components/providers.tsx`.
+- `src/components/providers.tsx` is the client provider boundary for theme,
+  TanStack Query, toast notifications, and Google Analytics.
+- `src/components/custom-ui/tanstack-providers.tsx` creates the QueryClient.
+  Browser renders reuse a singleton; server renders create a fresh instance.
+- `src/app/(client)/layout.tsx` wraps public pages with the shared header,
+  main content area, and footer.
+- `src/app/global-error.tsx`, `src/app/(client)/not-found.tsx`, and
+  `src/app/(client)/loading.tsx` provide global error, not-found, and loading
+  states.
+
+## Route map
+
+Route group names such as `(client)` do not appear in public URLs.
+
+| URL | Entry point | Responsibility |
+| --- | --- | --- |
+| `/` | `src/app/(client)/page.tsx` | Home hero, property search, popular listings, developer/bank partners, FAQ, banner |
+| `/about` | `src/app/(client)/about/page.tsx` | Company history, services, value proposition, and contact content |
+| `/agents` | `src/app/(client)/agents/page.tsx` | Agent directory backed by the REST API |
+| `/agents/[name]` | `src/app/(client)/agents/[name]/page.tsx` | Agent profile and listings; dynamic metadata by agent name |
+| `/blog` | `src/app/(client)/blog/page.tsx` | DatoCMS article landing page and popular properties |
+| `/blog/[slug]` | `src/app/(client)/blog/[slug]/page.tsx` | DatoCMS article, related articles, optional related properties, and JSON-LD |
+| `/franchise` | `src/app/(client)/franchise/page.tsx` | Franchise marketing and registration content |
+| `/jobs` | `src/app/(client)/jobs/page.tsx` | Recruitment content |
+| `/properties` | `src/app/(client)/properties/page.tsx` | Paginated property listing with query-string filters |
+| `/properties/[id]` | `src/app/(client)/properties/[id]/page.tsx` | Property detail; accepts `id` or `id-title` and derives the numeric ID |
+| `/properties/filter/[...params]` | `src/app/(client)/properties/filter/[...params]/page.tsx` | SEO-friendly path filters converted to `FindPropertyQuery` |
+| `/properties/bookmark` | `src/app/(client)/properties/bookmark/page.tsx` | Locally saved properties and selection of two comparison candidates |
+| `/properties/comparison?ids=...` | `src/app/(client)/properties/comparison/page.tsx` | Side-by-side comparison for two property IDs |
+
+Sitemap route entries are:
+
+- `src/app/sitemap.ts`
+- `src/app/(client)/agents/sitemap.ts`
+- `src/app/(client)/blog/sitemap.ts`
+- `src/app/(client)/properties/sitemap.ts`
+- `src/app/(client)/properties/filter/sitemap.ts`
+
+The sitemap routes fetch external data during static page generation. A
+production build therefore needs valid environment variables and reachable
+REST/DatoCMS endpoints.
+
+## Property domain
+
+Properties are the largest feature area.
+
+### Core contracts
+
+- `src/lib/types/properties.ts` defines `Property`, property enums,
+  specifications, facilities, configuration, navigation, images, currency,
+  and rent-time contracts.
+- `src/lib/types/join.ts` defines `PropertyJoinAgent` as the tuple
+  `[Property, Agent]`. Index `0` is always the property and index `1` is the
+  assigned agent.
+- `src/lib/types/json-response.ts` defines the backend envelopes:
+  `JsonResponse<T>` and `DataAndPagination<T>`.
+
+### API and query layer
+
+- `src/lib/api/properties.ts` is the canonical property API module. It owns
+  `FindPropertyQuery`, CRUD payloads, public listing/detail/navigation calls,
+  and protected create/update/delete calls.
+- `src/lib/hooks/properties.ts` is the canonical React Query module. It owns
+  `propertyKeys`, query option factories, and mutation option factories.
+- Use barrel imports from `@/lib/api`, `@/lib/hooks`, and `@/lib/types` unless
+  a direct module import materially improves clarity.
+
+Primary REST endpoints:
+
+| API function | HTTP endpoint |
+| --- | --- |
+| `findUniquePropertyJoinAgent(id)` | `GET /properties/{id}/join-agents` |
+| `findPropertyJoinAgent(query)` | `GET /properties/join-agents?...` |
+| `findPropertySitePaths()` | `GET /properties/site-paths` |
+| `findPropertyNavigation()` | `GET /properties/navigations` |
+| `createProperty(payload)` | `POST /properties` |
+| `updateProperty(id, payload)` | `PUT /properties/{id}` |
+| `removeProperty(id)` | `DELETE /properties/{id}` |
+
+`FindPropertyQuery` supports ID/IDs, agent, location, purchase/sold status,
+building type/condition, keyword, popular/prime/related flags, pagination, and
+price sorting.
+
+### UI boundaries
+
+- `src/app/(client)/properties/_components` contains listing/card/filter
+  components shared across the property, agent, blog, bookmark, and comparison
+  experiences.
+- `src/app/(client)/properties/[id]/_components` contains detail-only UI.
+- `src/app/(client)/properties/_components/fillters` is the existing directory
+  name for property filters; preserve it unless performing a deliberate rename
+  across all imports.
+- `src/app/(client)/properties/_lib/parse-filter-params.ts` converts SEO path
+  segments into API query parameters.
+- `src/app/(client)/properties/_lib/bookmark-property.ts` stores bookmark IDs
+  under `bookmark_ids` in browser `localStorage`.
+- `src/lib/hooks/local-storage.ts` exposes bookmarks as TanStack Query options
+  so cards and comparison views can refetch after local changes.
+
+## Other domains
+
+### Agents
+
+- Contract: `src/lib/types/agent.ts`
+- REST API: `src/lib/api/agents.ts`
+- Query/mutation options: `src/lib/hooks/agents.ts`
+- Route UI: `src/app/(client)/agents`
+- Protected operations send the `accessToken` cookie as `x-access-token`.
+
+### Blog/articles
+
+- Contract: `src/lib/types/article.ts`
+- GraphQL operations: `src/lib/api/gql.ts`
+- Apollo client and fetch functions: `src/lib/api/articles.ts`
+- Routes and schema builders: `src/app/(client)/blog`
+- Data source: DatoCMS using `DATOCMS_API_URL` and `DATOCMS_API_TOKEN`.
+
+### Developers
+
+- Contract: `src/lib/types/developers.ts`
+- REST API: `src/lib/api/developers.ts`
+- Query/mutation options: `src/lib/hooks/developers.ts`
+- The home page renders developer logos in the partners section.
+
+### Leads
+
+- Contract: `src/lib/types/leads.ts`
+- REST API: `src/lib/api/leads.ts`
+- Query/mutation options: `src/lib/hooks/leads.ts`
+- `src/app/(client)/properties/_components/contact-agent-dialog.tsx`
+  validates contact details, creates a lead, reports analytics events, and then
+  opens WhatsApp or the phone dialer.
+
+### S3 images
+
+- Contract: `src/lib/types/s3.ts`
+- Client upload API: `src/lib/api/s3.ts`
+- Mutation options: `src/lib/hooks/s3.ts`
+- Allowed upload formats are PNG, JPEG/JPG, and WebP.
+
+## Data and rendering conventions
+
+### REST
+
+`src/lib/api/fetch-api.ts` prefixes endpoints with `NEXT_PUBLIC_API_URL`, sends
+JSON by default, parses the JSON response, and throws on non-2xx responses.
+It is intentionally usable from both server and client module graphs.
+
+Typical paginated response access is:
+
+```ts
+response.data?.data       // domain records
+response.data?.pagination // page, per_page, total_pages, total
+```
+
+### Authentication
+
+`src/lib/api/token.ts` is a server function that reads the `accessToken`
+cookie. Protected REST calls place the value in the `x-access-token` header.
+
+### Client state
+
+TanStack Query is the primary server-state mechanism. Each domain hook module
+owns its query-key factory and its `queryOptions`/`mutationOptions` builders.
+Component-local UI state uses React state; bookmarked IDs use localStorage.
+
+### SEO
+
+- Shared metadata: `src/lib/metadata/create-metadata.ts`
+- Shared JSON-LD: `src/lib/schema`
+- Route-specific metadata/schema helpers live beside their route under `_lib`.
+- JSON-LD scripts stringify data and escape `<` as `\u003c` before insertion.
+
+## Shared UI
+
+- Reuse primitives from `src/components/ui` before introducing a new base
+  component.
+- Product-level shared components live in `src/components/custom-ui`.
+- Route-specific components stay next to their route in `_components`.
+- `src/lib/utils.ts` exports the shared `cn` class-name helper.
+- Tailwind CSS provides styling; `src/app/globals.css` owns global tokens and
+  styles.
+
+## Environment variables
+
+Validation is centralized in `src/lib/env.ts` with `@t3-oss/env-nextjs` and
+Zod.
+
+Server-only:
+
+- `API_KEY_LEADS`
+- `SENTRY_AUTH_TOKEN`
+- `DATOCMS_API_URL`
+- `DATOCMS_API_TOKEN`
+
+Client and server:
+
+- `NEXT_PUBLIC_HOST_URL`
+- `NEXT_PUBLIC_API_URL`
+- `NEXT_PUBLIC_S3_ENDPOINT`
+- `NEXT_PUBLIC_SENTRY_DSN`
+- `NEXT_PUBLIC_GA_ID`
+
+Even variables whose schema accepts an empty string must be present. The Docker
+builder declares all of these as build arguments because Next.js evaluates
+environment validation and prerendered routes during `yarn build`.
+
+## Observability and deployment
+
+- `src/instrumentation.ts`, `instrumentation-client.ts`,
+  `sentry.server.config.ts`, and `sentry.edge.config.ts` configure Sentry.
+- `next.config.mjs` wraps the app with Sentry configuration and produces a
+  standalone Next.js output.
+- The Docker build uses Node 22 Alpine and copies `.next/standalone` plus static
+  assets into the runtime image.
+- The development server and Docker Compose host binding use port `4137`; the
+  container listens on `3000`.
+
+## Common change paths
+
+| Change | Start here | Usually also inspect |
+| --- | --- | --- |
+| Property API shape | `src/lib/api/properties.ts` | `src/lib/types/properties.ts`, `src/lib/types/join.ts`, `src/lib/hooks/properties.ts`, property routes |
+| Property listing/filter behavior | `src/app/(client)/properties/_components` | `src/app/(client)/properties/_lib`, `FindPropertyQuery` |
+| Property detail | `src/app/(client)/properties/[id]` | property API/hooks, schema and metadata helpers |
+| Agent behavior | `src/lib/api/agents.ts` | `src/lib/hooks/agents.ts`, `src/app/(client)/agents` |
+| Blog content | `src/lib/api/articles.ts` | `src/lib/api/gql.ts`, `src/app/(client)/blog` |
+| Contact/lead flow | `src/app/(client)/properties/_components/contact-agent-dialog.tsx` | `src/lib/api/leads.ts`, `src/lib/hooks/leads.ts` |
+| Shared UI primitive | `src/components/ui` | all consumers found with `rg` |
+| Global providers | `src/components/providers.tsx` | root layout, client-only environment requirements |
+| SEO or sitemap | route-local `_lib` helpers or sitemap entry | `src/lib/metadata`, `src/lib/schema`, build-time data sources |
+
+## Verification commands
+
+```powershell
+yarn tsc --noEmit --pretty false
+yarn build
+git diff --check
+```
+
+`yarn build` requires valid environment variables and reachable external data
+sources because the sitemap routes are prerendered.
+
+## Updating this codemap
+
+When refreshing this file:
+
+1. Compare route entries under `src/app` with the route table.
+2. Compare exports under `src/lib/api`, `src/lib/hooks`, and `src/lib/types`
+   with the domain sections.
+3. Check provider, environment, build, and deployment configuration for changed
+   runtime boundaries.
+4. Describe stable responsibilities rather than every leaf component.
+5. Update the `Last verified` date and run `git diff --check`.
