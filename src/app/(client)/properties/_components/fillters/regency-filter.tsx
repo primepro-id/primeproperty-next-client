@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { PropertyNavigation } from "@/lib/api/properties/find-property-navigation";
+import { PropertyNavigation } from "@/lib/types";
 import { useMemo } from "react";
 
 type RegencyFilterProps = {

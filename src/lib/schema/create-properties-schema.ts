@@ -2,14 +2,12 @@ import {
   generateDescription,
   generateTitle,
 } from "@/app/(client)/properties/_lib/create-properties-metadata";
-import {
-  FindPropertyQuery,
-  PropertyWithAgent,
-} from "@/lib/api/properties/find-properties";
+import { FindPropertyQuery } from "@/lib/api";
+import { PropertyJoinAgent } from "@/lib/types";
 import { env } from "@/lib/env";
 
 export const createPropertiesSchema = (
-  properties: PropertyWithAgent[],
+  properties: PropertyJoinAgent[],
   searchParams: FindPropertyQuery,
 ) => {
   const jsonLd = {

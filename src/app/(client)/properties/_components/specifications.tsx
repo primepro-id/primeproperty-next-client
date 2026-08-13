@@ -1,8 +1,8 @@
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
+import { PropertyJoinAgent } from "@/lib/types";
 import { LuBath, LuBedDouble, LuCar } from "react-icons/lu";
 
 type PropertyCardProps = {
-  propertyWithAgent: PropertyWithAgent;
+  propertyWithAgent: PropertyJoinAgent;
 };
 
 export const Specifications = ({ propertyWithAgent }: PropertyCardProps) => {

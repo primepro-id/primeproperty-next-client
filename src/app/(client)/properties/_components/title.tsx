@@ -1,5 +1,5 @@
-import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
-import { PURCHASE_STATUS, PurchaseStatus } from "@/lib/enums/purchase-status";
+import { FindPropertyQuery } from "@/lib/api";
+import { PropertyPurchaseStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useMemo } from "react";
 
@@ -7,6 +7,12 @@ type PropertiesTitleProps = {
   propertyCount: number;
   searchParams: FindPropertyQuery;
   className?: string;
+};
+
+const purchaseStatusLabels = {
+  [PropertyPurchaseStatus.ForSale]: "Dijual",
+  [PropertyPurchaseStatus.ForRent]: "Disewa",
+  [PropertyPurchaseStatus.ForSaleOrRent]: "Dijual atau disewa",
 };
 
 const createLocation = (
@@ -52,11 +58,9 @@ const Title = ({
   return (
     <h1 className={cn(baseClassname, className)}>
       {propertyCount === 0 && "Pencarian tidak ditemukan untuk "}
-      {searchParams.buiding_type ? searchParams.buiding_type : "properti"}{" "}
+      {searchParams.building_type ? searchParams.building_type : "properti"}{" "}
       {searchParams.purchase_status
-        ? PURCHASE_STATUS[
-            searchParams.purchase_status as PurchaseStatus
-          ].toLowerCase()
+        ? purchaseStatusLabels[searchParams.purchase_status].toLowerCase()
         : ""}{" "}
       {searchParams.province || searchParams.regency || searchParams.street ? (
         <p>{location}</p>

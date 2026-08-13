@@ -1,7 +1,7 @@
 import {
-  findProperties,
+  findPropertyJoinAgent,
   FindPropertyQuery,
-} from "@/lib/api/properties/find-properties";
+} from "@/lib/api";
 import { PropertyList } from "./list";
 import { Pagination } from "./pagination";
 import { PropertiesFilter } from "./fillters/properties-filter";
@@ -16,15 +16,15 @@ type PropertiesProps = {
 };
 
 export const Properties = async ({ searchParams }: PropertiesProps) => {
-  const properties = await findProperties({
-    limit: String(30),
+  const properties = await findPropertyJoinAgent({
+    limit: 30,
     ...searchParams,
   });
-  if (!properties.data?.data) {
+  if (!properties.data) {
     return <PropertyNotFound searchParams={searchParams} />;
   }
 
-  const jsonLd = createPropertiesSchema(properties?.data.data, searchParams);
+  const jsonLd = createPropertiesSchema(properties.data.data, searchParams);
 
   return (
     <>
@@ -38,26 +38,26 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
       <div className="container mx-auto flex flex-col gap-4 lg:gap-8 py-4 px-2">
         <div className="flex items-center justify-between">
           <PropertiesTitle
-            propertyCount={properties.data.total_data}
+            propertyCount={properties.data.pagination.total}
             searchParams={searchParams}
           />
           <div className="hidden lg:flex">
             <Pagination
               searchParams={searchParams}
               currentPage={searchParams.page ? +searchParams.page : 1}
-              totalPages={properties.data.total_pages}
+              totalPages={properties.data.pagination.total_pages}
             />
           </div>
         </div>
         <PropertyList
           searchParams={searchParams}
-          propertiesWithAgent={properties.data?.data}
+          propertiesWithAgent={properties.data.data}
         />
         <div className="mt-4">
           <Pagination
             searchParams={searchParams}
             currentPage={searchParams.page ? +searchParams.page : 1}
-            totalPages={properties.data.total_pages}
+            totalPages={properties.data.pagination.total_pages}
           />
         </div>
 

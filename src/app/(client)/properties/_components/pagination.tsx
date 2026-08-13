@@ -1,12 +1,13 @@
 "use client";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
+import { FindPropertyQuery } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useRef } from "react";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import qs from "qs";
 
 type PaginationProps = {
   searchParams: FindPropertyQuery;
@@ -22,23 +23,20 @@ export const Pagination = ({
   const router = useRouter();
   const typingTimeoutRef = useRef<any>(null);
   const onTypeChange = (pageNumber: number) => {
-    const newParams = new URLSearchParams(searchParams);
     let newPageNumber = pageNumber;
     if (pageNumber < 1) newPageNumber = 1;
     if (pageNumber > totalPages) newPageNumber = totalPages;
-    newParams.set("page", String(newPageNumber));
-    router.replace(`/properties?${newParams.toString()}`);
+    const newParams = qs.stringify({ ...searchParams, page: newPageNumber });
+    router.replace(`/properties?${newParams}`);
   };
   const previousPageLink = useMemo(() => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("page", String(currentPage - 1));
-    return `/properties?${newParams.toString()}`;
+    const newParams = qs.stringify({ ...searchParams, page: currentPage - 1 });
+    return `/properties?${newParams}`;
   }, [currentPage, searchParams]);
 
   const nextPageLink = useMemo(() => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("page", String(currentPage + 1));
-    return `/properties?${newParams.toString()}`;
+    const newParams = qs.stringify({ ...searchParams, page: currentPage + 1 });
+    return `/properties?${newParams}`;
   }, [currentPage, searchParams]);
 
   if (totalPages === 1) return <></>;
@@ -73,7 +71,7 @@ export const Pagination = ({
           min={1}
           max={totalPages}
           className="h-8 w-10"
-          placeholder={searchParams.page ? searchParams.page : "1"}
+          placeholder={searchParams.page ? String(searchParams.page) : "1"}
           onChange={(e) => {
             if (isNaN(+e.target.value)) {
               return;

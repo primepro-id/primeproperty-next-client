@@ -31,9 +31,15 @@ export const developerKeys = {
 /**
  * Query options for fetching all developers.
  */
-export function developersQueryOptions<TData = DataAndPagination<Developer[]>>(
+export function developersQueryOptions<
+  TData = JsonResponse<DataAndPagination<Developer[]>>,
+>(
   options?: Omit<
-    UseQueryOptions<DataAndPagination<Developer[]>, Error, TData>,
+    UseQueryOptions<
+      JsonResponse<DataAndPagination<Developer[]>>,
+      Error,
+      TData
+    >,
     "queryKey" | "queryFn"
   >,
 ) {

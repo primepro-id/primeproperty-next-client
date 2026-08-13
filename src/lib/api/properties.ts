@@ -28,8 +28,8 @@ export enum FindQuerySort {
 
 // Request Query & Payloads
 export type FindPropertyQuery = {
-  id?: number;
-  ids?: string;
+  id?: number; // Find related property to ID
+  ids?: string; // Find properties with these ids
   agent_id?: string;
   province?: string;
   regency?: string;

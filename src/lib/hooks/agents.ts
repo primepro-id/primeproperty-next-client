@@ -34,9 +34,11 @@ export const agentKeys = {
 // ==========================================
 // Query Options
 // ==========================================
-export function getAgentsQueryOptions<TData = DataAndPagination<Agent[]>>(
+export function getAgentsQueryOptions<
+  TData = JsonResponse<DataAndPagination<Agent[]>>,
+>(
   options?: Omit<
-    UseQueryOptions<DataAndPagination<Agent[]>, Error, TData>,
+    UseQueryOptions<JsonResponse<DataAndPagination<Agent[]>>, Error, TData>,
     "queryKey" | "queryFn"
   >,
 ) {

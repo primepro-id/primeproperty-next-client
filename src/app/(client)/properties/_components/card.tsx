@@ -1,11 +1,10 @@
 "use client";
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
+import { PropertyJoinAgent } from "@/lib/types";
 import { env } from "@/lib/env";
 import Link from "next/link";
 import { ContactAgentDialog } from "./contact-agent-dialog";
 import { Specifications } from "./specifications";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
-import Image from "next/image";
 import {
   LuBookmark,
   LuBookmarkCheck,
@@ -19,7 +18,7 @@ import { PropertyPriceTag } from "./property-price-tag";
 import { PropertyAgentInfo } from "./property-agent-info";
 
 type PropertyCardProps = {
-  propertyWithAgent: PropertyWithAgent;
+  propertyWithAgent: PropertyJoinAgent;
   bookmarkedProperties?: number[];
   onBookmarkClickAction: () => void;
   isComparison?: boolean;
@@ -54,7 +53,7 @@ const ComparisonInfo = ({
   isComparisonActive,
   isComparisonDisabled,
 }: {
-  propertyWithAgent: PropertyWithAgent;
+  propertyWithAgent: PropertyJoinAgent;
   onCompareClick?: () => void;
   isComparisonActive?: boolean;
   isComparisonDisabled?: boolean;
@@ -112,21 +111,9 @@ export const PropertyCard = ({
         href={`/properties/${propertyWithAgent[0].id}-${propertyWithAgent[0].title.replaceAll(" ", "-").replaceAll("/", "")}`}
         className="relative group flex flex-col gap-2"
       >
-        {propertyWithAgent[2] ? (
-          <div className="bg-white absolute top-1 left-1 z-[5] rounded-lg p-1 opacity-75">
-            <Image
-              width={100}
-              height={100}
-              src={env.NEXT_PUBLIC_S3_ENDPOINT + propertyWithAgent[2].logo_path}
-              alt={propertyWithAgent[2].name}
-              className="w-full object-cover "
-            />
-          </div>
-        ) : (
-          <div className="bg-primary text-primary-foreground px-2 py-1 text-xs rounded absolute top-1 left-1 dark:font-semibold uppercase z-[5]">
-            {propertyWithAgent[0].building_type}
-          </div>
-        )}
+        <div className="bg-primary text-primary-foreground px-2 py-1 text-xs rounded absolute top-1 left-1 dark:font-semibold uppercase z-[5]">
+          {propertyWithAgent[0].building_type}
+        </div>
         <WatermarkImage
           watermarkProps={{
             fontSize: 20,

@@ -1,4 +1,4 @@
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
+import { PropertyJoinAgent } from "@/lib/types";
 import { env } from "@/lib/env";
 import { formatDateToIndonesian } from "@/lib/intl/format-date-to-indonesian";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import { ContactAgentDialog } from "./contact-agent-dialog";
 export const PropertyAgentInfo = ({
   propertyWithAgent,
 }: {
-  propertyWithAgent: PropertyWithAgent;
+  propertyWithAgent: PropertyJoinAgent;
 }) => {
   return (
     <div className="flex items-center justify-between gap-4 w-full">

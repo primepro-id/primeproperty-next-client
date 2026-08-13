@@ -1,9 +1,9 @@
-import { findProperties } from "@/lib/api/properties/find-properties";
+import { findPropertyJoinAgent } from "@/lib/api";
 import { env } from "@/lib/env";
 import { MetadataRoute } from "next";
 
 const generateDynamicPropertySitemaps = async () => {
-  const properties = await findProperties();
+  const properties = await findPropertyJoinAgent();
   if (Array.isArray(properties?.data?.data)) {
     const oldSitemap = properties.data?.data.map((property) => {
       return {
@@ -28,15 +28,15 @@ const generateDynamicPropertySitemaps = async () => {
 async function generatePropertyPagesSitemaps() {
   // Google's limit is 50,000 URLs per sitemap
 
-  const basePropertySitemap = await findProperties({
-    page: String(1),
-    limit: String(30),
+  const basePropertySitemap = await findPropertyJoinAgent({
+    page: 1,
+    limit: 30,
   });
 
   const sitemaps = [];
 
   if (Array.isArray(basePropertySitemap?.data?.data)) {
-    for (let i = 0; i < basePropertySitemap.data.total_pages; i++) {
+    for (let i = 0; i < basePropertySitemap.data.pagination.total_pages; i++) {
       sitemaps.push({
         url: env.NEXT_PUBLIC_HOST_URL + `/properties?page=${i + 1}`,
         date: new Date(),

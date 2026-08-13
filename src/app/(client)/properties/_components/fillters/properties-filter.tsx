@@ -1,5 +1,5 @@
 "use client";
-import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
+import { FindPropertyQuery } from "@/lib/api";
 import { FilterDialog } from "./dialog";
 import { Search } from "./search";
 

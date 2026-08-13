@@ -20,8 +20,9 @@ export const PopularProperties = () => {
     findPropertyJoinAgentQueryOptions({ is_popular: true }),
   );
   const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
-  if (properties.data?.data.data && properties.data?.data?.data.length > 0) {
-    const jsonLd = createPropertiesSchema(properties?.data.data.data, {});
+  const propertyData = properties.data?.data?.data;
+  if (propertyData && propertyData.length > 0) {
+    const jsonLd = createPropertiesSchema(propertyData, {});
     return (
       <>
         <script
@@ -39,7 +40,7 @@ export const PopularProperties = () => {
             </div>
           </div>
           <CarouselContent>
-            {properties.data.data.data.map((propertyWithAgent, index) => (
+            {propertyData.map((propertyWithAgent, index) => (
               <CarouselItem
                 key={`${index}_popular_properties`}
                 className="basis-4/5 md:basis-1/2 lg:basis-1/3"

@@ -1,4 +1,4 @@
-import { Property } from "@/lib/api/properties/type";
+import { Property } from "@/lib/types";
 import { env } from "@/lib/env";
 
 const slugify = (str: string) => str.toLowerCase().replaceAll(" ", "-");

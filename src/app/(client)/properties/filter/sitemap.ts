@@ -1,10 +1,11 @@
-import { findPropertiesSitePaths } from "@/lib/api/properties/find-properties-site-paths";
+import { findPropertySitePaths } from "@/lib/api";
 import { env } from "@/lib/env";
 import { MetadataRoute } from "next";
 import { parseFilterParams } from "../_lib/parse-filter-params";
+import qs from "qs";
 
 const generatePropertySitePathSitemaps = async () => {
-  const properties = await findPropertiesSitePaths();
+  const properties = await findPropertySitePaths();
   const sitemaps = [];
   const baseUrl = env.NEXT_PUBLIC_HOST_URL + `/properties`;
   if (Array.isArray(properties?.data)) {
@@ -17,11 +18,10 @@ const generatePropertySitePathSitemaps = async () => {
       const pathArray = path.split("/");
       pathArray.shift();
       const filterParams = parseFilterParams(pathArray);
-      const urlParam = new URLSearchParams(filterParams);
       for (let i = 1; i <= 10; i++) {
-        urlParam.set("page", String(i));
+        const urlParam = qs.stringify({ ...filterParams, page: i });
         sitemaps.push({
-          url: baseUrl + "?" + urlParam.toString().replaceAll("&", "&amp;"),
+          url: baseUrl + "?" + urlParam.replaceAll("&", "&amp;"),
           lastModified: new Date(),
         });
       }

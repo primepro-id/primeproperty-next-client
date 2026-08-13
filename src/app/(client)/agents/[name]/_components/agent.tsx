@@ -28,7 +28,8 @@ export const AgentPage = ({ name }: AgentPageProps) => {
     return <Loading />;
   }
 
-  if (!agent.data?.data || !agentWithProperties?.data) {
+  const propertyData = agentWithProperties.data?.data?.data;
+  if (!agent.data?.data || !propertyData) {
     return <></>;
   }
 
@@ -37,13 +38,13 @@ export const AgentPage = ({ name }: AgentPageProps) => {
       <AgentBreadcrumb agent={agent?.data?.data} />
       <AgentBio
         agent={agent?.data?.data}
-        propertiesWithAgent={agentWithProperties.data.data.data}
+        propertiesWithAgent={propertyData}
       />
       <div className="flex flex-col gap-4">
         <h2 className="text-xl font-bold">Property List</h2>
         <PropertyList
           searchParams={{}}
-          propertiesWithAgent={agentWithProperties.data.data.data}
+          propertiesWithAgent={propertyData}
         />
       </div>
 

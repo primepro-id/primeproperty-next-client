@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Properties } from "./_components";
-import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
+import { FindPropertyQuery } from "@/lib/api";
 import { Metadata } from "next";
 import { generatePropertiesMetadata } from "./_lib/create-properties-metadata";
 

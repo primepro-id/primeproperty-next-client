@@ -1,4 +1,4 @@
-import { Property } from "@/lib/api/properties/type";
+import { Property } from "@/lib/types";
 import { env } from "@/lib/env";
 
 export const createPlaceSchema = (property: Property) => {

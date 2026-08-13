@@ -16,7 +16,7 @@ import { RegencyFilter } from "./regency-filter";
 import { StreetFilter } from "./street-filter";
 import { FindPropertyQuery } from "@/lib/api";
 import { PropertyNavigation, PropertyPurchaseStatus } from "@/lib/types";
-import qs from 'qs';
+import qs from "qs";
 
 type FilterFormProps = {
   searchParams: FindPropertyQuery;
@@ -33,8 +33,7 @@ export const FilterForm = ({
 
   const onSearchClick = () => {
     sendGAEvent("event", "filter_submit");
-    const newParams = new URLSearchParams(filterParams as Record<string, string>);
-    newParams.set("page", "1");
+    const newParams = qs.stringify({ ...filterParams, page: 1 });
     router.replace(`/properties?${newParams}`);
   };
 
@@ -58,7 +57,7 @@ export const FilterForm = ({
           onValueChange={(purchase_status) => {
             setFilterParams({
               ...filterParams,
-              purchase_status,
+              purchase_status: purchase_status || undefined,
             });
           }}
         />
@@ -67,7 +66,7 @@ export const FilterForm = ({
           onValueChange={(val) => {
             setFilterParams({
               ...filterParams,
-              sort: val === "Newest" ? "" : val,
+              sort: val === "Newest" ? undefined : val,
             });
           }}
         />

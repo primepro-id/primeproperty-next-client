@@ -6,10 +6,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FindQuerySort } from "@/lib/api";
 
 type FilterSortProps = {
-  defaultValue?: string;
-  onValueChange: (value: string) => void;
+  defaultValue?: FindQuerySort;
+  onValueChange: (value: FindQuerySort | "Newest") => void;
 };
 
 export const FilterSort = ({
@@ -22,7 +23,9 @@ export const FilterSort = ({
       <Select
         name="order_by"
         defaultValue={defaultValue ?? "Newest"}
-        onValueChange={onValueChange}
+        onValueChange={(value) =>
+          onValueChange(value as FindQuerySort | "Newest")
+        }
       >
         <SelectTrigger className="uppercase">
           <SelectValue placeholder="Terbaru" />

@@ -1,4 +1,3 @@
-"use client";
 import { env } from "../env";
 
 const BASE_URL = env.NEXT_PUBLIC_API_URL;

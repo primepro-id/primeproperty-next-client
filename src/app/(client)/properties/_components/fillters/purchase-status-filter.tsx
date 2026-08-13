@@ -10,7 +10,7 @@ import { PropertyPurchaseStatus } from "@/lib/types";
 
 type PurchaseStatusFilterProps = {
   defaultValue?: PropertyPurchaseStatus;
-  onValueChange: (status: string) => void;
+  onValueChange: (status: PropertyPurchaseStatus | undefined) => void;
 };
 
 export const PurchaseStatusFilter = ({
@@ -23,7 +23,11 @@ export const PurchaseStatusFilter = ({
       <Select
         name="purchase_status"
         defaultValue={defaultValue}
-        onValueChange={(val) => onValueChange(val === "-" ? "" : val)}
+        onValueChange={(val) =>
+          onValueChange(
+            val === "-" ? undefined : (val as PropertyPurchaseStatus),
+          )
+        }
       >
         <SelectTrigger className="uppercase">
           <SelectValue placeholder="SEMUA" />

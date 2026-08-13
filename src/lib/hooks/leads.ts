@@ -18,7 +18,7 @@ export const leadKeys = {
  */
 export function getLeadsQueryOptions(
   options?: Omit<
-    UseQueryOptions<DataAndPagination<Lead[]>, Error>,
+    UseQueryOptions<JsonResponse<DataAndPagination<Lead[]>>, Error>,
     "queryKey" | "queryFn"
   >,
 ) {

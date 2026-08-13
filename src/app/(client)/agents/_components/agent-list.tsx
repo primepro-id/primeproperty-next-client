@@ -20,8 +20,7 @@ export const AgentList = () => {
   const agents = useQuery(getAgentsQueryOptions());
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {agents.data?.data.data &&
-        agents?.data?.data.data.map((agent) => (
+      {agents.data?.data?.data.map((agent) => (
           <div
             key={agent.id}
             className="flex items-center gap-2 border rounded p-2 border-primary shadow"

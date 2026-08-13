@@ -3,7 +3,7 @@ import { PropertiesFilter } from "./fillters";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
+import { FindPropertyQuery } from "@/lib/api";
 import { LuHouse } from "react-icons/lu";
 import { PropertiesTitle } from "./title";
 

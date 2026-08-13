@@ -1,14 +1,20 @@
-import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
-import { PurchaseStatus } from "@/lib/enums/purchase-status";
-import { RENT_TIME } from "@/lib/enums/rent_time";
+import {
+  PropertyJoinAgent,
+  PropertyPurchaseStatus,
+  PropertyRentTime,
+} from "@/lib/types";
 import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
 import { cn } from "@/lib/utils";
 
 export const PropertyPriceTag = ({
   propertyWithAgent,
 }: {
-  propertyWithAgent: PropertyWithAgent;
+  propertyWithAgent: PropertyJoinAgent;
 }) => {
+  const rentTimeLabels = {
+    [PropertyRentTime.Monthly]: "/bulan",
+    [PropertyRentTime.Yearly]: "/tahun",
+  };
   return (
     <div className="flex items-center gap-2 text-primary font-semibold">
       <div className="font-semibold text-lg flex items-center gap-1 group-hover:underline">
@@ -18,9 +24,10 @@ export const PropertyPriceTag = ({
             propertyWithAgent[0].currency,
           )}
         </p>
-        {propertyWithAgent[0].purchase_status === PurchaseStatus.ForRent &&
+        {propertyWithAgent[0].purchase_status ===
+          PropertyPurchaseStatus.ForRent &&
           propertyWithAgent[0].rent_time && (
-            <p>{RENT_TIME[propertyWithAgent[0].rent_time]}</p>
+            <p>{rentTimeLabels[propertyWithAgent[0].rent_time]}</p>
           )}
       </div>
 

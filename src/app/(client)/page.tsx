@@ -8,7 +8,7 @@ import { Search } from "./properties/_components/fillters/search";
 import { Faq } from "./properties/_components/faq";
 import { createWebsiteSchema } from "@/lib/schema";
 import Script from "next/script";
-import { findManyDevelopers } from "@/lib/api/developers";
+import { getDevelopers } from "@/lib/api/developers";
 import { env } from "@/lib/env";
 import { Banner } from "@/components/custom-ui/banner";
 
@@ -55,7 +55,7 @@ const Hero = () => {
 };
 
 const Partners = async () => {
-  const developers = await findManyDevelopers();
+  const developers = await getDevelopers();
   const BANKS = [
     "/images/banks/bca.png",
     "/images/banks/bni.png",
@@ -85,7 +85,7 @@ const Partners = async () => {
             className="w-full  object-contain aspect-square rounded dark:bg-white dark:p-1"
           />
         ))}
-        {developers?.data?.data.map((dev) => (
+        {developers.data?.data.map((dev) => (
           <Image
             key={dev.name}
             src={env.NEXT_PUBLIC_S3_ENDPOINT + dev.logo_path}

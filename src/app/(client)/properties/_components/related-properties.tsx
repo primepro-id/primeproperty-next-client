@@ -10,21 +10,23 @@ import {
 } from "@/components/ui/carousel";
 import { createPropertiesSchema } from "@/lib/schema/create-properties-schema";
 import { useQuery } from "@tanstack/react-query";
-import { bookmarkedPropertyOptions } from "@/hooks/local-storage/bookmark";
-import { useRelatedProperties } from "@/hooks";
+import {
+  findPropertyJoinAgentQueryOptions,
+  getBookmarkedPropertyOptions,
+} from "@/lib/hooks";
 
 type RelatedPropertiesProps = {
   propertyId: number;
 };
 
 export const RelatedProperties = ({ propertyId }: RelatedPropertiesProps) => {
-  const bookmarkedProperties = useQuery(bookmarkedPropertyOptions());
-  const relatedProperties = useRelatedProperties(propertyId);
-  if (
-    relatedProperties?.data?.data &&
-    relatedProperties?.data?.data.length > 0
-  ) {
-    const jsonLd = createPropertiesSchema(relatedProperties?.data.data, {});
+  const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
+  const relatedProperties = useQuery(
+    findPropertyJoinAgentQueryOptions({ id: propertyId, is_related: true }),
+  );
+  const propertyData = relatedProperties.data?.data?.data;
+  if (propertyData && propertyData.length > 0) {
+    const jsonLd = createPropertiesSchema(propertyData, {});
 
     return (
       <>
@@ -43,7 +45,7 @@ export const RelatedProperties = ({ propertyId }: RelatedPropertiesProps) => {
             </div>
           </div>
           <CarouselContent>
-            {relatedProperties.data.data.map((propertyWithAgent, index) => (
+            {propertyData.map((propertyWithAgent, index) => (
               <CarouselItem
                 key={`${index}_related_properties`}
                 className="basis-4/5 md:basis-1/2 lg:basis-1/3"

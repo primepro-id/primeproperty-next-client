@@ -1,22 +1,22 @@
-import { findAllPropertyAgents } from "@/lib/api/properties/find-all-property-agents";
+import { getAgents } from "@/lib/api";
 import { env } from "@/lib/env";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Google's limit is 50,000 URLs per sitemap
-  const agents = await findAllPropertyAgents();
+  const agents = await getAgents();
   return [
     {
       url: env.NEXT_PUBLIC_HOST_URL + `/agents`,
       lastModified: new Date(),
     },
-    ...(agents.data?.map((agent) => {
+    ...(agents.data?.data.map((agent) => {
       return {
         url:
           env.NEXT_PUBLIC_HOST_URL +
           `/agents/${agent.fullname.replaceAll(" ", "-")}`,
         lastModified: new Date(agent.updated_at),
       };
-    }) as MetadataRoute.Sitemap),
+    }) ?? []),
   ];
 }
