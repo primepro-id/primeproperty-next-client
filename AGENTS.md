@@ -3,6 +3,7 @@
 ## Before Changes
 
 Read the following files before running any changes:
+
 - `.agents/CODE_GUIDELINES.md`
 - `docs/CODEMAPS`
 

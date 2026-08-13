@@ -58,7 +58,9 @@ const Title = ({
   return (
     <h1 className={cn(baseClassname, className)}>
       {propertyCount === 0 && "Pencarian tidak ditemukan untuk "}
-      {searchParams.building_type ? searchParams.building_type : "properti"}{" "}
+      {searchParams.building_type
+        ? searchParams.building_type
+        : "properti"}{" "}
       {searchParams.purchase_status
         ? purchaseStatusLabels[searchParams.purchase_status].toLowerCase()
         : ""}{" "}

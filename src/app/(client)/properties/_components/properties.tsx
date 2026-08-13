@@ -1,7 +1,4 @@
-import {
-  findPropertyJoinAgent,
-  FindPropertyQuery,
-} from "@/lib/api";
+import { findPropertyJoinAgent, FindPropertyQuery } from "@/lib/api";
 import { PropertyList } from "./list";
 import { Pagination } from "./pagination";
 import { PropertiesFilter } from "./fillters/properties-filter";

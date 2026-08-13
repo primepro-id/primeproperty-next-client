@@ -36,16 +36,10 @@ export const AgentPage = ({ name }: AgentPageProps) => {
   return (
     <div className="flex flex-col gap-8 container mx-auto p-4">
       <AgentBreadcrumb agent={agent?.data?.data} />
-      <AgentBio
-        agent={agent?.data?.data}
-        propertiesWithAgent={propertyData}
-      />
+      <AgentBio agent={agent?.data?.data} propertiesWithAgent={propertyData} />
       <div className="flex flex-col gap-4">
         <h2 className="text-xl font-bold">Property List</h2>
-        <PropertyList
-          searchParams={{}}
-          propertiesWithAgent={propertyData}
-        />
+        <PropertyList searchParams={{}} propertiesWithAgent={propertyData} />
       </div>
 
       <Faq defaultTab="PRIMEPRO" />

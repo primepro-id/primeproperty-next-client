@@ -35,11 +35,7 @@ export function developersQueryOptions<
   TData = JsonResponse<DataAndPagination<Developer[]>>,
 >(
   options?: Omit<
-    UseQueryOptions<
-      JsonResponse<DataAndPagination<Developer[]>>,
-      Error,
-      TData
-    >,
+    UseQueryOptions<JsonResponse<DataAndPagination<Developer[]>>, Error, TData>,
     "queryKey" | "queryFn"
   >,
 ) {
