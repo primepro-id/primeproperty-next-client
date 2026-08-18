@@ -23,7 +23,9 @@ type NewPasswordFormProps = {
 
 const formSchema = z.object({
   password: z.string().min(8, "Minimum password length is 8 characters"),
-  repassword: z.string().min(8, "Minimum confirm password length is 8 characters"),
+  repassword: z
+    .string()
+    .min(8, "Minimum confirm password length is 8 characters"),
 });
 
 export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
@@ -32,23 +34,26 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       password: "",
-      repassword: ""
+      repassword: "",
     },
   });
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     if (data.password !== data.repassword) {
       toast.warning("Passwords do not match");
-      return
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const resetPasswordResult = await resetAgentPassword({ password: data.password, token })
+      const resetPasswordResult = await resetAgentPassword({
+        password: data.password,
+        token,
+      });
       if (resetPasswordResult.status === 400) {
         toast.error("Password reset link expired, please request a new one");
         setTimeout(() => {
-         window.location.href = "/auth/forgot-password"
-        }, 1000)
+          window.location.href = "/auth/forgot-password";
+        }, 1000);
         return;
       }
 
@@ -59,8 +64,8 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
 
       toast.success("Password reset successfully, please login to continue");
       setTimeout(() => {
-       window.location.href = "/auth"
-      }, 1000)
+        window.location.href = "/auth";
+      }, 1000);
     } catch (error) {
       console.error(error);
       toast.error("Failed to reset password, contact admin immediately!");
@@ -78,8 +83,8 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-
-        <form className="flex flex-col gap-4"
+        <form
+          className="flex flex-col gap-4"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <Controller
@@ -87,7 +92,9 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
             control={form.control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor={field.name}>Password (8 chars min)</FieldLabel>
+                <FieldLabel htmlFor={field.name}>
+                  Password (8 chars min)
+                </FieldLabel>
                 <Input
                   {...field}
                   id={field.name}
@@ -95,7 +102,9 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
                   placeholder="*******"
                   type="password"
                 />
-                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
               </Field>
             )}
           />
@@ -112,13 +121,19 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
                   placeholder="*******"
                   type="password"
                 />
-                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
               </Field>
             )}
           />
 
           <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? <LuLoader className="animate-spin" /> : "Change my Password"}
+            {isLoading ? (
+              <LuLoader className="animate-spin" />
+            ) : (
+              "Change my Password"
+            )}
           </Button>
         </form>
       </CardContent>

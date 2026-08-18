@@ -11,13 +11,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { createAgentPasswordResetToken } from "@/lib/api";
 
-
 const formSchema = z.object({
   email: z.email("Invalid email").min(1, "Email can't be empty"),
 });
 
 export const SendEmailForm = () => {
-
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -27,9 +25,11 @@ export const SendEmailForm = () => {
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const forgotPasswordResult = await createAgentPasswordResetToken(data.email);
+      const forgotPasswordResult = await createAgentPasswordResetToken(
+        data.email,
+      );
 
       if (forgotPasswordResult.status === 400) {
         toast.error("Email not found");
@@ -42,7 +42,6 @@ export const SendEmailForm = () => {
         return;
       }
 
-
       toast.success("Password reset link sent to your email");
       return;
     } catch (err) {
@@ -53,7 +52,8 @@ export const SendEmailForm = () => {
     }
   }
   return (
-    <form className="flex flex-col gap-4"
+    <form
+      className="flex flex-col gap-4"
       onSubmit={form.handleSubmit(onSubmit)}
     >
       <Controller

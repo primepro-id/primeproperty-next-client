@@ -12,7 +12,7 @@ const ResetPasswodPage = async ({ searchParams }: ResetPasswodPageProps) => {
   return (
     <div className="container mx-auto h-screen px-4 md:px-0 flex flex-col items-center justify-center gap-6">
       <h1 className="text-2xl font-bold text-center ">Reset Your Password</h1>
-        <ResetPasswordForm token={token} />
+      <ResetPasswordForm token={token} />
       <div className="text-center">
         <Link
           href="/auth"
