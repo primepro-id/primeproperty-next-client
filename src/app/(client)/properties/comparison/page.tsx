@@ -24,7 +24,6 @@ export default async function Page({ searchParams }: PageParams) {
   const { ids } = await searchParams;
   return (
     <div className="w-full container mx-auto flex flex-col gap-4">
-
       <div className="p-2">
         <Link
           href="/properties/bookmark"

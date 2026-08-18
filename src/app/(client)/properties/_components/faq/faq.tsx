@@ -33,7 +33,11 @@ export const Faq = ({ defaultTab }: FaqProps) => {
       <FaqSchema />
 
       <VideoThumbnail />
-      <Tabs defaultValue={defaultTab} className="max-w-xl lg:max-w-none" id="faq">
+      <Tabs
+        defaultValue={defaultTab}
+        className="max-w-xl lg:max-w-none"
+        id="faq"
+      >
         <TabsList className="border-b">
           <TabsTrigger
             value="PRIMEPRO"

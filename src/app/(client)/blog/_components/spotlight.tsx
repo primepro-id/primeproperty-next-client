@@ -18,10 +18,7 @@ export const Spotlight = ({ article }: SpotlightProps) => {
     <div className="border border-primary md:border-transparent rounded-lg ">
       <div className=" px-4 py-1 md:hidden">Tips &amp; Trick Spotlight</div>
 
-      <Link
-        title={article.title}
-        href={`/blog/${article.slug}`}
-      >
+      <Link title={article.title} href={`/blog/${article.slug}`}>
         <Image
           src={article.thumbnail.url}
           alt={article.seo.title}

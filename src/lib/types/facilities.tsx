@@ -60,6 +60,6 @@ export const FACILITY_ICON = {
   [Facility.TempatLaundry]: <MdOutlineLocalLaundryService />,
   [Facility.TempatIbadah]: <LuChurch />,
   [Facility.JoggingTrack]: <FaPersonRunning />,
-  [Facility.AksesParkir]: <LuCircleParking/>, // Fixed from LuCircleParking
+  [Facility.AksesParkir]: <LuCircleParking />, // Fixed from LuCircleParking
   [Facility.OneGateSystem]: <GiSecurityGate />,
 };

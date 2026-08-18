@@ -1,4 +1,4 @@
-'use server'
+"use server";
 import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 import { env } from "../env";
 import type { Article } from "../types";

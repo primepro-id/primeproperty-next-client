@@ -2,7 +2,11 @@ import { PropertyInformation } from "./property-information";
 import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
 import { cn } from "@/lib/utils";
 import { GoogleTranslateElement } from "@/components/custom-ui/google-translate-element";
-import { Property, PropertyJoinAgent, PropertyPurchaseStatus } from "@/lib/types";
+import {
+  Property,
+  PropertyJoinAgent,
+  PropertyPurchaseStatus,
+} from "@/lib/types";
 import { FACILITY_ICON } from "@/lib/types/facilities";
 
 type PriceTagProps = {

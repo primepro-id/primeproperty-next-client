@@ -1,4 +1,9 @@
-import { Property, PROPERTY_BUILDING_CONDITIONS, PROPERTY_FURNITURE_CAPACITY, PropertyPurchaseStatus } from "@/lib/types";
+import {
+  Property,
+  PROPERTY_BUILDING_CONDITIONS,
+  PROPERTY_FURNITURE_CAPACITY,
+  PropertyPurchaseStatus,
+} from "@/lib/types";
 
 type KeyValueProps = {
   label: string;
@@ -88,7 +93,11 @@ export const PropertyInformation = ({ property }: PropertyInformationProps) => {
           <div className="flex items-center gap-1">
             <p className="w-32 text-muted-foreground">Perabotan</p>
             <p className="capitalize">
-              {PROPERTY_FURNITURE_CAPACITY[property.building_furniture_capacity]}
+              {
+                PROPERTY_FURNITURE_CAPACITY[
+                  property.building_furniture_capacity
+                ]
+              }
             </p>
           </div>
         )}

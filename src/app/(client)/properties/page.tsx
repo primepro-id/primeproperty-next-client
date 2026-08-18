@@ -16,9 +16,7 @@ export const generateMetadata = async ({
 
 const PropertiesPage = async ({ searchParams }: PropertiesPageProps) => {
   const searchQuery = await searchParams;
-  return (
-      <Properties searchParams={searchQuery} />
-  );
+  return <Properties searchParams={searchQuery} />;
 };
 
 export default PropertiesPage;

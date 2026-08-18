@@ -26,7 +26,7 @@ export type Property = {
   configurations: PropertyConfigurations;
   currency: string;
   rent_time: PropertyRentTime | null;
-  price_down_payment: number | null
+  price_down_payment: number | null;
   description_seo: string | null;
 };
 
@@ -61,7 +61,6 @@ export enum PropertyBuildingCondition {
   RenovationRequired = "RenovationRequired",
   Old = "Old",
 }
-
 
 export const PROPERTY_BUILDING_CONDITIONS = {
   [PropertyBuildingCondition.New]: "Baru",
