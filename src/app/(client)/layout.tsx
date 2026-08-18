@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { Footer } from "./_footer";
 import { Header } from "./_header";
 import { createMetadata } from "@/lib/metadata";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { env } from "@/lib/env";
 
 const seo = {
   title: "Jual Beli Rumah Apartemen | PRIMEPRO INDONESIA",
@@ -19,6 +21,7 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
       <Header />
       <main className="min-h-screen">{children}</main>
       <Footer />
+      <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_ID} />
     </>
   );
 };
