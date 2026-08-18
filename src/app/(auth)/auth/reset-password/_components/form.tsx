@@ -1,4 +1,3 @@
-import { consumeSupertokensResetPasswordToken } from "@/lib/supertokens/consume-supertokens-reset-password-token";
 import { TokenExpiredCard } from "./token-expired-card";
 import { NewPasswordForm } from "./new-password-form";
 
@@ -7,11 +6,8 @@ type ResetPasswordFormProps = {
 };
 
 export const ResetPasswordForm = async ({ token }: ResetPasswordFormProps) => {
-  const tokenValidation = await consumeSupertokensResetPasswordToken(
-    token ?? "",
-  );
-  if (tokenValidation.status !== "OK") {
+  if (!token) {
     return <TokenExpiredCard />;
   }
-  return <NewPasswordForm userId={tokenValidation.userId} />;
+  return <NewPasswordForm token={token} />;
 };

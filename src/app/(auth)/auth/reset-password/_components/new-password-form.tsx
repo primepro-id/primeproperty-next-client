@@ -7,55 +7,66 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { updateSupertokensPassword } from "@/lib/supertokens/update-supertokens-password";
-import { useRouter } from "next/navigation";
+import { resetAgentPassword } from "@/lib/api";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { LuLoader } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { z } from "zod";
 
 type NewPasswordFormProps = {
-  userId: string;
+  token: string;
 };
 
-export const NewPasswordForm = ({ userId }: NewPasswordFormProps) => {
-  const router = useRouter();
-  const handleAction = async (formData: FormData) => {
-    const password = formData.get("password") as string;
-    const repassword = formData.get("repassword") as string;
+const formSchema = z.object({
+  password: z.string().min(8, "Minimum password length is 8 characters"),
+  repassword: z.string().min(8, "Minimum confirm password length is 8 characters"),
+});
 
-    if (password !== repassword) {
+export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      password: "",
+      repassword: ""
+    },
+  });
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    if (data.password !== data.repassword) {
       toast.warning("Passwords do not match");
+      return
     }
 
+    setIsLoading(true)
     try {
-      const isPasswordValid = z
-        .string()
-        .min(8, { message: "Passwod must be at least 8 characters long" })
-        .regex(/\d/, { message: "Password must contain at least one number" })
-        .safeParse(password);
-      if (!isPasswordValid.success) {
-        toast.error(
-          "Password must contain at least one number and 8 characters long",
-        );
+      const resetPasswordResult = await resetAgentPassword({ password: data.password, token })
+      if (resetPasswordResult.status === 400) {
+        toast.error("Password reset link expired, please request a new one");
+        setTimeout(() => {
+         window.location.href = "/auth/forgot-password"
+        }, 1000)
         return;
       }
 
-      const changePassword = await updateSupertokensPassword(userId, password);
-      if (changePassword.status === "OK") {
-        toast.success(
-          "Password updated successfully, please login to continue",
-        );
-        router.push("/auth");
-      } else {
-        toast.error("Failed to update password, please try again later");
+      if (!resetPasswordResult.data) {
+        toast.error("Failed to reset password, contact admin immediately!");
+        return;
       }
+
+      toast.success("Password reset successfully, please login to continue");
+      setTimeout(() => {
+       window.location.href = "/auth"
+      }, 1000)
     } catch (error) {
       console.error(error);
-      toast.error("Failed to reset password, please try again later");
+      toast.error("Failed to reset password, contact admin immediately!");
+    } finally {
+      setIsLoading(false);
     }
-
-    // TODO: Implement password reset logic
   };
 
   return (
@@ -67,29 +78,48 @@ export const NewPasswordForm = ({ userId }: NewPasswordFormProps) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="flex flex-col gap-4" action={handleAction}>
-          <div className="grid gap-2">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              name="password"
-              placeholder="********"
-              required
-            />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="repassword">Confirm Password</Label>
-            <Input
-              id="repassword"
-              type="password"
-              name="repassword"
-              placeholder="********"
-              required
-            />
-          </div>
 
-          <Button type="submit">Reset Password</Button>
+        <form className="flex flex-col gap-4"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <Controller
+            name="password"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor={field.name}>Password (8 chars min)</FieldLabel>
+                <Input
+                  {...field}
+                  id={field.name}
+                  aria-invalid={fieldState.invalid}
+                  placeholder="*******"
+                  type="password"
+                />
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              </Field>
+            )}
+          />
+          <Controller
+            name="repassword"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor={field.name}>Confirm Password</FieldLabel>
+                <Input
+                  {...field}
+                  id={field.name}
+                  aria-invalid={fieldState.invalid}
+                  placeholder="*******"
+                  type="password"
+                />
+                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+              </Field>
+            )}
+          />
+
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? <LuLoader className="animate-spin" /> : "Change my Password"}
+          </Button>
         </form>
       </CardContent>
     </Card>

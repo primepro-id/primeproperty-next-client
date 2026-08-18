@@ -1,42 +1,32 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-// import { findAgentBySupertokensId } from "@/lib/api/agents/find-agent-by-supertokens-id";
-// import { createTokenCookie } from "@/lib/cookie/create-token-cookie";
-// import { createSupertokensSession } from "@/lib/supertokens/create-supertokens-session";
-// import { signinSupertokens } from "@/lib/supertokens/signin-supertokens";
 import { toast } from "react-toastify";
 import { LuLoader } from "react-icons/lu";
-import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Controller, useForm } from "react-hook-form"
-import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import * as z from "zod";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { useMutation } from "@tanstack/react-query";
-import { signinAgentMutationOptions } from "@/lib/hooks";
 import { setAccessToken, setRefreshToken, signinAgent } from "@/lib/api";
 import { useState } from "react";
 
 const formSchema = z.object({
-  email: z
-    .email()
-    .min(1, "Email can't be empty"),
-  password: z
-    .string().min(1, "Password can't be empty")
-})
+  email: z.email("Invalid email").min(1, "Email can't be empty"),
+  password: z.string().min(1, "Password can't be empty"),
+});
 
 export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-        email: "",
-        password: "",
-      },
-    })
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
+    setIsLoading(true);
     try {
       const signinResult = await signinAgent(data);
       if (signinResult.status === 400) {
@@ -45,26 +35,24 @@ export const LoginForm = () => {
       }
 
       if (!signinResult.data) {
-        console.error("No data returned from server")
+        console.error("No data returned from server");
         toast.error("Server error, contact admin immediately");
         return;
       }
 
       setAccessToken(String(signinResult.data.accessToken?.token));
       setRefreshToken(String(signinResult.data.accessToken?.token));
-      toast.success("Sign in successful, redirecting...")
+      toast.success("Sign in successful, redirecting...");
       setTimeout(() => {
         window.location.href = "/admin";
       }, 1000);
     } catch (err) {
-
       console.error(err);
       toast.error("Server error, contact admin immediately");
     } finally {
-        setIsLoading(false);
-      }
+      setIsLoading(false);
+    }
   }
-
 
   return (
     <form
