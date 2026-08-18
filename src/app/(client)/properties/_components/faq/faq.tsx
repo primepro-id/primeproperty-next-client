@@ -29,11 +29,11 @@ const VideoThumbnail = () => {
 
 export const Faq = ({ defaultTab }: FaqProps) => {
   return (
-    <div className="flex flex-col gap-8 lg:grid grid-cols-2">
+    <div className="flex flex-col gap-8 lg:grid grid-cols-2 my-16 lg:gap-16">
       <FaqSchema />
 
       <VideoThumbnail />
-      <Tabs defaultValue={defaultTab} className="max-w-xl" id="faq">
+      <Tabs defaultValue={defaultTab} className="max-w-xl lg:max-w-none" id="faq">
         <TabsList className="border-b">
           <TabsTrigger
             value="PRIMEPRO"

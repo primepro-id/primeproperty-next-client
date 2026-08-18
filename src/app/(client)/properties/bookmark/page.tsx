@@ -16,6 +16,8 @@ export const metadata: Metadata = createMetadata(seo);
 export default function Page() {
   return (
     <div className="container mx-auto p-4 flex flex-col gap-4">
+      <div className="flex flex-col gap-4 min-h-screen">
+
       <div>
         <h1 className="text-xl font-bold">Perbandingan Properti</h1>
         <h3 className="text-muted-foreground">
@@ -25,6 +27,7 @@ export default function Page() {
       </div>
 
       <BookmarkedProperties />
+      </div>
 
       <Faq defaultTab="PROPERTY" />
     </div>

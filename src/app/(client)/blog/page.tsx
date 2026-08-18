@@ -6,8 +6,6 @@ import { AllArticles, Latest, Spotlight } from "./_components";
 import { PopularProperties } from "../properties/_components";
 import { findArticles } from "@/lib/api";
 
-export const revalidate = 0;
-
 const title = "Tips dan Trik Pemilihan Properti | PrimePro Indonesia";
 const description =
   "Artikel Primepro Indonesia menyuguhkan tips dan trik terkini seputar properti dan ulasan mengenai rumah hingga gaya hidup";

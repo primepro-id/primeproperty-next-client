@@ -110,7 +110,7 @@ export const findUniquePropertyJoinAgent = async (
 export const findPropertyJoinAgent = async (
   query: FindPropertyQuery = {},
 ): Promise<JsonResponse<DataAndPagination<PropertyJoinAgent[]>>> => {
-  const searchParams = qs.stringify(query, { addQueryPrefix: true });
+  const searchParams = qs.stringify(query, { addQueryPrefix: true, filter: (prefix, value) => value || undefined });
   const endpoint = `/properties/join-agents${searchParams}`;
 
   return fetchJsonApi(endpoint, {

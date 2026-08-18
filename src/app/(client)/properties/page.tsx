@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { Properties } from "./_components";
 import { FindPropertyQuery } from "@/lib/api";
 import { Metadata } from "next";
@@ -18,9 +17,7 @@ export const generateMetadata = async ({
 const PropertiesPage = async ({ searchParams }: PropertiesPageProps) => {
   const searchQuery = await searchParams;
   return (
-    <Suspense>
       <Properties searchParams={searchQuery} />
-    </Suspense>
   );
 };
 

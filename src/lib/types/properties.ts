@@ -62,11 +62,26 @@ export enum PropertyBuildingCondition {
   Old = "Old",
 }
 
+
+export const PROPERTY_BUILDING_CONDITIONS = {
+  [PropertyBuildingCondition.New]: "Baru",
+  [PropertyBuildingCondition.Good]: "Bagus",
+  [PropertyBuildingCondition.Renovated]: "Sudah Direnovasi",
+  [PropertyBuildingCondition.RenovationRequired]: "Butuh Renovasi",
+  [PropertyBuildingCondition.Old]: "Tua",
+};
+
 export enum PropertyFurnitureCapacity {
   Furnished = "Furnished",
   SemiFurnished = "SemiFurnished",
   Unfurnished = "Unfurnished",
 }
+
+export const PROPERTY_FURNITURE_CAPACITY = {
+  [PropertyFurnitureCapacity.Furnished]: "Furnished",
+  [PropertyFurnitureCapacity.SemiFurnished]: "Semi Furnished",
+  [PropertyFurnitureCapacity.Unfurnished]: "Unfurnished",
+};
 
 export type PropertySpecifications = {
   bathrooms: number;

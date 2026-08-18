@@ -3,6 +3,7 @@ import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
 import { cn } from "@/lib/utils";
 import { GoogleTranslateElement } from "@/components/custom-ui/google-translate-element";
 import { Property, PropertyJoinAgent, PropertyPurchaseStatus } from "@/lib/types";
+import { FACILITY_ICON } from "@/lib/types/facilities";
 
 type PriceTagProps = {
   property: Property;
@@ -68,7 +69,7 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
                 className="flex items-center text-lg gap-2 capitalize"
               >
                 <span className="text-muted-foreground">
-                  {facility.value}
+                  {FACILITY_ICON[facility.value as keyof typeof FACILITY_ICON]}
                 </span>
                 <span>{facility.indonesian_label}</span>
               </li>

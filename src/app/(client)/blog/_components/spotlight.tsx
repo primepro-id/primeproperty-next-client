@@ -20,7 +20,7 @@ export const Spotlight = ({ article }: SpotlightProps) => {
 
       <Link
         title={article.title}
-        href={`${env.NEXT_PUBLIC_HOST_URL}/blog/${article.slug}`}
+        href={`/blog/${article.slug}`}
       >
         <Image
           src={article.thumbnail.url}
@@ -39,7 +39,7 @@ export const Spotlight = ({ article }: SpotlightProps) => {
         </p>
         <Link
           title={article.title}
-          href={`${env.NEXT_PUBLIC_HOST_URL}/blog/${article.slug}`}
+          href={`/blog/${article.slug}`}
           className="font-bold text-xl md:text-2xl hover:underline"
         >
           {article.title}

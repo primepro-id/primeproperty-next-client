@@ -48,12 +48,12 @@ const BlogSlug = async ({ params }: BlogSlugProps) => {
             <BlogPost article={article} />
             <BlogRelated slug={slug} allArticles={allArticles} />
           </div>
-          <Faq defaultTab="PROPERTY" />
           {article.showRelatedProperties && (
             <BlogRelatedProperties
               relatedProperties={article.relatedProperties}
             />
           )}
+          <Faq defaultTab="PROPERTY" />
         </div>
       </div>
     </>
