@@ -2,7 +2,6 @@ import Link from "next/link";
 import { LoginForm } from "./_components";
 import Image from "next/image";
 
-
 const LoginPage = () => {
   return (
     <div className="h-screen flex flex-col items-center justify-center container mx-auto">

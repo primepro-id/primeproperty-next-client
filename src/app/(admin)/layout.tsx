@@ -1,4 +1,3 @@
-
 import { Metadata } from "next";
 import { createMetadata } from "@/lib/metadata";
 import { SidebarProvider } from "@/components/ui/sidebar";
@@ -22,9 +21,7 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
         <AdminSidebar />
         <main className="h-screen overflow-y-auto flex flex-col w-full">
           <AdminNavbar />
-          <div className="p-2 flex-1">
-          {children}
-          </div>
+          <div className="p-2 flex-1">{children}</div>
         </main>
       </SidebarProvider>
     </>
