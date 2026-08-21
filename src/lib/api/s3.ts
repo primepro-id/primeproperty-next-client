@@ -59,13 +59,5 @@ export async function uploadS3Images(
     body: formData,
   });
 
-  const result = await response.json();
-
-  if (!response.ok) {
-    throw new Error(
-      result.error || `Upload failed with status ${response.status}`,
-    );
-  }
-
-  return result.data ?? [];
+  return await response.json();
 }

@@ -102,9 +102,11 @@ export async function updateAgent(
 // ==========================================
 
 type CreateAgentPayload = {
+  profile_picture_url: string;
   fullname: string;
   email: string;
   phone_number: string;
+  instagram?: string;
 };
 
 export async function createAgent(

@@ -14,7 +14,7 @@ export const imagesKeys = {
  * Mutation options factory for uploading S3 images.
  * Accepts additional parameters to configure onSuccess, onError, retry, etc.
  */
-export function getUploadS3ImagesMutationOptions<TContext = unknown>(
+export function uploadS3ImagesMutationOptions<TContext = unknown>(
   options?: Omit<
     UseMutationOptions<JsonResponse<S3.Image[]>, Error, File[], TContext>,
     "mutationFn"
