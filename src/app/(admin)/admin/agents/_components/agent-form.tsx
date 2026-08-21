@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -12,17 +12,28 @@ import { LuLoader, LuUpload } from "react-icons/lu";
 import * as z from "zod";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-const ACCEPTED_IMAGE_TYPES = ["image/jpg", "image/jpeg", "image/png", "image/webp"];
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpg",
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+];
 
 const formSchema = z.object({
   profile_picture_url: z
-      .any()
-      .refine((files) => files instanceof FileList && files.length > 0, "A picture is required.")
-      .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
-      .refine(
-        (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-        "Only .jpg, .jpeg, .png, and .webp formats are supported."
-      ),
+    .any()
+    .refine(
+      (files) => files instanceof FileList && files.length > 0,
+      "A picture is required.",
+    )
+    .refine(
+      (files) => files?.[0]?.size <= MAX_FILE_SIZE,
+      "Max file size is 5MB.",
+    )
+    .refine(
+      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+      "Only .jpg, .jpeg, .png, and .webp formats are supported.",
+    ),
   fullname: z.string().min(1, "Fullname is required"),
   email: z.string().email("Invalid email address").min(1, "Email is required"),
   phone_number: z
@@ -37,7 +48,7 @@ type AgentFormProps = {
   onSubmit: (data: z.infer<typeof formSchema>) => Promise<boolean>;
 };
 
-export const AgentForm = ({ onSubmit, isLoading}: AgentFormProps) => {
+export const AgentForm = ({ onSubmit, isLoading }: AgentFormProps) => {
   const pictureInputRef = useRef<HTMLInputElement>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,9 +62,14 @@ export const AgentForm = ({ onSubmit, isLoading}: AgentFormProps) => {
     },
   });
 
-
   return (
-    <form onSubmit={form.handleSubmit(async (data) => { const submit = await onSubmit(data); if (submit) form.reset()})} className="flex flex-col gap-4">
+    <form
+      onSubmit={form.handleSubmit(async (data) => {
+        const submit = await onSubmit(data);
+        if (submit) form.reset();
+      })}
+      className="flex flex-col gap-4"
+    >
       <Controller
         name="profile_picture_url"
         control={form.control}
@@ -166,15 +182,15 @@ export const AgentForm = ({ onSubmit, isLoading}: AgentFormProps) => {
       />
 
       <div className="flex items-center justify-between">
-        <Link href="/admin/agents" className={cn(buttonVariants({variant: "outline"}))}>
+        <Link
+          href="/admin/agents"
+          className={cn(buttonVariants({ variant: "outline" }))}
+        >
           Back
         </Link>
 
         <Button type="submit" disabled={isLoading}>
-          {isLoading
-?
-            <LuLoader className="animate-spin" /> : "Save"
-          }
+          {isLoading ? <LuLoader className="animate-spin" /> : "Save"}
         </Button>
       </div>
     </form>
