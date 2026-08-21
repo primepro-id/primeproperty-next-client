@@ -1,8 +1,3 @@
-
 export default function Page() {
-  return (
-    <div>
-      hai
-    </div>
-  )
+  return <div>hai</div>;
 }

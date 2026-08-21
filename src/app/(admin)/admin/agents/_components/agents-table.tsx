@@ -68,17 +68,15 @@ export const AgentsTable = () => {
                 <p>{a.phone_number}</p>
               </div>
             </TableCell>
-            <TableCell >
+            <TableCell>
               <div className="flex items-center gap-4">
-              <Link
-                href={`/admin/agents/${a.id}`}
-                className={cn(
-                  buttonVariants({  size: "icon" }),
-                )}
-              >
-                <LuPen />
-              </Link>
-              <DeleteAgentDialog agentId={a.id} />
+                <Link
+                  href={`/admin/agents/${a.id}`}
+                  className={cn(buttonVariants({ size: "icon" }))}
+                >
+                  <LuPen />
+                </Link>
+                <DeleteAgentDialog agentId={a.id} />
               </div>
             </TableCell>
           </TableRow>
