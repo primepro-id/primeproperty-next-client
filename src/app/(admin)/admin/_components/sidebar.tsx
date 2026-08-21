@@ -2,15 +2,9 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuBadge,
-  SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSkeleton,
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
@@ -22,7 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import jwt from "jsonwebtoken";
 import { Agent } from "@/lib/types";
-import { LuUser, LuUsers } from "react-icons/lu";
+import { LuUsers } from "react-icons/lu";
 import { buttonVariants } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 
@@ -117,11 +111,6 @@ export function AdminSidebar() {
         <SidebarTrigger />
       </SidebarHeader>
       <SidebarMenus open={open || openMobile} pathname={pathname} />
-      {/*<SidebarContent>
-        <SidebarGroup />
-        <SidebarGroup />
-      </SidebarContent>
-      <SidebarFooter />*/}
     </Sidebar>
   );
 }

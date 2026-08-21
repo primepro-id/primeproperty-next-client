@@ -17,10 +17,10 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { LuInstagram, LuPen } from "react-icons/lu";
+import { DeleteAgentDialog } from "./delete-agent-dialog";
 
 export const AgentsTable = () => {
   const agents = useQuery(getAgentsQueryOptions());
-  console.log(agents.data);
   if (agents.isLoading) {
     return <Loading />;
   }
@@ -68,15 +68,18 @@ export const AgentsTable = () => {
                 <p>{a.phone_number}</p>
               </div>
             </TableCell>
-            <TableCell>
+            <TableCell >
+              <div className="flex items-center gap-4">
               <Link
                 href={`/admin/agents/${a.id}`}
                 className={cn(
-                  buttonVariants({ variant: "outline", size: "icon" }),
+                  buttonVariants({  size: "icon" }),
                 )}
               >
                 <LuPen />
               </Link>
+              <DeleteAgentDialog agentId={a.id} />
+              </div>
             </TableCell>
           </TableRow>
         ))}
