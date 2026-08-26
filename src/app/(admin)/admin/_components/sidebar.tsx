@@ -16,7 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import jwt from "jsonwebtoken";
 import { Agent } from "@/lib/types";
-import { LuUsers, LuWaves } from "react-icons/lu";
+import { LuContact, LuUsers, LuWaves } from "react-icons/lu";
 import { buttonVariants } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 
@@ -49,46 +49,54 @@ function SidebarMenus({ open, pathname }: SidebarMenusProps) {
     );
   }
 
-  if (agent.role === "Admin") {
-    const ADMIN_MENUS = [
-      {
-        icon: <LuWaves />,
-        title: "Developers",
-        href: "/admin/developers",
-      },
-      {
-        icon: <LuUsers />,
-        title: "Agents",
-        href: "/admin/agents",
-      },
-    ];
-    return (
-      <SidebarContent>
-        <SidebarMenu className="p-2">
-          {ADMIN_MENUS.map((m) => (
-            <Link
-              href={m.href}
-              title={m.title}
-              key={m.title}
-              className={cn(
-                buttonVariants({
-                  variant: pathname === m.href ? "default" : "ghost",
-                  size: open ? "default" : "icon",
-                }),
-                open && "justify-start",
-                " w-full",
-              )}
-            >
-              {m.icon}
-              {open && m.title}
-            </Link>
-          ))}
-        </SidebarMenu>
-      </SidebarContent>
-    );
-  }
+  const leadsMenu = {
+    icon: <LuContact />,
+    title: "Leads",
+    href: "/admin/leads",
+  };
+  const menus =
+    agent.role === "Admin"
+      ? [
+          {
+            icon: <LuWaves />,
+            title: "Developers",
+            href: "/admin/developers",
+          },
+          {
+            icon: <LuUsers />,
+            title: "Agents",
+            href: "/admin/agents",
+          },
+          leadsMenu,
+        ]
+      : agent.role === "Agent"
+        ? [leadsMenu]
+        : [];
 
-  return <SidebarContent></SidebarContent>;
+  return (
+    <SidebarContent>
+      <SidebarMenu className="p-2">
+        {menus.map((menu) => (
+          <Link
+            href={menu.href}
+            title={menu.title}
+            key={menu.title}
+            className={cn(
+              buttonVariants({
+                variant: pathname === menu.href ? "default" : "ghost",
+                size: open ? "default" : "icon",
+              }),
+              open && "justify-start",
+              "w-full",
+            )}
+          >
+            {menu.icon}
+            {open && menu.title}
+          </Link>
+        ))}
+      </SidebarMenu>
+    </SidebarContent>
+  );
 }
 
 export function AdminSidebar() {

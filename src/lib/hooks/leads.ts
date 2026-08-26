@@ -4,12 +4,13 @@ import {
   UseMutationOptions,
 } from "@tanstack/react-query";
 import { DataAndPagination, JsonResponse, Lead } from "../types";
-import { createLead, CreateLeadPayload, getLeads } from "../api";
+import { createLead, CreateLeadPayload, FindLeadQuery, getLeads } from "../api";
 
 // Centralized query keys for consistent invalidation
 export const leadKeys = {
   all: ["leads"] as const,
-  lists: () => [...leadKeys.all, "list"] as const,
+  lists: (query: FindLeadQuery = {}) =>
+    [...leadKeys.all, "list", { query }] as const,
 };
 
 /**
@@ -17,14 +18,15 @@ export const leadKeys = {
  * Allows passing additional TanStack Query options to override or extend defaults.
  */
 export function getLeadsQueryOptions(
+  query: FindLeadQuery = {},
   options?: Omit<
     UseQueryOptions<JsonResponse<DataAndPagination<Lead[]>>, Error>,
     "queryKey" | "queryFn"
   >,
 ) {
   return queryOptions({
-    queryKey: leadKeys.lists(),
-    queryFn: () => getLeads(),
+    queryKey: leadKeys.lists(query),
+    queryFn: () => getLeads(query),
     ...options,
   });
 }

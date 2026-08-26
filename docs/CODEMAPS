@@ -92,6 +92,7 @@ Route group names such as `(client)` and `(admin)` do not appear in URLs.
 | `/admin/developers` | `src/app/(admin)/admin/developers/page.tsx` | Admin developer management table with edit and delete actions |
 | `/admin/developers/new` | `src/app/(admin)/admin/developers/new/page.tsx` | Admin developer creation form with required S3 logo upload |
 | `/admin/developers/[developerId]` | `src/app/(admin)/admin/developers/[developerId]/page.tsx` | Admin developer edit form with query-backed defaults and optional logo replacement |
+| `/admin/leads` | `src/app/(admin)/admin/leads/page.tsx` | Read-only lead table; admins see all leads and agents request leads filtered by their agent ID |
 | `/blog` | `src/app/(client)/blog/page.tsx` | DatoCMS article landing page and popular properties |
 | `/blog/[slug]` | `src/app/(client)/blog/[slug]/page.tsx` | DatoCMS article, related articles, optional related properties, and JSON-LD |
 | `/franchise` | `src/app/(client)/franchise/page.tsx` | Franchise marketing and registration content |
@@ -209,6 +210,10 @@ price sorting.
 - Contract: `src/lib/types/leads.ts`
 - REST API: `src/lib/api/leads.ts`
 - Query/mutation options: `src/lib/hooks/leads.ts`
+- `FindLeadQuery` supports optional `agent_id` filtering, and lead-list query
+  keys include the filter so admin and agent results remain cache-isolated.
+- Admin read-only UI: `src/app/(admin)/admin/leads`; the shared sidebar exposes
+  it to admins and agents, and agent requests include `agent_id`.
 - `src/app/(client)/properties/_components/contact-agent-dialog.tsx`
   validates contact details, creates a lead, reports analytics events, and then
   opens WhatsApp or the phone dialer.
@@ -307,7 +312,7 @@ environment validation and prerendered routes during `yarn build`.
 | Property detail | `src/app/(client)/properties/[id]` | property API/hooks, schema and metadata helpers |
 | Agent behavior | `src/lib/api/agents.ts` | `src/lib/hooks/agents.ts`, public and admin agent routes |
 | Blog content | `src/lib/api/articles.ts` | `src/lib/api/gql.ts`, `src/app/(client)/blog` |
-| Contact/lead flow | `src/app/(client)/properties/_components/contact-agent-dialog.tsx` | `src/lib/api/leads.ts`, `src/lib/hooks/leads.ts` |
+| Lead behavior | `src/lib/api/leads.ts` | `src/lib/hooks/leads.ts`, public contact dialog, admin leads route |
 | Shared UI primitive | `src/components/ui` | all consumers found with `rg` |
 | Global providers | `src/components/providers.tsx` | root layout, client-only environment requirements |
 | SEO or sitemap | route-local `_lib` helpers or sitemap entry | `src/lib/metadata`, `src/lib/schema`, build-time data sources |
