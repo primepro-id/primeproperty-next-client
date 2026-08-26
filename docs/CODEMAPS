@@ -1,6 +1,6 @@
 # PrimeProperty Next Client Codemap
 
-Last verified: 2026-08-13
+Last verified: 2026-08-26
 
 This file is the high-level map of the repository. Keep it focused on stable
 boundaries and update it whenever routes, data sources, shared providers, or
@@ -78,7 +78,7 @@ The `@/*` TypeScript alias maps to `src/*`.
 
 ## Route map
 
-Route group names such as `(client)` do not appear in public URLs.
+Route group names such as `(client)` and `(admin)` do not appear in URLs.
 
 | URL | Entry point | Responsibility |
 | --- | --- | --- |
@@ -86,6 +86,9 @@ Route group names such as `(client)` do not appear in public URLs.
 | `/about` | `src/app/(client)/about/page.tsx` | Company history, services, value proposition, and contact content |
 | `/agents` | `src/app/(client)/agents/page.tsx` | Agent directory backed by the REST API |
 | `/agents/[name]` | `src/app/(client)/agents/[name]/page.tsx` | Agent profile and listings; dynamic metadata by agent name |
+| `/admin/agents` | `src/app/(admin)/admin/agents/page.tsx` | Admin agent management table with edit and delete actions |
+| `/admin/agents/new` | `src/app/(admin)/admin/agents/new/page.tsx` | Admin agent creation form with required S3 profile-picture upload |
+| `/admin/agents/[agentId]` | `src/app/(admin)/admin/agents/[agentId]/page.tsx` | Admin agent edit form with query-backed defaults and optional picture replacement |
 | `/blog` | `src/app/(client)/blog/page.tsx` | DatoCMS article landing page and popular properties |
 | `/blog/[slug]` | `src/app/(client)/blog/[slug]/page.tsx` | DatoCMS article, related articles, optional related properties, and JSON-LD |
 | `/franchise` | `src/app/(client)/franchise/page.tsx` | Franchise marketing and registration content |
@@ -172,7 +175,12 @@ price sorting.
 - Contract: `src/lib/types/agent.ts`
 - REST API: `src/lib/api/agents.ts`
 - Query/mutation options: `src/lib/hooks/agents.ts`
-- Route UI: `src/app/(client)/agents`
+- Public route UI: `src/app/(client)/agents`
+- Admin CRUD UI: `src/app/(admin)/admin/agents`; create and edit share the
+  route-level `AgentForm`, while edit loads by ID and refreshes agent query
+  caches after saving.
+- Agent profile pictures are uploaded through the S3 API before create or
+  picture-changing update requests.
 - Protected operations send the `accessToken` cookie as `x-access-token`.
 
 ### Blog/articles
@@ -291,7 +299,7 @@ environment validation and prerendered routes during `yarn build`.
 | Property API shape | `src/lib/api/properties.ts` | `src/lib/types/properties.ts`, `src/lib/types/join.ts`, `src/lib/hooks/properties.ts`, property routes |
 | Property listing/filter behavior | `src/app/(client)/properties/_components` | `src/app/(client)/properties/_lib`, `FindPropertyQuery` |
 | Property detail | `src/app/(client)/properties/[id]` | property API/hooks, schema and metadata helpers |
-| Agent behavior | `src/lib/api/agents.ts` | `src/lib/hooks/agents.ts`, `src/app/(client)/agents` |
+| Agent behavior | `src/lib/api/agents.ts` | `src/lib/hooks/agents.ts`, public and admin agent routes |
 | Blog content | `src/lib/api/articles.ts` | `src/lib/api/gql.ts`, `src/app/(client)/blog` |
 | Contact/lead flow | `src/app/(client)/properties/_components/contact-agent-dialog.tsx` | `src/lib/api/leads.ts`, `src/lib/hooks/leads.ts` |
 | Shared UI primitive | `src/components/ui` | all consumers found with `rg` |
