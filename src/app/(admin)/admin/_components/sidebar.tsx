@@ -16,7 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import jwt from "jsonwebtoken";
 import { Agent } from "@/lib/types";
-import { LuContact, LuUsers, LuWaves } from "react-icons/lu";
+import { LuContact, LuHouse, LuUsers, LuWaves } from "react-icons/lu";
 import { buttonVariants } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 
@@ -54,6 +54,11 @@ function SidebarMenus({ open, pathname }: SidebarMenusProps) {
     title: "Leads",
     href: "/admin/leads",
   };
+  const propertiesMenu = {
+    icon: <LuHouse />,
+    title: "Properties",
+    href: "/admin/properties",
+  };
   const menus =
     agent.role === "Admin"
       ? [
@@ -67,10 +72,11 @@ function SidebarMenus({ open, pathname }: SidebarMenusProps) {
             title: "Agents",
             href: "/admin/agents",
           },
+          propertiesMenu,
           leadsMenu,
         ]
       : agent.role === "Agent"
-        ? [leadsMenu]
+        ? [propertiesMenu, leadsMenu]
         : [];
 
   return (

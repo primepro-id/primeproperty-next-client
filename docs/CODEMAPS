@@ -93,6 +93,7 @@ Route group names such as `(client)` and `(admin)` do not appear in URLs.
 | `/admin/developers/new` | `src/app/(admin)/admin/developers/new/page.tsx` | Admin developer creation form with required S3 logo upload |
 | `/admin/developers/[developerId]` | `src/app/(admin)/admin/developers/[developerId]/page.tsx` | Admin developer edit form with query-backed defaults and optional logo replacement |
 | `/admin/leads` | `src/app/(admin)/admin/leads/page.tsx` | Read-only lead table; admins see all leads and agents request leads filtered by their agent ID |
+| `/admin/properties` | `src/app/(admin)/admin/properties/page.tsx` | URL-filtered property management table; admins see all properties and agents see their assigned properties |
 | `/blog` | `src/app/(client)/blog/page.tsx` | DatoCMS article landing page and popular properties |
 | `/blog/[slug]` | `src/app/(client)/blog/[slug]/page.tsx` | DatoCMS article, related articles, optional related properties, and JSON-LD |
 | `/franchise` | `src/app/(client)/franchise/page.tsx` | Franchise marketing and registration content |
@@ -171,6 +172,13 @@ price sorting.
   under `bookmark_ids` in browser `localStorage`.
 - `src/lib/hooks/local-storage.ts` exposes bookmarks as TanStack Query options
   so cards and comparison views can refetch after local changes.
+- `src/app/(admin)/admin/properties` owns the URL-driven management table. Its
+  server page normalizes supported search parameters before the client table
+  applies React Query fetching and Admin/Agent visibility scoping.
+- The admin route keeps filters and table columns in separate `_components`
+  folders. Route-local `_lib` helpers derive independent select options from
+  site paths and coordinate pagination/filter URL updates; focused `node:test`
+  coverage lives beside those helpers.
 
 ## Other domains
 
@@ -309,6 +317,7 @@ environment validation and prerendered routes during `yarn build`.
 | --- | --- | --- |
 | Property API shape | `src/lib/api/properties.ts` | `src/lib/types/properties.ts`, `src/lib/types/join.ts`, `src/lib/hooks/properties.ts`, property routes |
 | Property listing/filter behavior | `src/app/(client)/properties/_components` | `src/app/(client)/properties/_lib`, `FindPropertyQuery` |
+| Admin property management | `src/app/(admin)/admin/properties` | property API/hooks, access-token role scoping, admin sidebar |
 | Property detail | `src/app/(client)/properties/[id]` | property API/hooks, schema and metadata helpers |
 | Agent behavior | `src/lib/api/agents.ts` | `src/lib/hooks/agents.ts`, public and admin agent routes |
 | Blog content | `src/lib/api/articles.ts` | `src/lib/api/gql.ts`, `src/app/(client)/blog` |
