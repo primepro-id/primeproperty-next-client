@@ -1,15 +1,21 @@
 "use client";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { LuLoader, LuUpload } from "react-icons/lu";
 import * as z from "zod";
+import type { AgentFormValues } from "../_lib/build-agent-update-data";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = [
@@ -19,76 +25,125 @@ const ACCEPTED_IMAGE_TYPES = [
   "image/webp",
 ];
 
-const formSchema = z.object({
-  profile_picture_url: z
-    .any()
-    .refine(
-      (files) => files instanceof FileList && files.length > 0,
-      "A picture is required.",
-    )
-    .refine(
-      (files) => files?.[0]?.size <= MAX_FILE_SIZE,
-      "Max file size is 5MB.",
-    )
-    .refine(
-      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-      "Only .jpg, .jpeg, .png, and .webp formats are supported.",
-    ),
-  fullname: z.string().min(1, "Fullname is required"),
-  email: z.string().email("Invalid email address").min(1, "Email is required"),
-  phone_number: z
-    .string()
-    .min(1, "Phone is required")
-    .transform((val) => val.replace(/^0+/, "")),
-  instagram: z.string().optional(),
-});
+const createFormSchema = (isProfilePictureRequired: boolean) =>
+  z.object({
+    profile_picture_url: z
+      .any()
+      .optional()
+      .superRefine((files, context) => {
+        const hasPicture = files instanceof FileList && files.length > 0;
+
+        if (isProfilePictureRequired && !hasPicture) {
+          context.addIssue({
+            code: "custom",
+            message: "A picture is required.",
+          });
+          return;
+        }
+
+        if (!hasPicture) return;
+
+        if (files[0].size > MAX_FILE_SIZE) {
+          context.addIssue({
+            code: "custom",
+            message: "Max file size is 5MB.",
+          });
+        }
+
+        if (!ACCEPTED_IMAGE_TYPES.includes(files[0].type)) {
+          context.addIssue({
+            code: "custom",
+            message: "Only .jpg, .jpeg, .png, and .webp formats are supported.",
+          });
+        }
+      }),
+    fullname: z.string().min(1, "Fullname is required"),
+    email: z
+      .string()
+      .email("Invalid email address")
+      .min(1, "Email is required"),
+    phone_number: z
+      .string()
+      .min(1, "Phone is required")
+      .transform((val) => val.replace(/^0+/, "")),
+    instagram: z.string().optional(),
+  });
+
+type AgentFormMode = "create" | "edit";
 
 type AgentFormProps = {
+  mode?: AgentFormMode;
+  initialValues?: Omit<AgentFormValues, "profile_picture_url">;
+  existingProfilePictureUrl?: string;
   isLoading: boolean;
-  onSubmit: (data: z.infer<typeof formSchema>) => Promise<boolean>;
+  onSubmit: (data: AgentFormValues) => Promise<boolean>;
 };
 
-export const AgentForm = ({ onSubmit, isLoading }: AgentFormProps) => {
+export const AgentForm = ({
+  mode = "create",
+  initialValues,
+  existingProfilePictureUrl,
+  onSubmit,
+  isLoading,
+}: AgentFormProps) => {
   const pictureInputRef = useRef<HTMLInputElement>(null);
+  const formSchema = useMemo(() => createFormSchema(mode === "create"), [mode]);
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<AgentFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       profile_picture_url: undefined,
-      fullname: "",
-      email: "",
-      phone_number: "",
-      instagram: "",
+      fullname: initialValues?.fullname ?? "",
+      email: initialValues?.email ?? "",
+      phone_number: initialValues?.phone_number ?? "",
+      instagram: initialValues?.instagram ?? "",
     },
   });
+  const pictureFiles = useWatch({
+    control: form.control,
+    name: "profile_picture_url",
+  });
+  const pictureFile = pictureFiles?.[0];
+  const [picturePreviewUrl, setPicturePreviewUrl] = useState<string>();
+
+  useEffect(() => {
+    if (!pictureFile) {
+      setPicturePreviewUrl(undefined);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(pictureFile);
+    setPicturePreviewUrl(objectUrl);
+
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [pictureFile]);
 
   return (
     <form
       onSubmit={form.handleSubmit(async (data) => {
         const submit = await onSubmit(data);
-        if (submit) form.reset();
+        if (submit && mode === "create") form.reset();
       })}
       className="flex flex-col gap-4"
     >
-      <Controller
-        name="profile_picture_url"
-        control={form.control}
-        render={({ field, fieldState }) => {
-          const file = field.value?.[0];
-          const objectUrl = file ? URL.createObjectURL(file) : null;
-          return (
+      <FieldGroup>
+        <Controller
+          name="profile_picture_url"
+          control={form.control}
+          render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor={field.name}>Profile Picture </FieldLabel>
+              <FieldLabel htmlFor={field.name}>Profile Picture</FieldLabel>
               <Button
-                className="size-40 overflow-hidden relative"
+                className="relative size-40 overflow-hidden"
                 variant="outline"
                 type="button"
+                aria-label="Choose profile picture"
                 onClick={() => pictureInputRef.current?.click()}
               >
-                {objectUrl ? (
+                {picturePreviewUrl || existingProfilePictureUrl ? (
                   <Image
                     fill
-                    src={objectUrl}
+                    src={picturePreviewUrl ?? existingProfilePictureUrl ?? ""}
                     alt="Profile preview"
                     className="object-cover"
                   />
@@ -109,77 +164,79 @@ export const AgentForm = ({ onSubmit, isLoading }: AgentFormProps) => {
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
-          );
-        }}
-      />
-      <Controller
-        name="fullname"
-        control={form.control}
-        render={({ field, fieldState }) => (
-          <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor={field.name}>Fullname</FieldLabel>
-            <Input
-              {...field}
-              id={field.name}
-              type="text"
-              aria-invalid={fieldState.invalid}
-              placeholder="Agen Primepro Indonesia"
-            />
-            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-          </Field>
-        )}
-      />
-      <Controller
-        name="email"
-        control={form.control}
-        render={({ field, fieldState }) => (
-          <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor={field.name}>Email</FieldLabel>
-            <Input
-              {...field}
-              id={field.name}
-              type="email"
-              aria-invalid={fieldState.invalid}
-              placeholder="agent@primeproindonesia.com"
-            />
-            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-          </Field>
-        )}
-      />
-      <Controller
-        name="phone_number"
-        control={form.control}
-        render={({ field, fieldState }) => (
-          <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor={field.name}>Phone</FieldLabel>
-            <Input
-              {...field}
-              id={field.name}
-              type="tel"
-              aria-invalid={fieldState.invalid}
-              placeholder="08..."
-            />
-            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-          </Field>
-        )}
-      />
-      <Controller
-        name="instagram"
-        control={form.control}
-        render={({ field, fieldState }) => (
-          <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor={field.name}>Instagram (optional)</FieldLabel>
-            <Input
-              {...field}
-              id={field.name}
-              type="tel"
-              aria-invalid={fieldState.invalid}
-              placeholder="@primeproindonesia"
-            />
-            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-          </Field>
-        )}
-      />
+          )}
+        />
+        <Controller
+          name="fullname"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor={field.name}>Fullname</FieldLabel>
+              <Input
+                {...field}
+                id={field.name}
+                type="text"
+                aria-invalid={fieldState.invalid}
+                placeholder="Agen Primepro Indonesia"
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+        <Controller
+          name="email"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor={field.name}>Email</FieldLabel>
+              <Input
+                {...field}
+                id={field.name}
+                type="email"
+                readOnly={mode === "edit"}
+                aria-readonly={mode === "edit"}
+                aria-invalid={fieldState.invalid}
+                placeholder="agent@primeproindonesia.com"
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+        <Controller
+          name="phone_number"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor={field.name}>Phone</FieldLabel>
+              <Input
+                {...field}
+                id={field.name}
+                type="tel"
+                aria-invalid={fieldState.invalid}
+                placeholder="08..."
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+        <Controller
+          name="instagram"
+          control={form.control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
+              <FieldLabel htmlFor={field.name}>Instagram (optional)</FieldLabel>
+              <Input
+                {...field}
+                id={field.name}
+                type="text"
+                aria-invalid={fieldState.invalid}
+                placeholder="@primeproindonesia"
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            </Field>
+          )}
+        />
+      </FieldGroup>
 
       <div className="flex items-center justify-between">
         <Link
@@ -190,7 +247,14 @@ export const AgentForm = ({ onSubmit, isLoading }: AgentFormProps) => {
         </Link>
 
         <Button type="submit" disabled={isLoading}>
-          {isLoading ? <LuLoader className="animate-spin" /> : "Save"}
+          {isLoading ? (
+            <>
+              <LuLoader data-icon="inline-start" className="animate-spin" />
+              Saving...
+            </>
+          ) : (
+            "Save"
+          )}
         </Button>
       </div>
     </form>

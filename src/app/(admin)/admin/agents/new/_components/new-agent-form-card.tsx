@@ -19,8 +19,13 @@ export const NewAgentFormCard = () => {
           onSubmit={async (data) => {
             setIsLoading(true);
             try {
-              const files: File[] = Array.from(data.profile_picture_url);
-              const s3 = await uploadS3Images(files);
+              const profilePicture = data.profile_picture_url?.[0];
+              if (!profilePicture) {
+                toast.error("A profile picture is required");
+                return false;
+              }
+
+              const s3 = await uploadS3Images([profilePicture]);
               if (!s3.data?.[0].path) {
                 toast.error("Fail to upload images, please try again");
                 return false;
