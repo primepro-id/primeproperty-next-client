@@ -16,7 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import jwt from "jsonwebtoken";
 import { Agent } from "@/lib/types";
-import { LuUsers } from "react-icons/lu";
+import { LuUsers, LuWaves } from "react-icons/lu";
 import { buttonVariants } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 
@@ -51,6 +51,11 @@ function SidebarMenus({ open, pathname }: SidebarMenusProps) {
 
   if (agent.role === "Admin") {
     const ADMIN_MENUS = [
+      {
+        icon: <LuWaves />,
+        title: "Developers",
+        href: "/admin/developers",
+      },
       {
         icon: <LuUsers />,
         title: "Agents",

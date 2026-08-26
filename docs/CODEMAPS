@@ -89,6 +89,9 @@ Route group names such as `(client)` and `(admin)` do not appear in URLs.
 | `/admin/agents` | `src/app/(admin)/admin/agents/page.tsx` | Admin agent management table with edit and delete actions |
 | `/admin/agents/new` | `src/app/(admin)/admin/agents/new/page.tsx` | Admin agent creation form with required S3 profile-picture upload |
 | `/admin/agents/[agentId]` | `src/app/(admin)/admin/agents/[agentId]/page.tsx` | Admin agent edit form with query-backed defaults and optional picture replacement |
+| `/admin/developers` | `src/app/(admin)/admin/developers/page.tsx` | Admin developer management table with edit and delete actions |
+| `/admin/developers/new` | `src/app/(admin)/admin/developers/new/page.tsx` | Admin developer creation form with required S3 logo upload |
+| `/admin/developers/[developerId]` | `src/app/(admin)/admin/developers/[developerId]/page.tsx` | Admin developer edit form with query-backed defaults and optional logo replacement |
 | `/blog` | `src/app/(client)/blog/page.tsx` | DatoCMS article landing page and popular properties |
 | `/blog/[slug]` | `src/app/(client)/blog/[slug]/page.tsx` | DatoCMS article, related articles, optional related properties, and JSON-LD |
 | `/franchise` | `src/app/(client)/franchise/page.tsx` | Franchise marketing and registration content |
@@ -196,6 +199,9 @@ price sorting.
 - Contract: `src/lib/types/developers.ts`
 - REST API: `src/lib/api/developers.ts`
 - Query/mutation options: `src/lib/hooks/developers.ts`
+- Admin CRUD UI: `src/app/(admin)/admin/developers`; create and edit share
+  the route-level `DeveloperForm`, while edit retains the current logo unless a
+  replacement is uploaded to S3.
 - The home page renders developer logos in the partners section.
 
 ### Leads
