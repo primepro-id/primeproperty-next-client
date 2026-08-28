@@ -127,7 +127,7 @@ export type PropertyNavigation = {
   street: string;
 };
 
-export const BUILDING_TYPES= [
+export const BUILDING_TYPES = [
   "rumah",
   "apartemen",
   "ruko",
@@ -142,7 +142,7 @@ export const BUILDING_TYPES= [
   "space kantor",
   "space mall",
   "toko",
-  "villa"
+  "villa",
 ];
 
 export const BUILDING_CERTIFICATES = [
@@ -155,7 +155,7 @@ export const BUILDING_CERTIFICATES = [
   "girik",
   "ppjb",
   "strata",
-  "lainnya"
+  "lainnya",
 ];
 
 export const FACILITIES: PropertyFacilities[] = [

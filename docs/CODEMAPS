@@ -94,6 +94,8 @@ Route group names such as `(client)` and `(admin)` do not appear in URLs.
 | `/admin/developers/[developerId]` | `src/app/(admin)/admin/developers/[developerId]/page.tsx` | Admin developer edit form with query-backed defaults and optional logo replacement |
 | `/admin/leads` | `src/app/(admin)/admin/leads/page.tsx` | Read-only lead table; admins see all leads and agents request leads filtered by their agent ID |
 | `/admin/properties` | `src/app/(admin)/admin/properties/page.tsx` | URL-filtered property management table; admins see all properties and agents see their assigned properties |
+| `/admin/properties/new` | `src/app/(admin)/admin/properties/new/page.tsx` | Property creation workflow with role-aware fields, S3 image upload, and successful-form reset |
+| `/admin/properties/[propertyId]` | `src/app/(admin)/admin/properties/[propertyId]/page.tsx` | Authorized property editing with query-backed defaults, retained images, and uploads for newly added files |
 | `/blog` | `src/app/(client)/blog/page.tsx` | DatoCMS article landing page and popular properties |
 | `/blog/[slug]` | `src/app/(client)/blog/[slug]/page.tsx` | DatoCMS article, related articles, optional related properties, and JSON-LD |
 | `/franchise` | `src/app/(client)/franchise/page.tsx` | Franchise marketing and registration content |
@@ -182,6 +184,10 @@ price sorting.
 - Property create and edit routes share the route-level `PropertyForm`, which
   uses React Hook Form/Zod section cards, navigation-backed creatable location
   fields, S3 image uploads, and Admin-only popular/sold-channel controls.
+- `src/app/(admin)/admin/properties/_lib/property-form-domain.ts` is the pure
+  form-domain boundary for defaults, validation, navigation options, compact
+  prices, safe Google Maps embeds, cover-image invariants, and API payload
+  conversion. Its focused `node:test` coverage lives beside it.
 - Property table actions link to edit and confirm deletion before calling the
   protected property mutation; successful CRUD operations invalidate the full
   property query-key family, including navigation and detail data.
