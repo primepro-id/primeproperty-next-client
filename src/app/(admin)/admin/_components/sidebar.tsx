@@ -62,18 +62,18 @@ function SidebarMenus({ open, pathname }: SidebarMenusProps) {
   const menus =
     agent.role === "Admin"
       ? [
+        propertiesMenu,
+        leadsMenu,
+        {
+          icon: <LuUsers />,
+          title: "Agents",
+          href: "/admin/agents",
+        },
           {
             icon: <LuWaves />,
             title: "Developers",
             href: "/admin/developers",
           },
-          {
-            icon: <LuUsers />,
-            title: "Agents",
-            href: "/admin/agents",
-          },
-          propertiesMenu,
-          leadsMenu,
         ]
       : agent.role === "Agent"
         ? [propertiesMenu, leadsMenu]

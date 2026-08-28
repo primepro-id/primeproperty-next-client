@@ -47,13 +47,13 @@ export function PropertySelectFilter({
         }
       >
         <SelectTrigger id={id}>
-          <SelectValue placeholder={placeholder} />
+          <SelectValue placeholder={placeholder} className="capitalize" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectItem value={ALL_VALUE}>{placeholder}</SelectItem>
             {options.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
+              <SelectItem key={option.value} value={option.value} className="capitalize">
                 {option.label}
               </SelectItem>
             ))}

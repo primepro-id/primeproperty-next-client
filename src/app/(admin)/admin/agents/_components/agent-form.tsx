@@ -194,6 +194,8 @@ export const AgentForm = ({
                 id={field.name}
                 type="email"
                 readOnly={mode === "edit"}
+                disabled={mode === "edit"}
+                aria-disabled={mode === "edit"}
                 aria-readonly={mode === "edit"}
                 aria-invalid={fieldState.invalid}
                 placeholder="agent@primeproindonesia.com"

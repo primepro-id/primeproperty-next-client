@@ -44,7 +44,7 @@ export const LoginForm = () => {
       setRefreshToken(String(signinResult.data.accessToken?.token));
       toast.success("Sign in successful, redirecting...");
       setTimeout(() => {
-        window.location.href = "/admin";
+        window.location.href = "/admin/properties";
       }, 1000);
     } catch (err) {
       console.error(err);

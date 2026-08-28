@@ -6,10 +6,6 @@ import { PropertySelectFilter } from "./property-select-filter";
 const PURCHASE_STATUS_OPTIONS = [
   { label: "Dijual", value: PropertyPurchaseStatus.ForSale },
   { label: "Disewa", value: PropertyPurchaseStatus.ForRent },
-  {
-    label: "Dijual atau disewa",
-    value: PropertyPurchaseStatus.ForSaleOrRent,
-  },
 ];
 
 type PurchaseStatusFilterProps = {
@@ -24,8 +20,8 @@ export function PurchaseStatusFilter({
   return (
     <PropertySelectFilter
       id="purchase-status"
-      label="Purchase status"
-      placeholder="All purchase statuses"
+      label="Purchase Flow"
+      placeholder="All purchase flow"
       value={value}
       options={PURCHASE_STATUS_OPTIONS}
       onValueChange={(nextValue) =>

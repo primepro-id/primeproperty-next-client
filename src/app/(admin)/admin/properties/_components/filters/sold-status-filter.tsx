@@ -21,7 +21,7 @@ export function SoldStatusFilter({
     <PropertySelectFilter
       id="sold-status"
       label="Sold status"
-      placeholder="All sold statuses"
+      placeholder="All sold status"
       value={value}
       options={SOLD_STATUS_OPTIONS}
       onValueChange={(nextValue) =>
