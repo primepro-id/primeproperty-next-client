@@ -77,7 +77,11 @@ export function PropertySelectField({
                     <SelectItem value={EMPTY_VALUE}>None</SelectItem>
                   ) : null}
                   {options.map((option) => (
-                    <SelectItem key={option.value} value={option.value} className="capitalize">
+                    <SelectItem
+                      key={option.value}
+                      value={option.value}
+                      className="capitalize"
+                    >
                       {option.label}
                     </SelectItem>
                   ))}

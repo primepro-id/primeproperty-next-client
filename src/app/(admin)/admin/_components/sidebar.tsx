@@ -79,7 +79,7 @@ function SidebarMenus({ open, pathname }: SidebarMenusProps) {
             title: "Developers",
             href: "/admin/developers",
           },
-          profileMenu
+          profileMenu,
         ]
       : agent.role === "Agent"
         ? [propertiesMenu, leadsMenu, profileMenu]

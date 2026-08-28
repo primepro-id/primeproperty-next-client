@@ -79,7 +79,9 @@ export function PropertyCreatableComboboxField({
                   aria-invalid={fieldState.invalid}
                   className="w-full justify-between font-normal"
                 >
-                  <span className="truncate capitalize">{value || placeholder}</span>
+                  <span className="truncate capitalize">
+                    {value || placeholder}
+                  </span>
                   <ChevronsUpDownIcon data-icon="inline-end" />
                 </Button>
               </PopoverTrigger>
