@@ -69,7 +69,7 @@ export function PropertySelectField({
               }}
             >
               <SelectTrigger id={name} aria-invalid={fieldState.invalid}>
-                <SelectValue placeholder={placeholder} />
+                <SelectValue placeholder={placeholder} className="capitalize" />
               </SelectTrigger>
               <SelectContent position="popper">
                 <SelectGroup>
@@ -77,7 +77,7 @@ export function PropertySelectField({
                     <SelectItem value={EMPTY_VALUE}>None</SelectItem>
                   ) : null}
                   {options.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem key={option.value} value={option.value} className="capitalize">
                       {option.label}
                     </SelectItem>
                   ))}

@@ -79,7 +79,7 @@ export function PropertyCreatableComboboxField({
                   aria-invalid={fieldState.invalid}
                   className="w-full justify-between font-normal"
                 >
-                  <span className="truncate">{value || placeholder}</span>
+                  <span className="truncate capitalize">{value || placeholder}</span>
                   <ChevronsUpDownIcon data-icon="inline-end" />
                 </Button>
               </PopoverTrigger>
@@ -100,6 +100,7 @@ export function PropertyCreatableComboboxField({
                         <CommandItem
                           value={`create-${trimmedSearch}`}
                           onSelect={() => chooseValue(trimmedSearch)}
+                          className="capitalize"
                         >
                           <PlusIcon />
                           Use “{trimmedSearch}”
@@ -110,6 +111,7 @@ export function PropertyCreatableComboboxField({
                           key={option}
                           value={option}
                           onSelect={() => chooseValue(option)}
+                          className="capitalize"
                         >
                           {value === option ? <CheckIcon /> : null}
                           {option}

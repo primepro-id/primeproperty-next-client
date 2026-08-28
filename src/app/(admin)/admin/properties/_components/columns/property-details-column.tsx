@@ -33,7 +33,8 @@ export function PropertyDetailsColumn({
     <div className="flex min-w-64 flex-col gap-1">
       <span className="font-medium">{property.title}</span>
       <span className="capitalize text-muted-foreground">
-        {property.building_type} | {PURCHASE_STATUS_LABELS[property.purchase_status]}
+        {property.building_type} |{" "}
+        {PURCHASE_STATUS_LABELS[property.purchase_status]}
       </span>
       <span>
         {formatToCurrencyUnit(property.price, property.currency)}

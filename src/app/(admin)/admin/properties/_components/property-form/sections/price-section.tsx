@@ -18,13 +18,13 @@ type PriceSectionProps = {
 };
 
 const purchaseOptions = [
-  { value: "ForSale", label: "For sale" },
-  { value: "ForRent", label: "For rent" },
+  { value: "ForSale", label: "Dijual" },
+  { value: "ForRent", label: "Disewa" },
 ];
 
 const rentTimeOptions = [
-  { value: "Monthly", label: "Monthly" },
-  { value: "Yearly", label: "Yearly" },
+  { value: "Monthly", label: "Bulanan" },
+  { value: "Yearly", label: "Tahunan" },
 ];
 
 const currencyOptions = [

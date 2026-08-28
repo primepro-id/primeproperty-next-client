@@ -77,7 +77,7 @@ export function PropertyForm({
         </div>
       </fieldset>
 
-      <div className="sticky bottom-4 z-10 flex flex-wrap items-center justify-between gap-4 rounded-lg border bg-background/95 p-4 shadow-lg backdrop-blur">
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg border bg-background/95 p-4 shadow-lg backdrop-blur">
         <Button asChild variant="outline">
           <Link href="/admin/properties">
             <ArrowLeftIcon data-icon="inline-start" />
