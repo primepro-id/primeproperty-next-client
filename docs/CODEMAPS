@@ -1,6 +1,6 @@
 # PrimeProperty Next Client Codemap
 
-Last verified: 2026-08-26
+Last verified: 2026-08-28
 
 This file is the high-level map of the repository. Keep it focused on stable
 boundaries and update it whenever routes, data sources, shared providers, or
@@ -179,6 +179,12 @@ price sorting.
   folders. Route-local `_lib` helpers derive independent select options from
   site paths and coordinate pagination/filter URL updates; focused `node:test`
   coverage lives beside those helpers.
+- Property create and edit routes share the route-level `PropertyForm`, which
+  uses React Hook Form/Zod section cards, navigation-backed creatable location
+  fields, S3 image uploads, and Admin-only popular/sold-channel controls.
+- Property table actions link to edit and confirm deletion before calling the
+  protected property mutation; successful CRUD operations invalidate the full
+  property query-key family, including navigation and detail data.
 
 ## Other domains
 

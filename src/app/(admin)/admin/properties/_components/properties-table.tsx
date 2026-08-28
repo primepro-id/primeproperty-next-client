@@ -187,7 +187,10 @@ export function PropertiesTable({ query }: PropertiesTableProps) {
                   <PropertyAddressColumn property={property} />
                 </TableCell>
                 <TableCell>
-                  <PropertyActionsColumn propertyId={property.id} />
+                  <PropertyActionsColumn
+                    propertyId={property.id}
+                    propertyTitle={property.title}
+                  />
                 </TableCell>
               </TableRow>
             ))

@@ -17,7 +17,7 @@ export type Property = {
   measurements: PropertyMeasurements;
   building_type: string;
   building_condition: PropertyBuildingCondition;
-  building_furniture_capacity: PropertyFurnitureCapacity;
+  building_furniture_capacity: PropertyFurnitureCapacity | null;
   building_certificate: string;
   specifications: PropertySpecifications;
   facilities: PropertyFacilities[];
@@ -126,3 +126,160 @@ export type PropertyNavigation = {
   regency: string;
   street: string;
 };
+
+export const BUILDING_TYPES= [
+  "rumah",
+  "apartemen",
+  "ruko",
+  "tanah",
+  "gudang",
+  "gedung",
+  "hotel",
+  "kios",
+  "pabrik",
+  "ruang usaha",
+  "rumah kantor",
+  "space kantor",
+  "space mall",
+  "toko",
+  "villa"
+];
+
+export const BUILDING_CERTIFICATES = [
+  "shm",
+  "hgb",
+  "hak pakai",
+  "hak sewa",
+  "hgu",
+  "adat",
+  "girik",
+  "ppjb",
+  "strata",
+  "lainnya"
+];
+
+export const FACILITIES: PropertyFacilities[] = [
+  {
+    value: "wifi",
+    indonesian_label: "wifi",
+  },
+  {
+    value: "school",
+    indonesian_label: "Sekolah",
+  },
+  {
+    value: "university",
+    indonesian_label: "Universitas",
+  },
+  {
+    value: "AC",
+    indonesian_label: "AC",
+  },
+  {
+    value: "Akses Parkir",
+    indonesian_label: "Akses Parkir",
+  },
+  {
+    value: "Backyard",
+    indonesian_label: "Backyard",
+  },
+  {
+    value: "CCTV",
+    indonesian_label: "CCTV",
+  },
+  {
+    value: "Jalur Telepon",
+    indonesian_label: "Jalur Telepon",
+  },
+  {
+    value: "Jogging Track",
+    indonesian_label: "Jogging Track",
+  },
+  {
+    value: "Keamanan 24 Jam",
+    indonesian_label: "Keamanan 24 Jam",
+  },
+  {
+    value: "Kolam Ikan",
+    indonesian_label: "Kolam Ikan",
+  },
+  {
+    value: "Kolam Renang",
+    indonesian_label: "Kolam Renang",
+  },
+  {
+    value: "One Gate System",
+    indonesian_label: "One Gate System",
+  },
+  {
+    value: "Taman",
+    indonesian_label: "Taman",
+  },
+  {
+    value: "Taman Bermain",
+    indonesian_label: "Taman Bermain",
+  },
+  {
+    value: "Tempat Cuci",
+    indonesian_label: "Tempat Cuci",
+  },
+  {
+    value: "Tempat Ibadah",
+    indonesian_label: "Tempat Ibadah",
+  },
+  {
+    value: "Tempat Jemuran",
+    indonesian_label: "Tempat Jemuran",
+  },
+  {
+    value: "Tempat Laundry",
+    indonesian_label: "Tempat Laundry",
+  },
+  {
+    value: "Teras",
+    indonesian_label: "Teras",
+  },
+];
+
+export const PROPERTY_IMAGE_TAGS = [
+  {
+    english_label: "Living Room",
+    indonesian_label: "Ruang Tamu",
+  },
+  {
+    english_label: "Dining Room",
+    indonesian_label: "Ruang Makan",
+  },
+  {
+    english_label: "Bedroom",
+    indonesian_label: "Kamar Tidur",
+  },
+  {
+    english_label: "Bathroom",
+    indonesian_label: "Kamar Mandi",
+  },
+  {
+    english_label: "Front View",
+    indonesian_label: "Tampak Depan",
+  },
+  {
+    english_label: "Back View",
+    indonesian_label: "Halaman Belakang",
+  },
+  {
+    english_label: "Garden",
+    indonesian_label: "Taman",
+  },
+  {
+    english_label: "Swimming Pool",
+    indonesian_label: "Kolam Renang",
+  },
+  {
+    english_label: "Garage/Carport",
+    indonesian_label: "Garasi/Carport",
+  },
+  {
+    english_label: "Others",
+    indonesian_label: "Ruang Lainnya",
+  },
+];

@@ -60,13 +60,14 @@ export type CreatePropertyPayload = {
   measurements: PropertyMeasurements;
   building_type: string;
   building_condition: PropertyBuildingCondition;
-  building_furniture_capacity?: PropertyFurnitureCapacity;
+  building_furniture_capacity?: PropertyFurnitureCapacity | null;
   building_certificate: string;
   specifications: PropertySpecifications;
   facilities: PropertyFacilities[];
+  sold_channel?: PropertySoldChannel | null;
   configurations: PropertyConfigurations;
   currency: PropertyCurrency;
-  rent_time?: PropertyRentTime;
+  rent_time?: PropertyRentTime | null;
   price_down_payment?: number;
 };
 
@@ -84,14 +85,14 @@ export type UpdatePropertyPayload = {
   measurements?: PropertyMeasurements;
   building_type?: string;
   building_condition?: PropertyBuildingCondition;
-  building_furniture_capacity?: PropertyFurnitureCapacity;
+  building_furniture_capacity?: PropertyFurnitureCapacity | null;
   building_certificate?: string;
   specifications?: PropertySpecifications;
   facilities?: PropertyFacilities[];
-  sold_channel?: PropertySoldChannel;
+  sold_channel?: PropertySoldChannel | null;
   configurations?: PropertyConfigurations;
   currency?: PropertyCurrency;
-  rent_time?: PropertyRentTime;
+  rent_time?: PropertyRentTime | null;
   price_down_payment?: number;
 };
 
