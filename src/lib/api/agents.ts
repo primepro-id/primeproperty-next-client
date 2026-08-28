@@ -60,6 +60,20 @@ export async function resetAgentPassword(
   });
 }
 
+type VerifySessionPayload = {
+  access_token: string;
+};
+
+export async function verifyAgentSession(
+  accessToken: string,
+): Promise<JsonResponse<Supertokens.VerifySessionResponse>> {
+  const payload: VerifySessionPayload = { access_token: accessToken};
+  return fetchJsonApi("/agents/session/verify", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
 type RefreshSessionPayload = {
   refresh_token: string;
 };
