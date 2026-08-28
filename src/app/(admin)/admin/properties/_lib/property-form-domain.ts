@@ -85,14 +85,6 @@ export const propertyFormSchema = z
       .max(8, "Upload no more than 8 images"),
   })
   .superRefine((values, context) => {
-    if (values.purchase_status !== "ForRent" && values.rent_time !== null) {
-      context.addIssue({
-        code: "custom",
-        path: ["rent_time"],
-        message: "Rent time is available only for rental properties",
-      });
-    }
-
     if (values.images.filter((image) => image.is_cover).length !== 1) {
       context.addIssue({
         code: "custom",
