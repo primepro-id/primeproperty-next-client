@@ -7,6 +7,7 @@ import type { PropertyFilterOptions } from "../../_lib/extract-property-filter-o
 import type { PropertySearchParamsUpdater } from "../../_lib/update-property-search-params";
 import { BuildingTypeFilter } from "./building-type-filter";
 import { IdFilter } from "./id-filter";
+import { PopularFilter } from "./popular-filter";
 import { ProvinceFilter } from "./province-filter";
 import { PurchaseStatusFilter } from "./purchase-status-filter";
 import { RegencyFilter } from "./regency-filter";
@@ -17,6 +18,7 @@ type PropertiesFiltersProps = {
   query: FindPropertyQuery;
   options: PropertyFilterOptions;
   dynamicFiltersDisabled: boolean;
+  showPopularFilter: boolean;
   updateSearchParams: PropertySearchParamsUpdater;
 };
 
@@ -24,6 +26,7 @@ export function PropertiesFilters({
   query,
   options,
   dynamicFiltersDisabled,
+  showPopularFilter,
   updateSearchParams,
 }: PropertiesFiltersProps) {
   const updateFilter = (key: string, value?: string | number) =>
@@ -71,6 +74,14 @@ export function PropertiesFilters({
           updateFilter("sold_status", value)
         }
       />
+      {showPopularFilter && (
+        <PopularFilter
+          checked={query.is_popular === true}
+          onCheckedChange={(checked) =>
+            updateFilter("is_popular", checked ? "true" : undefined)
+          }
+        />
+      )}
     </FieldGroup>
   );
 }

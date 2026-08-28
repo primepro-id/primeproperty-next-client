@@ -15,7 +15,7 @@ import {
   findPropertyJoinAgentQueryOptions,
   findPropertySitePathsQueryOptions,
 } from "@/lib/hooks";
-import type { Agent } from "@/lib/types";
+import { AgentRole, type Agent } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import jwt from "jsonwebtoken";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -104,6 +104,7 @@ export function PropertiesTable({ query }: PropertiesTableProps) {
         query={query}
         options={filterOptions}
         dynamicFiltersDisabled={dynamicFiltersDisabled}
+        showPopularFilter={viewer?.role === AgentRole.Admin}
         updateSearchParams={updateSearchParams}
       />
 

@@ -63,6 +63,26 @@ test("normalizePropertiesSearchParams accepts supported filters and pagination",
   );
 });
 
+test("normalizePropertiesSearchParams accepts only literal true for the popular filter", () => {
+  assert.deepEqual(normalizePropertiesSearchParams({ is_popular: "true" }), {
+    page: 1,
+    limit: 10,
+    is_popular: true,
+  });
+  assert.deepEqual(normalizePropertiesSearchParams({ is_popular: "false" }), {
+    page: 1,
+    limit: 10,
+  });
+  assert.deepEqual(normalizePropertiesSearchParams({ is_popular: "1" }), {
+    page: 1,
+    limit: 10,
+  });
+  assert.deepEqual(
+    normalizePropertiesSearchParams({ is_popular: ["true", "false"] }),
+    { page: 1, limit: 10 },
+  );
+});
+
 test("normalizePropertiesSearchParams rejects invalid numbers, enums, arrays, and limits", () => {
   assert.deepEqual(
     normalizePropertiesSearchParams({

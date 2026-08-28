@@ -56,3 +56,25 @@ test("updatePropertySearchParams can change pages without resetting them", () =>
     "province=bali&page=3",
   );
 });
+
+test("updatePropertySearchParams enables the popular filter and resets the page", () => {
+  assert.equal(
+    updatePropertySearchParams(
+      "province=bali&page=2&limit=25",
+      { is_popular: "true" },
+      true,
+    ),
+    "province=bali&limit=25&is_popular=true",
+  );
+});
+
+test("updatePropertySearchParams removes the popular filter and resets the page", () => {
+  assert.equal(
+    updatePropertySearchParams(
+      "province=bali&is_popular=true&page=2",
+      { is_popular: undefined },
+      true,
+    ),
+    "province=bali",
+  );
+});

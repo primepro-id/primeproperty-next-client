@@ -71,5 +71,9 @@ export function normalizePropertiesSearchParams(
     query.sold_status = soldStatus as FindPropertyQuery["sold_status"];
   }
 
+  if (getString(searchParams.is_popular) === "true") {
+    query.is_popular = true;
+  }
+
   return query;
 }
