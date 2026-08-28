@@ -363,8 +363,8 @@ export function createPropertyFormDefaults(
         key: `${image.path}-${index}`,
         path: image.path,
         is_cover: image.is_cover,
-        english_label: image.english_label,
-        indonesian_label: image.indonesian_label,
+        english_label: image.english_label ?? "",
+        indonesian_label: image.indonesian_label ?? "",
       })),
     ),
   };

@@ -85,6 +85,46 @@ const validValues = {
   ],
 };
 
+function createInitialProperty(images) {
+  return {
+    id: 1,
+    user_id: "agent-1",
+    created_at: "",
+    updated_at: "",
+    site_path: "rumah/dki-jakarta/jakarta-selatan/kemang",
+    title: validValues.title,
+    description: validValues.description,
+    province: validValues.province,
+    regency: validValues.regency,
+    street: validValues.street,
+    gmap_iframe: null,
+    price: validValues.price,
+    images,
+    purchase_status: validValues.purchase_status,
+    sold_status: "Available",
+    measurements: { building_area: 0, building_level: 0, land_area: 0 },
+    building_type: validValues.building_type,
+    building_condition: validValues.building_condition,
+    building_furniture_capacity: null,
+    building_certificate: validValues.building_certificate,
+    specifications: {
+      bathrooms: 0,
+      bedrooms: 0,
+      carport: 0,
+      electrical_power: 0,
+      garage: 0,
+    },
+    facilities: [],
+    is_deleted: false,
+    sold_channel: null,
+    configurations: {},
+    currency: validValues.currency,
+    rent_time: null,
+    price_down_payment: validValues.price_down_payment,
+    description_seo: null,
+  };
+}
+
 test("property schema requires core values, a non-negative down payment, and 3-8 images", () => {
   assert.equal(domain.propertyFormSchema.safeParse(validValues).success, true);
   assert.equal(
@@ -253,4 +293,71 @@ test("uploaded image paths merge with retained images without changing form orde
     },
   ]);
   assert.throws(() => domain.mergeUploadedPropertyImages(images, []));
+});
+
+test("existing untagged images hydrate with string labels and valid form values", () => {
+  const initialProperty = createInitialProperty([
+    {
+      path: "/one.jpg",
+      is_cover: true,
+      english_label: null,
+      indonesian_label: null,
+    },
+    { path: "/two.jpg", is_cover: false },
+    {
+      path: "/three.jpg",
+      is_cover: false,
+      english_label: "Bedroom",
+      indonesian_label: "Kamar Tidur",
+    },
+  ]);
+
+  const defaults = domain.createPropertyFormDefaults(initialProperty);
+
+  assert.deepEqual(
+    defaults.images.map(({ english_label, indonesian_label }) => ({
+      english_label,
+      indonesian_label,
+    })),
+    [
+      { english_label: "", indonesian_label: "" },
+      { english_label: "", indonesian_label: "" },
+      { english_label: "Bedroom", indonesian_label: "Kamar Tidur" },
+    ],
+  );
+  assert.equal(domain.propertyFormSchema.safeParse(defaults).success, true);
+});
+
+test("unchanged edit images merge without uploaded paths", () => {
+  const defaults = domain.createPropertyFormDefaults(
+    createInitialProperty(validValues.images),
+  );
+
+  const images = domain.mergeUploadedPropertyImages(defaults.images, []);
+
+  assert.deepEqual(
+    images.map(({ path, is_cover, english_label, indonesian_label }) => ({
+      path,
+      is_cover,
+      english_label,
+      indonesian_label,
+    })),
+    validValues.images.map(
+      ({ path, is_cover, english_label, indonesian_label }) => ({
+        path,
+        is_cover,
+        english_label,
+        indonesian_label,
+      }),
+    ),
+  );
+  assert.equal(images.filter((image) => image.is_cover).length, 1);
+  assert.equal(
+    images.every(
+      (image) =>
+        typeof image.english_label === "string" &&
+        typeof image.indonesian_label === "string",
+    ),
+    true,
+  );
 });

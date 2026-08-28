@@ -17,11 +17,11 @@ export const metadata: Metadata = createMetadata(seo);
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <SidebarProvider>
+      <SidebarProvider className="h-svh min-h-0 overflow-hidden">
         <AdminSidebar />
-        <main className="h-screen overflow-y-auto flex flex-col w-full">
+        <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto">
           <AdminNavbar />
-          <div className="p-2 flex-1">{children}</div>
+          <div className="min-w-0 flex-1 p-2">{children}</div>
         </main>
       </SidebarProvider>
     </>
