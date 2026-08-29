@@ -40,3 +40,8 @@ export type VerifySessionResponse = {
   status: string;
   session: Session;
 };
+
+
+export type RemoveSessionResponse = {
+  status: string;
+};

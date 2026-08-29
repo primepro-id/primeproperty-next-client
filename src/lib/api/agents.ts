@@ -88,6 +88,20 @@ export async function refreshAgentSession(
   });
 }
 
+type RemoveSessionPayload = {
+  supertokens_user_id: string;
+};
+
+export async function removeAgentSession(
+  supertokensUserId: string,
+): Promise<JsonResponse<Supertokens.RemoveSessionResponse>> {
+  const payload: RemoveSessionPayload = { supertokens_user_id: supertokensUserId};
+  return fetchJsonApi("/agents/session/remove", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
 // ==========================================
 // Protected Routes (Session Required)
 // ==========================================
