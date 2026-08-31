@@ -4,6 +4,7 @@ Allow: /
 Disallow: /primepro-agents-2
 Disallow: /primepro-property-2
 Disallow: /primepro-property-3
+Disallow: /auth/*
 Disallow: /admin/*
 
 # Host
@@ -11,3 +12,7 @@ Host: https://primeproindonesia.com
 
 # Sitemaps
 Sitemap: https://primeproindonesia.com/sitemap.xml
+Sitemap: https://primeproindonesia.com/properties/sitemap.xml
+Sitemap: https://primeproindonesia.com/properties/filter/sitemap.xml
+Sitemap: https://primeproindonesia.com/agents/sitemap.xml
+Sitemap: https://primeproindonesia.com/blog/sitemap.xml

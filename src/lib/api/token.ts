@@ -18,3 +18,9 @@ export const setRefreshToken = async (token: string) => {
   const accessToken = cooks.set("refreshToken", token);
   return accessToken.toString();
 };
+
+export const deleteAgentSessionCookies = async () => {
+  const cooks = await cookies();
+  cooks.delete("accessToken");
+  cooks.delete("refreshToken");
+};

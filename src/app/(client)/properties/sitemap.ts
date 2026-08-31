@@ -61,10 +61,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: env.NEXT_PUBLIC_HOST_URL + `/properties`,
       lastModified: new Date(),
     },
-    {
-      url: env.NEXT_PUBLIC_HOST_URL + `/properties/filter/sitemap.xml`,
-      lastModified: new Date(),
-    },
     ...propertyPagesSitemaps,
     ...dynamicPropertySitemaps,
   ];

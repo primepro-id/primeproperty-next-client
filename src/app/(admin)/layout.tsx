@@ -19,9 +19,11 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
     <>
       <SidebarProvider className="h-svh min-h-0 overflow-hidden">
         <AdminSidebar />
-        <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto">
+        <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
           <AdminNavbar />
-          <div className="min-w-0 flex-1 p-2">{children}</div>
+          <div className="min-h-0 min-w-0 flex-1 overflow-y-auto p-2">
+            {children}
+          </div>
         </main>
       </SidebarProvider>
     </>

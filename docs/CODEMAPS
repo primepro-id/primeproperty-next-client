@@ -72,6 +72,8 @@ The `@/*` TypeScript alias maps to `src/*`.
   Browser renders reuse a singleton; server renders create a fresh instance.
 - `src/app/(client)/layout.tsx` wraps public pages with the shared header,
   main content area, and footer.
+- `src/app/(admin)/layout.tsx` keeps the sidebar and mobile navbar fixed while
+  its content wrapper owns the admin shell's only vertical page scroll.
 - `src/app/global-error.tsx`, `src/app/(client)/not-found.tsx`, and
   `src/app/(client)/loading.tsx` provide global error, not-found, and loading
   states.
@@ -112,11 +114,15 @@ Sitemap route entries are:
 - `src/app/(client)/agents/sitemap.ts`
 - `src/app/(client)/blog/sitemap.ts`
 - `src/app/(client)/properties/sitemap.ts`
-- `src/app/(client)/properties/filter/sitemap.ts`
+- `src/app/(client)/properties/filter/sitemap.xml/route.ts`
+- `src/app/(client)/properties/filter/sitemaps/[chunk]/route.ts`
 
-The sitemap routes fetch external data during static page generation. A
-production build therefore needs valid environment variables and reachable
-REST/DatoCMS endpoints.
+The filter sitemap URL is an XML sitemap index whose child URL sets are capped
+at 1,900,000 UTF-8 bytes. A 24-hour manifest caches one consistent snapshot of
+the property site paths and their chunk boundaries; each child generates only
+its assigned range. Other sitemap routes fetch external data during static page
+generation, so a production build needs valid environment variables and
+reachable REST/DatoCMS endpoints.
 
 ## Property domain
 
@@ -202,7 +208,8 @@ price sorting.
 - Public route UI: `src/app/(client)/agents`
 - Admin CRUD UI: `src/app/(admin)/admin/agents`; create and edit share the
   route-level `AgentForm`, while edit loads by ID and refreshes agent query
-  caches after saving.
+  caches after saving. The list and create pages require the Admin role, while
+  agents retain access to their own dynamic profile route.
 - Agent profile pictures are uploaded through the S3 API before create or
   picture-changing update requests.
 - Protected operations send the `accessToken` cookie as `x-access-token`.
@@ -222,7 +229,8 @@ price sorting.
 - Query/mutation options: `src/lib/hooks/developers.ts`
 - Admin CRUD UI: `src/app/(admin)/admin/developers`; create and edit share
   the route-level `DeveloperForm`, while edit retains the current logo unless a
-  replacement is uploaded to S3.
+  replacement is uploaded to S3. A route layout requires the Admin role for
+  the entire developer subtree.
 - The home page renders developer logos in the partners section.
 
 ### Leads
@@ -264,6 +272,8 @@ response.data?.pagination // page, per_page, total_pages, total
 
 `src/lib/api/token.ts` is a server function that reads the `accessToken`
 cookie. Protected REST calls place the value in the `x-access-token` header.
+Admin-only page guards use `src/lib/api/verified-viewer.ts` to verify the token
+with the session API before trusting its viewer role.
 
 ### Client state
 
