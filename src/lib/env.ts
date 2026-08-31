@@ -7,7 +7,6 @@ export const env = createEnv({
    * Will throw if you access these variables on the client.
    */
   server: {
-    API_KEY_LEADS: z.string().min(1),
     SENTRY_AUTH_TOKEN: z.string(),
     DATOCMS_API_URL: z.string().min(1),
     DATOCMS_API_TOKEN: z.string().min(1),
@@ -33,7 +32,6 @@ export const env = createEnv({
   runtimeEnv: {
     NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
-    API_KEY_LEADS: process.env.API_KEY_LEADS,
     NEXT_PUBLIC_S3_ENDPOINT: process.env.NEXT_PUBLIC_S3_ENDPOINT,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,

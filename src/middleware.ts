@@ -17,9 +17,13 @@ export async function middleware(request: NextRequest) {
         response.cookies.set("accessToken", newSession.data.accessToken.token, {
           maxAge: 60 * 60 * 24,
         }); // 1 day
-        response.cookies.set("refreshToken", newSession.data.refreshToken.token, {
-          maxAge: 60 * 60 * 24,
-        });
+        response.cookies.set(
+          "refreshToken",
+          newSession.data.refreshToken.token,
+          {
+            maxAge: 60 * 60 * 24,
+          },
+        );
       } else {
         response.cookies.delete("accessToken");
         response.cookies.delete("refreshToken");
@@ -34,8 +38,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/admin",
-    "/admin/:path"
-  ],
+  matcher: ["/admin", "/admin/:path"],
 };

@@ -67,7 +67,7 @@ type VerifySessionPayload = {
 export async function verifyAgentSession(
   accessToken: string,
 ): Promise<JsonResponse<Supertokens.VerifySessionResponse>> {
-  const payload: VerifySessionPayload = { access_token: accessToken};
+  const payload: VerifySessionPayload = { access_token: accessToken };
   return fetchJsonApi("/agents/session/verify", {
     method: "POST",
     body: JSON.stringify(payload),
