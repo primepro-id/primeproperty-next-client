@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import { env } from "@/lib/env";
 import { LuCircleUser, LuHouse, LuInstagram, LuMail } from "react-icons/lu";

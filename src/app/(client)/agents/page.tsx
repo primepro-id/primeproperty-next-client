@@ -1,10 +1,8 @@
 import { Metadata } from "next";
-import { Suspense } from "react";
 import { AgentList } from "./_components/agent-list";
 import { LuUsers } from "react-icons/lu";
 import { Faq } from "../properties/_components/faq";
 
-export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Agents - PRIMEPRO INDONESIA",
@@ -26,9 +24,7 @@ export default function JobPosting() {
           real estate and property industries
         </h2>
       </div>
-      <Suspense>
         <AgentList />
-      </Suspense>
 
       <Faq defaultTab="PRIMEPRO" />
     </div>
