@@ -54,15 +54,15 @@ export const ContactAgentDialog = ({
 
     const phoneValidation = phoneSchema.safeParse(phone);
     if (!phoneValidation.success) {
-      const errorMsg = phoneValidation.error.errors[0].message;
+      const errorMsg = phoneValidation.error.issues[0].message;
       setErrorMsg(errorMsg);
       return;
     }
     if (email) {
-      const emailSchema = z.string().email("Email tidak valid");
+      const emailSchema = z.email("Email tidak valid");
       const emailValidation = emailSchema.safeParse(email);
       if (!emailValidation.success) {
-        const errorMsg = emailValidation.error.errors[0].message;
+        const errorMsg = emailValidation.error.issues[0].message;
         setErrorMsg(errorMsg);
         return;
       }
