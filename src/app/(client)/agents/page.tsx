@@ -3,7 +3,6 @@ import { AgentList } from "./_components/agent-list";
 import { LuUsers } from "react-icons/lu";
 import { Faq } from "../properties/_components/faq";
 
-
 export const metadata: Metadata = {
   title: "Agents - PRIMEPRO INDONESIA",
   description:
@@ -24,7 +23,7 @@ export default function JobPosting() {
           real estate and property industries
         </h2>
       </div>
-        <AgentList />
+      <AgentList />
 
       <Faq defaultTab="PRIMEPRO" />
     </div>
