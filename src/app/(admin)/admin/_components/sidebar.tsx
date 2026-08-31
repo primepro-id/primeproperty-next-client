@@ -107,11 +107,11 @@ function SidebarMenus({ open, pathname }: SidebarMenusProps) {
 
     setIsLoggingOut(true);
     try {
-      await runAgentLogout({
-        supertokensUserId: agent.supertokens_user_id,
-        removeSession: removeAgentSession,
-        deleteCookies: deleteAgentSessionCookies,
-      });
+        await runAgentLogout({
+          supertokensUserId: agent?.supertokens_user_id ?? null,
+          removeSession: removeAgentSession,
+          deleteCookies: deleteAgentSessionCookies,
+        });
     } catch (error) {
       console.error("Unable to remove the remote agent session.", error);
     } finally {
