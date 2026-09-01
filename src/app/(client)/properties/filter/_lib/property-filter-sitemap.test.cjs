@@ -27,6 +27,7 @@ try {
 
 const {
   SITEMAP_MAX_BYTES,
+  buildIndexablePropertyFilterPaths,
   buildPropertyFilterSitemapUrls,
   chunkSitemapUrls,
   countSitemapUrlChunks,
@@ -47,30 +48,58 @@ test("normalizeSitemapHostUrl removes trailing slashes from configured hosts", (
   );
 });
 
-test("buildPropertyFilterSitemapUrls preserves one filter URL and ten page URLs per path", () => {
+test("navigation records produce only real, unique filter prefixes", () => {
+  const paths = buildIndexablePropertyFilterPaths([
+    {
+      site_path: "/dijual/rumah/dki-jakarta/jakarta-selatan/kemang",
+      purchase_status: "ForSale",
+      building_type: "rumah",
+      province: "dki jakarta",
+      regency: "jakarta selatan",
+      street: "kemang",
+    },
+    {
+      site_path: "/dijual/rumah/dki-jakarta/jakarta-selatan/kemang",
+      purchase_status: "ForSale",
+      building_type: "rumah",
+      province: "dki jakarta",
+      regency: "jakarta selatan",
+      street: "kemang",
+    },
+    {
+      site_path: "/disewa/apartemen/bali/badung",
+      purchase_status: "ForRent",
+      building_type: "apartemen",
+      province: "bali",
+      regency: "badung",
+      street: "",
+    },
+  ]);
+
+  assert.deepEqual(paths, [
+    "/dijual",
+    "/dijual/rumah",
+    "/dijual/rumah/dki-jakarta",
+    "/dijual/rumah/dki-jakarta/jakarta-selatan",
+    "/dijual/rumah/dki-jakarta/jakarta-selatan/kemang",
+    "/disewa",
+    "/disewa/apartemen",
+    "/disewa/apartemen/bali",
+    "/disewa/apartemen/bali/badung",
+  ]);
+});
+
+test("buildPropertyFilterSitemapUrls emits one path URL and no query inventory", () => {
   const urls = buildPropertyFilterSitemapUrls(
     ["/dijual/rumah/dki-jakarta", "/disewa/apartemen/bali"],
     "https://primeproindonesia.com/properties",
-    (segments) => `status=${segments[0]}&type=${segments[1]}`,
   );
 
-  assert.equal(urls.length, 22);
-  assert.equal(
-    urls[0],
+  assert.deepEqual(urls, [
     "https://primeproindonesia.com/properties/filter/dijual/rumah/dki-jakarta",
-  );
-  assert.equal(
-    urls[1],
-    "https://primeproindonesia.com/properties?status=dijual&type=rumah&page=1",
-  );
-  assert.equal(
-    urls[10],
-    "https://primeproindonesia.com/properties?status=dijual&type=rumah&page=10",
-  );
-  assert.equal(
-    urls[11],
     "https://primeproindonesia.com/properties/filter/disewa/apartemen/bali",
-  );
+  ]);
+  assert.ok(urls.every((url) => !url.includes("?") && !url.includes("page=")));
 });
 
 test("serializeSitemapUrlSet escapes XML-sensitive URL characters exactly once", () => {
@@ -191,15 +220,14 @@ test("a sitemap manifest provides deterministic ranges without rescanning earlie
   const allUrls = buildPropertyFilterSitemapUrls(
     sitePaths,
     "https://example.com/properties",
-    (segments) => `path=${segments[0]}`,
   );
-  const fiveEntryLimit = getUtf8ByteLength(
-    serializeSitemapUrlSet(allUrls.slice(0, 5)),
+  const oneEntryLimit = Math.max(
+    ...allUrls.map((url) => getUtf8ByteLength(serializeSitemapUrlSet([url]))),
   );
-  const ranges = createSitemapChunkManifest(allUrls, fiveEntryLimit);
+  const ranges = createSitemapChunkManifest(allUrls, oneEntryLimit);
   const expectedRanges = [];
   let expectedStart = 0;
-  for (const chunk of chunkSitemapUrls(allUrls, fiveEntryLimit)) {
+  for (const chunk of chunkSitemapUrls(allUrls, oneEntryLimit)) {
     expectedRanges.push({
       start: expectedStart,
       end: expectedStart + chunk.length,
@@ -213,11 +241,10 @@ test("a sitemap manifest provides deterministic ranges without rescanning earlie
       iteratePropertyFilterSitemapUrlRange(
         sitePaths,
         "https://example.com/properties",
-        (segments) => `path=${segments[0]}`,
-        ranges[3].start,
-        ranges[3].end,
+        ranges[1].start,
+        ranges[1].end,
       ),
     ),
-    allUrls.slice(ranges[3].start, ranges[3].end),
+    allUrls.slice(ranges[1].start, ranges[1].end),
   );
 });

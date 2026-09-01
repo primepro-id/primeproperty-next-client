@@ -35,8 +35,13 @@ import { useQuery } from "@tanstack/react-query";
 import { PropertyComparisonSelect } from "./property-comparison-select";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/(client)/loading";
-import { findPropertyJoinAgentQueryOptions, findUniquePropertyJoinAgentQueryOptions, getBookmarkedPropertyOptions } from "@/lib/hooks";
+import {
+  findPropertyJoinAgentQueryOptions,
+  findUniquePropertyJoinAgentQueryOptions,
+  getBookmarkedPropertyOptions,
+} from "@/lib/hooks";
 import { PropertyJoinAgent, PropertyPurchaseStatus } from "@/lib/types";
+import { createPropertyPath } from "@/lib/metadata/seo-domain";
 
 type ComparisonRowProps = {
   icon: React.ReactNode;
@@ -76,15 +81,19 @@ export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
   const router = useRouter();
   const [firstID, secondID] = ids.split(",");
   const bookmarks = useQuery(getBookmarkedPropertyOptions());
-  const bookmarkedProperties = useQuery(findPropertyJoinAgentQueryOptions(
+  const bookmarkedProperties = useQuery(
+    findPropertyJoinAgentQueryOptions(
+      { ids: bookmarks.data?.join(",") },
+      { enabled: !!bookmarks.data },
+    ),
+  );
 
-    { ids: bookmarks.data?.join(",") },
-    { enabled: !!bookmarks.data },
-  )
-  )
-
-  const firstProperty = useQuery(findUniquePropertyJoinAgentQueryOptions(+firstID))
-  const secondProperty = useQuery(findUniquePropertyJoinAgentQueryOptions(+secondID));
+  const firstProperty = useQuery(
+    findUniquePropertyJoinAgentQueryOptions(+firstID),
+  );
+  const secondProperty = useQuery(
+    findUniquePropertyJoinAgentQueryOptions(+secondID),
+  );
 
   if (firstProperty.isLoading || secondProperty.isLoading) {
     return <Loading />;
@@ -216,7 +225,7 @@ export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
         <div className="flex items-center gap-2">
           <PropertyAgentInfo propertyWithAgent={firstProp} />
           <Link
-            href={`/properties/${firstProp[0].id}`}
+            href={createPropertyPath(firstProp[0])}
             className={cn(buttonVariants({}))}
           >
             <LuEye />
@@ -228,7 +237,7 @@ export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
         <div className="flex items-center gap-2">
           <PropertyAgentInfo propertyWithAgent={secondProp} />
           <Link
-            href={`/properties/${secondProp[0].id}`}
+            href={createPropertyPath(secondProp[0])}
             className={cn(buttonVariants({}))}
           >
             <LuEye />

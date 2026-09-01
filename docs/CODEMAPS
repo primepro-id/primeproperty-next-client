@@ -1,6 +1,6 @@
 # PrimeProperty Next Client Codemap
 
-Last verified: 2026-08-28
+Last verified: 2026-09-01
 
 This file is the high-level map of the repository. Keep it focused on stable
 boundaries and update it whenever routes, data sources, shared providers, or
@@ -67,13 +67,18 @@ The `@/*` TypeScript alias maps to `src/*`.
 - `src/app/layout.tsx` is the root layout. It loads PT Sans, global CSS, and
   `src/components/providers.tsx`.
 - `src/components/providers.tsx` is the client provider boundary for theme,
-  TanStack Query, toast notifications, and Google Analytics.
+  TanStack Query, and toast notifications.
 - `src/components/custom-ui/tanstack-providers.tsx` creates the QueryClient.
   Browser renders reuse a singleton; server renders create a fresh instance.
 - `src/app/(client)/layout.tsx` wraps public pages with the shared header,
-  main content area, and footer.
+  main content area, footer, and Google Analytics.
+- `src/app/(auth)/layout.tsx` is the minimal authentication shell and applies
+  `noindex, nofollow` metadata to the auth subtree.
 - `src/app/(admin)/layout.tsx` keeps the sidebar and mobile navbar fixed while
-  its content wrapper owns the admin shell's only vertical page scroll.
+  its content wrapper owns the admin shell's only vertical page scroll. The
+  admin subtree is also `noindex, nofollow`.
+- `src/middleware.ts` protects `/admin` routes by checking the access-token
+  session and attempting refresh-token renewal before the request continues.
 - `src/app/global-error.tsx`, `src/app/(client)/not-found.tsx`, and
   `src/app/(client)/loading.tsx` provide global error, not-found, and loading
   states.
@@ -88,6 +93,10 @@ Route group names such as `(client)` and `(admin)` do not appear in URLs.
 | `/about` | `src/app/(client)/about/page.tsx` | Company history, services, value proposition, and contact content |
 | `/agents` | `src/app/(client)/agents/page.tsx` | Agent directory backed by the REST API |
 | `/agents/[name]` | `src/app/(client)/agents/[name]/page.tsx` | Agent profile and listings; dynamic metadata by agent name |
+| `/auth` | `src/app/(auth)/auth/page.tsx` | Agent/admin login form |
+| `/auth/forgot-password` | `src/app/(auth)/auth/forgot-password/page.tsx` | Password-reset email request flow |
+| `/auth/reset-password?token=...` | `src/app/(auth)/auth/reset-password/page.tsx` | Token-backed password reset form |
+| `/admin` | `src/app/(admin)/admin/page.tsx` | Redirects authenticated viewers to `/admin/properties` |
 | `/admin/agents` | `src/app/(admin)/admin/agents/page.tsx` | Admin agent management table with edit and delete actions |
 | `/admin/agents/new` | `src/app/(admin)/admin/agents/new/page.tsx` | Admin agent creation form with required S3 profile-picture upload |
 | `/admin/agents/[agentId]` | `src/app/(admin)/admin/agents/[agentId]/page.tsx` | Admin agent edit form with query-backed defaults and optional picture replacement |
@@ -108,21 +117,28 @@ Route group names such as `(client)` and `(admin)` do not appear in URLs.
 | `/properties/bookmark` | `src/app/(client)/properties/bookmark/page.tsx` | Locally saved properties and selection of two comparison candidates |
 | `/properties/comparison?ids=...` | `src/app/(client)/properties/comparison/page.tsx` | Side-by-side comparison for two property IDs |
 
-Sitemap route entries are:
+Public sitemap entry points are:
 
-- `src/app/sitemap.ts`
-- `src/app/(client)/agents/sitemap.ts`
-- `src/app/(client)/blog/sitemap.ts`
-- `src/app/(client)/properties/sitemap.ts`
-- `src/app/(client)/properties/filter/sitemap.xml/route.ts`
-- `src/app/(client)/properties/filter/sitemaps/[chunk]/route.ts`
+| URL | Route entry | Inventory |
+| --- | --- | --- |
+| `/sitemap.xml` | `src/app/sitemap.ts` | Stable public routes |
+| `/agents/sitemap.xml` | `src/app/(client)/agents/sitemap.ts` | Agent profiles |
+| `/blog/sitemap.xml` | `src/app/(client)/blog/sitemap.ts` | DatoCMS articles |
+| `/properties/sitemap.xml` | `src/app/(client)/properties/sitemap.ts` | `/properties` plus one canonical `id-title` URL per property |
+| `/properties/filter/sitemap.xml` | `src/app/(client)/properties/filter/sitemap.xml/route.ts` | Sitemap index for navigation-backed filter chunks |
+
+Filter child URL sets are served by
+`src/app/(client)/properties/filter/sitemaps/[chunk]/route.ts`.
 
 The filter sitemap URL is an XML sitemap index whose child URL sets are capped
 at 1,900,000 UTF-8 bytes. A 24-hour manifest caches one consistent snapshot of
-the property site paths and their chunk boundaries; each child generates only
-its assigned range. Other sitemap routes fetch external data during static page
-generation, so a production build needs valid environment variables and
-reachable REST/DatoCMS endpoints.
+real, navigation-backed property filter prefixes and their chunk boundaries;
+each child generates only its assigned range. Query strings and pagination are
+excluded from sitemap inventory. The property sitemap paginates through the API
+but publishes only canonical property-detail paths, not listing pages. Other
+sitemap routes fetch external data during static page generation, so a
+production build needs valid environment variables and reachable REST/DatoCMS
+endpoints. `public/robots.txt` advertises all five sitemap entry points.
 
 ## Property domain
 
@@ -176,6 +192,11 @@ price sorting.
   across all imports.
 - `src/app/(client)/properties/_lib/parse-filter-params.ts` converts SEO path
   segments into API query parameters.
+- `src/lib/metadata/seo-domain.ts` owns the canonical `id-title` property-path
+  builder used by cards, metadata, sitemaps, and share/contact URLs.
+- Filter route metadata validates indexable path prefixes against the cached
+  navigation-backed sitemap manifest; query variants and unknown paths remain
+  crawlable but receive `noindex, follow`.
 - `src/app/(client)/properties/_lib/bookmark-property.ts` stores bookmark IDs
   under `bookmark_ids` in browser `localStorage`.
 - `src/lib/hooks/local-storage.ts` exposes bookmarks as TanStack Query options
@@ -206,6 +227,8 @@ price sorting.
 - REST API: `src/lib/api/agents.ts`
 - Query/mutation options: `src/lib/hooks/agents.ts`
 - Public route UI: `src/app/(client)/agents`
+- Agent profile content remains client-rendered. After its query resolves it
+  emits `ProfilePage`/`Person` JSON-LD using the canonical profile URL.
 - Admin CRUD UI: `src/app/(admin)/admin/agents`; create and edit share the
   route-level `AgentForm`, while edit loads by ID and refreshes agent query
   caches after saving. The list and create pages require the Admin role, while
@@ -221,6 +244,9 @@ price sorting.
 - Apollo client and fetch functions: `src/lib/api/articles.ts`
 - Routes and schema builders: `src/app/(client)/blog`
 - Data source: DatoCMS using `DATOCMS_API_URL` and `DATOCMS_API_TOKEN`.
+- Article pages emit synchronous `Article` and Home -> Blog -> Article
+  breadcrumb JSON-LD; related-content cards are not represented as breadcrumb
+  nodes.
 
 ### Developers
 
@@ -273,7 +299,8 @@ response.data?.pagination // page, per_page, total_pages, total
 `src/lib/api/token.ts` is a server function that reads the `accessToken`
 cookie. Protected REST calls place the value in the `x-access-token` header.
 Admin-only page guards use `src/lib/api/verified-viewer.ts` to verify the token
-with the session API before trusting its viewer role.
+with the session API before trusting its viewer role. Pure claim validation and
+Admin/Agent role checks live in `src/lib/api/viewer-session.ts`.
 
 ### Client state
 
@@ -283,10 +310,32 @@ Component-local UI state uses React state; bookmarked IDs use localStorage.
 
 ### SEO
 
-- Shared metadata: `src/lib/metadata/create-metadata.ts`
+- `src/lib/metadata/create-metadata.ts` builds canonical, Open Graph, Twitter,
+  image, locale, site-name, and explicit robots metadata from a shared
+  `{ title, description, path, image?, index? }` contract.
+- Pure SEO path, text, social metadata, and robots policies:
+  `src/lib/metadata/seo-domain.ts`
 - Shared JSON-LD: `src/lib/schema`
 - Route-specific metadata/schema helpers live beside their route under `_lib`.
 - JSON-LD scripts stringify data and escape `<` as `\u003c` before insertion.
+- `public/llms.txt` identifies citation-ready public resources, while
+  `public/robots.txt` states explicit access rules for major AI crawlers.
+- `public/property-catalog.md` is a committed, citation-friendly static property
+  snapshot; it does not change page rendering. The generator that originally
+  produced it is no longer present in `scripts`.
+- Primary listing pages use `CollectionPage`/`ItemList`; property details use
+  `RealEstateListing`, `Place`, `Offer`, and canonical breadcrumbs. Organization
+  and website schema are emitted from the public shell/home schema boundary.
+  Visible FAQ copy and `FAQPage` schema share the plain data in
+  `src/app/(client)/properties/_components/faq/faq-content.ts`.
+- Query-filtered listings, invalid filters, comparison/bookmark utilities, and
+  missing resources use `noindex, follow`; authentication and admin routes use
+  `noindex, nofollow`.
+- Focused SEO regression tests live in
+  `src/lib/metadata/seo-domain.test.cjs`, `src/lib/schema/seo-schema.test.cjs`,
+  `src/lib/metadata/ai-discovery.test.cjs`,
+  `src/lib/schema/faq-schema.test.cjs`, and
+  `src/app/(client)/properties/filter/_lib/property-filter-sitemap.test.cjs`.
 
 ## Shared UI
 
@@ -305,7 +354,6 @@ Zod.
 
 Server-only:
 
-- `API_KEY_LEADS`
 - `SENTRY_AUTH_TOKEN`
 - `DATOCMS_API_URL`
 - `DATOCMS_API_TOKEN`
@@ -351,13 +399,17 @@ environment validation and prerendered routes during `yarn build`.
 ## Verification commands
 
 ```powershell
+node --test
 yarn tsc --noEmit --pretty false
 yarn build
 git diff --check
 ```
 
 `yarn build` requires valid environment variables and reachable external data
-sources because the sitemap routes are prerendered.
+sources because the sitemap routes are prerendered. At the current HEAD,
+`package.json` also points `prebuild` at the removed
+`scripts/generate-property-catalog.mjs`, so that dangling script reference must
+be corrected before the Next.js build can start.
 
 ## Updating this codemap
 

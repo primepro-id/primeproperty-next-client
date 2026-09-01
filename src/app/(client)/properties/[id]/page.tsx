@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { DynamicProperty } from "./_components";
 import { PropertiesFilter } from "../_components";
 import { Metadata } from "next";
@@ -21,9 +20,7 @@ const DynamicPropertyPage = async ({ params }: DynamicPropertyPageProps) => {
   return (
     <>
       <PropertiesFilter searchParams={{}} />
-      <Suspense>
-        <DynamicProperty propertyId={Number(propertyId)} />
-      </Suspense>
+      <DynamicProperty propertyId={Number(propertyId)} />
     </>
   );
 };

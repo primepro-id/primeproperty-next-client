@@ -16,6 +16,7 @@ import { bookmarkProperty } from "../_lib/bookmark-property";
 import { Tooltip } from "react-tooltip";
 import { PropertyPriceTag } from "./property-price-tag";
 import { PropertyAgentInfo } from "./property-agent-info";
+import { createPropertyPath } from "@/lib/metadata/seo-domain";
 
 type PropertyCardProps = {
   propertyWithAgent: PropertyJoinAgent;
@@ -108,7 +109,7 @@ export const PropertyCard = ({
       <Link
         title={propertyWithAgent[0].title}
         aria-label={propertyWithAgent[0].title}
-        href={`/properties/${propertyWithAgent[0].id}-${propertyWithAgent[0].title.replaceAll(" ", "-").replaceAll("/", "")}`}
+        href={createPropertyPath(propertyWithAgent[0])}
         className="relative group flex flex-col gap-2"
       >
         <div className="bg-primary text-primary-foreground px-2 py-1 text-xs rounded absolute top-1 left-1 dark:font-semibold uppercase z-[5]">

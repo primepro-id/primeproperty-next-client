@@ -1,40 +1,31 @@
-import { env } from "@/lib/env";
-import { Metadata } from "next";
+import { createMetadata } from "@/lib/metadata";
+import type { Metadata } from "next";
+import { getIndexablePropertyFilterPaths } from "../filter/_lib/property-filter-sitemap-data";
 import { parseFilterParams } from "./parse-filter-params";
 import {
   generateDescription,
-  generateKeyword,
   generateTitle,
 } from "./create-properties-metadata";
 
-export const generatePropertiesFilterMetadata = async (
-  params: Promise<{ params: string[] }>,
-): Promise<Metadata> => {
-  const pageParams = await params;
-  const searchParams = parseFilterParams(pageParams.params);
+type FilterSearchParams = Record<string, string | string[] | undefined>;
 
-  return {
-    title: generateTitle(searchParams),
-    description: generateDescription(searchParams),
-    keywords: generateKeyword(searchParams),
-    twitter: {
-      title: generateTitle(searchParams),
-      site: "@primeproindonesia",
-      creator: "@primeproindonesia",
-      card: "summary_large_image",
-      images: [`${env.NEXT_PUBLIC_HOST_URL}/images/primepro.png`],
-    },
-    openGraph: {
-      title: generateTitle(searchParams),
-      description: generateDescription(searchParams),
-      siteName: "Primepro Indonesia",
-      locale: "id_ID",
-    },
-    appleWebApp: true,
-    applicationName: "Primepro Indonesia",
-    alternates: {
-      canonical: `${env.NEXT_PUBLIC_HOST_URL}/properties/filter/${pageParams.params.join("/")}`,
-    },
-    robots: "index, follow",
-  };
-};
+export async function generatePropertiesFilterMetadata(
+  params: Promise<{ params: string[] }>,
+  searchParams: Promise<FilterSearchParams>,
+): Promise<Metadata> {
+  const [pageParams, pageSearchParams, indexablePaths] = await Promise.all([
+    params,
+    searchParams,
+    getIndexablePropertyFilterPaths(),
+  ]);
+  const filterPath = `/${pageParams.params.join("/")}`;
+  const filterQuery = parseFilterParams(pageParams.params);
+  const hasQuery = Object.keys(pageSearchParams).length > 0;
+
+  return createMetadata({
+    title: generateTitle(filterQuery),
+    description: generateDescription(filterQuery),
+    path: `/properties/filter${filterPath}`,
+    index: !hasQuery && indexablePaths.includes(filterPath),
+  });
+}

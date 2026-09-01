@@ -55,7 +55,7 @@ const ImageCarousel = ({
                     alt: propImg.indonesian_label ?? propertyTitle,
                     width: 1024,
                     height: 768,
-                    priority: true,
+                    priority: index === coverImageIndex,
                     className:
                       "w-full h-60 md:h-80 lg:h-96 aspect-16/9 object-cover rounded-lg",
                   }}
