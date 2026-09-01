@@ -72,8 +72,15 @@ export function buildIndexablePropertyFilterPaths(
   const uniquePaths = new Set<string>();
 
   for (const navigation of navigations) {
-    const segments = navigation.site_path.split("/").filter(Boolean).slice(0, 5);
-    for (let segmentCount = 1; segmentCount <= segments.length; segmentCount += 1) {
+    const segments = navigation.site_path
+      .split("/")
+      .filter(Boolean)
+      .slice(0, 5);
+    for (
+      let segmentCount = 1;
+      segmentCount <= segments.length;
+      segmentCount += 1
+    ) {
       uniquePaths.add(`/${segments.slice(0, segmentCount).join("/")}`);
     }
   }

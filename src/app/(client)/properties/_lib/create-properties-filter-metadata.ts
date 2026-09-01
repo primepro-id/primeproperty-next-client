@@ -2,7 +2,10 @@ import { createMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import { getIndexablePropertyFilterPaths } from "../filter/_lib/property-filter-sitemap-data";
 import { parseFilterParams } from "./parse-filter-params";
-import { generateDescription, generateTitle } from "./create-properties-metadata";
+import {
+  generateDescription,
+  generateTitle,
+} from "./create-properties-metadata";
 
 type FilterSearchParams = Record<string, string | string[] | undefined>;
 

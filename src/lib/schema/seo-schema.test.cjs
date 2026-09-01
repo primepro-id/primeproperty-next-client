@@ -83,7 +83,10 @@ test("article JSON-LD is synchronous and contains a real canonical breadcrumb", 
     schema["@graph"].map((item) => item["@type"]),
     ["Article", "BreadcrumbList"],
   );
-  assert.match(serialized, /https:\/\/primeproindonesia\.com\/blog\/panduan-rumah/);
+  assert.match(
+    serialized,
+    /https:\/\/primeproindonesia\.com\/blog\/panduan-rumah/,
+  );
   assert.deepEqual(
     schema["@graph"][1].itemListElement.map((item) => item.name),
     ["Home", "Blog", "Panduan Membeli Rumah"],
@@ -128,12 +131,18 @@ test("property detail schemas use canonical URLs and real filter breadcrumbs", (
     "@/lib/env": envStub,
     "@/lib/metadata/seo-domain": seoDomain,
   };
-  const detail = loadTsModule("lib/schema/create-dynamic-property-schema.ts", stubs)
-    .createDynamicPropertySchema(property);
-  const place = loadTsModule("lib/schema/create-place-schema.ts", stubs)
-    .createPlaceSchema(property);
-  const breadcrumb = loadTsModule("lib/schema/create-related-area-schema.ts", stubs)
-    .createRelatedAreaSchema(property);
+  const detail = loadTsModule(
+    "lib/schema/create-dynamic-property-schema.ts",
+    stubs,
+  ).createDynamicPropertySchema(property);
+  const place = loadTsModule(
+    "lib/schema/create-place-schema.ts",
+    stubs,
+  ).createPlaceSchema(property);
+  const breadcrumb = loadTsModule(
+    "lib/schema/create-related-area-schema.ts",
+    stubs,
+  ).createRelatedAreaSchema(property);
 
   assert.equal(detail["@type"], "RealEstateListing");
   assert.equal(detail.offers["@type"], "Offer");

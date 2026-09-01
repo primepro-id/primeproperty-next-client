@@ -27,27 +27,27 @@ export const RelatedProperties = ({ propertyId }: RelatedPropertiesProps) => {
   if (propertyData && propertyData.length > 0) {
     return (
       <Carousel>
-          <div className="flex items-center justify-between mb-4">
-            <h3>PROPERTI TERKAIT</h3>
-            <div className="flex items-center gap-2">
-              <CarouselPrevious className="static translate-y-0" />
-              <CarouselNext className="static translate-y-0" />
-            </div>
+        <div className="flex items-center justify-between mb-4">
+          <h3>PROPERTI TERKAIT</h3>
+          <div className="flex items-center gap-2">
+            <CarouselPrevious className="static translate-y-0" />
+            <CarouselNext className="static translate-y-0" />
           </div>
-          <CarouselContent>
-            {propertyData.map((propertyWithAgent, index) => (
-              <CarouselItem
-                key={`${index}_related_properties`}
-                className="basis-4/5 md:basis-1/2 lg:basis-1/3"
-              >
-                <PropertyCard
-                  propertyWithAgent={propertyWithAgent}
-                  bookmarkedProperties={bookmarkedProperties.data}
-                  onBookmarkClickAction={() => bookmarkedProperties.refetch()}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
+        </div>
+        <CarouselContent>
+          {propertyData.map((propertyWithAgent, index) => (
+            <CarouselItem
+              key={`${index}_related_properties`}
+              className="basis-4/5 md:basis-1/2 lg:basis-1/3"
+            >
+              <PropertyCard
+                propertyWithAgent={propertyWithAgent}
+                bookmarkedProperties={bookmarkedProperties.data}
+                onBookmarkClickAction={() => bookmarkedProperties.refetch()}
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
       </Carousel>
     );
   }

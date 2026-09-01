@@ -44,8 +44,14 @@ test("property paths are stable canonical ID-title paths", () => {
 });
 
 test("SEO text normalizes whitespace and truncates on a word boundary", () => {
-  assert.equal(normalizeSeoText("  Rumah\n  nyaman   di Kemang ", 80), "Rumah nyaman di Kemang");
-  assert.equal(normalizeSeoText("Rumah nyaman di Kemang Selatan", 20), "Rumah nyaman di");
+  assert.equal(
+    normalizeSeoText("  Rumah\n  nyaman   di Kemang ", 80),
+    "Rumah nyaman di Kemang",
+  );
+  assert.equal(
+    normalizeSeoText("Rumah nyaman di Kemang Selatan", 20),
+    "Rumah nyaman di",
+  );
 });
 
 test("robots policies distinguish indexable, query, invalid, utility, and private routes", () => {
@@ -78,11 +84,18 @@ test("metadata fields are self-canonical with complete social and robots fields"
     index: true,
   });
 
-  assert.equal(metadata.alternates.canonical, "https://primeproindonesia.com/about");
+  assert.equal(
+    metadata.alternates.canonical,
+    "https://primeproindonesia.com/about",
+  );
   assert.equal(metadata.openGraph.url, "https://primeproindonesia.com/about");
   assert.equal(metadata.openGraph.type, "website");
-  assert.deepEqual(metadata.openGraph.images, ["https://cdn.example.com/about.jpg"]);
-  assert.deepEqual(metadata.twitter.images, ["https://cdn.example.com/about.jpg"]);
+  assert.deepEqual(metadata.openGraph.images, [
+    "https://cdn.example.com/about.jpg",
+  ]);
+  assert.deepEqual(metadata.twitter.images, [
+    "https://cdn.example.com/about.jpg",
+  ]);
   assert.deepEqual(metadata.robots, { index: true, follow: true });
   assert.equal(metadata.openGraph.siteName, "PrimePro Indonesia");
   assert.equal(metadata.openGraph.locale, "id_ID");

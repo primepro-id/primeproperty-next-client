@@ -28,10 +28,7 @@ export async function generateDynamicPropertyMetadata(
     property.images.find((image) => image.is_cover) || property.images[0];
 
   return createMetadata({
-    title: normalizeSeoText(
-      `${property.title} | PrimePro Indonesia`,
-      70,
-    ),
+    title: normalizeSeoText(`${property.title} | PrimePro Indonesia`, 70),
     description: normalizeSeoText(
       property.description_seo || property.description,
       160,

@@ -38,9 +38,10 @@ export function normalizeSeoText(text: string, maxLength: number) {
 
   const truncatedText = normalizedText.slice(0, Math.max(0, maxLength + 1));
   const lastWordBoundary = truncatedText.lastIndexOf(" ");
-  return (lastWordBoundary > 0
-    ? truncatedText.slice(0, lastWordBoundary)
-    : truncatedText.slice(0, maxLength)
+  return (
+    lastWordBoundary > 0
+      ? truncatedText.slice(0, lastWordBoundary)
+      : truncatedText.slice(0, maxLength)
   ).trim();
 }
 

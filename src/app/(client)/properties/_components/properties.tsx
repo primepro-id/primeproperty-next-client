@@ -22,7 +22,11 @@ export const Properties = async ({ searchParams, path }: PropertiesProps) => {
     return <PropertyNotFound searchParams={searchParams} />;
   }
 
-  const jsonLd = createPropertiesSchema(properties.data.data, searchParams, path);
+  const jsonLd = createPropertiesSchema(
+    properties.data.data,
+    searchParams,
+    path,
+  );
 
   return (
     <>
