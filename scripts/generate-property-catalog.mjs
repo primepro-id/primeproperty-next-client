@@ -18,7 +18,9 @@ function createPropertiesUrl(apiUrl, page) {
 async function fetchPropertyPage(apiUrl, page, fetchImpl) {
   const response = await fetchImpl(createPropertiesUrl(apiUrl, page));
   if (!response.ok) {
-    throw new Error(`Property catalog request failed with status ${response.status}.`);
+    throw new Error(
+      `Property catalog request failed with status ${response.status}.`,
+    );
   }
 
   const payload = await response.json();
@@ -50,9 +52,8 @@ export async function generatePropertyCatalog({
 
   const firstPage = await fetchPropertyPage(apiUrl, 1, fetchImpl);
   const remainingPages = await Promise.all(
-    Array.from(
-      { length: firstPage.pagination.total_pages - 1 },
-      (_, index) => fetchPropertyPage(apiUrl, index + 2, fetchImpl),
+    Array.from({ length: firstPage.pagination.total_pages - 1 }, (_, index) =>
+      fetchPropertyPage(apiUrl, index + 2, fetchImpl),
     ),
   );
   const properties = [

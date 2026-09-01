@@ -135,7 +135,8 @@ export const PROPERTY_FAQ_ITEMS: FaqItem[] = [
       "Harga yang tercantum pada iklan umumnya merupakan harga penawaran. Calon pembeli dapat menyampaikan penawaran, lalu pemilik menentukan apakah harga dan syaratnya dapat disepakati.",
   },
   {
-    question: "Berapa lama proses balik nama sertifikat biasanya memakan waktu?",
+    question:
+      "Berapa lama proses balik nama sertifikat biasanya memakan waktu?",
     answer:
       "Waktu proses balik nama bervariasi menurut kelengkapan dokumen, jenis transaksi, notaris/PPAT, dan kantor pertanahan setempat. Mintalah estimasi terbaru dari notaris/PPAT yang menangani transaksi.",
   },

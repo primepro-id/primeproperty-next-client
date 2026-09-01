@@ -4,10 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  PRIMEPRO_FAQ_SECTIONS,
-  type FaqItem,
-} from "./faq-content";
+import { PRIMEPRO_FAQ_SECTIONS, type FaqItem } from "./faq-content";
 
 const renderFaqAnswer = (faq: FaqItem) => {
   if (faq.items) {

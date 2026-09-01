@@ -63,8 +63,7 @@ export function createPropertiesSchema(
               offers: {
                 "@type": "Offer",
                 price: property.price,
-                priceCurrency:
-                  property.currency === "Usd" ? "USD" : "IDR",
+                priceCurrency: property.currency === "Usd" ? "USD" : "IDR",
                 availability:
                   property.sold_status === "Sold"
                     ? "https://schema.org/SoldOut"

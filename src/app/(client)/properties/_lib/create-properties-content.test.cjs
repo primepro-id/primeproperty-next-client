@@ -71,10 +71,7 @@ test("homepage and listing sources keep sequential semantic headings", () => {
     "utf8",
   );
   const faq = readFileSync(
-    join(
-      projectRoot,
-      "src/app/(client)/properties/_components/faq/faq.tsx",
-    ),
+    join(projectRoot, "src/app/(client)/properties/_components/faq/faq.tsx"),
     "utf8",
   );
   const title = readFileSync(

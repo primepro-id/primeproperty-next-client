@@ -60,20 +60,14 @@ test("FAQPage schema serializes every visible answer as acceptedAnswer text", ()
   assert.equal(schema["@type"], "FAQPage");
   assert.equal(schema.mainEntity.length, content.ALL_FAQ_ITEMS.length);
   assert.equal(schema.mainEntity[0]["@type"], "Question");
-  assert.equal(
-    schema.mainEntity[0].acceptedAnswer["@type"],
-    "Answer",
-  );
+  assert.equal(schema.mainEntity[0].acceptedAnswer["@type"], "Answer");
   assert.equal(typeof schema.mainEntity[0].acceptedAnswer.text, "string");
   assert.doesNotMatch(JSON.stringify(schema), /\[object Object\]/);
 });
 
 test("FAQ component emits the shared FAQPage graph through a literal script", () => {
   const source = readFileSync(
-    join(
-      sourceRoot,
-      "app/(client)/properties/_components/faq/faq.tsx",
-    ),
+    join(sourceRoot, "app/(client)/properties/_components/faq/faq.tsx"),
     "utf8",
   );
 

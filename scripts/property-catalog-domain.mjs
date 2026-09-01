@@ -60,7 +60,10 @@ export function renderPropertyCatalog(
   const timestamp = new Date(generatedAt).toISOString();
   const entries = normalizeCatalogProperties(properties).map(
     ([property, agent]) => {
-      const description = normalizeWhitespace(property.description).slice(0, 240);
+      const description = normalizeWhitespace(property.description).slice(
+        0,
+        240,
+      );
       const measurements = property.measurements ?? {};
       const specifications = property.specifications ?? {};
       const canonicalUrl = `${normalizedHost}${createPropertyPath(property)}`;

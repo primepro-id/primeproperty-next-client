@@ -446,7 +446,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 5
 - Updated: 2025-05-28T03:19:45.643096
 - Agent: abby cynthia
-- Description: Luas tanah : 340m² Luas bangunan : 500m² NJOP Rp 4.500.000 - 5.000.000 6 Kamar Tidur dan 6 toilet 3 lantai 1 Kamar ART dan toilet 1 Toilet tamu 2 Gudang Garasi 2 carport 3 Pos security, Area jemur pakaian, Taman,Listrik 5.500W, Air jet pum 
+- Description: Luas tanah : 340m² Luas bangunan : 500m² NJOP Rp 4.500.000 - 5.000.000 6 Kamar Tidur dan 6 toilet 3 lantai 1 Kamar ART dan toilet 1 Toilet tamu 2 Gudang Garasi 2 carport 3 Pos security, Area jemur pakaian, Taman,Listrik 5.500W, Air jet pum
 
 ## Property 34: FOR SALE Kantor / Kavling Komersial Lokasi Strategis Cilandak, Jakarta Selatan
 
@@ -667,7 +667,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 8
 - Updated: 2025-05-28T05:12:09.847610
 - Agent: abby cynthia
-- Description: Luas tanah 890 (2 certificate) Luas bangunan 1285 7 kamar tidur 8 kamar mandi gaming room gym room library room 2 dapur, bersih n kotor swimming pool art blok terpisah car port 8 cars security post genset ready gudang Dijual 55 M nego Code 
+- Description: Luas tanah 890 (2 certificate) Luas bangunan 1285 7 kamar tidur 8 kamar mandi gaming room gym room library room 2 dapur, bersih n kotor swimming pool art blok terpisah car port 8 cars security post genset ready gudang Dijual 55 M nego Code
 
 ## Property 47: For Sale, Jl Sekolah Duta Pondok Indah
 
@@ -1041,7 +1041,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 8
 - Updated: 2025-06-01T02:04:39.742545
 - Agent: retha olinia
-- Description: *For sale rumah size besar kebayoran baru just renovated 2022 dengan parkiran luas* Lt.690 Lb 350 2 lantai 4kt 4km 2KT ART + KM Spacious living room Musholla Storage Garasi carport 8 Just renovated 2022 Taman depan & belakang SHM Harga: 29,
+- Description: _For sale rumah size besar kebayoran baru just renovated 2022 dengan parkiran luas_ Lt.690 Lb 350 2 lantai 4kt 4km 2KT ART + KM Spacious living room Musholla Storage Garasi carport 8 Just renovated 2022 Taman depan & belakang SHM Harga: 29,
 
 ## Property 80: Dijual Rumah Nyaman Ragunan Jakarta Selatan
 
@@ -1347,7 +1347,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2025-06-02T11:23:43.009134
 - Agent: retha olinia
-- Description: *For sale Rumah terawat 2 lantai dalam komplek di Kebayoran Baru, row jalan lebar* Lt.314 Lb.229 2 lantai 3 KT 2 KM 1 KT ART + KM Garasi carport 2 SHM Bagian belakang bisa dibangun swimming pool Dalam komplek one gate Row jalan lebar 4 mobi
+- Description: _For sale Rumah terawat 2 lantai dalam komplek di Kebayoran Baru, row jalan lebar_ Lt.314 Lb.229 2 lantai 3 KT 2 KM 1 KT ART + KM Garasi carport 2 SHM Bagian belakang bisa dibangun swimming pool Dalam komplek one gate Row jalan lebar 4 mobi
 
 ## Property 98: For sale rumah luas di cipete dengan taman yang luas dapat dibangun
 
@@ -1364,7 +1364,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 12
 - Updated: 2025-06-02T11:29:18.915275
 - Agent: retha olinia
-- Description: *For sale cipete big land w/ spacious park* Lt.952 Lb.250 2 lantai & split level 5kt 4km 2kt ART+ KM Fish pond Garasi carport 12 SHM Row jalan lebar Cocok untuk dibangun / jadi rumah tumbuh Harga: 26,3m ---> 25m nego
+- Description: _For sale cipete big land w/ spacious park_ Lt.952 Lb.250 2 lantai & split level 5kt 4km 2kt ART+ KM Fish pond Garasi carport 12 SHM Row jalan lebar Cocok untuk dibangun / jadi rumah tumbuh Harga: 26,3m ---> 25m nego
 
 ## Property 99: Dijual Ruang Usaha Ex.Kantor & Gudang Prima International Cargo Warung Jati Timur
 
@@ -1551,7 +1551,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 50
 - Updated: 2025-06-03T07:08:55.488872
 - Agent: abby cynthia
-- Description: Dijual Cepat Gedung Lenteng Agung Jagakarsa Jakarta Selatan LT 2235m2 LB 2583m2 4 Lantai Hadap Timur dan Barat (2 Akses) Lokasi dipinggir jalan raya Dekat dari AEON Mall Dekat dari Stasiun Tanjung Barat Dekat dari Toll Lingkar Luar Jakarta 
+- Description: Dijual Cepat Gedung Lenteng Agung Jagakarsa Jakarta Selatan LT 2235m2 LB 2583m2 4 Lantai Hadap Timur dan Barat (2 Akses) Lokasi dipinggir jalan raya Dekat dari AEON Mall Dekat dari Stasiun Tanjung Barat Dekat dari Toll Lingkar Luar Jakarta
 
 ## Property 110: Disewa Ruang Usaha Pinggir Jalan Raya Pakubuwono Jakarta Selatan
 
@@ -1687,7 +1687,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2025-06-08T00:50:32.366195
 - Agent: retha olinia
-- Description: *For sale rumah 2 lantai Kebayoran Baru siap huni, lokasi tenang gated row jalan lebar* Lt.550 Lb.400 2 lantai 4kt 4km 2KT ART+ KM Swimming pool Taman depan Garasi carport 4 Row jalan lebar SHM Harga: 42m nego
+- Description: _For sale rumah 2 lantai Kebayoran Baru siap huni, lokasi tenang gated row jalan lebar_ Lt.550 Lb.400 2 lantai 4kt 4km 2KT ART+ KM Swimming pool Taman depan Garasi carport 4 Row jalan lebar SHM Harga: 42m nego
 
 ## Property 118: For sale rumah siap huni Senopati area Jakarta Selatan dengan private swimming pool
 
@@ -1704,7 +1704,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 6
 - Updated: 2025-06-08T00:52:43.944423
 - Agent: retha olinia
-- Description: *For sale senopati area siap huni bangunan th 2020* Lt.430 Lb.650 2 lantai + basement 5KT 4KM 6KT ART+KM Fish pond Gym room Garasi carport 6 Swimming pool 4x13.5 Kusen jatI Sanitary by Kohler & grohe Marmer makassar SHM Harga: 30m nego
+- Description: _For sale senopati area siap huni bangunan th 2020_ Lt.430 Lb.650 2 lantai + basement 5KT 4KM 6KT ART+KM Fish pond Gym room Garasi carport 6 Swimming pool 4x13.5 Kusen jatI Sanitary by Kohler & grohe Marmer makassar SHM Harga: 30m nego
 
 ## Property 119: For sale senopati area Jakarta Selatan siap huni dengan private swimming pool
 
@@ -1721,7 +1721,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2025-06-08T00:56:13.744734
 - Agent: retha olinia
-- Description: *For sale rumah siap huni di Kebayoran Baru, row jalan lebar* Lt.355 Lb.565 2 lt 4kt 4km 3Kt Art +1 Km Swimming pool Garasi carport 4 SHM Row jalan lebar Lokasi tenang Harga: 26M nego
+- Description: _For sale rumah siap huni di Kebayoran Baru, row jalan lebar_ Lt.355 Lb.565 2 lt 4kt 4km 3Kt Art +1 Km Swimming pool Garasi carport 4 SHM Row jalan lebar Lokasi tenang Harga: 26M nego
 
 ## Property 120: For sale rumah hitung tanah hadap timur di senopati area
 
@@ -1755,7 +1755,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2025-07-18T09:53:58.717236
 - Agent: retha olinia
-- Description: *For sale rumah siap huni di Kebayoran Baru, row jalan lebar* Lt.355 Lb.565 2 lt 4kt 4km 3Kt Art +1 Km Swimming pool Garasi carport 4 SHM Row jalan lebar Lokasi tenang Harga: 26 M nego
+- Description: _For sale rumah siap huni di Kebayoran Baru, row jalan lebar_ Lt.355 Lb.565 2 lt 4kt 4km 3Kt Art +1 Km Swimming pool Garasi carport 4 SHM Row jalan lebar Lokasi tenang Harga: 26 M nego
 
 ## Property 122: Rumah hitung tanah big land kebayoran baru good deal lokasi terbaik
 
@@ -1789,7 +1789,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2025-06-10T04:57:06.197860
 - Agent: retha olinia
-- Description: *For sale Modern Classic House Kebayoran Baru siap huni* Lt.346 Lebar muka 15,5 Lb.400 2 lantai + mezzanine 4 KT 4KM 2KT ART + KM Swimming pool 3x9 Sanitary by TOTO Marmer slab import Garasi carport 4 SHM Harga: 32m nego
+- Description: _For sale Modern Classic House Kebayoran Baru siap huni_ Lt.346 Lebar muka 15,5 Lb.400 2 lantai + mezzanine 4 KT 4KM 2KT ART + KM Swimming pool 3x9 Sanitary by TOTO Marmer slab import Garasi carport 4 SHM Harga: 32m nego
 
 ## Property 124: Rumah hitung tanah row jalan raya 2 arah Kebayoran Baru cocok dibangun ulang
 
@@ -1806,7 +1806,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2025-06-10T05:07:54.888010
 - Agent: retha olinia
-- Description: *For sale Kebayoran Baru lokasi strategis row jalan raya cocok usaha* Lt.461 Lb.350 1 lantai Hitung tanah Bentuk tanah kotak Ijin 4 lantai SHM Harga: 53juta/m nego
+- Description: _For sale Kebayoran Baru lokasi strategis row jalan raya cocok usaha_ Lt.461 Lb.350 1 lantai Hitung tanah Bentuk tanah kotak Ijin 4 lantai SHM Harga: 53juta/m nego
 
 ## Property 125: Rumah siap huni 2 lantai kebayoran baru jakarta selatan walk in mrt
 
@@ -1823,7 +1823,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2025-06-10T23:18:40.223334
 - Agent: retha olinia
-- Description: *For sale Kebayoran Baru rumah siap huni 2 lantai + basement* Lt.201 Lb.+/-400 2 lantai + basement 4kt 5km 2kt ART + km Garasi carport 4 Taman depan Bentuk tanah kotak SHM on hand Walk in MRT Harga : 10m nego
+- Description: _For sale Kebayoran Baru rumah siap huni 2 lantai + basement_ Lt.201 Lb.+/-400 2 lantai + basement 4kt 5km 2kt ART + km Garasi carport 4 Taman depan Bentuk tanah kotak SHM on hand Walk in MRT Harga : 10m nego
 
 ## Property 126: Rumah 2 lantai scbd area Kebayoran Baru Jakarta Selatan butuh renovasi
 
@@ -1840,7 +1840,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2025-06-11T03:56:00.587118
 - Agent: retha olinia
-- Description: *For sale rumah lama 2 lantai di Kebayoran Baru* Lt.208 fisik 250 Lb.200 2 lantai 5kt 3km Kt ART + KM Garasi carport 2 Taman depan & belakang Bentuk tanah kotak SHM Harga: 10.5m nego
+- Description: _For sale rumah lama 2 lantai di Kebayoran Baru_ Lt.208 fisik 250 Lb.200 2 lantai 5kt 3km Kt ART + KM Garasi carport 2 Taman depan & belakang Bentuk tanah kotak SHM Harga: 10.5m nego
 
 ## Property 127: Dijual Cepat Rumah Operasional Kantor Kemang Jaksel
 
@@ -1874,7 +1874,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 5
 - Updated: 2025-06-12T23:48:41.797637
 - Agent: retha olinia
-- Description: *For sale rumah luas 2 lantai lokasi berportal dekat SCBD & Senayan* Lt.850 Lb.1.500 2 lantai 5kt 5km Kt ART + KM Garasi carport 5 Bentuk tanah kotak SHM Harga: 69jt/m (59m) nego
+- Description: _For sale rumah luas 2 lantai lokasi berportal dekat SCBD & Senayan_ Lt.850 Lb.1.500 2 lantai 5kt 5km Kt ART + KM Garasi carport 5 Bentuk tanah kotak SHM Harga: 69jt/m (59m) nego
 
 ## Property 129: Disewa Tanah Utk Usaha Hang Lekir Raya Jakarta Selatan
 
@@ -2146,7 +2146,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2025-07-08T09:35:25.974424
 - Agent: abby cynthia
-- Description: Dijual Rumah Tahun 80an Hitung Tanah Cipete Jakarta Selatan LT 250m2 LB 130m2 2 KT 1 KM 2 Lantai Carport 2 Mobil SHM Harga Rp. 5M (Nego) Cocok utk usaha, dekat sekolah negri dan perumahaan, dekat pusat bisnis Contact: Abby Cynthia 0856 755 
+- Description: Dijual Rumah Tahun 80an Hitung Tanah Cipete Jakarta Selatan LT 250m2 LB 130m2 2 KT 1 KM 2 Lantai Carport 2 Mobil SHM Harga Rp. 5M (Nego) Cocok utk usaha, dekat sekolah negri dan perumahaan, dekat pusat bisnis Contact: Abby Cynthia 0856 755
 
 ## Property 145: Dijual rumah Cideng
 
@@ -2741,7 +2741,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 6
 - Updated: 2025-08-05T03:39:10.004435
 - Agent: retha olinia
-- Description: *For sale rumah brawijaya siap huni* LT 318 m² LB 900m² DETAIL SPEK : KT : 4 | KM : 5 KP : 3 | KMP : 2 LANTAI : 3 GARASI : 4 CARPORT : 2 DAPUR BERSIH DAPUR KOTOR RUANG TAMU RUANG KELUARGA R KERJA Swimming pool GUDANG *Harga: 29m nego*
+- Description: _For sale rumah brawijaya siap huni_ LT 318 m² LB 900m² DETAIL SPEK : KT : 4 | KM : 5 KP : 3 | KMP : 2 LANTAI : 3 GARASI : 4 CARPORT : 2 DAPUR BERSIH DAPUR KOTOR RUANG TAMU RUANG KELUARGA R KERJA Swimming pool GUDANG _Harga: 29m nego_
 
 ## Property 185: Brand new 2025 minimalis house di Kebayoran Baru
 
@@ -2775,7 +2775,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 7
 - Updated: 2025-09-17T05:27:33.105521
 - Agent: abby cynthia
-- Description: Dijual 3 Ruko Pinggir Jalan Ciledug Raya Jakarta Selatan Strategis pinggir jalan raya ramai Kebayoran lama, jaksel dekat gandaria, senayan, blok m, pondok indah dan pintu tol Kebayoran lama/ciledug/petukangan Lt 4,7 x 18 Lb 4,7 x 14 Ruko C 
+- Description: Dijual 3 Ruko Pinggir Jalan Ciledug Raya Jakarta Selatan Strategis pinggir jalan raya ramai Kebayoran lama, jaksel dekat gandaria, senayan, blok m, pondok indah dan pintu tol Kebayoran lama/ciledug/petukangan Lt 4,7 x 18 Lb 4,7 x 14 Ruko C
 
 ## Property 189: Good deal! Rumah di Senopati area row jalan lebar
 
@@ -2843,7 +2843,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2025-08-09T03:10:02.042523
 - Agent: retha olinia
-- Description: Lt.420 Lb.500 2 lantai 4kt 3KM Swimming pool Garasi carport 4 Bentuk tanah kotak One gate area *Harga: 30m nego*
+- Description: Lt.420 Lb.500 2 lantai 4kt 3KM Swimming pool Garasi carport 4 Bentuk tanah kotak One gate area _Harga: 30m nego_
 
 ## Property 193: For sale Rumah Nuansa Resort lokasi tenang di Ampera
 
@@ -2860,7 +2860,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 12
 - Updated: 2025-08-09T07:20:05.949060
 - Agent: retha olinia
-- Description: - Lt.1.400 - Lb.1.200 - 2 lantai + basement - 6 KT - 6 KM - 3 KT ART + 2 KM - Musholla - Dry & Wet Kitchen - Ruang Serbaguna - Swimming pool - Taman depan & backyard - Marmer import - Carport - Basement up to 14 mobil - Lokasi tenang - SHM 
+- Description: - Lt.1.400 - Lb.1.200 - 2 lantai + basement - 6 KT - 6 KM - 3 KT ART + 2 KM - Musholla - Dry & Wet Kitchen - Ruang Serbaguna - Swimming pool - Taman depan & backyard - Marmer import - Carport - Basement up to 14 mobil - Lokasi tenang - SHM
 
 ## Property 194: For sale rumah terawat 2 lantai dalam komplek Senayan
 
@@ -2962,7 +2962,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 8
 - Updated: 2025-08-12T05:22:09.695675
 - Agent: retha olinia
-- Description: Lt.631 Lb.1.500 3 lantai Furnished by Minotti 4 bedrooms 4 bathrooms 1 powder room Swimming pool Garage carport 8 cars 3 maid rooms + 2 bathrooms 1 security post Designed by Alex Bayu Build in 2018 *Price : 85M nego*
+- Description: Lt.631 Lb.1.500 3 lantai Furnished by Minotti 4 bedrooms 4 bathrooms 1 powder room Swimming pool Garage carport 8 cars 3 maid rooms + 2 bathrooms 1 security post Designed by Alex Bayu Build in 2018 _Price : 85M nego_
 
 ## Property 203: Dijual Kantor Fully Furnished Kemang Timur Jaksel
 
@@ -2996,7 +2996,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2025-08-19T02:27:10.334912
 - Agent: retha olinia
-- Description: *For sale rumah lama 2 lantai di Kebayoran Baru cocok untuk dibangun ulang* Lt.404 Lb.400 2 lantai 4 KT 4 KM Garasi carport 4 Taman depan Bentuk tanah kotak Size ideal untuk dibangun ulang SHM Harga: 20m (49,5jt/m) nego
+- Description: _For sale rumah lama 2 lantai di Kebayoran Baru cocok untuk dibangun ulang_ Lt.404 Lb.400 2 lantai 4 KT 4 KM Garasi carport 4 Taman depan Bentuk tanah kotak Size ideal untuk dibangun ulang SHM Harga: 20m (49,5jt/m) nego
 
 ## Property 205: For sale rumah kebayoran baru row jalan lebar
 
@@ -3013,7 +3013,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2025-08-19T03:02:43.672996
 - Agent: retha olinia
-- Description: Lt.200 Lb.500 3 lantai 5 KT 5 KT KT ART+ KM Basement parkiran 4 mobil SHM *Harga: 12.5m nego*
+- Description: Lt.200 Lb.500 3 lantai 5 KT 5 KT KT ART+ KM Basement parkiran 4 mobil SHM _Harga: 12.5m nego_
 
 ## Property 206: Dijual Rumah Nuansa Resort di Ampera Jaksel
 
@@ -3149,7 +3149,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2025-09-17T05:33:35.807624
 - Agent: abby cynthia
-- Description: Jual kantor siap pakai di Buncit, Mampang, Jakarta Selatan. Kantor dengan banyak ruangan dan dilengkapi dengan Guest House. Harga dibawah NJOP! HARGA 47 MILYAR SPESIFIKASI Bangunan 2 lantai Dibangun 2007 Hadap Selatan SHM, SHGB & Hak Pakai 
+- Description: Jual kantor siap pakai di Buncit, Mampang, Jakarta Selatan. Kantor dengan banyak ruangan dan dilengkapi dengan Guest House. Harga dibawah NJOP! HARGA 47 MILYAR SPESIFIKASI Bangunan 2 lantai Dibangun 2007 Hadap Selatan SHM, SHGB & Hak Pakai
 
 ## Property 219: Di jual Rumah di Cilandak Jakarta Selatan (NO)
 
@@ -3166,7 +3166,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2025-09-13T03:12:44.795419
 - Agent: f imam
-- Description: Di jual Rumah di Cilandak Jakarta Selatn Deskripsi: - SHM atas nama pemilik (pemilik msh hidup) - ⁠Luas tanah 270 m2 - Luas bangunan 200 m2 - Ada 2 kamar masing2 ukuran 3x4m dan 4x4m (kamar utama) - ⁠1 kamar pembantu di lantai 2 dan tempat 
+- Description: Di jual Rumah di Cilandak Jakarta Selatn Deskripsi: - SHM atas nama pemilik (pemilik msh hidup) - ⁠Luas tanah 270 m2 - Luas bangunan 200 m2 - Ada 2 kamar masing2 ukuran 3x4m dan 4x4m (kamar utama) - ⁠1 kamar pembantu di lantai 2 dan tempat
 
 ## Property 221: For sale, Rumah lama Kencana Indah Pondok Indah (JO)
 
@@ -3268,7 +3268,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 10
 - Updated: 2025-12-05T07:28:57.375232
 - Agent: retha olinia
-- Description: Lt.371 (fisik 405) Lb. +/- 1000 4 lantai Toilet tiap lantai Air PDAM & Sumur air deep well Genset CUMMINS/GBTA5 99-G2 3 Fase 100KVA Lift merk KONE Instalasi listrik dgn kabel Supreme Just renovated 2023 SHM *Harga: 50m nego*
+- Description: Lt.371 (fisik 405) Lb. +/- 1000 4 lantai Toilet tiap lantai Air PDAM & Sumur air deep well Genset CUMMINS/GBTA5 99-G2 3 Fase 100KVA Lift merk KONE Instalasi listrik dgn kabel Supreme Just renovated 2023 SHM _Harga: 50m nego_
 
 ## Property 228: Dijual Rumah dikawasan Bendungan Hilir Jakarta
 
@@ -3506,7 +3506,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 5
 - Updated: 2025-09-27T02:25:20.881821
 - Agent: f imam
-- Description: Dijual Rumah di Kemang - Bisa masuk dari Jl. Antasari atau Jl. Kemang Raya . - Dekat dengan Mall Kemang Village, CITOS. - Luas tanah 788 M2 - ⁠Luas bangunan +/_ 450 M2 - Kamar tidur 3 + 1 - Kamar mandi 3 + 1 - Garasi 2 mobil - Carport 3 mob
+- Description: Dijual Rumah di Kemang - Bisa masuk dari Jl. Antasari atau Jl. Kemang Raya . - Dekat dengan Mall Kemang Village, CITOS. - Luas tanah 788 M2 - ⁠Luas bangunan +/\_ 450 M2 - Kamar tidur 3 + 1 - Kamar mandi 3 + 1 - Garasi 2 mobil - Carport 3 mob
 
 ## Property 246: Dijual Lux 3BR Apartment Pondok Indah Jakarta Selatan
 
@@ -3608,7 +3608,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2025-10-15T06:20:58.584409
 - Agent: f imam
-- Description: FOR RENT: Pondok Indah Residences Apartment Tower Maya Luas Bangunan : 90m2 2 Bedroom 2 bathroom Full furnished including kitchen appliances Apartment facilities: Olympic sized swimming pool, indoor & outdoor gym, jacuzzi & sauna, indoor & 
+- Description: FOR RENT: Pondok Indah Residences Apartment Tower Maya Luas Bangunan : 90m2 2 Bedroom 2 bathroom Full furnished including kitchen appliances Apartment facilities: Olympic sized swimming pool, indoor & outdoor gym, jacuzzi & sauna, indoor &
 
 ## Property 257: DIJUAL Rumah Mewah di Kawasan Elit Kebayoran Baru
 
@@ -3727,7 +3727,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2025-11-02T22:57:08.281263
 - Agent: retha olinia
-- Description: Luas Tanah : 374 Luas Bangunan; 700 Shm 5 Bedroom 5 Bathroom 1 Workstation 1 Multifunction Room 1 Powder Room Dry Kitchen & wet Kitchen Semi Furnish Swimming pool Garasi : 2 mobil Carpot 2 *Harga:29,5m nego
+- Description: Luas Tanah : 374 Luas Bangunan; 700 Shm 5 Bedroom 5 Bathroom 1 Workstation 1 Multifunction Room 1 Powder Room Dry Kitchen & wet Kitchen Semi Furnish Swimming pool Garasi : 2 mobil Carpot 2 \*Harga:29,5m nego
 
 ## Property 267: Rumah dijual di jalan brawijaya kebayoran baru
 
@@ -4339,7 +4339,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2026-01-08T06:18:15.612198
 - Agent: johanes
-- Description: For Sale Rumah Pondok Indah, Jakarta Selatan Spesifikasi Bangunan: Luas Tanah 200 Luas Bangunan 220 • Kamar Tidur Atas: 4 • Kamar Mandi Atas: 2 • Kamar Tidur Bawah: 1 • Kamar Mandi Bawah: 2 • Kamar Tidur Belakang: 2 • Kamar Mandi Belakang: 
+- Description: For Sale Rumah Pondok Indah, Jakarta Selatan Spesifikasi Bangunan: Luas Tanah 200 Luas Bangunan 220 • Kamar Tidur Atas: 4 • Kamar Mandi Atas: 2 • Kamar Tidur Bawah: 1 • Kamar Mandi Bawah: 2 • Kamar Tidur Belakang: 2 • Kamar Mandi Belakang:
 
 ## Property 318: For Sale Atmosfera Bangka Jakarta Selatan
 
@@ -4373,7 +4373,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 6
 - Updated: 2026-01-12T02:27:05.458869
 - Agent: johanes
-- Description: DIJUAL BRAWIJAYA DEKAT HOTEL DHARMAWANGSA, KEBAYORAN BARU. Luxury Modern House , Spesifikasi Mewah Hunian eksklusif dikawasan premium Brawijaya, Kebayoran Baru. Lingkungan tenang, dengan row jalan lebar, area rindang pepohonan. Luas Tanah: 
+- Description: DIJUAL BRAWIJAYA DEKAT HOTEL DHARMAWANGSA, KEBAYORAN BARU. Luxury Modern House , Spesifikasi Mewah Hunian eksklusif dikawasan premium Brawijaya, Kebayoran Baru. Lingkungan tenang, dengan row jalan lebar, area rindang pepohonan. Luas Tanah:
 
 ## Property 320: For Sale Rumah Brand New American Clasic, Senopati Area
 
@@ -5104,7 +5104,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 11
 - Updated: 2026-01-27T03:11:39.015166
 - Agent: johanes
-- Description: KEBAYORAN BARU - FOR SALE: POSISI HOOK, BANGUNAN 2 LANTAI, HALAMAN DAN BALKON LUAS. KONDISI RUMAH: • Single House • Jenis Bangunan: Secondary • UNFURNISHED FASILITAS RUMAH: • Halaman: Depan, Samping • Balcony Luas • Teras: Depan, Samping • 
+- Description: KEBAYORAN BARU - FOR SALE: POSISI HOOK, BANGUNAN 2 LANTAI, HALAMAN DAN BALKON LUAS. KONDISI RUMAH: • Single House • Jenis Bangunan: Secondary • UNFURNISHED FASILITAS RUMAH: • Halaman: Depan, Samping • Balcony Luas • Teras: Depan, Samping •
 
 ## Property 372: Dijual tanah SHM Masuk gate ngantong
 
@@ -5393,7 +5393,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-01-28T03:58:01.438781
 - Agent: alberta novie
-- Description: DIJUAL CEPAT - BU The Lavande Residence Jakarta Selatan * Luas Tanah : 78.20M2 (3 BR + 1) - Private Lift - ⁠Lantai 33 - ⁠Fully Furnished - Internet * Jumlah Kamar Tidur : 3+1 * Jumlah Kamar Mandi : 2+1 - Hadap : Timur (jalan raya Dr. Soepom
+- Description: DIJUAL CEPAT - BU The Lavande Residence Jakarta Selatan _ Luas Tanah : 78.20M2 (3 BR + 1) - Private Lift - ⁠Lantai 33 - ⁠Fully Furnished - Internet _ Jumlah Kamar Tidur : 3+1 \* Jumlah Kamar Mandi : 2+1 - Hadap : Timur (jalan raya Dr. Soepom
 
 ## Property 389: Dijual dan disewa di Kemang
 
@@ -5580,7 +5580,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-01-28T09:42:15.893676
 - Agent: alberta novie
-- Description: *Dijual Rumah Lokasi Strategis Dkt MRT Fatmawati Jakarta Selatan* LT 325m2 LB 400m2 4 + 2 KT 4 + 1 KM 2 Lantai Garasi 2 Mobil Carport 1 Mobil Spacious pekarangan belakang Lokasi Strategis dkt MRT Fatmawati Akses Jalan 2 Mobil Jalan Buntu SH
+- Description: _Dijual Rumah Lokasi Strategis Dkt MRT Fatmawati Jakarta Selatan_ LT 325m2 LB 400m2 4 + 2 KT 4 + 1 KM 2 Lantai Garasi 2 Mobil Carport 1 Mobil Spacious pekarangan belakang Lokasi Strategis dkt MRT Fatmawati Akses Jalan 2 Mobil Jalan Buntu SH
 
 ## Property 400: DIJUAL RUMAH BRAND NEW clasic
 
@@ -5682,7 +5682,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-01-29T06:47:16.504598
 - Agent: alberta novie
-- Description: Dijual / Sewa Apartemen Menteng Park 👉 Dijual 3,7M 🤙 Sewa *17Jt/Bln* 📣 Apartemen Menteng Park 🏰 Tower Diamond 🏙 Penthouse Hadap Monas 🔭 Lantai Atas Pojok (37) 🖼 Lift Semi Pribadi 🛏 2 K.Tidur & 2 K.Mandi🚿 ⚡️ Listrik 7 KVA ✨ 👨‍👨‍👧
+- Description: Dijual / Sewa Apartemen Menteng Park 👉 Dijual 3,7M 🤙 Sewa _17Jt/Bln_ 📣 Apartemen Menteng Park 🏰 Tower Diamond 🏙 Penthouse Hadap Monas 🔭 Lantai Atas Pojok (37) 🖼 Lift Semi Pribadi 🛏 2 K.Tidur & 2 K.Mandi🚿 ⚡️ Listrik 7 KVA ✨ 👨‍👨‍👧
 
 ## Property 406: Dijual Apartemen Pondok Indah Residences
 
@@ -5733,7 +5733,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-02-02T07:56:16.945216
 - Agent: alberta novie
-- Description: DIJUAL Hamptons Park Tower A Lantai 3 Size 105m2 3 bedrooms 2 bathroom 1toilet for maid Service area Full furnished With balcony Hadap: Selatan (view hotel Kristal) Sertifikat: SHM Harga jual Rp 2,7 M NEGO *Turun harga jadi Rp 2,1 M Nego*
+- Description: DIJUAL Hamptons Park Tower A Lantai 3 Size 105m2 3 bedrooms 2 bathroom 1toilet for maid Service area Full furnished With balcony Hadap: Selatan (view hotel Kristal) Sertifikat: SHM Harga jual Rp 2,7 M NEGO _Turun harga jadi Rp 2,1 M Nego_
 
 ## Property 409: DIJUAL APARTEMEN HAMPTONS PARK
 
@@ -5852,7 +5852,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-02-03T03:14:46.962952
 - Agent: alberta novie
-- Description: DiJual Pondok Indah Residence (PIR) tower maya- RP 7.75 M * 2BR/11th floor/110 m2
+- Description: DiJual Pondok Indah Residence (PIR) tower maya- RP 7.75 M \* 2BR/11th floor/110 m2
 
 ## Property 416: For Rent Apartment pondok indah residance
 
@@ -5971,7 +5971,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 6
 - Updated: 2026-02-13T02:15:01.232855
 - Agent: johanes
-- Description: Dijual, Rumah Siap Huni 2.5 lantai Kemang Dalam Jaksel Lt -+ 650 Lb-+ 800 Kt 6 Km 7 R Kantor 1 R Makan. Dapur Bersih. Dapur Kotor. Kt pembantu 3 Km pembantu 2 Gudang 1 bersih Teras Blkng Teras Atas Garasi bs 2 mobil Carpot bs 4 mobil Taman 
+- Description: Dijual, Rumah Siap Huni 2.5 lantai Kemang Dalam Jaksel Lt -+ 650 Lb-+ 800 Kt 6 Km 7 R Kantor 1 R Makan. Dapur Bersih. Dapur Kotor. Kt pembantu 3 Km pembantu 2 Gudang 1 bersih Teras Blkng Teras Atas Garasi bs 2 mobil Carpot bs 4 mobil Taman
 
 ## Property 423: Dijual MURAH Rumah di: Cilandak Dalam
 
@@ -6192,7 +6192,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-05-18T08:08:41.505003
 - Agent: suany tan
-- Description: Disewakan rumah tinggal di Jl. Malaka Raya No. 141, Jakarta Timur. Spesifikasi: - LT / LB : 131 m² / 140 m² - Hadap Timur - 2 Lantai - Sertifikat Hak Milik + IMB - KT 4 - KM 2 - KT Pembantu 1 , KM 1 - Sumber air : Jet Pump + Torn dilenkapi 
+- Description: Disewakan rumah tinggal di Jl. Malaka Raya No. 141, Jakarta Timur. Spesifikasi: - LT / LB : 131 m² / 140 m² - Hadap Timur - 2 Lantai - Sertifikat Hak Milik + IMB - KT 4 - KM 2 - KT Pembantu 1 , KM 1 - Sumber air : Jet Pump + Torn dilenkapi
 
 ## Property 437: Brand new kebayoran baru row jalan lebar posisi hoek
 
@@ -6260,7 +6260,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-05-18T07:16:09.671214
 - Agent: alberta novie
-- Description: Dijual Apartemen Kemang Village Tower Bloomington ◻️Area: 245 sq m ◻️Number of Rooms: 4 ◻️Bathrooms: 4 ◻️Housemaid's Room + Housemaid's Bathroom ◻️Sale Price: 10M Rupiah (Negotiable) ◻️Interior Completed ◻️This is the extremely rare Line 2 
+- Description: Dijual Apartemen Kemang Village Tower Bloomington ◻️Area: 245 sq m ◻️Number of Rooms: 4 ◻️Bathrooms: 4 ◻️Housemaid's Room + Housemaid's Bathroom ◻️Sale Price: 10M Rupiah (Negotiable) ◻️Interior Completed ◻️This is the extremely rare Line 2
 
 ## Property 441: Dijual Apartemen Kemang Village Tower tiffany
 
@@ -6379,7 +6379,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-05-20T10:06:58.386155
 - Agent: alberta novie
-- Description: *Dijual APARTEMEN PONDOK INDAH RESIDENCE* TOWER MAYA Luas bangunan 110m2 2 Bedroom + 2 Bethroom Full Furnished Harga 6,8M 1slot mobil
+- Description: _Dijual APARTEMEN PONDOK INDAH RESIDENCE_ TOWER MAYA Luas bangunan 110m2 2 Bedroom + 2 Bethroom Full Furnished Harga 6,8M 1slot mobil
 
 ## Property 448: Dijual Apartemen Pondok Indah Residence
 
@@ -6515,7 +6515,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-05-29T07:10:47.477500
 - Agent: alberta novie
-- Description: ✨ Dijual Tanah Premium di Deplu, Bintaro ✨ 📍 Lokasi strategis kawasan Deplu – Bintaro 📐 Luas Tanah: 540 m² 💰 Harga: Rp 6,5 Miliar Cocok untuk: • Rumah mewah pribadi • Townhouse premium • Investasi properti jangka panjang Akses mudah ke: 
+- Description: ✨ Dijual Tanah Premium di Deplu, Bintaro ✨ 📍 Lokasi strategis kawasan Deplu – Bintaro 📐 Luas Tanah: 540 m² 💰 Harga: Rp 6,5 Miliar Cocok untuk: • Rumah mewah pribadi • Townhouse premium • Investasi properti jangka panjang Akses mudah ke:
 
 ## Property 460: Cozy Tropical Home Kemang South Jakarta
 
@@ -6600,7 +6600,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-05-29T09:11:31.741233
 - Agent: alberta novie
-- Description: Apartemen Arumaya for Rent Modern & cozy apartment unit at Arumaya Residences * Rental Price: Rp12,5 juta / bulan * Exclude: IPL & Internet * Minimum Lease: 6 months Suitable for expatriates, young professionals, and long-stay tenants looki
+- Description: Apartemen Arumaya for Rent Modern & cozy apartment unit at Arumaya Residences _ Rental Price: Rp12,5 juta / bulan _ Exclude: IPL & Internet \* Minimum Lease: 6 months Suitable for expatriates, young professionals, and long-stay tenants looki
 
 ## Property 465: For Rent Elegant Residence Patra Kuningan
 
@@ -6719,7 +6719,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 3
 - Updated: 2026-06-18T09:56:25.439659
 - Agent: alberta novie
-- Description: *Dijual Rumah Lokasi Strategis Dkt MRT Fatmawati Jakarta Selatan* LT 325m2 LB 400m2 4 + 2 KT 4 + 1 KM 2 Lantai Garasi 2 Mobil Carport 1 Mobil Spacious pekarangan belakang Lokasi Strategis dkt MRT Fatmawati Akses Jalan 2 Mobil Jalan Buntu SH
+- Description: _Dijual Rumah Lokasi Strategis Dkt MRT Fatmawati Jakarta Selatan_ LT 325m2 LB 400m2 4 + 2 KT 4 + 1 KM 2 Lantai Garasi 2 Mobil Carport 1 Mobil Spacious pekarangan belakang Lokasi Strategis dkt MRT Fatmawati Akses Jalan 2 Mobil Jalan Buntu SH
 
 ## Property 472: Dijual Kavling Jl. Metro alam 3
 
@@ -6940,7 +6940,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2026-06-09T02:52:32.516477
 - Agent: alberta novie
-- Description: [𝗙𝗢𝗥 𝗦𝗔𝗟𝗘] 𝗖𝗜𝗟𝗔𝗡𝗗𝗔𝗞 𝗝𝗔𝗞𝗔𝗥𝗧𝗔 𝗦𝗘𝗟𝗔𝗧𝗔𝗡 𝗕𝗥𝗔𝗡𝗗 𝗡𝗘𝗪 𝗛𝗢𝗨𝗦𝗘 𝗗𝗔𝗟𝗔𝗠 𝗞𝗢𝗠𝗣𝗟𝗘𝗞 𝗧𝗢𝗪𝗡𝗛𝗢𝗨𝗦𝗘 *(TN)* ▪︎ Lokasi sangat strategis ▪︎ Akses jalan lebar ▪︎ 5 menit ke Toll TB Simatupang ▪︎ Keamanan 2
+- Description: [𝗙𝗢𝗥 𝗦𝗔𝗟𝗘] 𝗖𝗜𝗟𝗔𝗡𝗗𝗔𝗞 𝗝𝗔𝗞𝗔𝗥𝗧𝗔 𝗦𝗘𝗟𝗔𝗧𝗔𝗡 𝗕𝗥𝗔𝗡𝗗 𝗡𝗘𝗪 𝗛𝗢𝗨𝗦𝗘 𝗗𝗔𝗟𝗔𝗠 𝗞𝗢𝗠𝗣𝗟𝗘𝗞 𝗧𝗢𝗪𝗡𝗛𝗢𝗨𝗦𝗘 _(TN)_ ▪︎ Lokasi sangat strategis ▪︎ Akses jalan lebar ▪︎ 5 menit ke Toll TB Simatupang ▪︎ Keamanan 2
 
 ## Property 485: Brand New Luxury House Kemang Dalam Full Furnished
 
@@ -7008,7 +7008,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-06-09T08:03:47.231435
 - Agent: abby cynthia
-- Description: *For Sale Siap Huni Rumah Senopati Kebayoran Baru Jaksel* Lt 336 m2 Lb 300 m2 4 kamar tidur 3 kamar mandi 3 kamar art Kolam Renang Unfurnished Sale : 26 M Code: IG
+- Description: _For Sale Siap Huni Rumah Senopati Kebayoran Baru Jaksel_ Lt 336 m2 Lb 300 m2 4 kamar tidur 3 kamar mandi 3 kamar art Kolam Renang Unfurnished Sale : 26 M Code: IG
 
 ## Property 499: For Rent Bukit Golf Hill Terrace Apartment
 
@@ -7178,7 +7178,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 5
 - Updated: 2026-06-17T07:09:14.589097
 - Agent: alberta novie
-- Description: ✨ For Sale – Luxury House in Pondok Indah, South Jakarta ✨ Spesifikasi: Lokasi: Pondok Indah, Jakarta Selatan (Hadap Timur) One Gate System (akses terbatas, keamanan lebih terjamin) Luas Tanah: 603 m² Luas Bangunan: 1.000 m² Kamar Tidur: 5 
+- Description: ✨ For Sale – Luxury House in Pondok Indah, South Jakarta ✨ Spesifikasi: Lokasi: Pondok Indah, Jakarta Selatan (Hadap Timur) One Gate System (akses terbatas, keamanan lebih terjamin) Luas Tanah: 603 m² Luas Bangunan: 1.000 m² Kamar Tidur: 5
 
 ## Property 511: For Rent Luxury House in Pondok Indah, South Jakarta
 
@@ -7229,7 +7229,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 3
 - Updated: 2026-06-17T09:18:05.984579
 - Agent: abby cynthia
-- Description: *Disewa Rumah Siap Huni dan Asri Menteng Jakarta Pusat* LT 330m2 LB 600m2 2.5 lantai 3 kamar tidur 3 kamar mandi 1 kamar tidur pembantu 1 kamar mandi pembantu Living room Dining room Dapur bersih Dapur kotor Furnished Listrik 44.000 watt Ga
+- Description: _Disewa Rumah Siap Huni dan Asri Menteng Jakarta Pusat_ LT 330m2 LB 600m2 2.5 lantai 3 kamar tidur 3 kamar mandi 1 kamar tidur pembantu 1 kamar mandi pembantu Living room Dining room Dapur bersih Dapur kotor Furnished Listrik 44.000 watt Ga
 
 ## Property 514: For Sale Luxury House Simprug Senayan
 
@@ -7280,7 +7280,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-06-18T09:04:47.656666
 - Agent: abby cynthia
-- Description: *Disewa 1BR Apartment Pondok Indah Residences Jaksel* LB 65m2 KT 1 KM 1 Middle Floor Tower Maya Fully Furnished Harga USD 1.200/Month Exclude Tax
+- Description: _Disewa 1BR Apartment Pondok Indah Residences Jaksel_ LB 65m2 KT 1 KM 1 Middle Floor Tower Maya Fully Furnished Harga USD 1.200/Month Exclude Tax
 
 ## Property 517: Dijual Rumah Dekat MRT Fatmawati Jaksel
 
@@ -7297,7 +7297,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 3
 - Updated: 2026-06-18T09:30:33.068282
 - Agent: abby cynthia
-- Description: *Dijual Rumah Lokasi Strategis Dkt MRT Fatmawati Jakarta Selatan* LT 325m2 LB 400m2 4 + 2 KT 4 + 1 KM 2 Lantai Garasi 1 Mobil Carport 2 Mobil Spacious pekarangan belakang Lokasi Strategis dkt MRT Fatmawati Akses Jalan 2 Mobil Jalan Buntu SH
+- Description: _Dijual Rumah Lokasi Strategis Dkt MRT Fatmawati Jakarta Selatan_ LT 325m2 LB 400m2 4 + 2 KT 4 + 1 KM 2 Lantai Garasi 1 Mobil Carport 2 Mobil Spacious pekarangan belakang Lokasi Strategis dkt MRT Fatmawati Akses Jalan 2 Mobil Jalan Buntu SH
 
 ## Property 518: FOR RENT Pondok Indah Residence
 
@@ -7331,7 +7331,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2026-06-19T06:39:38.666449
 - Agent: abby cynthia
-- Description: *FOR RENT CLASSIC HOME JERUK PURUT KEMANG JAKSEL* LT 700m2 LB 1.000m2 5 + 1 KT 5 + 1 KM 2 Lantai Swimming Pool 2 Car Garage & 2 Carport Price USD 4,500/month exclude Tax Dekat dari TB Simatupang, Kemang Raya, Sekolah Internasional, Pusat Pe
+- Description: _FOR RENT CLASSIC HOME JERUK PURUT KEMANG JAKSEL_ LT 700m2 LB 1.000m2 5 + 1 KT 5 + 1 KM 2 Lantai Swimming Pool 2 Car Garage & 2 Carport Price USD 4,500/month exclude Tax Dekat dari TB Simatupang, Kemang Raya, Sekolah Internasional, Pusat Pe
 
 ## Property 520: FOR SALE RUMAH CIPAKU KEBAYORAN BARU JAKSEL
 
@@ -7382,7 +7382,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2026-06-20T02:51:54.265726
 - Agent: johanes
-- Description: *1. JL. TIRTAYASA - Kebayoran Baru* Dijual rumah bergaya american style. Kondisi Rumah Siap Huni Layout Lapang Terbuka Luas Tanah 450 m² Luas Bangunan 400 m² Bangunan 2 Lantai 4 Kamar tidur. 4 Kamar mandi. 2 kamar ART + 1 kamar mandi nya. R
+- Description: _1. JL. TIRTAYASA - Kebayoran Baru_ Dijual rumah bergaya american style. Kondisi Rumah Siap Huni Layout Lapang Terbuka Luas Tanah 450 m² Luas Bangunan 400 m² Bangunan 2 Lantai 4 Kamar tidur. 4 Kamar mandi. 2 kamar ART + 1 kamar mandi nya. R
 
 ## Property 523: For Sale Rumah Tua Pondok Indah Harga di Bawah NJOP
 
@@ -7399,7 +7399,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-06-20T03:41:24.360662
 - Agent: alberta novie
-- Description: *Dijual Rumah Tua Pondok Indah* 🏡 DIJUAL RUMAH TUA – HARGA DI BAWAH NJOP 📍 Pinang, Pondok Indah – Jakarta Selatan Kesempatan langka memiliki lahan luas di kawasan premium Pondok Indah dengan harga menarik. ✨ Spesifikasi Properti: Luas Tan
+- Description: _Dijual Rumah Tua Pondok Indah_ 🏡 DIJUAL RUMAH TUA – HARGA DI BAWAH NJOP 📍 Pinang, Pondok Indah – Jakarta Selatan Kesempatan langka memiliki lahan luas di kawasan premium Pondok Indah dengan harga menarik. ✨ Spesifikasi Properti: Luas Tan
 
 ## Property 524: For Sale Rumah Cluster Taman Harapan Baru
 
@@ -7433,7 +7433,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2026-06-22T04:08:50.417902
 - Agent: alberta novie
-- Description: Dijual Rumah Layak huni PERUM LEBAK LESTARI LEBAK BULUS JAKARTA SELATAN Jl Melati Lestari PERUM LEBAK LESTARI INDAH dekat MRT Luas tanah 225 Luas bangunan 300 SHM spec bangunan 1 1/2 Lantai Kamar tidur 3 Kamar mandi 3 1 study room Garasi 1 
+- Description: Dijual Rumah Layak huni PERUM LEBAK LESTARI LEBAK BULUS JAKARTA SELATAN Jl Melati Lestari PERUM LEBAK LESTARI INDAH dekat MRT Luas tanah 225 Luas bangunan 300 SHM spec bangunan 1 1/2 Lantai Kamar tidur 3 Kamar mandi 3 1 study room Garasi 1
 
 ## Property 526: For Sale Rumah Alam Elok Pondok Indah Jln Lebar
 
@@ -7467,7 +7467,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 3
 - Updated: 2026-06-22T08:47:50.156036
 - Agent: johanes
-- Description: For Sale, Rumah Siap Huni Kesehatan Pesanggrahan Bintaro Jakarta Selatan ( sangat bebas banjir ) SHM ,Semi furnish , Kamar tidur 4 + 3, kamar mandi 5+2,gudang ,ruang satpam , kitchen ,balkon,taman , kolam renang waterheater, listrik 10.500 
+- Description: For Sale, Rumah Siap Huni Kesehatan Pesanggrahan Bintaro Jakarta Selatan ( sangat bebas banjir ) SHM ,Semi furnish , Kamar tidur 4 + 3, kamar mandi 5+2,gudang ,ruang satpam , kitchen ,balkon,taman , kolam renang waterheater, listrik 10.500
 
 ## Property 528: For Sale Rumah Semi Klasik Kebayoran Baru
 
@@ -7586,7 +7586,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 8
 - Updated: 2026-06-25T08:08:44.971170
 - Agent: johanes
-- Description: Forsale Rumah 3 Lantai Dua muka (Utara x Selatan) Di bekasi Kota Kemang Pratama Luas tanah 570m2 Luas bangun +- 850m2 Semi Furnished Details: Lt 1: 1 kamar tidur, 3 Kamar mandi, ruang kerja, dapur bersih, dapur kotor, garasi f (1) 4 mobil, 
+- Description: Forsale Rumah 3 Lantai Dua muka (Utara x Selatan) Di bekasi Kota Kemang Pratama Luas tanah 570m2 Luas bangun +- 850m2 Semi Furnished Details: Lt 1: 1 kamar tidur, 3 Kamar mandi, ruang kerja, dapur bersih, dapur kotor, garasi f (1) 4 mobil,
 
 ## Property 535: House for Rent Ciawi Kebayoran Baru
 
@@ -8232,7 +8232,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-07-27T04:42:35.355667
 - Agent: helen
-- Description: Dijual Gudang di Bekasi Pinggir Jalan Raya | LT 2.900 m² | Dekat Tol Jatiasih | Bebas Banjir | Cocok Gudang & Komersil. Kesempatan langka memiliki gudang dengan kantor di lokasi premium, tepat di pinggir Jalan Raya Wibawa Mukti II, Bekasi. 
+- Description: Dijual Gudang di Bekasi Pinggir Jalan Raya | LT 2.900 m² | Dekat Tol Jatiasih | Bebas Banjir | Cocok Gudang & Komersil. Kesempatan langka memiliki gudang dengan kantor di lokasi premium, tepat di pinggir Jalan Raya Wibawa Mukti II, Bekasi.
 
 ## Property 579: DIJUAL KAVLING KOMERSIL PREMIUM CBD JAKARTA BARAT
 
@@ -8334,7 +8334,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-07-27T08:26:41.040637
 - Agent: helen
-- Description: DIJUAL RUKO 4 LANTAI DI MELAWAI RAYA, KEBAYORAN BARU – JAKARTA SELATAN Lokasi Premium |Cocok untuk Investasi maupun Operasional Bisnis. Miliki ruko 4 lantai di kawasan Melawai Raya, salah satu pusat bisnis dan komersial paling strategis di 
+- Description: DIJUAL RUKO 4 LANTAI DI MELAWAI RAYA, KEBAYORAN BARU – JAKARTA SELATAN Lokasi Premium |Cocok untuk Investasi maupun Operasional Bisnis. Miliki ruko 4 lantai di kawasan Melawai Raya, salah satu pusat bisnis dan komersial paling strategis di
 
 ## Property 585: DIJUAL Gudang, Office & Workshop Premium, Jakbar
 
@@ -8487,7 +8487,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2026-08-04T05:02:36.228076
 - Agent: alberta novie
-- Description: PROPERTY DETAILS * Luas Tanah: 459 m² * Luas Bangunan: ±600 m² * 4 Kamar Tidur * 2 Kamar Mandi * 6 Kamar Karyawan * 2 Kamar Mandi Karyawan * Listrik 10.000 Watt * Garasi + Carport * Menghadap Timur * SHM
+- Description: PROPERTY DETAILS _ Luas Tanah: 459 m² _ Luas Bangunan: ±600 m² _ 4 Kamar Tidur _ 2 Kamar Mandi _ 6 Kamar Karyawan _ 2 Kamar Mandi Karyawan _ Listrik 10.000 Watt _ Garasi + Carport _ Menghadap Timur _ SHM
 
 ## Property 594: Dijual Rumah + Kost Strategis Tanah Kusir
 
@@ -8521,7 +8521,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-08-04T05:02:12.935179
 - Agent: alberta novie
-- Description: PROPERTY DETAILS * 1 Bedroom * Luas 31,58 m² * Fully Furnished * Tower D — Lantai 5, Unit 512A * Orientasi Barat–Timur * Listrik token 2.200 VA * Sertifikat P4TB (HPL) * Saat ini disewakan Rp4,5 juta/bulan * Include IPL
+- Description: PROPERTY DETAILS _ 1 Bedroom _ Luas 31,58 m² _ Fully Furnished _ Tower D — Lantai 5, Unit 512A _ Orientasi Barat–Timur _ Listrik token 2.200 VA _ Sertifikat P4TB (HPL) _ Saat ini disewakan Rp4,5 juta/bulan \* Include IPL
 
 ## Property 596: For Sale Rumah Modern Classic Kebayoran Baru
 
@@ -8589,7 +8589,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2026-08-05T03:10:40.183060
 - Agent: alberta novie
-- Description: * Land Area: 302 m² * Building Area: 520 m² * Bedrooms: 4 + 2 * Bathrooms: 6 + 1 * Garage: 2 cars * Carport: 2 cars * Electricity: 5,500 Watt * Semi Furnished * SHM
+- Description: _ Land Area: 302 m² _ Building Area: 520 m² _ Bedrooms: 4 + 2 _ Bathrooms: 6 + 1 _ Garage: 2 cars _ Carport: 2 cars _ Electricity: 5,500 Watt _ Semi Furnished \* SHM
 
 ## Property 600: Dijual Rumah Hitung Tanah Mega Kuningan Jakarta Selatan
 
@@ -8708,7 +8708,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-08-11T06:27:04.566816
 - Agent: alberta novie
-- Description: HIGH FLOOR | BARE CONDITION | PREMIUM LOCATION Kesempatan memiliki office space di kawasan bisnis strategis Gatot Subroto, Jakarta Selatan. 📐 Luas: ±1.023m² 🏙️ Lantai: High Floor 🏢 Kondisi: Bare 📍 Lokasi: Gatot Subroto, Jakarta Selatan 
+- Description: HIGH FLOOR | BARE CONDITION | PREMIUM LOCATION Kesempatan memiliki office space di kawasan bisnis strategis Gatot Subroto, Jakarta Selatan. 📐 Luas: ±1.023m² 🏙️ Lantai: High Floor 🏢 Kondisi: Bare 📍 Lokasi: Gatot Subroto, Jakarta Selatan
 
 ## Property 607: Dijual Rumah Tinggal Siap Huni Di Cideng, Jakarta Pusat
 
@@ -8759,7 +8759,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 4
 - Updated: 2026-08-13T03:49:18.534660
 - Agent: alberta novie
-- Description: Dijual MURAH Rumah di: Jl. Clandak Dalam ( dekat Jl. Antasari & CITOS ) * LT/ LB: 484m2/ -/+ 600 ( dua lantai ) * SHM * Listrik 6600 * Kmr tdr 7, kmr mandi dalam + kmr mandi tamu dan belakang, kmr tdr pembantu 2, gudang satu, garasi 4 mbl *
+- Description: Dijual MURAH Rumah di: Jl. Clandak Dalam ( dekat Jl. Antasari & CITOS ) _ LT/ LB: 484m2/ -/+ 600 ( dua lantai ) _ SHM _ Listrik 6600 _ Kmr tdr 7, kmr mandi dalam + kmr mandi tamu dan belakang, kmr tdr pembantu 2, gudang satu, garasi 4 mbl \*
 
 ## Property 610: Di Jual Tanah Di Jagakarsa
 
@@ -8997,7 +8997,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-08-26T03:41:40.881528
 - Agent: alberta novie
-- Description: Disewakan Apartmen menteng Park Alamat : jalan cikini raya No 79 Rt 1 Rw 2,cikini menteng jakarta pusat, Tower Emerald, lantai 27, ls 61 m2, view Monas , 2 bedroom, bathtub, private lift, balkon full furnished Fasilitas :Kolam Renang, gym, 
+- Description: Disewakan Apartmen menteng Park Alamat : jalan cikini raya No 79 Rt 1 Rw 2,cikini menteng jakarta pusat, Tower Emerald, lantai 27, ls 61 m2, view Monas , 2 bedroom, bathtub, private lift, balkon full furnished Fasilitas :Kolam Renang, gym,
 
 ## Property 624: Dijual Cepat Tanah di Kebayoran Lama
 
@@ -9014,7 +9014,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-08-26T03:50:16.568331
 - Agent: alberta novie
-- Description: Dijual Cepat Tanah Siap Bangun di Kebayoran Lama - Jakarta Selatan ~ Tanah Strategis, Pinggir Jalan, Bonus Rumah, Nego Cocok Untuk Hunian, Perkantoran, Usaha, Restoran ~ Dekat stasiun MRT Lebakbulus ~ 600 meter ke Toll JORR Simatupang, dan 
+- Description: Dijual Cepat Tanah Siap Bangun di Kebayoran Lama - Jakarta Selatan ~ Tanah Strategis, Pinggir Jalan, Bonus Rumah, Nego Cocok Untuk Hunian, Perkantoran, Usaha, Restoran ~ Dekat stasiun MRT Lebakbulus ~ 600 meter ke Toll JORR Simatupang, dan
 
 ## Property 625: For Sale Rumah Gading Grande Residence
 
@@ -9031,7 +9031,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-08-26T05:47:20.034689
 - Agent: suany tan
-- Description: RUMAH FOR SALE GADING GRANDE RESIDENCE Spesifikasi Rumah: * Ukuran: 8 × 18 m * 3 Lantai * Kamar Tidur: 4 + 2 * Kamar Mandi: 4 * Kamar utama dengan kamar mandi dalam * Fully Furnished HARGA JUAL Rp 6 M HARGA SEWA Rp 150 Juta/Tahun Minimal se
+- Description: RUMAH FOR SALE GADING GRANDE RESIDENCE Spesifikasi Rumah: _ Ukuran: 8 × 18 m _ 3 Lantai _ Kamar Tidur: 4 + 2 _ Kamar Mandi: 4 _ Kamar utama dengan kamar mandi dalam _ Fully Furnished HARGA JUAL Rp 6 M HARGA SEWA Rp 150 Juta/Tahun Minimal se
 
 ## Property 626: For Rent Rumah Gading Grande Residence
 
@@ -9048,7 +9048,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 0
 - Updated: 2026-08-26T05:51:00.722371
 - Agent: suany tan
-- Description: RUMAH FOR RENT GADING GRANDE RESIDENCE Spesifikasi Rumah: * Ukuran: 8 × 18 m * 3 Lantai * Kamar Tidur: 4 + 2 * Kamar Mandi: 4 * Kamar utama dengan kamar mandi dalam * Fully Furnished HARGA JUAL Rp 6 M HARGA SEWA Rp 150 Juta/Tahun Minimal se
+- Description: RUMAH FOR RENT GADING GRANDE RESIDENCE Spesifikasi Rumah: _ Ukuran: 8 × 18 m _ 3 Lantai _ Kamar Tidur: 4 + 2 _ Kamar Mandi: 4 _ Kamar utama dengan kamar mandi dalam _ Fully Furnished HARGA JUAL Rp 6 M HARGA SEWA Rp 150 Juta/Tahun Minimal se
 
 ## Property 627: For Sale Rumah Mewah Senayan Residence
 
@@ -9065,7 +9065,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2026-08-26T05:53:45.902614
 - Agent: suany tan
-- Description: FOR SALE – RUMAH MEWAH SENAYAN RESIDENCE | JAKARTA SELATAN Rumah luas, fully furnished & siap huni di kawasan premium Jakarta Selatan. SPESIFIKASI * Luas Tanah 435 m² * Luas Bangunan ±1.200 m² * Dimensi 14,5 × 30 m * Bangunan 3,5 Lantai * 5
+- Description: FOR SALE – RUMAH MEWAH SENAYAN RESIDENCE | JAKARTA SELATAN Rumah luas, fully furnished & siap huni di kawasan premium Jakarta Selatan. SPESIFIKASI _ Luas Tanah 435 m² _ Luas Bangunan ±1.200 m² _ Dimensi 14,5 × 30 m _ Bangunan 3,5 Lantai \* 5
 
 ## Property 628: For Rent Apartement French Walk MOI
 
@@ -9099,7 +9099,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 2
 - Updated: 2026-08-28T04:26:17.726104
 - Agent: alberta novie
-- Description: Dijual Rumah Layak huni PERUM LEBAK LESTARI LEBAK BULUS JAKARTA SELATAN Jl Melati Lestari PERUM LEBAK LESTARI INDAH dekat MRT Luas tanah 225 Luas bangunan 300 SHM spec bangunan 1 1/2 Lantai Kamar tidur 3 Kamar mandi 3 1 study room Garasi 1 
+- Description: Dijual Rumah Layak huni PERUM LEBAK LESTARI LEBAK BULUS JAKARTA SELATAN Jl Melati Lestari PERUM LEBAK LESTARI INDAH dekat MRT Luas tanah 225 Luas bangunan 300 SHM spec bangunan 1 1/2 Lantai Kamar tidur 3 Kamar mandi 3 1 study room Garasi 1
 
 ## Property 630: For Sale Rumah Mewah di Pondok Indah
 
@@ -9235,7 +9235,7 @@ Live inventory: https://primeproindonesia.com/properties
 - Parking: 1
 - Updated: 2026-09-01T04:27:30.921455
 - Agent: alberta novie
-- Description: DIJUAL – APARTMENT BLOOMINGTON ✨ Lantai 8 | Luas 205 m² Hunian luas dan nyaman dengan layout ideal untuk keluarga: * 3 Kamar Tidur * 3 Kamar Mandi * 1 Kamar Pembantu * 1 Kamar Mandi Pembantu * Lantai 8 * Luas 205 m² 💎 Spacious • Comfortabl
+- Description: DIJUAL – APARTMENT BLOOMINGTON ✨ Lantai 8 | Luas 205 m² Hunian luas dan nyaman dengan layout ideal untuk keluarga: _ 3 Kamar Tidur _ 3 Kamar Mandi _ 1 Kamar Pembantu _ 1 Kamar Mandi Pembantu _ Lantai 8 _ Luas 205 m² 💎 Spacious • Comfortabl
 
 ## Property 638: Dijual Apartement Bloomington, Jakarta Selatan
 
