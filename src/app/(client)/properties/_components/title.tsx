@@ -2,7 +2,6 @@ import { FindPropertyQuery } from "@/lib/api";
 import { PropertyPurchaseStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useMemo } from "react";
-import { createPropertiesIntroduction } from "../_lib/create-properties-metadata";
 
 type PropertiesTitleProps = {
   propertyCount: number;
@@ -102,9 +101,6 @@ export const PropertiesTitle = ({
         <>
           <p className="text-muted-foreground">
             Menampilkan {showCount} dari {propertyCount} properti
-          </p>
-          <p className="text-muted-foreground mt-2 max-w-4xl normal-case">
-            {createPropertiesIntroduction(searchParams, propertyCount)}
           </p>
         </>
       )}

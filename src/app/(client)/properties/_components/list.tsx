@@ -23,7 +23,7 @@ export const PropertyList = ({
   const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
   if (!propertiesWithAgent || propertiesWithAgent?.length === 0) {
     return (
-      <div className="w-full h-96 flex flex-col items-center justify-center">
+      <div className="w-full h-96 flex flex-col items-center justify-center min-h-screen">
         <LuSearch className="text-5xl mb-2" />
         <p className="text-2xl font-bold mb-4">Pencarian tidak ditemukan</p>
         <div className="flex items-center gap-2">
@@ -45,7 +45,7 @@ export const PropertyList = ({
   return (
     <div
       className={cn(
-        "grid gap-8 grid-cols-[repeat(auto-fit,minmax(350px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))]  w-full",
+        "grid gap-8 grid-cols-[repeat(auto-fit,minmax(350px,1fr))] md:grid-cols-[repeat(auto-fit,minmax(400px,1fr))]  w-full min-h-screen",
         propertiesWithAgent.length <= 3 && "lg:grid-cols-3",
       )}
     >

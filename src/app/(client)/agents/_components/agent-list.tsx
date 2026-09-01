@@ -8,6 +8,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { MdWhatsapp } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import { getAgentsQueryOptions } from "@/lib/hooks";
+import Loading from "../../loading";
 
 const createWhatsappLink = (phone: string) => {
   const whatsappUrl = new URL("https://api.whatsapp.com/send");
@@ -19,8 +20,9 @@ const createWhatsappLink = (phone: string) => {
 
 export const AgentList = () => {
   const agents = useQuery(getAgentsQueryOptions());
+  if (agents.isLoading) return <Loading />
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
       {agents.data?.data?.data.map((agent) => (
         <div
           key={agent.id}

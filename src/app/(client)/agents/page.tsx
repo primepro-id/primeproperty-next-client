@@ -13,7 +13,7 @@ export const metadata: Metadata = createMetadata({
 
 export default function JobPosting() {
   return (
-    <div className="min-h-screen container mx-auto flex flex-col gap-8 p-4">
+    <div className="container mx-auto flex flex-col gap-8 p-4">
       <div className="flex flex-col">
         <div className="flex gap-2 items-center bg-primary text-primary-foreground rounded shadow p-1 w-fit text-xs mb-4">
           <LuUsers />
@@ -25,7 +25,10 @@ export default function JobPosting() {
           real estate and property industries
         </h2>
       </div>
+      <div className="min-h-screen">
+
       <AgentList />
+      </div>
 
       <Faq defaultTab="PRIMEPRO" />
     </div>
