@@ -20,7 +20,7 @@ const createWhatsappLink = (phone: string) => {
 
 export const AgentList = () => {
   const agents = useQuery(getAgentsQueryOptions());
-  if (agents.isLoading) return <Loading />
+  if (agents.isLoading) return <Loading />;
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
       {agents.data?.data?.data.map((agent) => (

@@ -1,11 +1,9 @@
 {
-  "name": "inception-next",
+  "name": "primeproperty-next-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 4137",
-    "generate:ai-catalog": "node scripts/generate-property-catalog.mjs",
-    "prebuild": "yarn generate:ai-catalog",
     "build": "next build",
     "start": "next start -p 4137",
     "lint": "next lint",

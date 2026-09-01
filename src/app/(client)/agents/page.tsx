@@ -26,8 +26,7 @@ export default function JobPosting() {
         </h2>
       </div>
       <div className="min-h-screen">
-
-      <AgentList />
+        <AgentList />
       </div>
 
       <Faq defaultTab="PRIMEPRO" />
