@@ -20,7 +20,7 @@ const DynamicPropertyPage = async ({ params }: DynamicPropertyPageProps) => {
   return (
     <>
       <PropertiesFilter searchParams={{}} />
-        <DynamicProperty propertyId={Number(propertyId)} />
+      <DynamicProperty propertyId={Number(propertyId)} />
     </>
   );
 };

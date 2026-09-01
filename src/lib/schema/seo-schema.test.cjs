@@ -1,5 +1,5 @@
 const assert = require("node:assert/strict");
-const { readFileSync } = require("node:fs");
+const { existsSync, readFileSync } = require("node:fs");
 const { join } = require("node:path");
 const test = require("node:test");
 const ts = require("typescript");
@@ -49,11 +49,13 @@ const article = {
 
 const property = {
   id: 42,
+  updated_at: "2026-08-31T10:00:00.000Z",
   title: "Rumah Kemang",
   description: "Rumah nyaman di Kemang.",
   description_seo: null,
   site_path: "/dijual/rumah/dki-jakarta/jakarta-selatan/kemang",
   purchase_status: "ForSale",
+  sold_status: "Available",
   building_type: "rumah",
   province: "dki-jakarta",
   regency: "jakarta-selatan",
@@ -93,7 +95,7 @@ test("article JSON-LD is synchronous and contains a real canonical breadcrumb", 
   );
 });
 
-test("primary listing JSON-LD contains only CollectionPage and ItemList types", () => {
+test("primary listing JSON-LD contains a citation-ready item for each visible property", () => {
   const { createPropertiesSchema } = loadTsModule(
     "lib/schema/create-properties-schema.ts",
     {
@@ -120,6 +122,14 @@ test("primary listing JSON-LD contains only CollectionPage and ItemList types", 
     schema["@graph"][1].itemListElement[0].url,
     "https://primeproindonesia.com/properties/42-Rumah-Kemang",
   );
+  const listing = schema["@graph"][1].itemListElement[0].item;
+  assert.equal(listing["@type"], "RealEstateListing");
+  assert.equal(listing.dateModified, property.updated_at);
+  assert.equal(listing.address.addressCountry, "ID");
+  assert.equal(listing.address.addressLocality, "jakarta-selatan");
+  assert.equal(listing.offers.price, 2500000000);
+  assert.equal(listing.offers.priceCurrency, "IDR");
+  assert.equal(listing.offers.availability, "https://schema.org/InStock");
   assert.equal(
     schema["@graph"][0].url,
     "https://primeproindonesia.com/properties/filter/dijual/rumah/dki-jakarta",
@@ -162,7 +172,7 @@ test("property detail schemas use canonical URLs and real filter breadcrumbs", (
   assertSerializable([detail, place, breadcrumb]);
 });
 
-test("organization and website schemas use complete identifiers and language fields", () => {
+test("organization and website schemas expose linked business identity and search fields", () => {
   const organization = loadTsModule(
     "lib/schema/create-organization-schema.ts",
     { "../env": envStub },
@@ -177,9 +187,59 @@ test("organization and website schemas use complete identifiers and language fie
   );
   assert.equal(organization.address.postalCode, "12120");
   assert.equal(Array.isArray(organization.sameAs), true);
+  assert.deepEqual(organization["@type"], ["Organization", "RealEstateAgent"]);
+  assert.equal(organization.contactPoint.contactType, "customer service");
+  assert.equal(organization.contactPoint.availableLanguage, "Indonesian");
+  assert.equal(organization.areaServed.name, "Indonesia");
   assert.equal(website.inLanguage, "id-ID");
   assert.equal(website["@id"], "https://primeproindonesia.com/#website");
+  assert.equal(
+    website.publisher["@id"],
+    "https://primeproindonesia.com/#organization",
+  );
+  assert.match(
+    website.potentialAction.target.urlTemplate,
+    /\/properties\?keyword=\{search_term_string\}$/,
+  );
   assertSerializable([organization, website]);
+});
+
+test("site identity schema combines website and organization nodes by stable ids", () => {
+  const relativePath = "lib/schema/create-site-identity-schema.ts";
+  const schemaModule = existsSync(join(sourceRoot, relativePath))
+    ? loadTsModule(relativePath, {
+        "./create-organization-schema": {
+          createOrganizationSchema: () => ({
+            "@context": "https://schema.org",
+            "@type": ["Organization", "RealEstateAgent"],
+            "@id": "https://primeproindonesia.com/#organization",
+          }),
+        },
+        "./create-website-schema": {
+          createWebsiteSchema: () => ({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": "https://primeproindonesia.com/#website",
+          }),
+        },
+      })
+    : {};
+
+  assert.equal(typeof schemaModule.createSiteIdentitySchema, "function");
+  const schema = schemaModule.createSiteIdentitySchema();
+
+  assert.deepEqual(
+    schema["@graph"].map((node) => node["@id"]),
+    [
+      "https://primeproindonesia.com/#website",
+      "https://primeproindonesia.com/#organization",
+    ],
+  );
+  assert.equal(
+    schema["@graph"].some((node) => Object.hasOwn(node, "@context")),
+    false,
+  );
+  assertSerializable(schema);
 });
 
 test("agent profiles expose a canonical ProfilePage and Person graph", () => {

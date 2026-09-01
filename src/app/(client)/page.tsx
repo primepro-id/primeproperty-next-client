@@ -6,21 +6,20 @@ import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import { Search } from "./properties/_components/fillters/search";
 import { Faq } from "./properties/_components/faq";
-import { createWebsiteSchema } from "@/lib/schema";
-import Script from "next/script";
+import { createSiteIdentitySchema } from "@/lib/schema";
 import { getDevelopers } from "@/lib/api/developers";
 import { env } from "@/lib/env";
 import { Banner } from "@/components/custom-ui/banner";
 
 const Hero = () => {
-  const websiteSchema = createWebsiteSchema();
+  const siteIdentitySchema = createSiteIdentitySchema();
   return (
     <>
-      <Script
+      <script
         id="website-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c"),
+          __html: JSON.stringify(siteIdentitySchema).replace(/</g, "\\u003c"),
         }}
       />
       <div className="flex flex-col gap-4 pt-16 lg:pb-16 " id="website">
@@ -34,6 +33,13 @@ const Hero = () => {
         <h1 className="text-center font-bold lg:text-2xl">
           Your Private Key to Exceptional Properties
         </h1>
+        <p className="mx-auto max-w-3xl text-center text-muted-foreground">
+          PrimePro Indonesia adalah agen properti di Jakarta yang memasarkan
+          rumah, apartemen, tanah, dan properti komersial untuk dijual atau
+          disewa. Pengguna dapat menelusuri listing berdasarkan lokasi dan tipe
+          bangunan, membandingkan detail, lalu menghubungi agen yang tercantum
+          untuk memverifikasi harga dan ketersediaan terbaru.
+        </p>
         <div className="flex flex-col gap-4">
           <div className="rounded-md border border-primary w-full max-w-lg mx-auto">
             <Search />
@@ -73,7 +79,7 @@ const Partners = async () => {
 
   return (
     <div className="flex flex-col gap-4 ">
-      <h3 className="text-3xl font-bold text-center font-sans">PARTNERS</h3>
+      <h2 className="text-3xl font-bold text-center font-sans">PARTNERS</h2>
       <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {BANKS.map((bank, index) => (
           <Image

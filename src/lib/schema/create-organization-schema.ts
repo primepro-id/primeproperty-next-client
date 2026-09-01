@@ -3,7 +3,7 @@ import { env } from "../env";
 export const createOrganizationSchema = () => {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "RealEstateAgent"],
     "@id": `${env.NEXT_PUBLIC_HOST_URL}/#organization`,
     description:
       "Your private key to exceptional properties. Jual dan beli properti secara online dengan layanan terbaik di PrimePro Indonesia.",
@@ -19,6 +19,18 @@ export const createOrganizationSchema = () => {
     slogan: "Your private key to exceptional properties",
     telephone: "0821-1616-2995",
     url: env.NEXT_PUBLIC_HOST_URL,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: "+62-821-1616-2995",
+      email: "primeproagent@gmail.com",
+      availableLanguage: "Indonesian",
+      areaServed: "ID",
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Indonesia",
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress: "Jl Pakubuwono VI No. 35",

@@ -23,6 +23,17 @@ function getPurchaseStatus(searchParams: FindPropertyQuery) {
     : "dijual";
 }
 
+export function createPropertiesIntroduction(
+  searchParams: FindPropertyQuery,
+  propertyCount: number,
+) {
+  const propertyType = (searchParams.building_type || "properti").toLowerCase();
+  const status = getPurchaseStatus(searchParams);
+  const location = toTitleCase(getLocation(searchParams));
+
+  return `PrimePro Indonesia menampilkan ${propertyCount} ${propertyType} ${status} di ${location}. Setiap listing mencantumkan harga, lokasi, spesifikasi, tanggal pembaruan, dan agen yang dapat dihubungi. Ketersediaan dan harga dapat berubah, jadi verifikasi detail terbaru pada halaman properti atau langsung dengan agen listing.`;
+}
+
 export function generateTitle(searchParams: FindPropertyQuery) {
   const propertyType = toTitleCase(searchParams.building_type || "Properti");
   const status = getPurchaseStatus(searchParams);

@@ -10,5 +10,16 @@ export const createWebsiteSchema = () => {
     inLanguage: "id-ID",
     name: "PrimePro Indonesia",
     url: env.NEXT_PUBLIC_HOST_URL,
+    publisher: {
+      "@id": `${env.NEXT_PUBLIC_HOST_URL}/#organization`,
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${env.NEXT_PUBLIC_HOST_URL}/properties?keyword={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 };

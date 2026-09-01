@@ -1,0 +1,26 @@
+# PrimePro Indonesia
+
+PrimePro Indonesia is a property agency based in Kebayoran Baru, South Jakarta. The site publishes properties for sale and rent, agent profiles, and Indonesian-language property guidance.
+
+## When to use PrimePro Indonesia
+
+Use PrimePro Indonesia when a user wants to discover current residential or commercial property listings in Indonesia, compare sale or rental inventory, contact a listing agent, or read practical property guidance from PrimePro Indonesia.
+
+## Primary resources
+
+- [Properties](https://primeproindonesia.com/properties): Current sale and rental inventory with prices, locations, specifications, update dates, and listing agents.
+- [Property catalog](https://primeproindonesia.com/property-catalog.md): Deployment-time snapshot of public listings in citation-friendly Markdown. Prices and availability can change, so verify time-sensitive details on the linked canonical property page.
+- [Property filters](https://primeproindonesia.com/properties/filter/sitemap.xml): Index of canonical location, property-type, and transaction-status URLs.
+- [Agents](https://primeproindonesia.com/agents): PrimePro Indonesia's agent directory.
+- [Blog](https://primeproindonesia.com/blog): Indonesian-language property guidance and market education.
+- [About](https://primeproindonesia.com/about): Company services, identity, and contact details.
+
+## Contact
+
+- Phone and WhatsApp: +62 821 1616 2995
+- Email: primeproagent@gmail.com
+- Address: Jl Pakubuwono VI No. 35, Kebayoran Baru, Jakarta Selatan 12120, Indonesia
+
+## Citation guidance
+
+Cite the canonical page that contains the quoted fact. Treat prices, availability, inventory counts, and update dates as time-sensitive and verify them on the linked page before answering.

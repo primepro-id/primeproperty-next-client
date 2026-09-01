@@ -2,6 +2,7 @@ import { FindPropertyQuery } from "@/lib/api";
 import { PropertyPurchaseStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useMemo } from "react";
+import { createPropertiesIntroduction } from "../_lib/create-properties-metadata";
 
 type PropertiesTitleProps = {
   propertyCount: number;
@@ -65,9 +66,9 @@ const Title = ({
         ? purchaseStatusLabels[searchParams.purchase_status].toLowerCase()
         : ""}{" "}
       {searchParams.province || searchParams.regency || searchParams.street ? (
-        <p>{location}</p>
+        <span>{location}</span>
       ) : (
-        <p>Primepro Indonesia</p>
+        <span>Primepro Indonesia</span>
       )}
     </h1>
   );
@@ -98,9 +99,14 @@ export const PropertiesTitle = ({
         className={className}
       />
       {propertyCount > 0 && (
-        <p className="text-muted-foreground">
-          Menampilkan {showCount} dari {propertyCount} properti
-        </p>
+        <>
+          <p className="text-muted-foreground">
+            Menampilkan {showCount} dari {propertyCount} properti
+          </p>
+          <p className="text-muted-foreground mt-2 max-w-4xl normal-case">
+            {createPropertiesIntroduction(searchParams, propertyCount)}
+          </p>
+        </>
       )}
     </div>
   );

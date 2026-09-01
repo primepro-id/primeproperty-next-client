@@ -1,4 +1,17 @@
-# *
+# AI search and answer crawlers
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: bingbot
+Allow: /
+Disallow: /primepro-agents-2
+Disallow: /primepro-property-2
+Disallow: /primepro-property-3
+
+# All other crawlers
 User-agent: *
 Allow: /
 Disallow: /primepro-agents-2

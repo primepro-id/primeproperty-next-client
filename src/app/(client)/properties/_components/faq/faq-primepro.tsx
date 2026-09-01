@@ -4,161 +4,45 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  PRIMEPRO_FAQ_SECTIONS,
+  type FaqItem,
+} from "./faq-content";
 
-export const FAQ_ONE = [
-  {
-    question: "Apa saja layanan yang disediakan oleh PrimePro Indonesia ?",
-    answer:
-      "PrimePro Indonesia membantu pemasaran dalam penjualan dan penyewaan seluruh jenis properti. ",
-  },
-  {
-    question: "Bagaimana cara menitipkan properti melalui PrimePro Indonesia ?",
-    answer:
-      "Bapak/Ibu dapat langsung menghubungi kami di nomor WA 0821 1616 2995",
-  },
-  {
-    question:
-      "Apakah kami dapat mendapatkan informasi tentang harga pasaran properti dari agen PrimePro Indonesia?",
-    answer:
-      "Bapak/Ibu dapat langsung menghubungi kami di nomor WA 0821 1616 2995 untuk diarahkan ke marketing spesialis area dimana properti dipasarkan.",
-  },
-  {
-    question:
-      "Apa saja manfaat menitipkan properti ke agen PrimePro Indonesia ?",
-    answer: (
+const renderFaqAnswer = (faq: FaqItem) => {
+  if (faq.items) {
+    return (
       <ul className="ml-6 list-disc [&>li]:mt-2">
-        <li>Properti dipasarkan melalui beberapa platform </li>
-        <li> Properti memiliki exposure tinggi ke para calon pembeli.</li>
-        <li>Properti akan dianalisa market valuenya oleh agen PrimePro.</li>
+        {faq.items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
       </ul>
-    ),
-  },
-  {
-    question:
-      "Apakah PrimePro Indonesia membantu dalam proses negosiasi harga ?",
-    answer:
-      "Betul, agen kami akan membantu proses negosiasi sampai mendapatkan harga terbaik.",
-  },
-  {
-    question:
-      "Apakah ada biaya untuk memasarkan properti di PrimePro Indonesia?",
-    answer:
-      "Kami tidak memungut biaya pemasaran tetapi ada biaya success fee yang harus dibayarkan oleh pemilik apabila properti terjual dengan agen kami.",
-  },
-];
+    );
+  }
 
-const FaqOne = () => {
-  return (
-    <div className="flex flex-col ">
-      <p className="font-semibold border-b">
-        A. Informasi Titip Jual &amp; Sewa di Primepro Indonesia
-      </p>
-      <Accordion className="w-full">
-        {FAQ_ONE.map((faq) => (
-          <AccordionItem key={faq.question} value={faq.question}>
-            <AccordionTrigger className="font-sans">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="border-b">
-              {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
-  );
+  if (faq.paragraphs) {
+    return faq.paragraphs.map((paragraph) => (
+      <p key={paragraph}>{paragraph}</p>
+    ));
+  }
+
+  return faq.answer;
 };
 
-export const FAQ_TWO = [
-  {
-    question:
-      "Apa saja jenis property yang ditawarkan oleh Primepro Indonesia ?",
-    answer:
-      "Tanah, rumah tinggal, apartemen, ruko, office space, pabrik, gedung dan lainnya.",
-  },
-  {
-    question:
-      "Bagaimana cara membeli atau menyewa properti di PrimePro Indonesia ?",
-    answer:
-      "Bapak/Ibu dapat langsung menghubungi kami di nomor WA 0821 1616 2995 ",
-  },
-  {
-    question: "Apakah properti yang dipasarkan PrimePro sudah legal?",
-    answer:
-      "Agen kami melakukan pengecekkan legalitas terlebih dahulu sebelum memasarkan properti tersebut di platform kami.",
-  },
-  {
-    question:
-      "Apakah PrimePro Indonesia dapat membantu pelanggan mengurus KPR?",
-    answer:
-      "Perusahaan kami sudah bekerjasama dengan berbagai bank. Kami akan bantu proses KPR sampai selesai akad kredit di bank.",
-  },
-];
+const FaqSection = ({ sectionIndex }: { sectionIndex: number }) => {
+  const section = PRIMEPRO_FAQ_SECTIONS[sectionIndex];
 
-const FaqTwo = () => {
   return (
-    <div className="flex flex-col ">
-      <p className="font-semibold border-b">
-        B. Informasi Beli dan Sewa Properti
-      </p>
+    <div className="flex flex-col">
+      <p className="font-semibold border-b">{section.title}</p>
       <Accordion className="w-full">
-        {FAQ_TWO.map((faq) => (
+        {section.items.map((faq) => (
           <AccordionItem key={faq.question} value={faq.question}>
             <AccordionTrigger className="font-sans">
               {faq.question}
             </AccordionTrigger>
             <AccordionContent className="border-b">
-              {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
-  );
-};
-
-export const FAQ_THREE = [
-  {
-    question: "Jam berapa kantor PrimePro Indonesia beroperasional?",
-    answer: (
-      <>
-        <p>Senin – Jumat jam 09.00 – 17.30</p>
-        <p>Sabtu jam 09.00 – 13.30</p>
-      </>
-    ),
-  },
-  {
-    question: "Bagaimana cara menghubungi PrimePro Indonesia?",
-    answer:
-      "Bapak/Ibu dapat langsung menghubungi kami di nomor WA 0821 1616 2995 ",
-  },
-  {
-    question: "Apakah dapat datang langsung ke kantor PrimePro Indonesia?",
-    answer:
-      "Lokasi kantor kami di Jl Pakubuwono VI No. 35, Kebayoran Baru, Jakarta Selatan",
-  },
-  {
-    question:
-      "Bagaimana jika saya ingin bergabung menjadi agen property di PrimePro Indonesia?",
-    answer:
-      "Bapak/Ibu dapat langsung menghubungi kami di nomor WA 0821 1616 2995 ",
-  },
-];
-
-const FaqThree = () => {
-  return (
-    <div className="flex flex-col ">
-      <p className="font-semibold border-b">
-        C. Informasi Tentang PrimePro Indonesia
-      </p>
-      <Accordion className="w-full">
-        {FAQ_THREE.map((faq) => (
-          <AccordionItem key={faq.question} value={faq.question}>
-            <AccordionTrigger className="font-sans">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="border-b">
-              {faq.answer}
+              {renderFaqAnswer(faq)}
             </AccordionContent>
           </AccordionItem>
         ))}
@@ -170,9 +54,9 @@ const FaqThree = () => {
 export const FaqPrimePro = () => {
   return (
     <div className="flex flex-col gap-8">
-      <FaqOne />
-      <FaqTwo />
-      <FaqThree />
+      {PRIMEPRO_FAQ_SECTIONS.map((section, index) => (
+        <FaqSection key={section.title} sectionIndex={index} />
+      ))}
     </div>
   );
 };
