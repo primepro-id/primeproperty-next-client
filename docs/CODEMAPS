@@ -320,9 +320,9 @@ Component-local UI state uses React state; bookmarked IDs use localStorage.
 - JSON-LD scripts stringify data and escape `<` as `\u003c` before insertion.
 - `public/llms.txt` identifies citation-ready public resources, while
   `public/robots.txt` states explicit access rules for major AI crawlers.
-- `scripts/generate-property-catalog.mjs` fetches every public property before a
-  production build and writes the citation-friendly static snapshot at
-  `public/property-catalog.md`; it does not change page rendering.
+- `public/property-catalog.md` is a committed, citation-friendly static property
+  snapshot; it does not change page rendering. The generator that originally
+  produced it is no longer present in `scripts`.
 - Primary listing pages use `CollectionPage`/`ItemList`; property details use
   `RealEstateListing`, `Place`, `Offer`, and canonical breadcrumbs. Organization
   and website schema are emitted from the public shell/home schema boundary.
@@ -406,7 +406,10 @@ git diff --check
 ```
 
 `yarn build` requires valid environment variables and reachable external data
-sources because the sitemap routes are prerendered.
+sources because the sitemap routes are prerendered. At the current HEAD,
+`package.json` also points `prebuild` at the removed
+`scripts/generate-property-catalog.mjs`, so that dangling script reference must
+be corrected before the Next.js build can start.
 
 ## Updating this codemap
 
