@@ -1,3 +1,5 @@
+import type { PropertyNavigation } from "@/lib/types";
+
 export const SITEMAP_MAX_BYTES = 1_900_000;
 
 const XML_DECLARATION = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -8,9 +10,7 @@ const SITEMAP_INDEX_OPEN =
   '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 const SITEMAP_INDEX_CLOSE = "</sitemapindex>";
 const textEncoder = new TextEncoder();
-const URLS_PER_FILTER_PATH = 11;
-
-type SerializeFilterQuery = (segments: string[]) => string;
+const URLS_PER_FILTER_PATH = 1;
 
 function escapeXml(value: string) {
   return value
@@ -60,26 +60,34 @@ export function parseSitemapChunkSegment(segment: string) {
 export function buildPropertyFilterSitemapUrls(
   sitePaths: string[],
   propertiesBaseUrl: string,
-  serializeFilterQuery: SerializeFilterQuery,
 ) {
   return Array.from(
-    iteratePropertyFilterSitemapUrls(
-      sitePaths,
-      propertiesBaseUrl,
-      serializeFilterQuery,
-    ),
+    iteratePropertyFilterSitemapUrls(sitePaths, propertiesBaseUrl),
   );
+}
+
+export function buildIndexablePropertyFilterPaths(
+  navigations: PropertyNavigation[],
+) {
+  const uniquePaths = new Set<string>();
+
+  for (const navigation of navigations) {
+    const segments = navigation.site_path.split("/").filter(Boolean).slice(0, 5);
+    for (let segmentCount = 1; segmentCount <= segments.length; segmentCount += 1) {
+      uniquePaths.add(`/${segments.slice(0, segmentCount).join("/")}`);
+    }
+  }
+
+  return Array.from(uniquePaths);
 }
 
 export function* iteratePropertyFilterSitemapUrls(
   sitePaths: string[],
   propertiesBaseUrl: string,
-  serializeFilterQuery: SerializeFilterQuery,
 ) {
   yield* iteratePropertyFilterSitemapUrlRange(
     sitePaths,
     propertiesBaseUrl,
-    serializeFilterQuery,
     0,
     sitePaths.length * URLS_PER_FILTER_PATH,
   );
@@ -88,7 +96,6 @@ export function* iteratePropertyFilterSitemapUrls(
 export function* iteratePropertyFilterSitemapUrlRange(
   sitePaths: string[],
   propertiesBaseUrl: string,
-  serializeFilterQuery: SerializeFilterQuery,
   start: number,
   end: number,
 ) {
@@ -101,25 +108,13 @@ export function* iteratePropertyFilterSitemapUrlRange(
     const sitePathIndex = Math.floor(urlIndex / URLS_PER_FILTER_PATH);
     const sitePath = sitePaths[sitePathIndex];
     const normalizedPath = sitePath.startsWith("/") ? sitePath : `/${sitePath}`;
-    const segments = normalizedPath.split("/").filter(Boolean);
-    const filterQuery = serializeFilterQuery(segments);
     const pathEnd = Math.min(
       rangeEnd,
       (sitePathIndex + 1) * URLS_PER_FILTER_PATH,
     );
 
     for (; urlIndex < pathEnd; urlIndex += 1) {
-      const pathUrlIndex = urlIndex % URLS_PER_FILTER_PATH;
-      if (pathUrlIndex === 0) {
-        yield `${baseUrl}/filter${normalizedPath}`;
-        continue;
-      }
-
-      const page = pathUrlIndex;
-      const pageQuery = filterQuery
-        ? `${filterQuery}&page=${page}`
-        : `page=${page}`;
-      yield `${baseUrl}?${pageQuery}`;
+      yield `${baseUrl}/filter${normalizedPath}`;
     }
   }
 }

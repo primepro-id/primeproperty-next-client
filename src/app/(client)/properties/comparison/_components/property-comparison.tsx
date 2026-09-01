@@ -37,6 +37,7 @@ import { useRouter } from "next/navigation";
 import Loading from "@/app/(client)/loading";
 import { findPropertyJoinAgentQueryOptions, findUniquePropertyJoinAgentQueryOptions, getBookmarkedPropertyOptions } from "@/lib/hooks";
 import { PropertyJoinAgent, PropertyPurchaseStatus } from "@/lib/types";
+import { createPropertyPath } from "@/lib/metadata/seo-domain";
 
 type ComparisonRowProps = {
   icon: React.ReactNode;
@@ -216,7 +217,7 @@ export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
         <div className="flex items-center gap-2">
           <PropertyAgentInfo propertyWithAgent={firstProp} />
           <Link
-            href={`/properties/${firstProp[0].id}`}
+            href={createPropertyPath(firstProp[0])}
             className={cn(buttonVariants({}))}
           >
             <LuEye />
@@ -228,7 +229,7 @@ export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
         <div className="flex items-center gap-2">
           <PropertyAgentInfo propertyWithAgent={secondProp} />
           <Link
-            href={`/properties/${secondProp[0].id}`}
+            href={createPropertyPath(secondProp[0])}
             className={cn(buttonVariants({}))}
           >
             <LuEye />

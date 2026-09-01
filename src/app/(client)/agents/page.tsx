@@ -2,12 +2,14 @@ import { Metadata } from "next";
 import { AgentList } from "./_components/agent-list";
 import { LuUsers } from "react-icons/lu";
 import { Faq } from "../properties/_components/faq";
+import { createMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Agents - PRIMEPRO INDONESIA",
   description:
-    "PrimePro Indonesia sedang memperluas timnya dan mencari individu yang termotivasi tinggi untuk bergabung sebagai Marketing Executive.",
-};
+    "Temui agen properti PrimePro Indonesia yang siap membantu pencarian, pembelian, penjualan, dan penyewaan properti di Indonesia.",
+  path: "/agents",
+});
 
 export default function JobPosting() {
   return (

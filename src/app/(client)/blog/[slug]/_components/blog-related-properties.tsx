@@ -8,7 +8,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { createPropertiesSchema } from "@/lib/schema/create-properties-schema";
 import { useQuery } from "@tanstack/react-query";
 import {
   findPropertyJoinAgentQueryOptions,
@@ -36,16 +35,8 @@ export const BlogRelatedProperties = ({
   const properties = useQuery(findPropertyJoinAgentQueryOptions(relatedParams));
   const propertyData = properties.data?.data?.data;
   if (propertyData && propertyData.length > 0) {
-    const jsonLd = createPropertiesSchema(propertyData, {});
     return (
-      <>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
-        <Carousel>
+      <Carousel>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-2xl font-semibold">Properti Terkait</h3>
             <div className="flex items-center gap-2">
@@ -67,8 +58,7 @@ export const BlogRelatedProperties = ({
               </CarouselItem>
             ))}
           </CarouselContent>
-        </Carousel>
-      </>
+      </Carousel>
     );
   }
 

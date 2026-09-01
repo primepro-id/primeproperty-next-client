@@ -1,67 +1,49 @@
 import { findPropertyJoinAgent } from "@/lib/api";
 import { env } from "@/lib/env";
-import { MetadataRoute } from "next";
+import { createPropertyPath } from "@/lib/metadata/seo-domain";
+import type { PropertyJoinAgent } from "@/lib/types";
+import type { MetadataRoute } from "next";
 
-const generateDynamicPropertySitemaps = async () => {
-  const properties = await findPropertyJoinAgent();
-  if (Array.isArray(properties?.data?.data)) {
-    const oldSitemap = properties.data?.data.map((property) => {
-      return {
-        url: env.NEXT_PUBLIC_HOST_URL + `/properties/${property[0].id}`,
-        lastModified: new Date(property[0].updated_at),
-      };
-    }) as MetadataRoute.Sitemap;
-    const newSitemap = properties.data?.data.map((property) => {
-      return {
-        url:
-          env.NEXT_PUBLIC_HOST_URL +
-          `/properties/${property[0].id}-${property[0].title.replaceAll("&", "").replaceAll(" ", "-").replaceAll("/", "")}`,
-        lastModified: new Date(property[0].updated_at),
-      };
-    }) as MetadataRoute.Sitemap;
-    return [...oldSitemap, ...newSitemap];
+async function findAllPropertiesForSitemap() {
+  const firstPage = await findPropertyJoinAgent({ page: 1, limit: 100 });
+  if (!firstPage.data) {
+    return [];
   }
 
-  return [];
-};
+  const remainingPages = await Promise.all(
+    Array.from(
+      { length: Math.max(0, firstPage.data.pagination.total_pages - 1) },
+      (_, index) => findPropertyJoinAgent({ page: index + 2, limit: 100 }),
+    ),
+  );
+  const properties = [
+    ...firstPage.data.data,
+    ...remainingPages.flatMap((page) => page.data?.data || []),
+  ];
+  const uniqueProperties = new Map<number, PropertyJoinAgent>();
 
-async function generatePropertyPagesSitemaps() {
-  // Google's limit is 50,000 URLs per sitemap
-
-  const basePropertySitemap = await findPropertyJoinAgent({
-    page: 1,
-    limit: 30,
-  });
-
-  const sitemaps = [];
-
-  if (Array.isArray(basePropertySitemap?.data?.data)) {
-    for (let i = 0; i < basePropertySitemap.data.pagination.total_pages; i++) {
-      sitemaps.push({
-        url: env.NEXT_PUBLIC_HOST_URL + `/properties?page=${i + 1}`,
-        date: new Date(),
-      });
-    }
+  for (const propertyWithAgent of properties) {
+    uniqueProperties.set(propertyWithAgent[0].id, propertyWithAgent);
   }
 
-  if (sitemaps.length > 0) {
-    return sitemaps;
-  }
-
-  return [];
+  return Array.from(uniqueProperties.values()).sort(
+    (left, right) => left[0].id - right[0].id,
+  );
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Google's limit is 50,000 URLs per sitemap
-  const propertyPagesSitemaps = await generatePropertyPagesSitemaps();
-  const dynamicPropertySitemaps = await generateDynamicPropertySitemaps();
+  const properties = await findAllPropertiesForSitemap();
+  const propertyEntries: MetadataRoute.Sitemap = properties.map(
+    ([property]) => ({
+      url: `${env.NEXT_PUBLIC_HOST_URL}${createPropertyPath(property)}`,
+      lastModified: new Date(property.updated_at),
+    }),
+  );
 
   return [
     {
-      url: env.NEXT_PUBLIC_HOST_URL + `/properties`,
-      lastModified: new Date(),
+      url: `${env.NEXT_PUBLIC_HOST_URL}/properties`,
     },
-    ...propertyPagesSitemaps,
-    ...dynamicPropertySitemaps,
+    ...propertyEntries,
   ];
 }

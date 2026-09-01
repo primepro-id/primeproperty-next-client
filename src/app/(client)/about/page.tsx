@@ -3,16 +3,14 @@ import { Hero, History } from "./_components";
 import { Services } from "./_components/services";
 import { WhyUs } from "./_components/why-us";
 import { ContactUs } from "./_components/contact-us";
-import { env } from "@/lib/env";
+import { createMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Tentang PRIMEPRO INDONESIA",
   description:
     "Primepro Indonesia: Kantor properti spesialis dalam pemasaran properti residensial, komersial, dan investasi. ",
-  alternates: {
-    canonical: env.NEXT_PUBLIC_HOST_URL + "/franchise",
-  },
-};
+  path: "/about",
+});
 
 export default function About() {
   return (

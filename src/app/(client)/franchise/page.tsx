@@ -7,16 +7,14 @@ import {
   Registration,
 } from "./_components";
 import { Cta } from "./_components/cta";
-import { env } from "@/lib/env";
+import { createMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Peluang Franchise - PRIMEPRO INDONESIA",
   description:
     "Kembangkan Bisnis Anda dengan Jaringan Properti Terkemuka di Indonesia",
-  alternates: {
-    canonical: env.NEXT_PUBLIC_HOST_URL + "/franchise",
-  },
-};
+  path: "/franchise",
+});
 
 const FranchisePage = () => {
   return (

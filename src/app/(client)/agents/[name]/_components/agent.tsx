@@ -10,6 +10,7 @@ import { AgentBio } from "./agent-bio";
 import Loading from "@/app/(client)/loading";
 import { PropertyList } from "@/app/(client)/properties/_components/list";
 import { Faq } from "@/app/(client)/properties/_components/faq";
+import { createAgentProfileSchema } from "@/lib/schema/create-agent-profile-schema";
 
 type AgentPageProps = {
   name: string;
@@ -33,16 +34,27 @@ export const AgentPage = ({ name }: AgentPageProps) => {
     return <></>;
   }
 
-  return (
-    <div className="flex flex-col gap-8 container mx-auto p-4">
-      <AgentBreadcrumb agent={agent?.data?.data} />
-      <AgentBio agent={agent?.data?.data} propertiesWithAgent={propertyData} />
-      <div className="flex flex-col gap-4">
-        <h2 className="text-xl font-bold">Property List</h2>
-        <PropertyList searchParams={{}} propertiesWithAgent={propertyData} />
-      </div>
+  const agentProfileSchema = createAgentProfileSchema(agent.data.data);
 
-      <Faq defaultTab="PRIMEPRO" />
-    </div>
+  return (
+    <>
+      <script
+        id="agent-profile-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(agentProfileSchema).replace(/</g, "\\u003c"),
+        }}
+      />
+      <div className="flex flex-col gap-8 container mx-auto p-4">
+        <AgentBreadcrumb agent={agent.data.data} />
+        <AgentBio agent={agent.data.data} propertiesWithAgent={propertyData} />
+        <div className="flex flex-col gap-4">
+          <h2 className="text-xl font-bold">Property List</h2>
+          <PropertyList searchParams={{}} propertiesWithAgent={propertyData} />
+        </div>
+
+        <Faq defaultTab="PRIMEPRO" />
+      </div>
+    </>
   );
 };

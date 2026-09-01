@@ -2,7 +2,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FaqPrimePro } from "./faq-primepro";
 import { FaqProperty } from "./faq-property";
-import { FaqSchema } from "./faq-schema";
 
 type FaqProps = {
   defaultTab: "PRIMEPRO" | "PROPERTY";
@@ -21,6 +20,7 @@ const VideoThumbnail = () => {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
+        loading="lazy"
         className="h-96 md:h-[400px] lg:h-[600px] rounded-lg"
       />
     </div>
@@ -30,8 +30,6 @@ const VideoThumbnail = () => {
 export const Faq = ({ defaultTab }: FaqProps) => {
   return (
     <div className="flex flex-col gap-8 lg:grid grid-cols-2 my-16 lg:gap-16">
-      <FaqSchema />
-
       <VideoThumbnail />
       <Tabs
         defaultValue={defaultTab}

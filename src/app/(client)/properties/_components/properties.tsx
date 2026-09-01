@@ -10,9 +10,10 @@ import { Banner } from "@/components/custom-ui/banner";
 
 type PropertiesProps = {
   searchParams: FindPropertyQuery;
+  path?: string;
 };
 
-export const Properties = async ({ searchParams }: PropertiesProps) => {
+export const Properties = async ({ searchParams, path }: PropertiesProps) => {
   const properties = await findPropertyJoinAgent({
     limit: 30,
     ...searchParams,
@@ -21,7 +22,7 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
     return <PropertyNotFound searchParams={searchParams} />;
   }
 
-  const jsonLd = createPropertiesSchema(properties.data.data, searchParams);
+  const jsonLd = createPropertiesSchema(properties.data.data, searchParams, path);
 
   return (
     <>

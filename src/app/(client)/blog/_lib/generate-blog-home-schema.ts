@@ -1,7 +1,6 @@
 import { env } from "@/lib/env";
-import { Article } from "@/lib/types";
 
-export const generateBlogHomeSchema = (articles: Article[]) => {
+export const generateBlogHomeSchema = () => {
   const homeSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -9,7 +8,7 @@ export const generateBlogHomeSchema = (articles: Article[]) => {
     name: "Tips dan Trik Pemilihan Properti | PrimePro Indonesia",
     description:
       "Artikel Primepro Indonesia menyuguhkan tips dan trik terkini seputar properti dan ulasan mengenai rumah hingga gaya hidup",
-    thumbnailUrl: `${env.NEXT_PUBLIC_HOST_URL}/image/primepro-with-full-text.png`,
+    thumbnailUrl: `${env.NEXT_PUBLIC_HOST_URL}/images/primepro-with-full-text.png`,
     isPartOf: {
       "@type": "WebSite",
       url: env.NEXT_PUBLIC_HOST_URL,
@@ -22,7 +21,7 @@ export const generateBlogHomeSchema = (articles: Article[]) => {
     },
     image: {
       "@type": "ImageObject",
-      url: `${env.NEXT_PUBLIC_HOST_URL}/image/primepro-with-full-text.png`,
+      url: `${env.NEXT_PUBLIC_HOST_URL}/images/primepro-with-full-text.png`,
     },
     publisher: {
       "@type": "Organization",
@@ -37,12 +36,20 @@ export const generateBlogHomeSchema = (articles: Article[]) => {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: articles.map((article, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: article.title,
-      item: `${env.NEXT_PUBLIC_HOST_URL}/blog/${article.slug}`,
-    })),
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: env.NEXT_PUBLIC_HOST_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${env.NEXT_PUBLIC_HOST_URL}/blog`,
+      },
+    ],
   };
   return { homeSchema, breadcrumbSchema };
 };

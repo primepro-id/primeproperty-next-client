@@ -1,6 +1,6 @@
 # PrimeProperty Next Client Codemap
 
-Last verified: 2026-08-28
+Last verified: 2026-09-01
 
 This file is the high-level map of the repository. Keep it focused on stable
 boundaries and update it whenever routes, data sources, shared providers, or
@@ -119,10 +119,11 @@ Sitemap route entries are:
 
 The filter sitemap URL is an XML sitemap index whose child URL sets are capped
 at 1,900,000 UTF-8 bytes. A 24-hour manifest caches one consistent snapshot of
-the property site paths and their chunk boundaries; each child generates only
-its assigned range. Other sitemap routes fetch external data during static page
-generation, so a production build needs valid environment variables and
-reachable REST/DatoCMS endpoints.
+real, navigation-backed property filter prefixes and their chunk boundaries;
+each child generates only its assigned range. Query strings and pagination are
+excluded from sitemap inventory. Other sitemap routes fetch external data
+during static page generation, so a production build needs valid environment
+variables and reachable REST/DatoCMS endpoints.
 
 ## Property domain
 
@@ -284,6 +285,8 @@ Component-local UI state uses React state; bookmarked IDs use localStorage.
 ### SEO
 
 - Shared metadata: `src/lib/metadata/create-metadata.ts`
+- Pure SEO path, text, social metadata, and robots policies:
+  `src/lib/metadata/seo-domain.ts`
 - Shared JSON-LD: `src/lib/schema`
 - Route-specific metadata/schema helpers live beside their route under `_lib`.
 - JSON-LD scripts stringify data and escape `<` as `\u003c` before insertion.

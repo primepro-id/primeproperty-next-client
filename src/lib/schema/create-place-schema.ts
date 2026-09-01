@@ -1,10 +1,15 @@
-import { Property } from "@/lib/types";
 import { env } from "@/lib/env";
+import { createPropertyPath } from "@/lib/metadata/seo-domain";
+import type { Property } from "@/lib/types";
 
-export const createPlaceSchema = (property: Property) => {
-  const jsonLd = {
+export function createPlaceSchema(property: Property) {
+  const canonicalUrl = `${env.NEXT_PUBLIC_HOST_URL}${createPropertyPath(property)}`;
+
+  return {
     "@context": "https://schema.org",
     "@type": "Place",
+    "@id": `${canonicalUrl}#place`,
+    name: property.title,
     address: {
       "@type": "PostalAddress",
       addressCountry: "ID",
@@ -13,11 +18,8 @@ export const createPlaceSchema = (property: Property) => {
         " ",
       ),
       addressRegion: property.province.replaceAll("-", " "),
-      streetAddress: property.site_path
-        .replaceAll("/", ", ")
-        .replaceAll("-", " "),
+      streetAddress: property.street.replaceAll("-", " "),
     },
-    url: `${env.NEXT_PUBLIC_HOST_URL}/properties/${property.id}`,
+    url: canonicalUrl,
   };
-  return jsonLd;
-};
+}

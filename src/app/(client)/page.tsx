@@ -17,7 +17,7 @@ const Hero = () => {
   return (
     <>
       <Script
-        id="website"
+        id="website-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c"),

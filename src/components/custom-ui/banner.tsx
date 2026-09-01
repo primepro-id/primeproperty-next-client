@@ -17,7 +17,6 @@ export const Banner = ({ className }: BannerProps) => {
         alt="Citra Homes Halim"
         fill
         className="object-contain"
-        priority
       />
     </Link>
   );
