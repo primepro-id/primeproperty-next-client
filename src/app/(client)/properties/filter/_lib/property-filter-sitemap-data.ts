@@ -1,9 +1,8 @@
-import { findPropertySitePaths } from "@/lib/api";
+import { findPropertyNavigation } from "@/lib/api";
 import { env } from "@/lib/env";
 import { unstable_cache } from "next/cache";
-import qs from "qs";
-import { parseFilterParams } from "../../_lib/parse-filter-params";
 import {
+  buildIndexablePropertyFilterPaths,
   createSitemapChunkManifest,
   iteratePropertyFilterSitemapUrls,
   iteratePropertyFilterSitemapUrlRange,
@@ -14,21 +13,17 @@ const propertiesBaseUrl = `${normalizeSitemapHostUrl(
   env.NEXT_PUBLIC_HOST_URL,
 )}/properties`;
 
-const serializeFilterQuery = (segments: string[]) =>
-  qs.stringify(parseFilterParams(segments));
-
 const getCachedPropertySitemapManifest = unstable_cache(
   async () => {
-    const response = await findPropertySitePaths();
+    const response = await findPropertyNavigation();
     if (!Array.isArray(response.data)) {
       throw new Error("Property sitemap paths are unavailable.");
     }
 
-    const sitePaths = response.data;
+    const sitePaths = buildIndexablePropertyFilterPaths(response.data);
     const propertyUrls = iteratePropertyFilterSitemapUrls(
       sitePaths,
       propertiesBaseUrl,
-      serializeFilterQuery,
     );
 
     return {
@@ -49,6 +44,11 @@ export async function getPropertyFilterSitemapChunkCount() {
   return manifest.chunkRanges.length;
 }
 
+export async function getIndexablePropertyFilterPaths() {
+  const manifest = await getCachedPropertySitemapManifest();
+  return manifest.sitePaths;
+}
+
 export async function getPropertyFilterSitemapChunk(chunkIndex: number) {
   const manifest = await getCachedPropertySitemapManifest();
   const range = manifest.chunkRanges[chunkIndex];
@@ -60,7 +60,6 @@ export async function getPropertyFilterSitemapChunk(chunkIndex: number) {
     iteratePropertyFilterSitemapUrlRange(
       manifest.sitePaths,
       propertiesBaseUrl,
-      serializeFilterQuery,
       range.start,
       range.end,
     ),

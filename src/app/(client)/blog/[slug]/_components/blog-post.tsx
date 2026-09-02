@@ -49,7 +49,20 @@ export const BlogPost = ({ article }: BlogPostProps) => {
       <div className="flex flex-col gap-2">
         <h1 className="text-pretty text-3xl font-semibold">{article.title}</h1>
         <p className="text-muted-foreground text-sm">
-          {new Date(article._publishedAt).toLocaleString()}
+          Diterbitkan{" "}
+          <time dateTime={article._publishedAt}>
+            {new Date(article._publishedAt).toLocaleDateString("id-ID", {
+              dateStyle: "long",
+              timeZone: "Asia/Jakarta",
+            })}
+          </time>{" "}
+          · Diperbarui{" "}
+          <time dateTime={article._updatedAt}>
+            {new Date(article._updatedAt).toLocaleDateString("id-ID", {
+              dateStyle: "long",
+              timeZone: "Asia/Jakarta",
+            })}
+          </time>
         </p>
       </div>
 

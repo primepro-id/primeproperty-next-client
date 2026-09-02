@@ -314,7 +314,7 @@ export const Footer = () => {
   return (
     <>
       <Script
-        id="website"
+        id="organization-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c"),

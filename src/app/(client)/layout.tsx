@@ -9,8 +9,6 @@ const seo = {
   title: "Jual Beli Rumah Apartemen | PRIMEPRO INDONESIA",
   description:
     "Cari jual dan beli properti secara online mudah aman sekaligus cepat, hanya di PrimePro Indonesia",
-  keywords:
-    "PrimePro Indonesia, Properti, Properti Prime, Properti Jakarta Selatan",
   path: "/",
 };
 export const metadata: Metadata = createMetadata(seo);

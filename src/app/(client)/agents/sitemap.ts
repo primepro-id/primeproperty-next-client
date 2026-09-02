@@ -8,7 +8,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: env.NEXT_PUBLIC_HOST_URL + `/agents`,
-      lastModified: new Date(),
     },
     ...(agents.data?.data.map((agent) => {
       return {

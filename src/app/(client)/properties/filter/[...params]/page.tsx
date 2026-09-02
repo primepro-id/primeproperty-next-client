@@ -6,18 +6,24 @@ import { generatePropertiesFilterMetadata } from "../../_lib/create-properties-f
 
 type PageProps = {
   params: Promise<{ params: string[] }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
 export const generateMetadata = async ({
   params,
-}: PageProps): Promise<Metadata> => generatePropertiesFilterMetadata(params);
+  searchParams,
+}: PageProps): Promise<Metadata> =>
+  generatePropertiesFilterMetadata(params, searchParams);
 
 export default async function Page({ params }: PageProps) {
   const pageParams = await params;
 
   return (
     <Suspense>
-      <Properties searchParams={parseFilterParams(pageParams.params)} />
+      <Properties
+        searchParams={parseFilterParams(pageParams.params)}
+        path={`/properties/filter/${pageParams.params.join("/")}`}
+      />
     </Suspense>
   );
 }

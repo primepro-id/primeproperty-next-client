@@ -53,6 +53,7 @@ export const Pagination = ({
         </Button>
       ) : (
         <Link
+          rel="prev"
           href={previousPageLink}
           title="Previous"
           className={cn(
@@ -104,6 +105,7 @@ export const Pagination = ({
             buttonVariants({ variant: "outline", size: "icon" }),
             "rounded-full",
           )}
+          rel="next"
         >
           <LuChevronRight />
         </Link>

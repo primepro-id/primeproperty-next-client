@@ -1,43 +1,25 @@
 import { Metadata } from "next";
-import { env } from "@/lib/env";
+import { createMetadata } from "@/lib/metadata";
 import { generateBlogHomeSchema } from "./_lib/generate-blog-home-schema";
 import Image from "next/image";
 import { AllArticles, Latest, Spotlight } from "./_components";
 import { PopularProperties } from "../properties/_components";
 import { findArticles } from "@/lib/api";
 
-export const revalidate = 0
+export const revalidate = 0;
 
 const title = "Tips dan Trik Pemilihan Properti | PrimePro Indonesia";
 const description =
   "Artikel Primepro Indonesia menyuguhkan tips dan trik terkini seputar properti dan ulasan mengenai rumah hingga gaya hidup";
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title,
   description,
-  twitter: {
-    title,
-    site: "@primeproindonesia",
-    creator: "@primeproindonesia",
-    card: "summary_large_image",
-    images: [`${env.NEXT_PUBLIC_HOST_URL}/images/primepro.png`],
-  },
-  openGraph: {
-    title,
-    description,
-    siteName: "Primepro Indonesia",
-    locale: "id_ID",
-  },
-  appleWebApp: true,
-  applicationName: "Primepro Indonesia",
-  robots: "index, follow",
-  alternates: {
-    canonical: `${env.NEXT_PUBLIC_HOST_URL}/blog`,
-  },
-};
+  path: "/blog",
+});
 
 const Blog = async () => {
   const { allArticles } = await findArticles();
-  const { homeSchema, breadcrumbSchema } = generateBlogHomeSchema(allArticles);
+  const { homeSchema, breadcrumbSchema } = generateBlogHomeSchema();
 
   return (
     <>

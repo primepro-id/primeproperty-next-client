@@ -1,29 +1,27 @@
 import { env } from "@/lib/env";
-import { Property } from "../types";
+import { createPropertyPath } from "@/lib/metadata/seo-domain";
+import type { Property } from "@/lib/types";
 
-export const createDynamicPropertySchema = (property: Property) => {
-  const jsonLd = {
+export function createDynamicPropertySchema(property: Property) {
+  const canonicalUrl = `${env.NEXT_PUBLIC_HOST_URL}${createPropertyPath(property)}`;
+
+  return {
     "@context": "https://schema.org",
-    "@type": "Product",
-    brand: {
-      "@type": "Brand",
-      logo: [`${env.NEXT_PUBLIC_HOST_URL}/images/primepro.png`],
-      name: "Primepro Indonesia",
-      url: env.NEXT_PUBLIC_HOST_URL,
-    },
-    description: property.description,
+    "@type": "RealEstateListing",
+    "@id": `${canonicalUrl}#listing`,
+    url: canonicalUrl,
+    name: property.title,
+    description: property.description_seo || property.description,
     image: property.images.map(
       (image) => `${env.NEXT_PUBLIC_S3_ENDPOINT}${image.path}`,
     ),
-    name: property.title,
+    about: { "@id": `${canonicalUrl}#place` },
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
       price: property.price,
-      priceCurrency: "IDR",
-      url: `${env.NEXT_PUBLIC_HOST_URL}/properties/${property.id}`,
+      priceCurrency: property.currency === "Usd" ? "USD" : "IDR",
+      url: canonicalUrl,
     },
-    url: `${env.NEXT_PUBLIC_HOST_URL}/properties/${property.id}`,
   };
-  return jsonLd;
-};
+}

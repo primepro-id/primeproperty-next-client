@@ -6,6 +6,7 @@ import { LuCopy, LuFacebook } from "react-icons/lu";
 import { BsTelegram, BsTwitterX } from "react-icons/bs";
 import { usePathname } from "next/navigation";
 import { env } from "@/lib/env";
+import { createPropertyPath } from "@/lib/metadata/seo-domain";
 import { MdWhatsapp } from "react-icons/md";
 import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
@@ -22,7 +23,7 @@ type ShareLinksProps = {
 export const ShareLinks = ({ title, property, className }: ShareLinksProps) => {
   const whatsappUrl = useMemo(() => {
     const linkUrl = "https://api.whatsapp.com/send?text=";
-    const text = `*${property[0].title}*\nLokasi: ${property[0].street},${property[0].regency}\n\nContact:\n${property[1].instagram ? `https://instagram.com/${property[1].instagram}` : ""}\nWhatsapp:\nwa.me/62${property[1].phone_number}\nLink:\n${env.NEXT_PUBLIC_HOST_URL}/properties/${property[0].id}`;
+    const text = `*${property[0].title}*\nLokasi: ${property[0].street},${property[0].regency}\n\nContact:\n${property[1].instagram ? `https://instagram.com/${property[1].instagram}` : ""}\nWhatsapp:\nwa.me/62${property[1].phone_number}\nLink:\n${env.NEXT_PUBLIC_HOST_URL}${createPropertyPath(property[0])}`;
     return linkUrl + text;
   }, [property]);
   const pathname = usePathname();

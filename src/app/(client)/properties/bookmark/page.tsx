@@ -7,9 +7,8 @@ const seo = {
   title: "Bandingkan Jual Beli Rumah Apartemen | PRIMEPRO INDONESIA",
   description:
     "Cari dan Bandingkan  properti secara online mudah aman sekaligus cepat, hanya di PrimePro Indonesia",
-  keywords:
-    "PrimePro Indonesia, Properti, Properti Prime, Properti Jakarta Selatan",
   path: "/properties/bookmark",
+  index: false,
 };
 export const metadata: Metadata = createMetadata(seo);
 

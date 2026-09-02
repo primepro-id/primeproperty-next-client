@@ -19,6 +19,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import { PropertyJoinAgent } from "@/lib/types";
 import { useMutation } from "@tanstack/react-query";
 import { createLeadMutationOptions } from "@/lib/hooks";
+import { createPropertyPath } from "@/lib/metadata/seo-domain";
 
 type ContactAgentDialogProps = {
   isWhatsapp: boolean;
@@ -87,7 +88,7 @@ export const ContactAgentDialog = ({
     } finally {
       const whatsappUrl = new URL("https://api.whatsapp.com/send");
       const propertyUrl =
-        env.NEXT_PUBLIC_HOST_URL + `/properties/${propertyWithAgent[0].id}`;
+        env.NEXT_PUBLIC_HOST_URL + createPropertyPath(propertyWithAgent[0]);
       whatsappUrl.searchParams.append(
         "phone",
         `62${propertyWithAgent[1].phone_number}`,

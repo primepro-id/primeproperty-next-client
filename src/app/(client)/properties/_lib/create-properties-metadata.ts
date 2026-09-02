@@ -1,135 +1,63 @@
-import { env } from "@/lib/env";
-import { Metadata } from "next";
+import type { FindPropertyQuery } from "@/lib/api";
+import { createMetadata } from "@/lib/metadata";
+import { normalizeSeoText } from "@/lib/metadata/seo-domain";
+import { PropertyPurchaseStatus } from "@/lib/types";
 import { toTitleCase } from "@/lib/to-title-case";
-import { FindPropertyQuery } from "@/lib/api";
-import qs from 'qs'
+import type { Metadata } from "next";
 
-export const generateTitle = (searchParams: FindPropertyQuery) => {
-  const propertyType = searchParams.building_type
-    ? searchParams.building_type
-    : "Properti";
-  const purchaseType = searchParams.purchase_status
-    ?
-        searchParams.purchase_status
-      .toLowerCase()
+function getLocation(searchParams: FindPropertyQuery) {
+  const locationSegments = [searchParams.street, searchParams.regency]
+    .filter(Boolean)
+    .map((segment) => segment?.replaceAll("-", " "));
+
+  if (locationSegments.length > 0) {
+    return locationSegments.join(", ");
+  }
+
+  return searchParams.province?.replaceAll("-", " ") || "Indonesia";
+}
+
+function getPurchaseStatus(searchParams: FindPropertyQuery) {
+  return searchParams.purchase_status === PropertyPurchaseStatus.ForRent
+    ? "disewa"
     : "dijual";
-  let location = "";
-  if (searchParams.street) {
-    location += " ";
-    location += searchParams.street.replaceAll("-", " ");
-  }
-  if (searchParams.regency) {
-    location += " ";
-    location += searchParams.regency.replaceAll("-", " ");
-  }
-  if (!searchParams.regency && searchParams.province) {
-    location += " ";
-    location += searchParams.province.replaceAll("-", " ");
-  }
+}
 
-  let fullLocation = `${propertyType} ${purchaseType} di ${location ? location : "Indonesia"}.`;
-  if (searchParams.page) {
-    fullLocation += ` Halaman ${searchParams.page}`;
-  }
-  const date = new Date();
-
-  return `${toTitleCase(fullLocation)} | Harga Terbaru ${date.getFullYear()}`;
-};
-
-export const generateDescription = (searchParams: FindPropertyQuery) => {
-  const propertyType = searchParams.building_type
-    ? searchParams.building_type
-    : "Properti";
-  const purchaseType = searchParams.purchase_status
-    ?
-        searchParams.purchase_status.toLowerCase()
-    : "dijual";
-  let location = "";
-  if (searchParams.street) {
-    location += " jalan ";
-    location += searchParams.street.replaceAll("-", " ");
-  }
-  if (searchParams.regency) {
-    location += " ";
-    location += searchParams.regency.replaceAll("-", " ");
-  }
-  if (!searchParams.regency && searchParams.province) {
-    location += " ";
-    location += searchParams.province.replaceAll("-", " ");
-  }
-
-  if (searchParams.page) {
-    location += `, Halaman ${searchParams.page}`;
-  }
-
-  const fullLocation = `${propertyType} ${purchaseType} Murah di ${location ? location : "Indonesia"}`;
-  return (
-    toTitleCase(fullLocation) +
-    "Lihat properti dan rumahan dijual di Indonesia terlengkap dan terdekat. ✓ Harga Murah ✓ Bisa KPR ✓ Lokasi Strategis ✓ Pencarian Mudah ."
+export function generateTitle(searchParams: FindPropertyQuery) {
+  const propertyType = toTitleCase(searchParams.building_type || "Properti");
+  const status = getPurchaseStatus(searchParams);
+  const location = toTitleCase(getLocation(searchParams));
+  return normalizeSeoText(
+    `${propertyType} ${toTitleCase(status)} di ${location} | PrimePro Indonesia`,
+    70,
   );
-};
+}
 
-export const generateKeyword = (searchParams: FindPropertyQuery) => {
-  const propertyType = searchParams.building_type
-    ? searchParams.building_type
-    : "Properti";
-  const purchaseType = searchParams.purchase_status
-    ?
-        searchParams.purchase_status
-    : "dijual";
+export function generateDescription(searchParams: FindPropertyQuery) {
+  const propertyType = (searchParams.building_type || "properti").toLowerCase();
+  const status = getPurchaseStatus(searchParams);
+  const location = toTitleCase(getLocation(searchParams));
+  return normalizeSeoText(
+    `Temukan ${propertyType} ${status} di ${location}. Lihat pilihan properti PrimePro Indonesia dengan harga, foto, lokasi, dan agen yang dapat dihubungi.`,
+    160,
+  );
+}
 
-  let location = "";
-  if (searchParams.street) {
-    location += searchParams.street.replaceAll("-", " ");
-    location += ",";
-  }
-  if (searchParams.regency) {
-    location += searchParams.regency.replaceAll("-", " ");
-    location += ",";
-  }
-  if (searchParams.province) {
-    location += searchParams.province.replaceAll("-", " ");
-    location += ",";
-  }
+export function hasPropertyQuery(searchParams: FindPropertyQuery) {
+  return Object.values(searchParams).some(
+    (value) => value !== undefined && value !== null && value !== "",
+  );
+}
 
-  return `${propertyType}, ${purchaseType}, ${location ?? "Indonesia"}, Primepro Indonesia`;
-};
-
-export const generateCanonical = (searchParams: FindPropertyQuery) => {
-  if (Object.values(searchParams).length > 0) {
-    return qs.stringify(searchParams);
-  }
-
-  return "";
-};
-
-export const generatePropertiesMetadata = async (
+export async function generatePropertiesMetadata(
   searchQuery: Promise<FindPropertyQuery>,
-): Promise<Metadata> => {
+): Promise<Metadata> {
   const searchParams = await searchQuery;
 
-  return {
+  return createMetadata({
     title: generateTitle(searchParams),
     description: generateDescription(searchParams),
-    keywords: generateKeyword(searchParams),
-    twitter: {
-      title: generateTitle(searchParams),
-      site: "@primeproindonesia",
-      creator: "@primeproindonesia",
-      card: "summary_large_image",
-      images: [`${env.NEXT_PUBLIC_HOST_URL}/images/primepro.png`],
-    },
-    openGraph: {
-      title: generateTitle(searchParams),
-      description: generateDescription(searchParams),
-      siteName: "Primepro Indonesia",
-      locale: "id_ID",
-    },
-    appleWebApp: true,
-    applicationName: "Primepro Indonesia",
-    alternates: {
-      canonical: `${env.NEXT_PUBLIC_HOST_URL}/properties${generateCanonical(searchParams)}`,
-    },
-    robots: "index, follow",
-  };
-};
+    path: "/properties",
+    index: !hasPropertyQuery(searchParams),
+  });
+}

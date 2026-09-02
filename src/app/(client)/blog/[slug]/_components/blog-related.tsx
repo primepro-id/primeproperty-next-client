@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { generateBlogRelatedSchema } from "../../_lib/generate-blog-related-schema";
 import { Article } from "@/lib/types";
 
 type BlogRelatedProps = {
@@ -11,16 +10,9 @@ type BlogRelatedProps = {
   >[];
 };
 
-export const BlogRelated = ({ slug, allArticles }: BlogRelatedProps) => {
-  const schema = generateBlogRelatedSchema(slug, allArticles);
+export const BlogRelated = ({ allArticles }: BlogRelatedProps) => {
   return (
     <div className="flex flex-col gap-4 rounded sticky px-4">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
-        }}
-      />
       <h3 className="font-semibold border-b">Artikel Terkait</h3>
       <div className="flex flex-col gap-4" id="breadcrumb">
         {allArticles.map((article) => (
@@ -36,7 +28,6 @@ export const BlogRelated = ({ slug, allArticles }: BlogRelatedProps) => {
               width={400}
               height={400}
               className="object-cover size-12 rounded"
-              priority
             />
             <div className="flex flex-col gap-1">
               <div className="text-sm line-clamp-2">{article.title}</div>

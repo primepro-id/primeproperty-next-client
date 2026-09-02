@@ -65,9 +65,9 @@ const Title = ({
         ? purchaseStatusLabels[searchParams.purchase_status].toLowerCase()
         : ""}{" "}
       {searchParams.province || searchParams.regency || searchParams.street ? (
-        <p>{location}</p>
+        <span>{location}</span>
       ) : (
-        <p>Primepro Indonesia</p>
+        <span>Primepro Indonesia</span>
       )}
     </h1>
   );
@@ -98,9 +98,11 @@ export const PropertiesTitle = ({
         className={className}
       />
       {propertyCount > 0 && (
-        <p className="text-muted-foreground">
-          Menampilkan {showCount} dari {propertyCount} properti
-        </p>
+        <>
+          <p className="text-muted-foreground">
+            Menampilkan {showCount} dari {propertyCount} properti
+          </p>
+        </>
       )}
     </div>
   );

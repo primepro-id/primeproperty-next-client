@@ -1,5 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
-import { env } from "@/lib/env";
+import { createMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -223,14 +223,12 @@ const CtaSection = () => {
   );
 };
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Peluang Karir: Marketing Executive - PRIMEPRO INDONESIA",
   description:
     "PrimePro Indonesia sedang memperluas timnya dan mencari individu yang termotivasi tinggi untuk bergabung sebagai Marketing Executive.",
-  alternates: {
-    canonical: env.NEXT_PUBLIC_HOST_URL + "/jobs",
-  },
-};
+  path: "/jobs",
+});
 
 export default function JobsPage() {
   return (
