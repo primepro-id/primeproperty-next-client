@@ -1,0 +1,38 @@
+Generated: 2026-09-02
+Files scanned: 317
+Codemap location: docs/CODEMAPS
+
+Diff status:
+- Initial generation: False
+- Diff percentage: 0.0%
+- Requires approval: False
+
+Files added:
+- None
+
+Files removed:
+- None
+
+Files modified:
+- None
+
+Dependency changes:
+- Added: None
+- Removed: None
+
+Architecture changes since previous scan:
+- Source fingerprints are unchanged; this run establishes the post-generation baseline.
+- Codemaps migrated from the legacy single docs/CODEMAPS file to five focused maps under docs/CODEMAPS/.
+- Route map now records the auth/password-reset routes, /admin redirect, public routes, CRUD admin routes, and two XML sitemap route handlers.
+- Runtime boundaries now distinguish App Router UI, middleware/session helpers, external REST/DatoCMS/S3 clients, and TanStack Query modules.
+- No in-repository API service/repository layer, database schema, migrations, seeds, policies, queue, or worker was detected.
+
+Architecture signals:
+- Project shape: single-js-app
+- Route files: 2
+- Middleware files: 1
+- Server action files: 3
+- Schema/data files: 0
+
+Staleness warnings:
+- None
