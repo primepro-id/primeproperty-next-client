@@ -21,13 +21,13 @@ Next 15.5 + React 19
 
 ## External systems
 
-| System | Evidence/boundary |
-| --- | --- |
-| PrimeProperty REST API | `NEXT_PUBLIC_API_URL`, `src/lib/api/fetch-api.ts` |
-| DatoCMS GraphQL | Apollo client in `src/lib/api/articles.ts` |
-| S3-backed image service | `/s3/images`, `NEXT_PUBLIC_S3_ENDPOINT` |
-| Sentry | client/server/edge instrumentation and `next.config.mjs` wrapper |
-| Google Analytics | `@next/third-parties` in public layout |
+| System                  | Evidence/boundary                                                |
+| ----------------------- | ---------------------------------------------------------------- |
+| PrimeProperty REST API  | `NEXT_PUBLIC_API_URL`, `src/lib/api/fetch-api.ts`                |
+| DatoCMS GraphQL         | Apollo client in `src/lib/api/articles.ts`                       |
+| S3-backed image service | `/s3/images`, `NEXT_PUBLIC_S3_ENDPOINT`                          |
+| Sentry                  | client/server/edge instrumentation and `next.config.mjs` wrapper |
+| Google Analytics        | `@next/third-parties` in public layout                           |
 
 Dependencies alone do not establish use of a database, queue, mail delivery, or deployment vendor.
 

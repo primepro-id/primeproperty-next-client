@@ -126,13 +126,7 @@
         "zustand"
       ],
       "path": "package.json",
-      "scripts": [
-        "build",
-        "dev",
-        "lint",
-        "prepare",
-        "start"
-      ],
+      "scripts": ["build", "dev", "lint", "prepare", "start"],
       "workspace_dependencies": []
     }
   },
@@ -351,9 +345,7 @@
       "src/lib/schema/index.ts",
       "src/lib/types/index.ts"
     ],
-    "middleware_files": [
-      "src/middleware.ts"
-    ],
+    "middleware_files": ["src/middleware.ts"],
     "route_files": [
       "src/app/(client)/properties/filter/sitemap.xml/route.ts",
       "src/app/(client)/properties/filter/sitemaps/[chunk]/route.ts"

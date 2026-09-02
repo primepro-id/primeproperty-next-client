@@ -16,13 +16,13 @@ This repository is a frontend/BFF client. It contains no business API controller
 
 `src/lib/api/fetch-api.ts` prefixes requests with `NEXT_PUBLIC_API_URL`, sends JSON by default, parses JSON, and throws on non-2xx responses.
 
-| Module | Durable endpoint surface |
-| --- | --- |
-| `agents.ts` | `/agents`, `/agents/{id}`, `/agents/fullname/{name}`, signin, password reset, session verify/refresh/remove |
-| `properties.ts` | `/properties`, `/properties/{id}`, join-agents, site-paths, navigations |
-| `developers.ts` | `/developers`, `/developers/{id}` |
-| `leads.ts` | create/list `/leads`; optional agent filtering |
-| `s3.ts` | multipart image upload at `/s3/images` |
+| Module          | Durable endpoint surface                                                                                    |
+| --------------- | ----------------------------------------------------------------------------------------------------------- |
+| `agents.ts`     | `/agents`, `/agents/{id}`, `/agents/fullname/{name}`, signin, password reset, session verify/refresh/remove |
+| `properties.ts` | `/properties`, `/properties/{id}`, join-agents, site-paths, navigations                                     |
+| `developers.ts` | `/developers`, `/developers/{id}`                                                                           |
+| `leads.ts`      | create/list `/leads`; optional agent filtering                                                              |
+| `s3.ts`         | multipart image upload at `/s3/images`                                                                      |
 
 Protected create/update/delete/list operations read the cookie with `getAccessToken()` and send `x-access-token`. `src/lib/api/viewer-session.ts` normalizes verified viewer/session responses for route guards.
 
