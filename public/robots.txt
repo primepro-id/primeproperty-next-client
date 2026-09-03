@@ -10,6 +10,8 @@ Allow: /
 Disallow: /primepro-agents-2
 Disallow: /primepro-property-2
 Disallow: /primepro-property-3
+Disallow: /_next/
+Disallow: /*.js$
 
 # All other crawlers
 User-agent: *
@@ -17,6 +19,8 @@ Allow: /
 Disallow: /primepro-agents-2
 Disallow: /primepro-property-2
 Disallow: /primepro-property-3
+Disallow: /_next/
+Disallow: /*.js$
 
 # Host
 Host: https://primeproindonesia.com
