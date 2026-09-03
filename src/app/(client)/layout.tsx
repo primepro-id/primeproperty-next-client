@@ -4,6 +4,7 @@ import { Header } from "./_header";
 import { createMetadata } from "@/lib/metadata";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { env } from "@/lib/env";
+import { getPublicPropertyNavigation } from "./_lib/get-public-property-navigation";
 
 const seo = {
   title: "Jual Beli Rumah Apartemen | PRIMEPRO INDONESIA",
@@ -13,12 +14,14 @@ const seo = {
 };
 export const metadata: Metadata = createMetadata(seo);
 
-const ClientLayout = ({ children }: { children: React.ReactNode }) => {
+const ClientLayout = async ({ children }: { children: React.ReactNode }) => {
+  const navigations = await getPublicPropertyNavigation();
+
   return (
     <>
-      <Header />
+      <Header navigations={navigations} />
       <main className="min-h-screen">{children}</main>
-      <Footer />
+      <Footer navigations={navigations} />
       <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_ID} />
     </>
   );

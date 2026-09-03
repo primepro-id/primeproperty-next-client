@@ -1,4 +1,3 @@
-'use client'
 import { PropertyOverview } from "./property-overview";
 import { PropertyImages } from "./property-images";
 import { PropertyNotFound } from "../../_components/not-found";
@@ -11,13 +10,11 @@ import { Faq } from "../../_components/faq";
 import { createDynamicPropertySchema } from "@/lib/schema/create-dynamic-property-schema";
 import { createPlaceSchema } from "@/lib/schema/create-place-schema";
 import { createRelatedAreaSchema } from "@/lib/schema/create-related-area-schema";
-import { PropertyJoinAgent } from "@/lib/types";
-import { useQuery } from "@tanstack/react-query";
-import { findUniquePropertyJoinAgentQueryOptions } from "@/lib/hooks";
-import Loading from "@/app/(client)/loading";
+import type { PropertyJoinAgent } from "@/lib/types";
 
 type DynamicPropertyProps = {
   propertyId: number;
+  property: PropertyJoinAgent | null;
 };
 
 type AgentCardProps = {
@@ -60,18 +57,16 @@ const DesktopAgentCard = ({ property }: AgentCardProps) => {
   );
 };
 
-export const DynamicProperty = ({ propertyId }: DynamicPropertyProps) => {
-  const property = useQuery(findUniquePropertyJoinAgentQueryOptions(propertyId));
-  if (property.isLoading) {
-    return <Loading />
-  }
-
-  if (!property.data?.data) {
+export const DynamicProperty = ({
+  propertyId,
+  property,
+}: DynamicPropertyProps) => {
+  if (!property) {
     return <PropertyNotFound searchParams={{}} />;
   }
-  const dynamicJsonLd = createDynamicPropertySchema(property?.data?.data[0]);
-  const placeLd = createPlaceSchema(property.data.data[0]);
-  const relatedAreaLd = createRelatedAreaSchema(property.data.data[0]);
+  const dynamicJsonLd = createDynamicPropertySchema(property[0]);
+  const placeLd = createPlaceSchema(property[0]);
+  const relatedAreaLd = createRelatedAreaSchema(property[0]);
   return (
     <>
       <div className="relative container mx-auto px-2 py-4 flex flex-col gap-2 lg:gap-4">
@@ -93,14 +88,17 @@ export const DynamicProperty = ({ propertyId }: DynamicPropertyProps) => {
             __html: JSON.stringify(relatedAreaLd).replace(/</g, "\\u003c"),
           }}
         />
-        <PropertyImages propertyWithAgent={property.data.data} />
+        <PropertyImages propertyWithAgent={property} />
         <div className="flex flex-col gap-4 lg:flex-row md:pt-4">
-          <PropertyOverview property={property.data.data} />
-          <MobileAgentCard property={property.data.data} />
-          <DesktopAgentCard property={property.data.data} />
+          <PropertyOverview property={property} />
+          <MobileAgentCard property={property} />
+          <DesktopAgentCard property={property} />
         </div>
         <div className="mt-16 flex flex-col gap-16">
-          <RelatedProperties propertyId={propertyId} />
+          <RelatedProperties
+            propertyId={propertyId}
+            regency={property[0].regency}
+          />
           <Faq defaultTab="PROPERTY" />
         </div>
       </div>

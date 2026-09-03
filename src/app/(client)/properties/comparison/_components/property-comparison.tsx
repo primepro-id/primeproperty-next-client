@@ -1,4 +1,3 @@
-"use client";
 import {
   Table,
   TableBody,
@@ -31,17 +30,9 @@ import { PropertyAgentInfo } from "../../_components/property-agent-info";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { useQuery } from "@tanstack/react-query";
-import { PropertyComparisonSelect } from "./property-comparison-select";
-import { useRouter } from "next/navigation";
-import Loading from "@/app/(client)/loading";
-import {
-  findPropertyJoinAgentQueryOptions,
-  findUniquePropertyJoinAgentQueryOptions,
-  getBookmarkedPropertyOptions,
-} from "@/lib/hooks";
 import { PropertyJoinAgent, PropertyPurchaseStatus } from "@/lib/types";
 import { createPropertyPath } from "@/lib/metadata/seo-domain";
+import { PropertyComparisonSelectors } from "./property-comparison-selectors";
 
 type ComparisonRowProps = {
   icon: React.ReactNode;
@@ -75,35 +66,22 @@ const ComparisonRow = ({
   );
 };
 
-type PropertyComparisonProps = { ids: string };
+type PropertyComparisonProps = {
+  ids: readonly [number, number];
+  firstProperty: PropertyJoinAgent | null;
+  secondProperty: PropertyJoinAgent | null;
+};
 
-export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
-  const router = useRouter();
-  const [firstID, secondID] = ids.split(",");
-  const bookmarks = useQuery(getBookmarkedPropertyOptions());
-  const bookmarkedProperties = useQuery(
-    findPropertyJoinAgentQueryOptions(
-      { ids: bookmarks.data?.join(",") },
-      { enabled: !!bookmarks.data },
-    ),
-  );
-
-  const firstProperty = useQuery(
-    findUniquePropertyJoinAgentQueryOptions(+firstID),
-  );
-  const secondProperty = useQuery(
-    findUniquePropertyJoinAgentQueryOptions(+secondID),
-  );
-
-  if (firstProperty.isLoading || secondProperty.isLoading) {
-    return <Loading />;
+export const PropertyComparison = ({
+  ids,
+  firstProperty,
+  secondProperty,
+}: PropertyComparisonProps) => {
+  if (!firstProperty || !secondProperty) {
+    return <PropertyComparisonFallback />;
   }
-
-  if (!firstProperty.data || !secondProperty.data) {
-    return <></>;
-  }
-  const firstProp = firstProperty.data.data as PropertyJoinAgent;
-  const secondProp = secondProperty.data.data as PropertyJoinAgent;
+  const firstProp = firstProperty;
+  const secondProp = secondProperty;
 
   const ROWS: ComparisonRowProps[] = [
     {
@@ -254,32 +232,7 @@ export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
           <TableRow>
             <TableHead />
 
-            <TableHead>
-              <PropertyComparisonSelect
-                onValueChange={(val) => {
-                  const oldIds = ids.split(",");
-                  oldIds.splice(0, 1, val);
-                  router.replace(
-                    `/properties/comparison?ids=${oldIds.join(",")}`,
-                  );
-                }}
-                selectedId={String(firstProp[0].id)}
-                properties={bookmarkedProperties.data?.data?.data}
-              />
-            </TableHead>
-            <TableHead>
-              <PropertyComparisonSelect
-                onValueChange={(val) => {
-                  const oldIds = ids.split(",");
-                  oldIds.splice(1, 1, val);
-                  router.replace(
-                    `/properties/comparison?ids=${oldIds.join(",")}`,
-                  );
-                }}
-                selectedId={String(secondProp[0].id)}
-                properties={bookmarkedProperties.data?.data?.data}
-              />
-            </TableHead>
+            <PropertyComparisonSelectors ids={ids} />
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -297,3 +250,10 @@ export const PropertyComparison = ({ ids }: PropertyComparisonProps) => {
     </div>
   );
 };
+
+export const PropertyComparisonFallback = () => (
+  <div className="min-h-96 flex items-center justify-center px-4 text-center text-muted-foreground">
+    Data perbandingan properti tidak tersedia. Pilih dua properti tersimpan
+    untuk melanjutkan.
+  </div>
+);

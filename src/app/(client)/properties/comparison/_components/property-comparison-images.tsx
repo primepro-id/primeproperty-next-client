@@ -1,3 +1,5 @@
+"use client";
+
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
 import { env } from "@/lib/env";
 import { cn } from "@/lib/utils";

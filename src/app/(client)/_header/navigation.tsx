@@ -1,3 +1,5 @@
+"use client";
+
 import { buttonVariants } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -13,17 +15,13 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 import { toSlug } from "@/lib/utils";
 import { PropertyNavigation, PropertyPurchaseStatus } from "@/lib/types";
-import { useQuery } from "@tanstack/react-query";
-import { findPropertyNavigationQueryOptions } from "@/lib/hooks";
 
 type PropertyNavigationMenuContentProps = {
-  isLoading: boolean;
-  data?: PropertyNavigation[];
+  data: PropertyNavigation[];
   purchaseStatus: PropertyPurchaseStatus;
 };
 
 const PropertyNavigationMenuContent = ({
-  isLoading,
   data,
   purchaseStatus,
 }: PropertyNavigationMenuContentProps) => {
@@ -33,17 +31,9 @@ const PropertyNavigationMenuContent = ({
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedRegency, setSelectedRegency] = useState("");
 
-  if (isLoading) {
-    return (
-      <div className="w-[600px] p-4">
-        <div className="bg-primary h-10 animate-pulse rounded" />
-      </div>
-    );
-  }
-
   const buildingTypes = new Map(
     data
-      ?.sort((a, b) => a.building_type.localeCompare(b.building_type))
+      .sort((a, b) => a.building_type.localeCompare(b.building_type))
       .map((d) => [
         d.building_type,
         {
@@ -203,7 +193,11 @@ const PropertyNavigationMenuContent = ({
   );
 };
 
-export const Navigation = () => {
+type NavigationProps = {
+  navigations: PropertyNavigation[];
+};
+
+export const Navigation = ({ navigations }: NavigationProps) => {
   const MENU = [
     {
       title: "AGEN",
@@ -231,11 +225,10 @@ export const Navigation = () => {
     },
   ];
 
-  const nav = useQuery(findPropertyNavigationQueryOptions());
-  const forSaleNav = nav?.data?.data?.filter(
+  const forSaleNav = navigations.filter(
     (b) => b.purchase_status === PropertyPurchaseStatus.ForSale,
   );
-  const forRentNav = nav?.data?.data?.filter(
+  const forRentNav = navigations.filter(
     (b) => b.purchase_status === PropertyPurchaseStatus.ForRent,
   );
   return (
@@ -261,7 +254,6 @@ export const Navigation = () => {
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-gradient-to-br from-primary/50 to-transparent">
             <PropertyNavigationMenuContent
-              isLoading={nav.isLoading}
               data={forSaleNav}
               purchaseStatus={PropertyPurchaseStatus.ForSale}
             />
@@ -273,7 +265,6 @@ export const Navigation = () => {
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-gradient-to-br from-primary/50 to-transparent">
             <PropertyNavigationMenuContent
-              isLoading={nav.isLoading}
               data={forRentNav}
               purchaseStatus={PropertyPurchaseStatus.ForRent}
             />

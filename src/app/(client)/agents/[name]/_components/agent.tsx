@@ -1,13 +1,6 @@
-"use client";
-
-import {
-  findPropertyJoinAgentQueryOptions,
-  getAgentByFullnameQueryOptions,
-} from "@/lib/hooks";
-import { useQuery } from "@tanstack/react-query";
+import { findPropertyJoinAgent, getAgentByFullname } from "@/lib/api";
 import { AgentBreadcrumb } from "./agent-breadcrumb";
 import { AgentBio } from "./agent-bio";
-import Loading from "@/app/(client)/loading";
 import { PropertyList } from "@/app/(client)/properties/_components/list";
 import { Faq } from "@/app/(client)/properties/_components/faq";
 import { createAgentProfileSchema } from "@/lib/schema/create-agent-profile-schema";
@@ -16,25 +9,19 @@ type AgentPageProps = {
   name: string;
 };
 
-export const AgentPage = ({ name }: AgentPageProps) => {
-  const agent = useQuery(getAgentByFullnameQueryOptions(name));
-  const agentWithProperties = useQuery(
-    findPropertyJoinAgentQueryOptions(
-      { agent_id: agent?.data?.data?.id },
-      { enabled: !!agent?.data?.data },
-    ),
-  );
-
-  if (agent.isLoading || agentWithProperties.isLoading) {
-    return <Loading />;
-  }
-
-  const propertyData = agentWithProperties.data?.data?.data;
-  if (!agent.data?.data || !propertyData) {
+export const AgentPage = async ({ name }: AgentPageProps) => {
+  const agentResponse = await getAgentByFullname(name);
+  const agent = agentResponse.data;
+  if (!agent) {
     return <></>;
   }
+  const propertiesResponse = await findPropertyJoinAgent({
+    agent_id: agent.id,
+  });
+  const propertyData = propertiesResponse.data?.data;
+  if (!propertyData) return <></>;
 
-  const agentProfileSchema = createAgentProfileSchema(agent.data.data);
+  const agentProfileSchema = createAgentProfileSchema(agent);
 
   return (
     <>
@@ -46,8 +33,8 @@ export const AgentPage = ({ name }: AgentPageProps) => {
         }}
       />
       <div className="flex flex-col gap-8 container mx-auto p-4">
-        <AgentBreadcrumb agent={agent.data.data} />
-        <AgentBio agent={agent.data.data} propertiesWithAgent={propertyData} />
+        <AgentBreadcrumb agent={agent} />
+        <AgentBio agent={agent} propertiesWithAgent={propertyData} />
         <div className="flex flex-col gap-4">
           <h2 className="text-xl font-bold">Property List</h2>
           <PropertyList searchParams={{}} propertiesWithAgent={propertyData} />

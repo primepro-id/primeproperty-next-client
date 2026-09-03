@@ -1,3 +1,5 @@
+"use client";
+
 import Watermark, { WatermarkProps } from "@uiw/react-watermark";
 import Image from "next/image";
 import { ImageProps } from "next/image";

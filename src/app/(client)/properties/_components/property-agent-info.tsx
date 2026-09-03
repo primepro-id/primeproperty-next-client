@@ -1,5 +1,6 @@
 import { PropertyJoinAgent } from "@/lib/types";
 import { env } from "@/lib/env";
+import { createAgentPath } from "@/lib/metadata/seo-domain";
 import { formatDateToIndonesian } from "@/lib/intl/format-date-to-indonesian";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +17,7 @@ export const PropertyAgentInfo = ({
       <Link
         title={propertyWithAgent[1].fullname}
         aria-label={propertyWithAgent[1].fullname}
-        href={`/agents/${propertyWithAgent[1].fullname.replaceAll(" ", "-")}`}
+        href={createAgentPath(propertyWithAgent[1])}
         className="flex items-center gap-2 hover:underline hover:underline-offset-4"
       >
         <div className="w-8 h-8">

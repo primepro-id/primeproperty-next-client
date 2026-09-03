@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { PropertyJoinAgent } from "@/lib/types";
 
 type BookmarkedPropertyTableProps = {
-  bookmarkedProperties?: number[];
   properties: PropertyJoinAgent[];
   onBookmarkClickAction: () => void;
   selectedProperties: number[];
@@ -13,7 +12,6 @@ type BookmarkedPropertyTableProps = {
 
 export const BookmarkedPropertyTable = ({
   properties,
-  bookmarkedProperties,
   onBookmarkClickAction,
   selectedProperties,
   setSelectedProperties,
@@ -30,7 +28,6 @@ export const BookmarkedPropertyTable = ({
           <PropertyCard
             isComparison
             propertyWithAgent={p}
-            bookmarkedProperties={bookmarkedProperties}
             onBookmarkClickAction={onBookmarkClickAction}
             isComparisonActive={selectedProperties.includes(p[0].id)}
             isComparisonDisabled={

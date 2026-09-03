@@ -1,21 +1,17 @@
-"use client";
 import { buttonVariants } from "@/components/ui/button";
 import { env } from "@/lib/env";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo } from "react";
 import { LuArrowRight } from "react-icons/lu";
 
 export const Hero = () => {
-  const askUrl = useMemo(() => {
-    const currentUrl = env.NEXT_PUBLIC_HOST_URL + "/franchise";
-    const whatsappUrl = new URL("https://api.whatsapp.com/send");
-    whatsappUrl.searchParams.append("phone", "628567557979");
-    const text = `Hai, saya ingin bertanya-tanya tentang franchise opportunity di: \n${currentUrl}\n Mohon informasinya terkait hal tersebut.`;
-    whatsappUrl.searchParams.append("text", text);
-    return whatsappUrl;
-  }, []);
+  const currentUrl = env.NEXT_PUBLIC_HOST_URL + "/franchise";
+  const whatsappUrl = new URL("https://api.whatsapp.com/send");
+  whatsappUrl.searchParams.append("phone", "628567557979");
+  const text = `Hai, saya ingin bertanya-tanya tentang franchise opportunity di: \n${currentUrl}\n Mohon informasinya terkait hal tersebut.`;
+  whatsappUrl.searchParams.append("text", text);
+  const askUrl = whatsappUrl.toString();
   return (
     <section className="grid items-center gap-8 lg:grid-cols-2 container mx-auto ">
       <div className="flex flex-col items-center text-center lg:items-start lg:text-left">

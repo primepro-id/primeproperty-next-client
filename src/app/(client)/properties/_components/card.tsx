@@ -1,27 +1,17 @@
-"use client";
 import { PropertyJoinAgent } from "@/lib/types";
 import { env } from "@/lib/env";
 import Link from "next/link";
-import { ContactAgentDialog } from "./contact-agent-dialog";
 import { Specifications } from "./specifications";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
-import {
-  LuBookmark,
-  LuBookmarkCheck,
-  LuCircle,
-  LuCircleCheck,
-} from "react-icons/lu";
-import { Button } from "@/components/ui/button";
-import { bookmarkProperty } from "../_lib/bookmark-property";
-import { Tooltip } from "react-tooltip";
 import { PropertyPriceTag } from "./property-price-tag";
 import { PropertyAgentInfo } from "./property-agent-info";
 import { createPropertyPath } from "@/lib/metadata/seo-domain";
+import { PropertyBookmarkButton } from "./property-bookmark-button";
+import { PropertyComparisonActions } from "./property-comparison-actions";
 
 type PropertyCardProps = {
   propertyWithAgent: PropertyJoinAgent;
-  bookmarkedProperties?: number[];
-  onBookmarkClickAction: () => void;
+  onBookmarkClickAction?: () => void;
   isComparison?: boolean;
   onCompareClick?: () => void;
   isComparisonActive?: boolean;
@@ -48,52 +38,9 @@ const PropertyContent = ({
   );
 };
 
-const ComparisonInfo = ({
-  propertyWithAgent,
-  onCompareClick,
-  isComparisonActive,
-  isComparisonDisabled,
-}: {
-  propertyWithAgent: PropertyJoinAgent;
-  onCompareClick?: () => void;
-  isComparisonActive?: boolean;
-  isComparisonDisabled?: boolean;
-}) => {
-  return (
-    <div className="flex items-center justify-between gap-4 w-full">
-      <ContactAgentDialog
-        isWhatsapp={true}
-        propertyWithAgent={propertyWithAgent}
-      />
-
-      <Tooltip id="compare-btn-tooltip" />
-      <Button
-        data-tooltip-id="compare-btn-tooltip"
-        data-tooltip-content={
-          isComparisonDisabled ? "2 properti sudah terpilih" : ""
-        }
-        data-tooltip-place="top"
-        variant={
-          isComparisonDisabled
-            ? "ghost"
-            : isComparisonActive
-              ? "default"
-              : "outline"
-        }
-        onClick={onCompareClick}
-        disabled={isComparisonDisabled}
-      >
-        {isComparisonActive ? <LuCircleCheck /> : <LuCircle />}
-        COMPARE
-      </Button>
-    </div>
-  );
-};
-
 export const PropertyCard = ({
   propertyWithAgent,
   onBookmarkClickAction,
-  bookmarkedProperties,
   isComparison,
   isComparisonActive,
   onCompareClick,
@@ -133,26 +80,14 @@ export const PropertyCard = ({
             HARGA NJOP
           </div>
         )}
-        <Button
-          size="icon"
-          variant="outline"
-          className="absolute right-1 top-1"
-          onClick={(e) => {
-            e.preventDefault();
-            bookmarkProperty(propertyWithAgent[0].id);
-            onBookmarkClickAction();
-          }}
-        >
-          {bookmarkedProperties?.includes(propertyWithAgent[0].id) ? (
-            <LuBookmarkCheck />
-          ) : (
-            <LuBookmark />
-          )}
-        </Button>
+        <PropertyBookmarkButton
+          propertyId={propertyWithAgent[0].id}
+          onBookmarkChange={onBookmarkClickAction}
+        />
         <PropertyContent propertyWithAgent={propertyWithAgent} />
       </Link>
       {isComparison ? (
-        <ComparisonInfo
+        <PropertyComparisonActions
           propertyWithAgent={propertyWithAgent}
           isComparisonActive={isComparisonActive}
           onCompareClick={onCompareClick}

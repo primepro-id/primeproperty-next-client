@@ -1,19 +1,17 @@
-"use client";
 import { env } from "@/lib/env";
 import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { LuArrowRight } from "react-icons/lu";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 import { Article } from "@/lib/types";
+import { createArticleExcerpt } from "../_lib/create-article-excerpt";
 
 type SpotlightProps = {
   article: Article;
 };
 
 export const Spotlight = ({ article }: SpotlightProps) => {
-  const router = useRouter();
   return (
     <div className="border border-primary md:border-transparent rounded-lg ">
       <div className=" px-4 py-1 md:hidden">Tips &amp; Trick Spotlight</div>
@@ -42,13 +40,11 @@ export const Spotlight = ({ article }: SpotlightProps) => {
           {article.title}
         </Link>
 
-        <div
-          onClick={() => router.push(`/blog/${article.slug}`)}
-          className="line-clamp-3 text-muted-foreground text-sm cursor-pointer hover:underline"
-          dangerouslySetInnerHTML={{
-            __html: article.content,
-          }}
-        />
+        <Link href={`/blog/${article.slug}`} title={article.title}>
+          <p className="line-clamp-3 text-muted-foreground text-sm hover:underline">
+            {createArticleExcerpt(article.content)}
+          </p>
+        </Link>
 
         <Link
           title={article.title}

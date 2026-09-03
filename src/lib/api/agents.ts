@@ -5,7 +5,7 @@ import { getAccessToken } from "./token";
 export async function getAgents(): Promise<
   JsonResponse<DataAndPagination<Agent[]>>
 > {
-  return fetchJsonApi("/agents");
+  return fetchJsonApi("/agents", { method: "GET", cache: "no-store" });
 }
 
 export async function getAgentById(id: string): Promise<JsonResponse<Agent>> {
@@ -15,7 +15,10 @@ export async function getAgentById(id: string): Promise<JsonResponse<Agent>> {
 export async function getAgentByFullname(
   fullname: string,
 ): Promise<JsonResponse<Agent>> {
-  return fetchJsonApi(`/agents/fullname/${encodeURIComponent(fullname)}`);
+  return fetchJsonApi(`/agents/fullname/${encodeURIComponent(fullname)}`, {
+    method: "GET",
+    cache: "no-store",
+  });
 }
 
 type SigninPayload = {
@@ -95,7 +98,9 @@ type RemoveSessionPayload = {
 export async function removeAgentSession(
   supertokensUserId: string,
 ): Promise<JsonResponse<Supertokens.RemoveSessionResponse>> {
-  const payload: RemoveSessionPayload = { supertokens_user_id: supertokensUserId};
+  const payload: RemoveSessionPayload = {
+    supertokens_user_id: supertokensUserId,
+  };
   return fetchJsonApi("/agents/session/remove", {
     method: "POST",
     body: JSON.stringify(payload),

@@ -11,6 +11,8 @@ import { getDevelopers } from "@/lib/api/developers";
 import { env } from "@/lib/env";
 import { Banner } from "@/components/custom-ui/banner";
 
+export const dynamic = "force-dynamic";
+
 const Hero = () => {
   const siteIdentitySchema = createSiteIdentitySchema();
   return (

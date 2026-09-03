@@ -1,4 +1,5 @@
 import { env } from "@/lib/env";
+import { createAgentPath } from "@/lib/metadata/seo-domain";
 import type { Agent } from "@/lib/types";
 
 type AgentProfileSchemaInput = Pick<
@@ -12,7 +13,7 @@ type AgentProfileSchemaInput = Pick<
 >;
 
 export function createAgentProfileSchema(agent: AgentProfileSchemaInput) {
-  const profileUrl = `${env.NEXT_PUBLIC_HOST_URL}/agents/${agent.fullname.replaceAll(" ", "-")}`;
+  const profileUrl = `${env.NEXT_PUBLIC_HOST_URL}${createAgentPath(agent)}`;
   const personId = `${profileUrl}#person`;
 
   return {

@@ -1,4 +1,4 @@
-import { findArticleBySlug } from "@/lib/api";
+import { findArticleBySlug } from "@/lib/api/articles";
 import { createMetadata } from "@/lib/metadata";
 import { normalizeSeoText } from "@/lib/metadata/seo-domain";
 import type { Metadata } from "next";

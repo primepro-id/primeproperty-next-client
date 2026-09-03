@@ -1,4 +1,4 @@
-import { findArticles } from "@/lib/api";
+import { findArticles } from "@/lib/api/articles";
 import { env } from "@/lib/env";
 import { MetadataRoute } from "next";
 

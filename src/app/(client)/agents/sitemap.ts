@@ -1,5 +1,6 @@
 import { getAgents } from "@/lib/api";
 import { env } from "@/lib/env";
+import { createAgentPath } from "@/lib/metadata/seo-domain";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -11,9 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...(agents.data?.data.map((agent) => {
       return {
-        url:
-          env.NEXT_PUBLIC_HOST_URL +
-          `/agents/${agent.fullname.replaceAll(" ", "-")}`,
+        url: env.NEXT_PUBLIC_HOST_URL + createAgentPath(agent),
         lastModified: new Date(agent.updated_at),
       };
     }) ?? []),

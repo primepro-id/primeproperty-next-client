@@ -1,4 +1,3 @@
-"use client";
 import { FindPropertyQuery } from "@/lib/api";
 import { FilterDialog } from "./dialog";
 import { Search } from "./search";

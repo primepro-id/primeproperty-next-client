@@ -247,10 +247,11 @@ test("agent profiles expose a canonical ProfilePage and Person graph", () => {
     "lib/schema/create-agent-profile-schema.ts",
     {
       "@/lib/env": envStub,
+      "@/lib/metadata/seo-domain": seoDomain,
     },
   );
   const schema = createAgentProfileSchema({
-    fullname: "Ayu Properti",
+    fullname: "Ayu & Partners / Kemang",
     description: "Agen PrimePro Indonesia.",
     email: "ayu@example.com",
     phone_number: "8123456789",
@@ -264,7 +265,7 @@ test("agent profiles expose a canonical ProfilePage and Person graph", () => {
   );
   assert.equal(
     schema["@graph"][0].url,
-    "https://primeproindonesia.com/agents/Ayu-Properti",
+    "https://primeproindonesia.com/agents/Ayu-%26-Partners-%2F-Kemang",
   );
   assert.equal(
     schema["@graph"][1].image,

@@ -26,7 +26,11 @@ try {
 }
 
 const {
+  createAgentPath,
+  createAgentSeoDescription,
+  createMissingPropertySeoDetails,
   createPropertyPath,
+  createPropertySeoDescription,
   createSeoMetadataFields,
   normalizeSeoText,
   resolveSeoRobotsPolicy,
@@ -40,6 +44,78 @@ test("property paths are stable canonical ID-title paths", () => {
   assert.equal(
     createPropertyPath({ id: 43, title: "Rumah #5? 100% Strategis" }),
     "/properties/43-Rumah-%235%3F-100%25-Strategis",
+  );
+});
+
+test("agent paths produce URL-safe canonical fullname paths", () => {
+  assert.equal(
+    createAgentPath({ fullname: "  Sari & Partners / Jakarta  " }),
+    "/agents/Sari-%26-Partners-%2F-Jakarta",
+  );
+});
+
+test("property and agent descriptions preserve their subject within the meta description range", () => {
+  const propertyDescription = createPropertySeoDescription({
+    title: "Rumah keluarga di Kemang",
+    description: "Hunian modern dekat taman kota.",
+  });
+  const agentDescription = createAgentSeoDescription({
+    fullname: "Sari Wulandari",
+    description: "Spesialis hunian keluarga di Jakarta Selatan.",
+  });
+
+  for (const description of [propertyDescription, agentDescription]) {
+    assert.ok(description.length >= 150);
+    assert.ok(description.length <= 160);
+  }
+
+  assert.match(propertyDescription, /Rumah keluarga di Kemang/);
+  assert.match(agentDescription, /Sari Wulandari/);
+});
+
+test("descriptions use a natural completion sentence when truncation leaves them short", () => {
+  const description = createPropertySeoDescription({
+    title: "Rumah keluarga di Kemang",
+    description: `${"x ".repeat(46)}supercalifragilisticexpialidocious`,
+  });
+
+  assert.ok(description.length >= 150);
+  assert.ok(description.length <= 160);
+  assert.match(
+    description,
+    /Temukan informasi lengkap dan layanan agen tepercaya dari PrimePro Indonesia\.$/,
+  );
+});
+
+test("long property descriptions stop at a complete word within the meta description range", () => {
+  const description = createPropertySeoDescription({
+    title: "Rumah keluarga di Kemang",
+    description:
+      "Hunian modern dengan taman luas, pencahayaan alami, dan akses mudah ke sekolah serta pusat kuliner kawasan Kemang Selatan. Properti ini memiliki nilai investasi yang menjanjikan untuk keluarga modern.",
+  });
+
+  assert.equal(
+    description,
+    "Jelajahi Rumah keluarga di Kemang. Hunian modern dengan taman luas, pencahayaan alami, dan akses mudah ke sekolah serta pusat kuliner kawasan Kemang Selatan.",
+  );
+});
+
+test("missing property metadata stays indexable with a complete description", () => {
+  const missingPropertySeoDetails = createMissingPropertySeoDetails();
+
+  assert.equal(missingPropertySeoDetails.index, true);
+  assert.ok(missingPropertySeoDetails.description.length >= 150);
+  assert.ok(missingPropertySeoDetails.description.length <= 160);
+  assert.deepEqual(
+    createSeoMetadataFields({
+      hostUrl: "https://primeproindonesia.com",
+      title: missingPropertySeoDetails.title,
+      description: missingPropertySeoDetails.description,
+      path: "/properties/999-not-found",
+      image: "https://cdn.example.com/default.jpg",
+      index: missingPropertySeoDetails.index,
+    }).robots,
+    { index: true, follow: true },
   );
 });
 

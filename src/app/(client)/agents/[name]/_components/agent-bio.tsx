@@ -1,8 +1,6 @@
-"use client";
 import { env } from "@/lib/env";
 import { Agent, PropertyJoinAgent } from "@/lib/types";
 import Image from "next/image";
-import { useMemo } from "react";
 import { LuCircleUser, LuInstagram, LuMail } from "react-icons/lu";
 
 export const AgentBio = ({
@@ -12,15 +10,12 @@ export const AgentBio = ({
   agent: Agent;
   propertiesWithAgent: PropertyJoinAgent[] | null;
 }) => {
-  const groupedProperties = useMemo(() => {
-    if (propertiesWithAgent) {
-      return Object.groupBy(
+  const groupedProperties = propertiesWithAgent
+    ? Object.groupBy(
         propertiesWithAgent,
         (property) => property[0].building_type,
-      );
-    }
-    return {};
-  }, [propertiesWithAgent]);
+      )
+    : {};
   return (
     <div className="gap-4 flex flex-col sm:flex-row border p-4 rounded w-full lg:w-fit items-center">
       {agent.profile_picture_url ? (

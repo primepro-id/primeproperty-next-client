@@ -3,15 +3,18 @@ import { AgentList } from "./_components/agent-list";
 import { LuUsers } from "react-icons/lu";
 import { Faq } from "../properties/_components/faq";
 import { createMetadata } from "@/lib/metadata";
+import { getAgents } from "@/lib/api";
 
 export const metadata: Metadata = createMetadata({
   title: "Agents - PRIMEPRO INDONESIA",
   description:
-    "Temui agen properti PrimePro Indonesia yang siap membantu pencarian, pembelian, penjualan, dan penyewaan properti di Indonesia.",
+    "Temui agen properti PrimePro Indonesia yang siap membantu pencarian, pembelian, penjualan, dan penyewaan properti dengan layanan profesional tepercaya.",
   path: "/agents",
 });
 
-export default function JobPosting() {
+export default async function JobPosting() {
+  const agentsResponse = await getAgents();
+
   return (
     <div className="container mx-auto flex flex-col gap-8 p-4">
       <div className="flex flex-col">
@@ -26,7 +29,7 @@ export default function JobPosting() {
         </h2>
       </div>
       <div className="min-h-screen">
-        <AgentList />
+        <AgentList agents={agentsResponse.data?.data ?? []} />
       </div>
 
       <Faq defaultTab="PRIMEPRO" />

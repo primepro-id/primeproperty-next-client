@@ -4,6 +4,7 @@ import { LuCircleUser } from "react-icons/lu";
 import { env } from "@/lib/env";
 import { cn } from "@/lib/utils";
 import { PropertyJoinAgent } from "@/lib/types";
+import { createAgentPath } from "@/lib/metadata/seo-domain";
 
 type AgentAvatarProps = {
   property: PropertyJoinAgent;
@@ -30,7 +31,7 @@ export const AgentAvatar = ({ property, className }: AgentAvatarProps) => {
       <Link
         title={property[1].fullname}
         aria-label={property[1].fullname}
-        href={`/agents/${property[1].fullname.replaceAll(" ", "-")}`}
+        href={createAgentPath(property[1])}
         className="flex flex-col hover:underline hover:underline-offset-4"
       >
         <span className="capitalize font-sans">{property[1].fullname}</span>

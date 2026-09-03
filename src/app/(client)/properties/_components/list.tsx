@@ -1,15 +1,11 @@
-"use client";
-import React from "react";
 import { PropertyCard } from "./card";
 import { LuHouse, LuSearch } from "react-icons/lu";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { FilterDialog } from "./fillters";
-import { useQuery } from "@tanstack/react-query";
 import { FindPropertyQuery } from "@/lib/api";
-import { PropertyJoinAgent } from "@/lib/types";
-import { getBookmarkedPropertyOptions } from "@/lib/hooks";
+import type { PropertyJoinAgent } from "@/lib/types";
 
 type PropertyListProps = {
   searchParams: FindPropertyQuery;
@@ -20,7 +16,6 @@ export const PropertyList = ({
   searchParams,
   propertiesWithAgent,
 }: PropertyListProps) => {
-  const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
   if (!propertiesWithAgent || propertiesWithAgent?.length === 0) {
     return (
       <div className="w-full h-96 flex flex-col items-center justify-center min-h-screen">
@@ -49,14 +44,11 @@ export const PropertyList = ({
         propertiesWithAgent.length <= 3 && "lg:grid-cols-3",
       )}
     >
-      {propertiesWithAgent.map((propertyWithAgent, index) => (
-        <React.Fragment key={`${index}-${propertyWithAgent[0].id}`}>
-          <PropertyCard
-            propertyWithAgent={propertyWithAgent}
-            bookmarkedProperties={bookmarkedProperties.data}
-            onBookmarkClickAction={() => bookmarkedProperties.refetch()}
-          />
-        </React.Fragment>
+      {propertiesWithAgent.map((propertyWithAgent) => (
+        <PropertyCard
+          key={propertyWithAgent[0].id}
+          propertyWithAgent={propertyWithAgent}
+        />
       ))}
     </div>
   );

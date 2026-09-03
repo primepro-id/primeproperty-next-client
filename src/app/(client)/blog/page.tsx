@@ -4,7 +4,8 @@ import { generateBlogHomeSchema } from "./_lib/generate-blog-home-schema";
 import Image from "next/image";
 import { AllArticles, Latest, Spotlight } from "./_components";
 import { PopularProperties } from "../properties/_components";
-import { findArticles } from "@/lib/api";
+import { findPropertyJoinAgent } from "@/lib/api";
+import { findArticles } from "@/lib/api/articles";
 
 export const revalidate = 0;
 
@@ -18,7 +19,10 @@ export const metadata: Metadata = createMetadata({
 });
 
 const Blog = async () => {
-  const { allArticles } = await findArticles();
+  const [{ allArticles }, popularPropertiesResponse] = await Promise.all([
+    findArticles(),
+    findPropertyJoinAgent({ is_popular: true }),
+  ]);
   const { homeSchema, breadcrumbSchema } = generateBlogHomeSchema();
 
   return (
@@ -57,7 +61,9 @@ const Blog = async () => {
           <Latest articles={allArticles.slice(1, 4)} />
         </div>
         <AllArticles articles={allArticles.slice(4, allArticles.length)} />
-        <PopularProperties />
+        <PopularProperties
+          properties={popularPropertiesResponse.data?.data ?? []}
+        />
       </section>
     </>
   );

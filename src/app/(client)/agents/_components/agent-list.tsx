@@ -1,14 +1,12 @@
-"use client";
 import Image from "next/image";
 import { env } from "@/lib/env";
+import { createAgentPath } from "@/lib/metadata/seo-domain";
 import { LuCircleUser, LuHouse, LuInstagram, LuMail } from "react-icons/lu";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { MdWhatsapp } from "react-icons/md";
-import { useQuery } from "@tanstack/react-query";
-import { getAgentsQueryOptions } from "@/lib/hooks";
-import Loading from "../../loading";
+import type { Agent } from "@/lib/types";
 
 const createWhatsappLink = (phone: string) => {
   const whatsappUrl = new URL("https://api.whatsapp.com/send");
@@ -18,12 +16,14 @@ const createWhatsappLink = (phone: string) => {
   return whatsappUrl.toString();
 };
 
-export const AgentList = () => {
-  const agents = useQuery(getAgentsQueryOptions());
-  if (agents.isLoading) return <Loading />;
+type AgentListProps = {
+  agents: Agent[];
+};
+
+export const AgentList = ({ agents }: AgentListProps) => {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 ">
-      {agents.data?.data?.data.map((agent) => (
+      {agents.map((agent) => (
         <div
           key={agent.id}
           className="flex items-center gap-2 border rounded p-2 border-primary shadow"
@@ -75,7 +75,7 @@ export const AgentList = () => {
                 className={cn(
                   buttonVariants({ size: "sm", variant: "outline" }),
                 )}
-                href={`/agents/${agent.fullname.replaceAll(" ", "-")}`}
+                href={createAgentPath(agent)}
               >
                 <LuHouse />
                 Properti

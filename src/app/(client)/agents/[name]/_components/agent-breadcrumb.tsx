@@ -1,5 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import { Agent } from "@/lib/types";
+import { createAgentPath } from "@/lib/metadata/seo-domain";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { LuChevronRight } from "react-icons/lu";
@@ -25,7 +26,7 @@ export const AgentBreadcrumb = ({ agent }: { agent: Agent }) => {
       <LuChevronRight />
       <Link
         title={agent.fullname}
-        href={`/agents/${agent.fullname.replaceAll(" ", "-")}`}
+        href={createAgentPath(agent)}
         className={cn(buttonVariants({ variant: "link" }), "uppercase")}
       >
         {agent.fullname}

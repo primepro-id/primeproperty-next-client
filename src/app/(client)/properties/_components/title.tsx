@@ -1,7 +1,6 @@
 import { FindPropertyQuery } from "@/lib/api";
 import { PropertyPurchaseStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { useMemo } from "react";
 
 type PropertiesTitleProps = {
   propertyCount: number;
@@ -78,18 +77,14 @@ export const PropertiesTitle = ({
   searchParams,
   className,
 }: PropertiesTitleProps) => {
-  const showCount = useMemo(() => {
-    let startCount = 1;
-    let endCount = 30;
-    if (searchParams.page && Number(searchParams?.page) > 1) {
-      startCount = (Number(searchParams.page) - 1) * 30 + 1;
-      endCount = Number(searchParams.page) * 30;
-    }
-
-    if (endCount > propertyCount) endCount = propertyCount;
-
-    return `${startCount} - ${endCount}`;
-  }, [searchParams.page, propertyCount]);
+  let startCount = 1;
+  let endCount = 30;
+  if (searchParams.page && Number(searchParams.page) > 1) {
+    startCount = (Number(searchParams.page) - 1) * 30 + 1;
+    endCount = Number(searchParams.page) * 30;
+  }
+  if (endCount > propertyCount) endCount = propertyCount;
+  const showCount = `${startCount} - ${endCount}`;
   return (
     <div className="flex flex-col">
       <Title

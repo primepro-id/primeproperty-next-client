@@ -1,6 +1,4 @@
-"use client";
 import { PropertyCard } from "./card";
-import React from "react";
 import {
   Carousel,
   CarouselContent,
@@ -8,22 +6,20 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useQuery } from "@tanstack/react-query";
-import {
-  findPropertyJoinAgentQueryOptions,
-  getBookmarkedPropertyOptions,
-} from "@/lib/hooks";
+import { findPropertyJoinAgent } from "@/lib/api";
 
 type RelatedPropertiesProps = {
   propertyId: number;
+  regency: string;
 };
 
-export const RelatedProperties = ({ propertyId }: RelatedPropertiesProps) => {
-  const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
-  const relatedProperties = useQuery(
-    findPropertyJoinAgentQueryOptions({ id: propertyId, is_related: true }),
-  );
-  const propertyData = relatedProperties.data?.data?.data;
+export const RelatedProperties = async ({
+  propertyId,
+  regency,
+}: RelatedPropertiesProps) => {
+  const propertyData = (
+    await findPropertyJoinAgent({ id: propertyId, is_related: true, regency })
+  ).data?.data;
   if (propertyData && propertyData.length > 0) {
     return (
       <Carousel>
@@ -40,11 +36,7 @@ export const RelatedProperties = ({ propertyId }: RelatedPropertiesProps) => {
               key={`${index}_related_properties`}
               className="basis-4/5 md:basis-1/2 lg:basis-1/3"
             >
-              <PropertyCard
-                propertyWithAgent={propertyWithAgent}
-                bookmarkedProperties={bookmarkedProperties.data}
-                onBookmarkClickAction={() => bookmarkedProperties.refetch()}
-              />
+              <PropertyCard propertyWithAgent={propertyWithAgent} />
             </CarouselItem>
           ))}
         </CarouselContent>

@@ -1,6 +1,4 @@
-"use client";
 import { PropertyCard } from "./card";
-import React from "react";
 import {
   Carousel,
   CarouselContent,
@@ -8,18 +6,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useQuery } from "@tanstack/react-query";
-import {
-  findPropertyJoinAgentQueryOptions,
-  getBookmarkedPropertyOptions,
-} from "@/lib/hooks";
+import { findPropertyJoinAgent } from "@/lib/api";
+import type { PropertyJoinAgent } from "@/lib/types";
 
-export const PopularProperties = () => {
-  const properties = useQuery(
-    findPropertyJoinAgentQueryOptions({ is_popular: true }),
-  );
-  const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
-  const propertyData = properties.data?.data?.data;
+type PopularPropertiesProps = {
+  properties?: PropertyJoinAgent[];
+};
+
+export const PopularProperties = async ({
+  properties,
+}: PopularPropertiesProps = {}) => {
+  const propertyData =
+    properties ??
+    (await findPropertyJoinAgent({ is_popular: true })).data?.data;
   if (propertyData && propertyData.length > 0) {
     return (
       <Carousel>
@@ -36,11 +35,7 @@ export const PopularProperties = () => {
               key={`${index}_popular_properties`}
               className="basis-4/5 md:basis-1/2 lg:basis-1/3"
             >
-              <PropertyCard
-                propertyWithAgent={propertyWithAgent}
-                bookmarkedProperties={bookmarkedProperties.data}
-                onBookmarkClickAction={() => bookmarkedProperties.refetch()}
-              />
+              <PropertyCard propertyWithAgent={propertyWithAgent} />
             </CarouselItem>
           ))}
         </CarouselContent>

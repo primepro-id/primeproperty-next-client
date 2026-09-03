@@ -105,6 +105,7 @@ export const findUniquePropertyJoinAgent = async (
 ): Promise<JsonResponse<PropertyJoinAgent>> => {
   return fetchJsonApi(`/properties/${id}/join-agents`, {
     method: "GET",
+    cache: "no-store",
   });
 };
 
@@ -119,6 +120,7 @@ export const findPropertyJoinAgent = async (
 
   return fetchJsonApi(endpoint, {
     method: "GET",
+    cache: "no-store",
   });
 };
 
@@ -135,6 +137,7 @@ export const findPropertyNavigation = async (): Promise<
 > => {
   return fetchJsonApi("/properties/navigations", {
     method: "GET",
+    cache: "no-store",
   });
 };
 

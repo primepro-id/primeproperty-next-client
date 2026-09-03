@@ -6,7 +6,7 @@ import { BlogPost } from "./_components/blog-post";
 import { BlogRelated } from "./_components/blog-related";
 import { BlogRelatedProperties } from "./_components/blog-related-properties";
 import { Faq } from "../../properties/_components/faq";
-import { findArticleBySlug } from "@/lib/api";
+import { findArticleBySlug } from "@/lib/api/articles";
 
 export const revalidate = 0;
 

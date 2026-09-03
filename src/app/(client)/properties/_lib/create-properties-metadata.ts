@@ -1,6 +1,9 @@
 import type { FindPropertyQuery } from "@/lib/api";
 import { createMetadata } from "@/lib/metadata";
-import { normalizeSeoText } from "@/lib/metadata/seo-domain";
+import {
+  createPropertyCollectionSeoDescription,
+  normalizeSeoText,
+} from "@/lib/metadata/seo-domain";
 import { PropertyPurchaseStatus } from "@/lib/types";
 import { toTitleCase } from "@/lib/to-title-case";
 import type { Metadata } from "next";
@@ -37,10 +40,11 @@ export function generateDescription(searchParams: FindPropertyQuery) {
   const propertyType = (searchParams.building_type || "properti").toLowerCase();
   const status = getPurchaseStatus(searchParams);
   const location = toTitleCase(getLocation(searchParams));
-  return normalizeSeoText(
-    `Temukan ${propertyType} ${status} di ${location}. Lihat pilihan properti PrimePro Indonesia dengan harga, foto, lokasi, dan agen yang dapat dihubungi.`,
-    160,
-  );
+  return createPropertyCollectionSeoDescription({
+    propertyType,
+    status,
+    location,
+  });
 }
 
 export function hasPropertyQuery(searchParams: FindPropertyQuery) {

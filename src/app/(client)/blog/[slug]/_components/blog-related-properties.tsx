@@ -1,6 +1,4 @@
-"use client";
 import { PropertyCard } from "@/app/(client)/properties/_components/card";
-import React, { useMemo } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -8,32 +6,27 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useQuery } from "@tanstack/react-query";
-import {
-  findPropertyJoinAgentQueryOptions,
-  getBookmarkedPropertyOptions,
-} from "@/lib/hooks";
+import { findPropertyJoinAgent, type FindPropertyQuery } from "@/lib/api";
 
 type RelatedPropertiesProps = {
   relatedProperties: string;
 };
 
-export const BlogRelatedProperties = ({
+export const BlogRelatedProperties = async ({
   relatedProperties,
 }: RelatedPropertiesProps) => {
-  const relatedParams = useMemo(() => {
-    if (relatedProperties.includes("jakarta")) {
-      return { regency: relatedProperties };
-    }
-    if (relatedProperties === "terbaru") {
-      return {};
-    }
-    return { street: relatedProperties, limit: 10 };
-  }, [relatedProperties]);
+  let relatedParams: FindPropertyQuery = {
+    street: relatedProperties,
+    limit: 10,
+  };
+  if (relatedProperties.includes("jakarta")) {
+    relatedParams = { regency: relatedProperties };
+  } else if (relatedProperties === "terbaru") {
+    relatedParams = {};
+  }
 
-  const bookmarkedProperties = useQuery(getBookmarkedPropertyOptions());
-  const properties = useQuery(findPropertyJoinAgentQueryOptions(relatedParams));
-  const propertyData = properties.data?.data?.data;
+  const properties = await findPropertyJoinAgent(relatedParams);
+  const propertyData = properties.data?.data;
   if (propertyData && propertyData.length > 0) {
     return (
       <Carousel>
@@ -50,11 +43,7 @@ export const BlogRelatedProperties = ({
               key={`${index}_popular_properties`}
               className="basis-4/5 md:basis-1/2 lg:basis-1/3"
             >
-              <PropertyCard
-                bookmarkedProperties={bookmarkedProperties.data}
-                propertyWithAgent={propertyWithAgent}
-                onBookmarkClickAction={() => bookmarkedProperties.refetch()}
-              />
+              <PropertyCard propertyWithAgent={propertyWithAgent} />
             </CarouselItem>
           ))}
         </CarouselContent>
