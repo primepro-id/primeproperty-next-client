@@ -15,7 +15,7 @@ export const AllArticles = ({ articles }: AllArticlesProps) => {
       <div className="flex flex-col gap-4">
         {articles.map((art) => (
           <div key={art.slug} className="flex gap-4 border-b pb-4">
-            <Link href={`/blog/${art.slug}`} title={art.seo.title}>
+            <Link href={`/blog/${art.slug}`} title={art.seo.title} >
               <Image
                 src={art.thumbnail.url}
                 alt={art.seo.title}
@@ -25,7 +25,7 @@ export const AllArticles = ({ articles }: AllArticlesProps) => {
               />
             </Link>
 
-            <div className="text-sm md:text-lg">
+            <div className="text-sm md:text-lg flex-1">
               <p className="text-xs text-muted-foreground">
                 {new Date(art._updatedAt).toLocaleString("id-ID")}
               </p>

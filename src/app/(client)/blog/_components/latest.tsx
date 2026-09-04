@@ -25,7 +25,7 @@ export const Latest = ({ articles }: LatestProps) => {
               />
             </Link>
 
-            <div className="text-sm md:text-lg">
+            <div className="text-sm md:text-lg flex-1">
               <p className="text-xs text-muted-foreground">
                 {new Date(art._updatedAt).toLocaleString("id-ID")}
               </p>
