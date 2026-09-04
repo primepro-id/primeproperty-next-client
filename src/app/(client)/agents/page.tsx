@@ -1,9 +1,10 @@
 import { Metadata } from "next";
-import { AgentList } from "./_components/agent-list";
 import { LuUsers } from "react-icons/lu";
 import { Faq } from "../properties/_components/faq";
 import { createMetadata } from "@/lib/metadata";
-import { getAgents } from "@/lib/api";
+import { Suspense } from "react";
+import Loading from "@/app/(client)/loading";
+import { AgentsContent } from "./_components/agents-content";
 
 export const metadata: Metadata = createMetadata({
   title: "Agents - PRIMEPRO INDONESIA",
@@ -12,9 +13,7 @@ export const metadata: Metadata = createMetadata({
   path: "/agents",
 });
 
-export default async function JobPosting() {
-  const agentsResponse = await getAgents();
-
+export default function JobPosting() {
   return (
     <div className="container mx-auto flex flex-col gap-8 p-4">
       <div className="flex flex-col">
@@ -28,9 +27,9 @@ export default async function JobPosting() {
           real estate and property industries
         </h2>
       </div>
-      <div className="min-h-screen">
-        <AgentList agents={agentsResponse.data?.data ?? []} />
-      </div>
+      <Suspense fallback={<Loading />}>
+        <AgentsContent />
+      </Suspense>
 
       <Faq defaultTab="PRIMEPRO" />
     </div>

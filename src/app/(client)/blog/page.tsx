@@ -2,10 +2,9 @@ import { Metadata } from "next";
 import { createMetadata } from "@/lib/metadata";
 import { generateBlogHomeSchema } from "./_lib/generate-blog-home-schema";
 import Image from "next/image";
-import { AllArticles, Latest, Spotlight } from "./_components";
-import { PopularProperties } from "../properties/_components";
-import { findPropertyJoinAgent } from "@/lib/api";
-import { findArticles } from "@/lib/api/articles";
+import { Suspense } from "react";
+import Loading from "@/app/(client)/loading";
+import { BlogContent } from "./_components/blog-content";
 
 export const revalidate = 0;
 
@@ -18,11 +17,7 @@ export const metadata: Metadata = createMetadata({
   path: "/blog",
 });
 
-const Blog = async () => {
-  const [{ allArticles }, popularPropertiesResponse] = await Promise.all([
-    findArticles(),
-    findPropertyJoinAgent({ is_popular: true }),
-  ]);
+const Blog = () => {
   const { homeSchema, breadcrumbSchema } = generateBlogHomeSchema();
 
   return (
@@ -56,14 +51,9 @@ const Blog = async () => {
             </h2>
           </div>
         </div>
-        <div className="md:grid grid-cols-2 gap-16 flex flex-col">
-          <Spotlight article={allArticles[0]} />
-          <Latest articles={allArticles.slice(1, 4)} />
-        </div>
-        <AllArticles articles={allArticles.slice(4, allArticles.length)} />
-        <PopularProperties
-          properties={popularPropertiesResponse.data?.data ?? []}
-        />
+        <Suspense fallback={<Loading />}>
+          <BlogContent />
+        </Suspense>
       </section>
     </>
   );

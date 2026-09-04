@@ -66,37 +66,26 @@ function findElementType(node, type) {
 test("malformed property detail IDs render the property fallback without API calls", async () => {
   const calls = [];
   const PropertyNotFound = () => null;
-  const detailPage = loadModule(
-    "app/(client)/properties/[id]/page.tsx",
+  const detailContent = loadModule(
+    "app/(client)/properties/[id]/_components/dynamic-property-page-content.tsx",
     {
-      "./_components": { DynamicProperty: () => null },
-      "../_components": { PropertiesFilter: () => null },
-      "../_components/not-found": { PropertyNotFound },
-      "./_lib/generate-dynamic-property-metadata": {
-        generateDynamicPropertyMetadata: async () => ({}),
+      "./dynamic-property": { DynamicProperty: () => null },
+      "../../_components/fillters/properties-filter": {
+        PropertiesFilter: () => null,
       },
+      "../../_components/not-found": { PropertyNotFound },
       "@/lib/api": {
-        findPropertyJoinAgent: async () => {
-          calls.push("related");
-          return { data: null };
-        },
         findUniquePropertyJoinAgent: async () => {
           calls.push("detail");
           return { data: null };
         },
       },
-      "../../_lib/get-public-property-navigation": {
-        getPublicPropertyNavigation: async () => {
-          calls.push("navigation");
-          return [];
-        },
-      },
-      "../_lib/parse-property-route-ids": routeIdModule,
+      "../../_lib/parse-property-route-ids": routeIdModule,
     },
     true,
   );
 
-  const rendered = await detailPage.default({
+  const rendered = await detailContent.DynamicPropertyPageContent({
     params: Promise.resolve({ id: "not-a-property" }),
   });
 
@@ -108,30 +97,25 @@ test("missing, repeated, and malformed comparison IDs render a stable fallback w
   for (const ids of [undefined, "7", "7,nope", "7,8,9", ["1,2", "3,4"]]) {
     const calls = [];
     const PropertyComparisonFallback = () => null;
-    const comparisonPage = loadModule(
-      "app/(client)/properties/comparison/page.tsx",
+    const comparisonContent = loadModule(
+      "app/(client)/properties/comparison/_components/property-comparison-page-content.tsx",
       {
-        "@/components/ui/button": { buttonVariants: () => "button" },
-        "next/link": { __esModule: true, default: "a" },
-        "react-icons/lu": { LuArrowLeft: () => null },
-        "./_components/property-comparison": {
+        "./property-comparison": {
           PropertyComparison: () => null,
           PropertyComparisonFallback,
         },
-        "../_components/faq": { Faq: () => null },
-        "@/lib/metadata": { createMetadata: (value) => value },
         "@/lib/api": {
           findUniquePropertyJoinAgent: async (id) => {
             calls.push(id);
             return { data: null };
           },
         },
-        "../_lib/parse-property-route-ids": routeIdModule,
+        "../../_lib/parse-property-route-ids": routeIdModule,
       },
       true,
     );
 
-    const rendered = await comparisonPage.default({
+    const rendered = await comparisonContent.PropertyComparisonPageContent({
       searchParams: Promise.resolve({ ids }),
     });
 
@@ -141,6 +125,44 @@ test("missing, repeated, and malformed comparison IDs render a stable fallback w
       true,
     );
   }
+});
+
+test("valid comparison properties start in parallel and reach the comparison component", async () => {
+  const calls = [];
+  const resolvers = new Map();
+  const PropertyComparison = () => null;
+  const comparisonContent = loadModule(
+    "app/(client)/properties/comparison/_components/property-comparison-page-content.tsx",
+    {
+      "./property-comparison": {
+        PropertyComparison,
+        PropertyComparisonFallback: () => null,
+      },
+      "@/lib/api": {
+        findUniquePropertyJoinAgent: (id) => {
+          calls.push(id);
+          return new Promise((resolve) => resolvers.set(id, resolve));
+        },
+      },
+      "../../_lib/parse-property-route-ids": routeIdModule,
+    },
+    true,
+  );
+
+  const renderedPromise = comparisonContent.PropertyComparisonPageContent({
+    searchParams: Promise.resolve({ ids: "7,8" }),
+  });
+  await Promise.resolve();
+
+  assert.deepEqual(calls, [7, 8]);
+  resolvers.get(7)({ data: [{ id: 7 }] });
+  resolvers.get(8)({ data: [{ id: 8 }] });
+  const rendered = await renderedPromise;
+
+  assert.equal(rendered.type, PropertyComparison);
+  assert.deepEqual(rendered.props.ids, [7, 8]);
+  assert.deepEqual(rendered.props.firstProperty, [{ id: 7 }]);
+  assert.deepEqual(rendered.props.secondProperty, [{ id: 8 }]);
 });
 
 test("related property requests include the current property's regency", async () => {

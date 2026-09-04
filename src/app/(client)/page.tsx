@@ -10,6 +10,8 @@ import { createSiteIdentitySchema } from "@/lib/schema";
 import { getDevelopers } from "@/lib/api/developers";
 import { env } from "@/lib/env";
 import { Banner } from "@/components/custom-ui/banner";
+import { Suspense } from "react";
+import Loading from "@/app/(client)/loading";
 
 export const dynamic = "force-dynamic";
 
@@ -116,8 +118,10 @@ const HomePage = () => {
       </div>
       <div className="container mx-auto flex flex-col gap-40 px-4">
         <Banner className="lg:hidden" />
-        <PopularProperties />
-        <Partners />
+        <Suspense fallback={<Loading />}>
+          <PopularProperties />
+          <Partners />
+        </Suspense>
         <Faq defaultTab="PRIMEPRO" />
       </div>
     </div>

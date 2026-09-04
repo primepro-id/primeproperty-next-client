@@ -1,7 +1,9 @@
-import { Properties } from "./_components";
 import { FindPropertyQuery } from "@/lib/api";
 import { Metadata } from "next";
 import { generatePropertiesMetadata } from "./_lib/create-properties-metadata";
+import { Suspense } from "react";
+import Loading from "@/app/(client)/loading";
+import { PropertiesPageContent } from "./_components/properties-page-content";
 
 export const revalidate = 0;
 
@@ -14,9 +16,12 @@ export const generateMetadata = async ({
 }: PropertiesPageProps): Promise<Metadata> =>
   generatePropertiesMetadata(searchParams);
 
-const PropertiesPage = async ({ searchParams }: PropertiesPageProps) => {
-  const searchQuery = await searchParams;
-  return <Properties searchParams={searchQuery} />;
+const PropertiesPage = ({ searchParams }: PropertiesPageProps) => {
+  return (
+    <Suspense fallback={<Loading />}>
+      <PropertiesPageContent searchParams={searchParams} />
+    </Suspense>
+  );
 };
 
 export default PropertiesPage;

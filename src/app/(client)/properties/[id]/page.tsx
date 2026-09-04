@@ -1,10 +1,8 @@
-import { DynamicProperty } from "./_components";
-import { PropertiesFilter } from "../_components";
-import { PropertyNotFound } from "../_components/not-found";
 import { Metadata } from "next";
 import { generateDynamicPropertyMetadata } from "./_lib/generate-dynamic-property-metadata";
-import { findUniquePropertyJoinAgent } from "@/lib/api";
-import { parsePropertyDetailId } from "../_lib/parse-property-route-ids";
+import { Suspense } from "react";
+import Loading from "@/app/(client)/loading";
+import { DynamicPropertyPageContent } from "./_components/dynamic-property-page-content";
 
 export const revalidate = 0;
 type DynamicPropertyPageProps = {
@@ -18,21 +16,11 @@ export const generateMetadata = async ({
 }: DynamicPropertyPageProps): Promise<Metadata | undefined> =>
   generateDynamicPropertyMetadata(params);
 
-const DynamicPropertyPage = async ({ params }: DynamicPropertyPageProps) => {
-  const { id } = await params;
-  const numericPropertyId = parsePropertyDetailId(id);
-  if (numericPropertyId === null) {
-    return <PropertyNotFound searchParams={{}} />;
-  }
-  const propertyResponse = await findUniquePropertyJoinAgent(numericPropertyId);
+const DynamicPropertyPage = ({ params }: DynamicPropertyPageProps) => {
   return (
-    <>
-      <PropertiesFilter searchParams={{}} />
-      <DynamicProperty
-        propertyId={numericPropertyId}
-        property={propertyResponse.data}
-      />
-    </>
+    <Suspense fallback={<Loading />}>
+      <DynamicPropertyPageContent params={params} />
+    </Suspense>
   );
 };
 
