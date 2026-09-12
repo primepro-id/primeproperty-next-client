@@ -24,6 +24,7 @@ const propertyFormImageSchema = z.object({
 
 export const propertyFormSchema = z
   .object({
+    developer_id: z.string().nullable(),
     title: z.string().trim().min(1, "Title is required"),
     description: z.string().trim().min(1, "Description is required"),
     province: z.string().trim().min(1, "Province is required"),
@@ -309,6 +310,7 @@ export function buildPropertyPayload(
     },
     facilities: values.facilities as PropertyFacilities[],
     images: context.images,
+    developer_id: values.developer_id ? +values.developer_id : null
   };
 }
 
@@ -316,6 +318,7 @@ export function createPropertyFormDefaults(
   initialProperty?: Property,
 ): PropertyFormValues {
   return {
+    developer_id: initialProperty?.developer_id ? String(initialProperty.developer_id): null,
     title: initialProperty?.title ?? "",
     description: initialProperty?.description ?? "",
     province: initialProperty?.province ?? "",

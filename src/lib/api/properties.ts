@@ -69,6 +69,7 @@ export type CreatePropertyPayload = {
   currency: PropertyCurrency;
   rent_time?: PropertyRentTime | null;
   price_down_payment?: number;
+  developer_id?: number;
 };
 
 export type UpdatePropertyPayload = {
@@ -94,6 +95,7 @@ export type UpdatePropertyPayload = {
   currency?: PropertyCurrency;
   rent_time?: PropertyRentTime | null;
   price_down_payment?: number;
+  developer_id?: number;
 };
 
 /**

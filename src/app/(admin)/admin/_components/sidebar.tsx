@@ -28,7 +28,6 @@ import {
   LuLogOut,
   LuUser,
   LuUsers,
-  LuWaves,
 } from "react-icons/lu";
 import { buttonVariants } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
@@ -89,11 +88,6 @@ function SidebarMenus({ open, pathname }: SidebarMenusProps) {
             icon: <LuUsers />,
             title: "Agents",
             href: "/admin/agents",
-          },
-          {
-            icon: <LuWaves />,
-            title: "Developers",
-            href: "/admin/developers",
           },
           {
             icon: <LuImage />,

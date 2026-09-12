@@ -28,6 +28,7 @@ export type Property = {
   rent_time: PropertyRentTime | null;
   price_down_payment: number | null;
   description_seo: string | null;
+  developer_id: number | null;
 };
 
 export type PropertyImage = {

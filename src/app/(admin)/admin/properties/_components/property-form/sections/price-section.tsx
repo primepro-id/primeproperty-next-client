@@ -11,6 +11,7 @@ import { PropertyCheckboxField } from "../fields/property-checkbox-field";
 import { PropertyInputField } from "../fields/property-input-field";
 import { PropertySelectField } from "../fields/property-select-field";
 import { PropertySectionCard } from "../property-section-card";
+import { DEVELOPERS } from "@/lib/developers";
 
 type PriceSectionProps = {
   form: UseFormReturn<PropertyFormValues>;
@@ -52,6 +53,7 @@ export function PriceSection({ form, viewerRole }: PriceSectionProps) {
   });
   const currency = useWatch({ control: form.control, name: "currency" });
   const isAdmin = viewerRole === "Admin";
+  const DEVELOPER_OPTIONS = DEVELOPERS.map(a => ({ label: a.name, value: String(a.id)}))
 
   return (
     <PropertySectionCard
@@ -126,6 +128,17 @@ export function PriceSection({ form, viewerRole }: PriceSectionProps) {
               label="Sold channel"
               placeholder="Choose sold channel"
               options={soldChannelOptions}
+              allowEmpty
+            />
+          ) : null}
+
+          {isAdmin ? (
+            <PropertySelectField
+              control={form.control}
+              name="developer_id"
+              label="Developer"
+              placeholder="Choose Developer"
+              options={DEVELOPER_OPTIONS}
               allowEmpty
             />
           ) : null}
