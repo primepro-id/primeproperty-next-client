@@ -7,11 +7,11 @@ import Image from "next/image";
 import { Search } from "./properties/_components/fillters/search";
 import { Faq } from "./properties/_components/faq";
 import { createSiteIdentitySchema } from "@/lib/schema";
-import { getDevelopers } from "@/lib/api/developers";
 import { env } from "@/lib/env";
 import { Banner } from "@/components/custom-ui/banner";
 import { Suspense } from "react";
 import Loading from "@/app/(client)/loading";
+import { DEVELOPERS } from "@/lib/developers";
 
 export const dynamic = "force-dynamic";
 
@@ -65,7 +65,6 @@ const Hero = () => {
 };
 
 const Partners = async () => {
-  const developers = await getDevelopers();
   const BANKS = [
     "/images/banks/bca.png",
     "/images/banks/bni.png",
@@ -95,7 +94,7 @@ const Partners = async () => {
             className="w-full  object-contain aspect-square rounded dark:bg-white dark:p-1"
           />
         ))}
-        {developers.data?.data.map((dev) => (
+        {DEVELOPERS.map((dev) => (
           <Image
             key={dev.name}
             src={env.NEXT_PUBLIC_S3_ENDPOINT + dev.logo_path}

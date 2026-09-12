@@ -22,7 +22,7 @@ type ImageCarouselProps = {
   propertyTitle: string;
   buildingType: string;
   isNjopPrice?: boolean;
-  developerId: number | null
+  developerId: number | null;
 };
 
 const ImageCarousel = ({
@@ -32,13 +32,13 @@ const ImageCarousel = ({
   onImageClick,
   buildingType,
   isNjopPrice,
-  developerId
+  developerId,
 }: ImageCarouselProps) => {
   const router = useRouter();
 
   const developerImage = useMemo(() => {
     if (developerId) {
-      const propertyDeveloper = DEVELOPERS.find(d => d.id === developerId)
+      const propertyDeveloper = DEVELOPERS.find((d) => d.id === developerId);
       if (propertyDeveloper) {
         return baseImgPath + propertyDeveloper.logo_path;
       }
@@ -92,11 +92,17 @@ const ImageCarousel = ({
         {isNjopPrice && "- HARGA NJOP"}
       </div>
 
-      {developerImage &&
+      {developerImage && (
         <div className="absolute top-80 left-1 bg-white opacity-75 size-16 p-2 rounded flex items-center justify-center">
-        <Image src={developerImage} alt="Developer" className="rounded w-full h-auto" width={50} height={50} />
+          <Image
+            src={developerImage}
+            alt="Developer"
+            className="rounded w-full h-auto"
+            width={50}
+            height={50}
+          />
         </div>
-      }
+      )}
     </div>
   );
 };

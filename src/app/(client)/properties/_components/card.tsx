@@ -56,7 +56,9 @@ export const PropertyCard = ({
 
   const developerImage = useMemo(() => {
     if (propertyWithAgent[0].developer_id) {
-      const propertyDeveloper = DEVELOPERS.find(d => d.id === propertyWithAgent[0].developer_id)
+      const propertyDeveloper = DEVELOPERS.find(
+        (d) => d.id === propertyWithAgent[0].developer_id,
+      );
       if (propertyDeveloper) {
         return baseImgPath + propertyDeveloper.logo_path;
       }
@@ -88,11 +90,17 @@ export const PropertyCard = ({
           }}
         />
 
-        {developerImage &&
+        {developerImage && (
           <div className="absolute top-[47%] left-1 bg-white opacity-75 size-16 p-2 rounded flex items-center justify-center">
-          <Image src={developerImage} alt="Developer" className="rounded w-full h-auto" width={50} height={50} />
+            <Image
+              src={developerImage}
+              alt="Developer"
+              className="rounded w-full h-auto"
+              width={50}
+              height={50}
+            />
           </div>
-        }
+        )}
         <PropertyBookmarkButton
           propertyId={propertyWithAgent[0].id}
           onBookmarkChange={onBookmarkClickAction}
