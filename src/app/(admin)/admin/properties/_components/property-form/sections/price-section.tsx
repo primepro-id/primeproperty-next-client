@@ -53,7 +53,10 @@ export function PriceSection({ form, viewerRole }: PriceSectionProps) {
   });
   const currency = useWatch({ control: form.control, name: "currency" });
   const isAdmin = viewerRole === "Admin";
-  const DEVELOPER_OPTIONS = DEVELOPERS.map(a => ({ label: a.name, value: String(a.id)}))
+  const DEVELOPER_OPTIONS = DEVELOPERS.map((a) => ({
+    label: a.name,
+    value: String(a.id),
+  }));
 
   return (
     <PropertySectionCard

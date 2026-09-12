@@ -8,6 +8,9 @@ import { PropertyAgentInfo } from "./property-agent-info";
 import { createPropertyPath } from "@/lib/metadata/seo-domain";
 import { PropertyBookmarkButton } from "./property-bookmark-button";
 import { PropertyComparisonActions } from "./property-comparison-actions";
+import { useMemo } from "react";
+import { DEVELOPERS } from "@/lib/developers";
+import Image from "next/image";
 
 type PropertyCardProps = {
   propertyWithAgent: PropertyJoinAgent;
@@ -51,6 +54,15 @@ export const PropertyCard = ({
     propertyWithAgent[0].images.find((img) => img.is_cover) ??
     propertyWithAgent[0].images[0];
 
+  const developerImage = useMemo(() => {
+    if (propertyWithAgent[0].developer_id) {
+      const propertyDeveloper = DEVELOPERS.find(d => d.id === propertyWithAgent[0].developer_id)
+      if (propertyDeveloper) {
+        return baseImgPath + propertyDeveloper.logo_path;
+      }
+    }
+  }, [propertyWithAgent[0].developer_id]);
+
   return (
     <div className="flex flex-col gap-2">
       <Link
@@ -61,6 +73,7 @@ export const PropertyCard = ({
       >
         <div className="bg-primary text-primary-foreground px-2 py-1 text-xs rounded absolute top-1 left-1 dark:font-semibold uppercase z-[5]">
           {propertyWithAgent[0].building_type}
+          {propertyWithAgent[0].configurations.is_njop_price && " - HARGA NJOP"}
         </div>
         <WatermarkImage
           watermarkProps={{
@@ -75,11 +88,11 @@ export const PropertyCard = ({
           }}
         />
 
-        {propertyWithAgent[0].configurations.is_njop_price && (
-          <div className="bg-secondary text-primary-foreground px-2 py-1 text-xs rounded capitalize absolute top-[54%] right-1 font-semibold">
-            HARGA NJOP
+        {developerImage &&
+          <div className="absolute top-[47%] left-1 bg-white opacity-75 size-16 p-2 rounded flex items-center justify-center">
+          <Image src={developerImage} alt="Developer" className="rounded w-full h-auto" width={50} height={50} />
           </div>
-        )}
+        }
         <PropertyBookmarkButton
           propertyId={propertyWithAgent[0].id}
           onBookmarkChange={onBookmarkClickAction}

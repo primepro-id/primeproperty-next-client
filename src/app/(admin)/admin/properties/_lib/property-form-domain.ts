@@ -310,7 +310,7 @@ export function buildPropertyPayload(
     },
     facilities: values.facilities as PropertyFacilities[],
     images: context.images,
-    developer_id: values.developer_id ? +values.developer_id : null
+    developer_id: values.developer_id ? +values.developer_id : null,
   };
 }
 
@@ -318,7 +318,9 @@ export function createPropertyFormDefaults(
   initialProperty?: Property,
 ): PropertyFormValues {
   return {
-    developer_id: initialProperty?.developer_id ? String(initialProperty.developer_id): null,
+    developer_id: initialProperty?.developer_id
+      ? String(initialProperty.developer_id)
+      : null,
     title: initialProperty?.title ?? "",
     description: initialProperty?.description ?? "",
     province: initialProperty?.province ?? "",

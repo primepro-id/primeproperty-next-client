@@ -8,8 +8,10 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
-import React from "react";
+import React, { useMemo } from "react";
 import { PropertyImage, PropertyJoinAgent } from "@/lib/types";
+import { DEVELOPERS } from "@/lib/developers";
+import Image from "next/image";
 
 const baseImgPath = env.NEXT_PUBLIC_S3_ENDPOINT;
 
@@ -19,6 +21,8 @@ type ImageCarouselProps = {
   onImageClick: (index: number) => void;
   propertyTitle: string;
   buildingType: string;
+  isNjopPrice?: boolean;
+  developerId: number | null
 };
 
 const ImageCarousel = ({
@@ -27,8 +31,20 @@ const ImageCarousel = ({
   propertyTitle,
   onImageClick,
   buildingType,
+  isNjopPrice,
+  developerId
 }: ImageCarouselProps) => {
   const router = useRouter();
+
+  const developerImage = useMemo(() => {
+    if (developerId) {
+      const propertyDeveloper = DEVELOPERS.find(d => d.id === developerId)
+      if (propertyDeveloper) {
+        return baseImgPath + propertyDeveloper.logo_path;
+      }
+    }
+  }, [developerId]);
+
   return (
     <div className="relative w-full lg:col-span-2 xl:col-span-3">
       <Button
@@ -73,7 +89,14 @@ const ImageCarousel = ({
       </Carousel>
       <div className="bg-primary text-primary-foreground absolute top-1 right-1 text-xs p-1 rounded uppercase">
         {buildingType}
+        {isNjopPrice && "- HARGA NJOP"}
       </div>
+
+      {developerImage &&
+        <div className="absolute top-80 left-1 bg-white opacity-75 size-16 p-2 rounded flex items-center justify-center">
+        <Image src={developerImage} alt="Developer" className="rounded w-full h-auto" width={50} height={50} />
+        </div>
+      }
     </div>
   );
 };
@@ -164,6 +187,8 @@ export const PropertyCarousel = ({
         propertyTitle={propertyWithAgent[0].title}
         onImageClick={onImageClick}
         buildingType={propertyWithAgent[0].building_type}
+        isNjopPrice={propertyWithAgent[0].configurations.is_njop_price}
+        developerId={propertyWithAgent[0].developer_id}
       />
       <ImageThumbnail
         images={propertyWithAgent[0].images}
