@@ -1,5 +1,12 @@
 export const DEVELOPERS = [
   {
+    id: 19,
+    created_at: "2026-01-28 07:50:17.298548",
+    updated_at: "2026-01-28 07:50:17.298548",
+    logo_path:"/primepro-property-3/gbxu9wxxp0zi1zvdlwb735zp.png" ,
+    name: "R & F Development",
+  },
+  {
     id: 18,
     created_at: "2026-01-28 07:50:17.298548",
     updated_at: "2026-01-28 07:50:17.298548",
