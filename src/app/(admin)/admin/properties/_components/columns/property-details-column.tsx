@@ -36,7 +36,7 @@ export function PropertyDetailsColumn({
         {property.building_type} |{" "}
         {PURCHASE_STATUS_LABELS[property.purchase_status]}
       </span>
-      <span>
+      <span className="capitalize">
         {formatToCurrencyUnit(property.price, property.currency)}
         {rentTime}
       </span>

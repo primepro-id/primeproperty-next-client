@@ -16,8 +16,8 @@ type PriceTagProps = {
 const PriceTag = ({ property }: PriceTagProps) => {
   return (
     <div className="text-primary flex flex-row gap-2 font-bold">
-      <div className="text-2xl flex items-center gap-2 ">
-        <span>{formatToCurrencyUnit(property.price, property.currency)}</span>
+      <div className="text-2xl flex items-center gap-2">
+        <span className="capitalize">{formatToCurrencyUnit(property.price, property.currency)}</span>
         {property.purchase_status === PropertyPurchaseStatus.ForRent &&
           property.rent_time && <span>{property.rent_time}</span>}
       </div>

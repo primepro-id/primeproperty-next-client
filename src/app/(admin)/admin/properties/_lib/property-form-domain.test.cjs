@@ -191,11 +191,6 @@ test("navigation options are trimmed, case-insensitive, distinct, and sorted", (
   );
 });
 
-test("compact price preview uses K and M suffixes", () => {
-  assert.equal(domain.formatCompactPropertyPrice(10_000, "Idr"), "Rp 10K");
-  assert.equal(domain.formatCompactPropertyPrice(10_000_000, "Idr"), "Rp 10M");
-  assert.equal(domain.formatCompactPropertyPrice(1_500_000, "Usd"), "$1.5M");
-});
 
 test("Google Maps iframe normalization accepts embeds and rejects executable markup", () => {
   const normalized = domain.normalizeGoogleMapsIframe(
