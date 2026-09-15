@@ -4,7 +4,6 @@ import { FieldGroup, FieldSet } from "@/components/ui/field";
 import type { AgentRole } from "@/lib/types";
 import { useWatch, type UseFormReturn } from "react-hook-form";
 import {
-  formatCompactPropertyPrice,
   type PropertyFormValues,
 } from "../../../_lib/property-form-domain";
 import { PropertyCheckboxField } from "../fields/property-checkbox-field";
@@ -12,6 +11,7 @@ import { PropertyInputField } from "../fields/property-input-field";
 import { PropertySelectField } from "../fields/property-select-field";
 import { PropertySectionCard } from "../property-section-card";
 import { DEVELOPERS } from "@/lib/developers";
+import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
 
 type PriceSectionProps = {
   form: UseFormReturn<PropertyFormValues>;
@@ -99,7 +99,7 @@ export function PriceSection({ form, viewerRole }: PriceSectionProps) {
             numeric
             description={
               price > 0
-                ? formatCompactPropertyPrice(price, currency)
+                ? formatToCurrencyUnit(price, currency)
                 : "Enter the full amount without separators."
             }
           />
@@ -113,7 +113,7 @@ export function PriceSection({ form, viewerRole }: PriceSectionProps) {
             numeric
             description={
               downPayment >= 0
-                ? formatCompactPropertyPrice(downPayment, currency)
+                ? formatToCurrencyUnit(downPayment, currency)
                 : "A zero down payment is allowed."
             }
           />

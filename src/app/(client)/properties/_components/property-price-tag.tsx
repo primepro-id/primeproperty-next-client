@@ -18,7 +18,7 @@ export const PropertyPriceTag = ({
   return (
     <div className="flex items-center gap-2 text-primary font-semibold">
       <div className="font-semibold text-lg flex items-center gap-1 group-hover:underline">
-        <p>
+        <p className="capitalize">
           {formatToCurrencyUnit(
             propertyWithAgent[0].price,
             propertyWithAgent[0].currency,

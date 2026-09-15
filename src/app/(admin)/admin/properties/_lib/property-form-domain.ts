@@ -142,21 +142,6 @@ export function extractPropertyNavigationOptions(
   };
 }
 
-export function formatCompactPropertyPrice(value: number, currency: string) {
-  const prefix = currency === "Usd" ? "$" : "Rp ";
-  const units = [
-    { minimum: 1_000_000_000, divisor: 1_000_000_000, suffix: "B" },
-    { minimum: 1_000_000, divisor: 1_000_000, suffix: "M" },
-    { minimum: 1_000, divisor: 1_000, suffix: "K" },
-  ];
-  const unit = units.find((item) => value >= item.minimum);
-
-  if (!unit) return `${prefix}${new Intl.NumberFormat("id-ID").format(value)}`;
-
-  const compactValue = Number((value / unit.divisor).toFixed(1));
-  return `${prefix}${compactValue}${unit.suffix}`;
-}
-
 export type NormalizedGoogleMapsIframe = {
   src: string;
   html: string;
