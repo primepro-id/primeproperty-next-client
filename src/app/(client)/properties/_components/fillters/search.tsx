@@ -78,7 +78,7 @@ export const Search = () => {
 
   return (
     <div
-      className="flex items-center w-full relative "
+      className="flex items-center w-full relative rounded-md focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2"
       ref={refs.setReference}
       {...getReferenceProps()}
     >
@@ -95,6 +95,7 @@ export const Search = () => {
           ref={typingTimeoutRef}
           type="text"
           id="property-search"
+          aria-label="Cari lokasi atau tipe properti"
           placeholder="Cari tipe bangunan, lokasi, area"
           className="rounded-l-none border-l-transparent focus-visible:ring-transparent focus-visible:ring-offset-transparent w-full pl-0 placeholder:font-sans"
           onChange={onInputChange}
@@ -105,7 +106,7 @@ export const Search = () => {
         <div
           ref={refs.setFloating}
           {...getFloatingProps()}
-          className="absolute top-11 left-0 bg-background shadow w-80 md:w-96 rounded z-30 overflow-y-auto"
+          className="absolute top-11 left-0 bg-background shadow w-full rounded z-30 overflow-y-auto [&_a]:whitespace-normal [&_a]:h-auto [&_a]:min-h-10"
         >
           <SearchResult
             isLoading={searchMutation.isPending}

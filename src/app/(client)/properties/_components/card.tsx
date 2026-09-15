@@ -54,16 +54,17 @@ export const PropertyCard = ({
     propertyWithAgent[0].images.find((img) => img.is_cover) ??
     propertyWithAgent[0].images[0];
 
+  const developerId = propertyWithAgent[0].developer_id;
   const developerImage = useMemo(() => {
-    if (propertyWithAgent[0].developer_id) {
+    if (developerId) {
       const propertyDeveloper = DEVELOPERS.find(
-        (d) => d.id === propertyWithAgent[0].developer_id,
+        (d) => d.id === developerId,
       );
       if (propertyDeveloper) {
         return baseImgPath + propertyDeveloper.logo_path;
       }
     }
-  }, [propertyWithAgent[0].developer_id]);
+  }, [developerId, baseImgPath]);
 
   return (
     <div className="flex flex-col gap-2">
