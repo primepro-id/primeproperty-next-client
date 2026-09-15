@@ -11,12 +11,12 @@ export const HomeCampaign = () => (
   >
     <Banner variant="home" priority />
     <div className="mx-auto max-w-7xl px-4 md:px-8">
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-6 pt-5">
+      <div className="flex h-20 items-center justify-between gap-3">
         <div>
-          <p className="mb-2.5 text-xs font-bold uppercase tracking-[0.12em] text-primary">
+          <p className="mb-1 hidden text-xs font-bold uppercase tracking-[0.12em] text-primary sm:block">
             Properti pilihan
           </p>
-          <p className="font-sans text-[clamp(20px,2.2vw,28px)] leading-[1.2]">
+          <p className="font-sans text-sm leading-tight sm:text-xl lg:text-2xl">
             Princess Cove, Malaysia
           </p>
         </div>
@@ -24,7 +24,7 @@ export const HomeCampaign = () => (
           href="/properties/677"
           className={cn(
             buttonVariants({ variant: "outline" }),
-            "border-primary bg-transparent text-primary hover:bg-primary hover:text-[#062338]",
+            "shrink-0 border-primary bg-transparent px-3 text-xs text-primary hover:bg-primary hover:text-[#062338] sm:px-4 sm:text-sm",
           )}
         >
           Lihat Princess Cove <LuArrowUpRight aria-hidden="true" />
