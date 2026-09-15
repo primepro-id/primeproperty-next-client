@@ -43,7 +43,7 @@ export const Banner = ({
       className={cn(
         "relative block w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
         variant === "home"
-          ? "h-[min(50vw,calc(55svh-5rem))] md:h-[min(33.333333vw,calc(55svh-5rem))]"
+          ? "aspect-[2/1] md:aspect-[3/1]"
           : "h-48 sm:h-64 md:h-80 lg:h-96",
         className,
       )}
