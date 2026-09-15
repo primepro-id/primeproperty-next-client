@@ -28,11 +28,7 @@ export const Banner = ({
         alt="Princess Cove Malaysia"
         fill
         priority={priority}
-        sizes={
-          variant === "home"
-            ? "(min-width: 1280px) 1216px, (min-width: 768px) calc(100vw - 64px), calc(100vw - 32px)"
-            : "100vw"
-        }
+        sizes="100vw"
         className="object-contain"
       />
     </Link>
