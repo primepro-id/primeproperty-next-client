@@ -12,7 +12,7 @@ export const HomeSearch = () => (
     id="website"
   >
     <div>
-      <div className="mb-6 flex items-center gap-4">
+      <div className="flex items-center gap-4">
         <Image
           src="/images/primepro.png"
           alt="Logo PrimePro Indonesia"
@@ -21,18 +21,22 @@ export const HomeSearch = () => (
           sizes="(min-width: 768px) 80px, 64px"
           className="size-16 shrink-0 object-contain md:size-20"
         />
+        <div className="flex flex-col gap-4">
         <p className="text-xs font-bold uppercase tracking-[0.12em]">
           PrimePro Indonesia
         </p>
+        <h1
+          id="home-title"
+          className="min-w-0 text-balance font-sans text-[clamp(30px,3.2vw,44px)] font-normal leading-[1.15]"
+        >
+          Temukan properti pilihan Anda
+        </h1>
+        </div>
       </div>
-      <h1
-        id="home-title"
-        className="text-balance font-sans text-[clamp(30px,3.2vw,44px)] font-normal leading-[1.15]"
-      >
-        Temukan properti pilihan Anda
-      </h1>
       <p className="mt-5 max-w-[560px] leading-[1.7] text-muted-foreground">
-        PrimePro Indonesia adalah agen properti terpercaya di Jakarta yang memasarkan rumah, apartemen, tanah, dan properti komersial untuk dijual atau disewa. Temukan properti impianmu disini
+        PrimePro Indonesia adalah agen properti terpercaya di Jakarta yang
+        memasarkan rumah, apartemen, tanah, dan properti komersial untuk dijual
+        atau disewa. Temukan properti impianmu disini
       </p>
     </div>
     <div className="min-w-0 self-center rounded-lg bg-muted p-6">

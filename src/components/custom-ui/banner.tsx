@@ -19,7 +19,7 @@ export const Banner = ({
       aria-label="Lihat Princess Cove, Malaysia"
       className={cn(
         "relative block w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
-        variant === "home" ? "aspect-[2/1]" : "h-48 sm:h-64 md:h-80 lg:h-96",
+        variant === "home" ? "aspect-[3/1]" : "h-48 sm:h-64 md:h-80 lg:h-96",
         className,
       )}
     >
