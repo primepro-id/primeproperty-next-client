@@ -5,7 +5,7 @@ export enum CurrencyUnit {
 
 export const formatToCurrencyUnit = (
   value: number,
-  currency: string = CurrencyUnit.IDR
+  currency: string = CurrencyUnit.IDR,
 ): string => {
   const code = currency.toUpperCase();
 

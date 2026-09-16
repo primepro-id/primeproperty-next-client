@@ -22,15 +22,15 @@ export const HomeSearch = () => (
           className="size-12 shrink-0 object-contain md:size-20"
         />
         <div className="flex min-w-0 flex-col gap-2">
-          <p className="text-xs font-bold uppercase tracking-[0.12em]">
+          <h1 className="text-xs font-bold uppercase tracking-[0.12em]">
             PrimePro Indonesia
-          </p>
-          <h1
+          </h1>
+          <h2
             id="home-title"
             className="min-w-0 text-balance font-sans text-2xl font-normal leading-tight md:text-3xl xl:text-4xl"
           >
-            Temukan properti pilihan Anda
-          </h1>
+            Your private key to exceptional properties
+          </h2>
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@ export const HomeSearch = () => (
     </p>
     <div className="min-w-0 self-center rounded-lg bg-muted p-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:p-6">
       <label htmlFor="property-search" className="mb-3 block text-sm font-bold">
-        Mulai dari lokasi atau tipe properti
+        Temukan properti pilihan Anda
       </label>
       <Search />
       <Link

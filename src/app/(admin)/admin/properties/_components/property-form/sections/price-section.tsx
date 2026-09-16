@@ -3,9 +3,7 @@
 import { FieldGroup, FieldSet } from "@/components/ui/field";
 import type { AgentRole } from "@/lib/types";
 import { useWatch, type UseFormReturn } from "react-hook-form";
-import {
-  type PropertyFormValues,
-} from "../../../_lib/property-form-domain";
+import { type PropertyFormValues } from "../../../_lib/property-form-domain";
 import { PropertyCheckboxField } from "../fields/property-checkbox-field";
 import { PropertyInputField } from "../fields/property-input-field";
 import { PropertySelectField } from "../fields/property-select-field";
