@@ -191,7 +191,6 @@ test("navigation options are trimmed, case-insensitive, distinct, and sorted", (
   );
 });
 
-
 test("Google Maps iframe normalization accepts embeds and rejects executable markup", () => {
   const normalized = domain.normalizeGoogleMapsIframe(
     '<iframe src="https://www.google.com/maps/embed?pb=abc"></iframe>',
