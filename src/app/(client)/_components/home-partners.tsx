@@ -27,7 +27,7 @@ export const HomePartners = () => (
         id="partners-title"
         className="text-balance font-sans text-[clamp(28px,3vw,36px)] font-normal leading-[1.15]"
       >
-        Bank dan developer rekanan
+        Bank dan Developer Rekanan
       </h2>
     </div>
     <ul className="grid grid-cols-3 gap-2 md:grid-cols-6 md:gap-3">
