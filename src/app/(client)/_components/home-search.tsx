@@ -29,7 +29,7 @@ export const HomeSearch = () => (
             id="home-title"
             className="min-w-0 text-balance font-sans text-2xl font-normal leading-tight md:text-3xl xl:text-4xl"
           >
-            Your private key to exceptional properties
+            Your Private Key to Exceptional Properties
           </h2>
         </div>
       </div>
