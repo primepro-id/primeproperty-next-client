@@ -1,7 +1,7 @@
 "use client";
 
 import Loading from "@/app/(client)/loading";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -18,6 +18,9 @@ import jwt from "jsonwebtoken";
 import { MdWhatsapp } from "react-icons/md";
 import { createLeadWhatsappUrl } from "../_lib/create-lead-whatsapp-url";
 import { getLeadsQueryForAgent } from "../_lib/get-leads-query";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { LuHouse } from "react-icons/lu";
 
 export const LeadsTable = () => {
   const accessToken = useQuery(accessTokenQueryOptions());
@@ -45,12 +48,13 @@ export const LeadsTable = () => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>ID</TableHead>
+          <TableHead>Leads ID</TableHead>
           <TableHead>Created At</TableHead>
           <TableHead>Name</TableHead>
           <TableHead>Phone</TableHead>
           <TableHead>Email</TableHead>
-          <TableHead>WhatsApp</TableHead>
+          <TableHead>Property ID</TableHead>
+          <TableHead />
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -75,19 +79,28 @@ export const LeadsTable = () => {
                 </TableCell>
                 <TableCell>{lead.phone_number}</TableCell>
                 <TableCell>{lead.email ?? "N/A"}</TableCell>
+                <TableCell>{lead.property_id}</TableCell>
                 <TableCell>
+                  <div className="flex items-center gap-4">
+                    <Link href={`/properties/${lead.property_id}`}
+                      title="Lihat Properti"
+                      target="_blank"
+                      className={cn(buttonVariants({variant: "outline"}))}
+                    >
+                      <LuHouse />
+                      Property
+                    </Link>
                   {whatsappUrl ? (
-                    <Button asChild size="sm" variant="outline">
                       <a
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         title={`Chat with ${lead.name} on WhatsApp`}
+                        className={cn(buttonVariants({variant: "outline"}))}
                       >
                         <MdWhatsapp data-icon="inline-start" />
                         Chat
                       </a>
-                    </Button>
                   ) : (
                     <Button
                       size="sm"
@@ -99,6 +112,7 @@ export const LeadsTable = () => {
                       Chat
                     </Button>
                   )}
+                  </div>
                 </TableCell>
               </TableRow>
             );
