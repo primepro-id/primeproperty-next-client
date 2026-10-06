@@ -1,5 +1,4 @@
 import { env } from "@/lib/env";
-import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { LuArrowRight } from "react-icons/lu";
@@ -17,7 +16,7 @@ export const Spotlight = ({ article }: SpotlightProps) => {
       <div className=" px-4 py-1 md:hidden">Tips &amp; Trick Spotlight</div>
 
       <Link title={article.title} href={`/blog/${article.slug}`}>
-        <Image
+        <img
           src={
             article.thumbnailImagePath
               ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${article.thumbnailImagePath}`
@@ -28,7 +27,7 @@ export const Spotlight = ({ article }: SpotlightProps) => {
           width={1024}
           height={1024}
           className="w-full h-48 md:h-64  object-cover aspect-square border-y border-y-primary md:border-transparent md:rounded-lg"
-          priority
+          fetchPriority="high"
         />
       </Link>
 

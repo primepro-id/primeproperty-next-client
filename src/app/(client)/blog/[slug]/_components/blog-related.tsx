@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Article } from "@/lib/types";
 import { env } from "@/lib/env";
 
@@ -28,7 +27,7 @@ export const BlogRelated = ({ allArticles }: BlogRelatedProps) => {
             title={article.title}
             className="hover:underline flex gap-4 items-center"
           >
-            <Image
+            <img
               src={
                 article.thumbnailImagePath
                   ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${article.thumbnailImagePath}`
