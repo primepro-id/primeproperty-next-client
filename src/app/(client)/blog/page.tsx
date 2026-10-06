@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { createMetadata } from "@/lib/metadata";
 import { generateBlogHomeSchema } from "./_lib/generate-blog-home-schema";
-import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "@/app/(client)/loading";
 import { BlogContent } from "./_components/blog-content";
@@ -36,7 +35,7 @@ const Blog = () => {
       />
       <section className="p-4 container mx-auto font-sans flex flex-col gap-8 pb-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-center">
-          <Image
+          <img
             src="/images/primepro.png"
             alt="PrimePro Logo"
             width={400}

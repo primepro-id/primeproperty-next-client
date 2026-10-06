@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { findArticleBySlug } from "@/lib/api/articles";
 import { Faq } from "../../../properties/_components/faq";
 import { generateBlogSchema } from "../../_lib/generate-blog-schema";
@@ -27,16 +26,15 @@ export const BlogPageContent = async ({ params }: BlogPageContentProps) => {
 
       <div className="flex flex-col gap-4 font-sans">
         <div className="w-full h-48 md:h-96 relative">
-          <Image
+          <img
             src={
               article.thumbnailImagePath
                 ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${article.thumbnailImagePath}`
                 : String(article.thumbnail.url)
             }
             alt={article.title}
-            fill
-            className="object-cover"
-            priority
+            className="absolute inset-0 w-full h-full object-cover"
+            fetchPriority="high"
           />
         </div>
         <div className="container gap-16 flex flex-col p-4 mx-auto ">

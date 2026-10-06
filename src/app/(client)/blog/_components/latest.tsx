@@ -1,5 +1,4 @@
 import { Article } from "@/lib/types";
-import Image from "next/image";
 import Link from "next/link";
 import { createArticleExcerpt } from "../_lib/create-article-excerpt";
 import { env } from "@/lib/env";
@@ -17,7 +16,7 @@ export const Latest = ({ articles }: LatestProps) => {
         {articles.map((art) => (
           <div key={art.slug} className="flex gap-4 border-b pb-4">
             <Link href={`/blog/${art.slug}`} title={art.seo.title}>
-              <Image
+              <img
                 src={
                   art.thumbnailImagePath
                     ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${art.thumbnailImagePath}`
