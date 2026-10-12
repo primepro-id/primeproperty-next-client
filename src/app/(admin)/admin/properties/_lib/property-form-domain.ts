@@ -93,18 +93,6 @@ export const propertyFormSchema = z
         message: "Choose exactly one cover image",
       });
     }
-
-    if (values.gmap_iframe.trim()) {
-      try {
-        normalizeGoogleMapsIframe(values.gmap_iframe);
-      } catch {
-        context.addIssue({
-          code: "custom",
-          path: ["gmap_iframe"],
-          message: "Paste a valid Google Maps embed iframe",
-        });
-      }
-    }
   });
 
 export type PropertyFormValues = z.infer<typeof propertyFormSchema>;
