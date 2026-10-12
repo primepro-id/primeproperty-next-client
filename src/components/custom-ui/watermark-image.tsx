@@ -5,7 +5,7 @@ import { ComponentProps } from "react";
 
 type WatermarkImageProps = {
   watermarkProps: WatermarkProps;
-  imageProps: ComponentProps<'img'>;
+  imageProps: ComponentProps<"img">;
 };
 
 export const WatermarkImage = ({
