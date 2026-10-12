@@ -1,12 +1,11 @@
 "use client";
 
 import Watermark, { WatermarkProps } from "@uiw/react-watermark";
-import Image from "next/image";
-import { ImageProps } from "next/image";
+import { ComponentProps } from "react";
 
 type WatermarkImageProps = {
   watermarkProps: WatermarkProps;
-  imageProps: ImageProps;
+  imageProps: ComponentProps<'img'>;
 };
 
 export const WatermarkImage = ({
@@ -24,7 +23,7 @@ export const WatermarkImage = ({
       onContextMenu={(e) => e.preventDefault()}
       {...restOfWatermarkProps}
     >
-      <Image alt={alt} title={alt} {...restOfImageProps} />
+      <img alt={alt} title={alt} {...restOfImageProps} />
     </Watermark>
   );
 };
