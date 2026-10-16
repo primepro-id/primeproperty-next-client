@@ -20,11 +20,15 @@ export const BlogRelatedProperties = async ({
     limit: 10,
   };
   if (relatedProperties.includes("jakarta")) {
-    relatedParams = { regency: relatedProperties };
+    relatedParams = {
+      regency: relatedProperties,
+
+      limit: 10,
+    };
   } else if (relatedProperties === "terbaru") {
     relatedParams = {
       ...relatedParams,
-      limit: 10
+      limit: 10,
     };
   }
 

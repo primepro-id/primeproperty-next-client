@@ -18,7 +18,12 @@ export const RelatedProperties = async ({
   regency,
 }: RelatedPropertiesProps) => {
   const propertyData = (
-    await findPropertyJoinAgent({ id: propertyId, is_related: true, regency, limit: 3 })
+    await findPropertyJoinAgent({
+      id: propertyId,
+      is_related: true,
+      regency,
+      limit: 3,
+    })
   ).data?.data;
   if (propertyData && propertyData.length > 0) {
     return (
