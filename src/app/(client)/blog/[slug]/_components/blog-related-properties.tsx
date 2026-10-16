@@ -22,7 +22,10 @@ export const BlogRelatedProperties = async ({
   if (relatedProperties.includes("jakarta")) {
     relatedParams = { regency: relatedProperties };
   } else if (relatedProperties === "terbaru") {
-    relatedParams = {};
+    relatedParams = {
+      ...relatedParams,
+      limit: 10
+    };
   }
 
   const properties = await findPropertyJoinAgent(relatedParams);
