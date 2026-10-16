@@ -1,4 +1,3 @@
-import { env } from "@/lib/env";
 import { LuTag, LuX } from "react-icons/lu";
 import {
   Carousel,
@@ -11,6 +10,7 @@ import { DialogClose } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ContactAgentDialog } from "../../_components/contact-agent-dialog";
+import { getPropertyImageSrc } from "@/lib/property-image";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
 import { PropertyJoinAgent } from "@/lib/types";
 
@@ -25,7 +25,6 @@ export const PropertyDialogCarousel = ({
   propertyWithAgent,
   onCloseClick,
 }: PropertyDialogCarouselProps) => {
-  const baseImgPath = env.NEXT_PUBLIC_S3_ENDPOINT;
   return (
     <div className="relative">
       <DialogClose
@@ -47,7 +46,7 @@ export const PropertyDialogCarousel = ({
                     fontSize: 24,
                   }}
                   imageProps={{
-                    src: baseImgPath + propImg.path,
+                    src: getPropertyImageSrc(propImg.path),
                     alt: propertyWithAgent[0].title,
                     width: 1024,
                     height: 768,

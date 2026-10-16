@@ -4,29 +4,10 @@ import { createFaqSchema } from "@/lib/schema";
 import { ALL_FAQ_ITEMS } from "./faq-content";
 import { FaqPrimePro } from "./faq-primepro";
 import { FaqProperty } from "./faq-property";
+import { VideoThumbnail } from "./video-thumbnail";
 
 type FaqProps = {
   defaultTab: "PRIMEPRO" | "PROPERTY";
-};
-
-const VideoThumbnail = () => {
-  return (
-    <div className="flex flex-col gap-4 w-full">
-      <h2 className="text-3xl font-bold text-center lg:text-left font-sans">
-        Our Company
-      </h2>
-      <iframe
-        width="100%"
-        src="https://www.youtube.com/embed/ivN7BfhMv4g?si=zLm4yBwIrF7So1wM"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-        loading="lazy"
-        className="h-96 md:h-[400px] lg:h-[600px] rounded-lg"
-      />
-    </div>
-  );
 };
 
 export const Faq = ({ defaultTab }: FaqProps) => {

@@ -3,7 +3,7 @@ import { PT_Sans } from "next/font/google";
 import Providers from "@/components/providers";
 import "./globals.css";
 
-const ptsans = PT_Sans({ subsets: ["latin"], weight: "400" });
+const ptsans = PT_Sans({ subsets: ["latin"], weight: "400", preload: false });
 
 export const viewport: Viewport = {
   width: "device-width",

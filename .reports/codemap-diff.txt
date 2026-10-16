@@ -1,38 +1,181 @@
-Generated: 2026-09-02
-Files scanned: 317
+Generated: 2026-10-16
+Files scanned: 358
 Codemap location: docs/CODEMAPS
 
 Diff status:
 - Initial generation: False
-- Diff percentage: 0.0%
-- Requires approval: False
+- Diff percentage: 53.94%
+- Requires approval: True
 
 Files added:
-- None
+- public/property-catalog.md
+- src/app/(admin)/admin/blog/images/_components/blog-image-upload-form.tsx
+- src/app/(admin)/admin/blog/images/_lib/get-uploaded-image-path.test.cjs
+- src/app/(admin)/admin/blog/images/_lib/get-uploaded-image-path.ts
+- src/app/(admin)/admin/blog/images/_lib/validate-blog-image.test.cjs
+- src/app/(admin)/admin/blog/images/_lib/validate-blog-image.ts
+- src/app/(admin)/admin/blog/images/page.tsx
+- src/app/(admin)/admin/blog/layout.tsx
+- src/app/(client)/_components/home-campaign.tsx
+- src/app/(client)/_components/home-company.tsx
+- src/app/(client)/_components/home-partners.tsx
+- src/app/(client)/_components/home-search.tsx
+- src/app/(client)/_footer/footer-navigation-data.test.cjs
+- src/app/(client)/_footer/footer-navigation-data.ts
+- src/app/(client)/_footer/footer-navigation.tsx
+- src/app/(client)/_lib/get-public-property-navigation.test.cjs
+- src/app/(client)/_lib/get-public-property-navigation.ts
+- src/app/(client)/agents/[name]/_components/agent-page-content.tsx
+- src/app/(client)/agents/_components/agents-content.tsx
+- src/app/(client)/blog/[slug]/_components/blog-page-content.tsx
+- src/app/(client)/blog/_components/blog-content.tsx
+- src/app/(client)/blog/_lib/create-article-excerpt.test.cjs
+- src/app/(client)/blog/_lib/create-article-excerpt.ts
+- src/app/(client)/properties/[id]/_components/dynamic-property-page-content.tsx
+- src/app/(client)/properties/_components/faq/faq-content.ts
+- src/app/(client)/properties/_components/faq/video-thumbnail.tsx
+- src/app/(client)/properties/_components/properties-page-content.tsx
+- src/app/(client)/properties/_components/property-bookmark-button.tsx
+- src/app/(client)/properties/_components/property-comparison-actions.tsx
+- src/app/(client)/properties/_lib/parse-property-route-ids.test.cjs
+- src/app/(client)/properties/_lib/parse-property-route-ids.ts
+- src/app/(client)/properties/comparison/_components/property-comparison-page-content.tsx
+- src/app/(client)/properties/comparison/_components/property-comparison-selectors.tsx
+- src/app/(client)/properties/filter/[...params]/_components/properties-filter-page-content.tsx
+- src/app/(client)/properties/property-metadata-boundary.test.cjs
+- src/app/(client)/properties/property-route-validation.test.cjs
+- src/app/(client)/public-layout.test.cjs
+- src/app/(client)/server-suspense-boundaries.test.cjs
+- src/components/ui/breadcrumb.tsx
+- src/lib/api/articles-server-boundary.test.cjs
+- src/lib/api/public-get-cache.test.cjs
+- src/lib/developers.ts
+- src/lib/metadata/ai-discovery.test.cjs
+- src/lib/metadata/seo-domain.test.cjs
+- src/lib/metadata/seo-domain.ts
+- src/lib/property-image.ts
+- src/lib/property-media.test.cjs
+- src/lib/schema/create-agent-profile-schema.ts
+- src/lib/schema/create-faq-schema.ts
+- src/lib/schema/create-site-identity-schema.ts
+- src/lib/schema/faq-schema.test.cjs
+- src/lib/schema/seo-schema.test.cjs
+- src/lib/video-iframe-permissions.ts
+- src/middleware.test.cjs
 
 Files removed:
-- None
+- src/app/(admin)/admin/developers/[developerId]/_components/edit-developer-form-card.tsx
+- src/app/(admin)/admin/developers/[developerId]/page.tsx
+- src/app/(admin)/admin/developers/_components/delete-developer-dialog.tsx
+- src/app/(admin)/admin/developers/_components/developer-form.tsx
+- src/app/(admin)/admin/developers/_components/developers-table.tsx
+- src/app/(admin)/admin/developers/_lib/build-developer-update-data.test.cjs
+- src/app/(admin)/admin/developers/_lib/build-developer-update-data.ts
+- src/app/(admin)/admin/developers/layout.tsx
+- src/app/(admin)/admin/developers/new/_components/new-developer-form-card.tsx
+- src/app/(admin)/admin/developers/new/page.tsx
+- src/app/(admin)/admin/developers/page.tsx
+- src/app/(client)/blog/_lib/generate-blog-related-schema.ts
+- src/app/(client)/properties/_components/faq/faq-schema.tsx
 
 Files modified:
-- None
+- .eslintrc.json
+- .github/workflows/main.yaml
+- Dockerfile
+- package.json
+- skills-lock.json
+- src/app/(admin)/admin/_components/sidebar.tsx
+- src/app/(admin)/admin/leads/_components/leads-table.tsx
+- src/app/(admin)/admin/properties/_components/columns/property-details-column.tsx
+- src/app/(admin)/admin/properties/_components/property-form/sections/price-section.tsx
+- src/app/(admin)/admin/properties/_lib/property-form-domain.test.cjs
+- src/app/(admin)/admin/properties/_lib/property-form-domain.ts
+- src/app/(admin)/layout.tsx
+- src/app/(auth)/layout.tsx
+- src/app/(client)/_footer/footer.tsx
+- src/app/(client)/_header/header.tsx
+- src/app/(client)/_header/logo-link.tsx
+- src/app/(client)/_header/navigation.tsx
+- src/app/(client)/about/page.tsx
+- src/app/(client)/agents/[name]/_components/agent-bio.tsx
+- src/app/(client)/agents/[name]/_components/agent-breadcrumb.tsx
+- src/app/(client)/agents/[name]/_components/agent.tsx
+- src/app/(client)/agents/[name]/_lib/create-agent-metadata.ts
+- src/app/(client)/agents/[name]/page.tsx
+- src/app/(client)/agents/_components/agent-list.tsx
+- src/app/(client)/agents/page.tsx
+- src/app/(client)/agents/sitemap.ts
+- src/app/(client)/blog/[slug]/_components/blog-post.tsx
+- src/app/(client)/blog/[slug]/_components/blog-related-properties.tsx
+- src/app/(client)/blog/[slug]/_components/blog-related.tsx
+- src/app/(client)/blog/[slug]/page.tsx
+- src/app/(client)/blog/_components/all-articles.tsx
+- src/app/(client)/blog/_components/latest.tsx
+- src/app/(client)/blog/_components/spotlight.tsx
+- src/app/(client)/blog/_lib/generate-blog-home-schema.ts
+- src/app/(client)/blog/_lib/generate-blog-metadata.ts
+- src/app/(client)/blog/_lib/generate-blog-schema.ts
+- src/app/(client)/blog/page.tsx
+- src/app/(client)/blog/sitemap.ts
+- src/app/(client)/franchise/_components/hero.tsx
+- src/app/(client)/franchise/page.tsx
+- src/app/(client)/jobs/page.tsx
+- src/app/(client)/layout.tsx
+- src/app/(client)/not-found.tsx
+- src/app/(client)/page.tsx
+- src/app/(client)/properties/[id]/_components/agent-avatar.tsx
+- src/app/(client)/properties/[id]/_components/dynamic-property.tsx
+- src/app/(client)/properties/[id]/_components/property-carousel.tsx
+- src/app/(client)/properties/[id]/_components/property-dialog-carousel.tsx
+- src/app/(client)/properties/[id]/_components/property-overview.tsx
+- src/app/(client)/properties/[id]/_components/share-links.tsx
+- src/app/(client)/properties/[id]/_lib/generate-dynamic-property-metadata.ts
+- src/app/(client)/properties/[id]/page.tsx
+- src/app/(client)/properties/_components/card.tsx
+- src/app/(client)/properties/_components/contact-agent-dialog.tsx
+- src/app/(client)/properties/_components/faq/faq-primepro.tsx
+- src/app/(client)/properties/_components/faq/faq-property.tsx
+- src/app/(client)/properties/_components/faq/faq.tsx
+- src/app/(client)/properties/_components/fillters/dialog.tsx
+- src/app/(client)/properties/_components/fillters/properties-filter.tsx
+- src/app/(client)/properties/_components/fillters/search.tsx
+- src/app/(client)/properties/_components/list.tsx
+- src/app/(client)/properties/_components/pagination.tsx
+- src/app/(client)/properties/_components/popular-properties.tsx
+- src/app/(client)/properties/_components/properties.tsx
+- src/app/(client)/properties/_components/property-agent-info.tsx
+- src/app/(client)/properties/_components/property-price-tag.tsx
+- src/app/(client)/properties/_components/related-properties.tsx
+- src/app/(client)/properties/_components/title.tsx
+- src/app/(client)/properties/_lib/create-properties-filter-metadata.ts
+- src/app/(client)/properties/_lib/create-properties-metadata.ts
+- src/app/(client)/properties/bookmark/_components/bookmarked-properties.tsx
+- src/app/(client)/properties/bookmark/_components/bookmarked-property-table.tsx
+- src/app/(client)/properties/bookmark/page.tsx
+- src/app/(client)/properties/comparison/_components/property-comparison-images.tsx
+- src/app/(client)/properties/comparison/_components/property-comparison.tsx
+- src/app/(client)/properties/comparison/page.tsx
+- src/app/(client)/properties/filter/[...params]/page.tsx
+- src/app/(client)/properties/filter/_lib/property-filter-sitemap-data.ts
+- src/app/(client)/properties/filter/_lib/property-filter-sitemap.test.cjs
+- src/app/(client)/properties/filter/_lib/property-filter-sitemap.ts
 
 Dependency changes:
-- Added: None
-- Removed: None
-
-Architecture changes since previous scan:
-- Source fingerprints are unchanged; this run establishes the post-generation baseline.
-- Codemaps migrated from the legacy single docs/CODEMAPS file to five focused maps under docs/CODEMAPS/.
-- Route map now records the auth/password-reset routes, /admin redirect, public routes, CRUD admin routes, and two XML sitemap route handlers.
-- Runtime boundaries now distinguish App Router UI, middleware/session helpers, external REST/DatoCMS/S3 clients, and TanStack Query modules.
-- No in-repository API service/repository layer, database schema, migrations, seeds, policies, queue, or worker was detected.
 
 Architecture signals:
 - Project shape: single-js-app
 - Route files: 2
 - Middleware files: 1
-- Server action files: 3
+- Server action files: 2
 - Schema/data files: 0
 
 Staleness warnings:
 - None
+
+Review status:
+- Approval required: 53.94% source drift exceeds the skill threshold of 30%.
+- Existing codemaps not overwritten; five proposed maps saved in .reports/codemap-proposed/.
+- Verified architecture drift: developer admin routes removed; blog image upload route added; static developer catalog, async public content boundaries, route-ID validation, shared media helpers, and SEO helpers added.
+- Corrected stale descriptions: package name, server-only article fetching, and fetchJsonApi status handling.
+- Dependency additions/removals: none reported by scanner.
+- No codemap categories skipped.

@@ -2,6 +2,7 @@ import { PropertyJoinAgent } from "@/lib/types";
 import { env } from "@/lib/env";
 import Link from "next/link";
 import { Specifications } from "./specifications";
+import { getPropertyImageSrc } from "@/lib/property-image";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
 import { PropertyPriceTag } from "./property-price-tag";
 import { PropertyAgentInfo } from "./property-agent-info";
@@ -57,9 +58,7 @@ export const PropertyCard = ({
   const developerId = propertyWithAgent[0].developer_id;
   const developerImage = useMemo(() => {
     if (developerId) {
-      const propertyDeveloper = DEVELOPERS.find(
-        (d) => d.id === developerId,
-      );
+      const propertyDeveloper = DEVELOPERS.find((d) => d.id === developerId);
       if (propertyDeveloper) {
         return baseImgPath + propertyDeveloper.logo_path;
       }
@@ -83,7 +82,7 @@ export const PropertyCard = ({
             fontSize: 20,
           }}
           imageProps={{
-            src: baseImgPath + coverImage.path,
+            src: getPropertyImageSrc(coverImage?.path),
             alt: propertyWithAgent[0].title,
             width: 1024,
             height: 768,

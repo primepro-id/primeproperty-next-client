@@ -7,6 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { getPropertyImageSrc } from "@/lib/property-image";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
 import React, { useMemo } from "react";
 import { PropertyImage, PropertyJoinAgent } from "@/lib/types";
@@ -67,7 +68,7 @@ const ImageCarousel = ({
                 <WatermarkImage
                   watermarkProps={{}}
                   imageProps={{
-                    src: baseImgPath + propImg.path,
+                    src: getPropertyImageSrc(propImg.path),
                     alt: propImg.indonesian_label ?? propertyTitle,
                     width: 1024,
                     height: 768,
@@ -127,7 +128,7 @@ const ImageThumbnail = ({
               fontSize: 36,
             }}
             imageProps={{
-              src: baseImgPath + img.path,
+              src: getPropertyImageSrc(img.path),
               alt: img.indonesian_label ?? propertyTitle,
               width: 512,
               height: 512,
@@ -145,8 +146,8 @@ const ImageThumbnail = ({
             fontSize: 24,
           }}
           imageProps={{
-            src: baseImgPath + images[0].path,
-            alt: images[0].indonesian_label ?? propertyTitle,
+            src: getPropertyImageSrc(images[0]?.path),
+            alt: images[0]?.indonesian_label ?? propertyTitle,
             width: 512,
             height: 512,
             className: "w-full h-48 cursor-pointer rounded-lg",
@@ -177,6 +178,20 @@ export const PropertyCarousel = ({
   propertyWithAgent,
   onImageClick,
 }: PropertyCarouselProps) => {
+  if (propertyWithAgent[0].images.length === 0) {
+    return (
+      <WatermarkImage
+        watermarkProps={{}}
+        imageProps={{
+          src: getPropertyImageSrc(),
+          alt: propertyWithAgent[0].title,
+          width: 1024,
+          height: 768,
+          className: "w-full h-60 md:h-80 lg:h-96 object-cover rounded-lg",
+        }}
+      />
+    );
+  }
   const coverImage =
     propertyWithAgent[0].images.find((img) => img.is_cover) ??
     propertyWithAgent[0].images[0];

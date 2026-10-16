@@ -1,7 +1,7 @@
 "use client";
 
+import { getPropertyImageSrc } from "@/lib/property-image";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
-import { env } from "@/lib/env";
 import { cn } from "@/lib/utils";
 import { LuTag } from "react-icons/lu";
 import { PropertyDialogCarousel } from "../../[id]/_components/property-dialog-carousel";
@@ -21,7 +21,6 @@ type PropertyComparisonImagesProps = {
 export const PropertyComparisonImages = ({
   propertyWithAgent,
 }: PropertyComparisonImagesProps) => {
-  const baseImgPath = env.NEXT_PUBLIC_S3_ENDPOINT;
   const [startIndex, setStartIndex] = useState<null | number>(null);
   return (
     <div>
@@ -38,7 +37,7 @@ export const PropertyComparisonImages = ({
             <WatermarkImage
               watermarkProps={{ className: "w-fit" }}
               imageProps={{
-                src: baseImgPath + img.path,
+                src: getPropertyImageSrc(img.path),
                 alt: img.indonesian_label,
                 width: 1024,
                 height: 1024,
