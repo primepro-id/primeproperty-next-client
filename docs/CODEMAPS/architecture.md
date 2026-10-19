@@ -4,7 +4,7 @@
 
 ## Shape and boundaries
 
-Single-package Next.js 15.5 App Router application (`package.json`); `@/*` maps to `src/*`.
+Single-package Next.js 16.4 App Router application (`package.json`); `@/*` maps to `src/*`.
 
 ```text
 src/app                    routes, layouts, metadata, sitemaps, route-local UI
@@ -17,7 +17,7 @@ src/lib/{metadata,schema}  SEO metadata and JSON-LD builders
 public                     static assets
 ```
 
-Entry points are `src/app/layout.tsx`, the `(client)`, `(auth)`, and `(admin)` layouts, `src/middleware.ts`, `src/instrumentation.ts`, and `instrumentation-client.ts`.
+Entry points are `src/app/layout.tsx`, the `(client)`, `(auth)`, and `(admin)` layouts, `src/proxy.ts`, `src/instrumentation.ts`, and `instrumentation-client.ts`.
 
 ## Runtime flow
 
@@ -27,7 +27,7 @@ Browser -> App Router page/layout
         -> client component -> src/lib/hooks -> TanStack Query -> src/lib/api
         -> image upload -------------------------------> REST S3 endpoint
 
-/admin* -> middleware -> verify/refresh session -> route layout/guard -> admin UI
+/admin* -> proxy -> verify/refresh session -> route layout/guard -> admin UI
 ```
 
 `src/components/providers.tsx` supplies theme, TanStack Query, and toast state. `src/app/(client)/layout.tsx` adds the public header/footer and Google Analytics. The admin layout owns its fixed navigation and content scroll boundary.
@@ -42,6 +42,6 @@ Browser -> App Router page/layout
 
 ## Build, test, deploy
 
-`yarn dev`/`start` use port 4137; `yarn build` creates Next standalone output. `next.config.mjs` wraps the build with Sentry. `Dockerfile` builds on Node 22 Alpine and runs `server.js`; Compose maps host `4137` to container `3000`.
+`yarn dev`/`start` use port 4137; development and builds explicitly use Webpack. `yarn build` creates Next standalone output; `next.config.mjs` wraps the build with Sentry 10. `Dockerfile` installs the frozen Yarn lockfile, runs lint separately, builds on Node 22 Alpine, and runs `server.js`; Compose maps host `4137` to container `3000`.
 
 Focused `node:test` files are colocated as `*.test.cjs`; TypeScript verification is `yarn tsc --noEmit --pretty false`. Production builds require configured environment variables and reachable REST/DatoCMS data used by prerendered sitemap routes.

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { refreshAgentSession, verifyAgentSession } from "./lib/api";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const accessToken = request.cookies.get("accessToken")?.value;
   if (!accessToken) {
     return NextResponse.redirect(new URL("/auth", request.url));
@@ -32,7 +32,7 @@ export async function middleware(request: NextRequest) {
 
     return response;
   } catch (error) {
-    console.error("MIDDLEWARE ERRROR:\n", error);
+    console.error("PROXY ERROR:\n", error);
     return response;
   }
 }

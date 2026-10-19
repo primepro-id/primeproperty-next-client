@@ -2,19 +2,21 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+Use Node.js 22 (production Docker runtime), or Node.js >=20.9 locally, and Yarn 1.22.22.
+Install the locked dependencies and run the development server:
 
 ```bash
-npm run dev
-# or
+yarn install --frozen-lockfile
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:4137](http://localhost:4137) with your browser to see the result.
+
+Next.js 16 development and production builds explicitly use Webpack for Sentry compatibility.
+Run `yarn lint`, `yarn next typegen`, `yarn tsc --noEmit`, and `yarn build` before release.
+The Docker build runs lint separately because Next.js no longer runs it during builds.
+Builds require the REST API and DatoCMS environment settings and connectivity for sitemap generation.
+See [migration verification and release blockers](docs/next16-migration.md) before deploying Next.js 16.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

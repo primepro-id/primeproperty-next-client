@@ -6,7 +6,7 @@ This repository is a frontend/BFF client. It contains no business API controller
 
 ## In-repo server boundaries
 
-- `src/middleware.ts`: protects `/admin*`; verifies `accessToken`, refreshes with `refreshToken`, rotates cookies, and redirects missing access tokens to `/auth`.
+- `src/proxy.ts`: Node.js request proxy for `/admin*`; verifies `accessToken`, refreshes with `refreshToken`, rotates cookies, and redirects missing access tokens to `/auth`. Downstream guards retain authorization checks when verification/refresh fails.
 - `src/lib/api/token.ts`: server cookie read/write/delete helpers (`use server`).
 - `src/lib/api/verified-viewer.ts`: server-side session verification before trusting viewer roles (`use server`).
 - `src/lib/api/articles.ts`: server-only Apollo/DatoCMS fetches (`use server`).

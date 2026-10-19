@@ -15,9 +15,9 @@ WORKDIR /app
 
 COPY yarn.lock .
 COPY package.json .
-RUN yarn
+RUN yarn install --frozen-lockfile
 COPY . .
-RUN yarn build
+RUN yarn lint && yarn build
 
 FROM node:22-alpine AS runner
 

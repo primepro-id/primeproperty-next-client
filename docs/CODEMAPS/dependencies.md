@@ -4,10 +4,10 @@
 
 ## Package graph
 
-One private package (`inception-next`) with no workspace configuration or internal package dependencies. Yarn lockfile is committed.
+One private package (`primeproperty-next-client`) with no workspace configuration or internal package dependencies. Yarn lockfile is committed.
 
 ```text
-Next 15.5 + React 19
+Next 16.4 + React 19
 |-- app/rendering: next, react, react-dom, sharp
 |-- server state: @tanstack/react-query
 |-- tables/forms: @tanstack/react-table, react-hook-form, zod, @hookform/resolvers
@@ -34,10 +34,10 @@ Dependencies alone do not establish use of a database, queue, mail delivery, or 
 ## Tooling
 
 - TypeScript 5.9; path alias `@/* -> src/*`.
-- Tailwind CSS 3, PostCSS, Prettier, ESLint, Husky.
+- Tailwind CSS 3, PostCSS, Prettier, ESLint 9 flat config, Husky; Yarn 1.22.22, local Node >=20.9.
 - Tests use Node's built-in test runner through colocated `*.test.cjs`; there is no package-level `test` script.
 - `components.json` configures shadcn generation; reusable primitives live in `src/components/ui`.
 
 ## Build and deployment
 
-`yarn build` invokes `next build`; `next.config.mjs` enables standalone output and Sentry source-map processing. Docker uses Node 22 Alpine in builder/runtime stages. Runtime starts `server.js` on container port 3000; Compose exposes host port 4137. Build arguments mirror environment variables because validation and external-data sitemap generation execute during the build.
+`yarn build` invokes `next build --webpack`; `next.config.mjs` enables standalone output and Sentry 10 source-map processing. Docker uses Node 22 Alpine in builder/runtime stages, frozen-lockfile installation, and an explicit lint gate before building. Runtime starts `server.js` on container port 3000; Compose exposes host port 4137. Build arguments mirror environment variables because validation and external-data sitemap generation execute during the build.
