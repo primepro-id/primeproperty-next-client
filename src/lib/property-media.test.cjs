@@ -55,7 +55,23 @@ test("video permissions include only supported features", () => {
   assert.equal(getVideoIframeAllow(all), all.join("; "));
 });
 
-function loadComponent(file) {
+const PROPERTY_DETAIL_DIR = "app/(client)/properties/[id]/";
+
+function resolveLocalModule(fromFile, id) {
+  const { existsSync } = require("node:fs");
+  const { posix } = require("node:path");
+  const target = posix.join(posix.dirname(fromFile), id);
+  if (!target.startsWith(PROPERTY_DETAIL_DIR)) return null;
+  for (const extension of [".tsx", ".ts"]) {
+    if (existsSync(join(__dirname, "..", target + extension))) {
+      return target + extension;
+    }
+  }
+  return null;
+}
+
+function loadComponent(file, cache = new Map()) {
+  if (cache.has(file)) return cache.get(file);
   const React = require("react");
   const output = ts.transpileModule(
     readFileSync(join(__dirname, "..", file), "utf8"),
@@ -69,13 +85,19 @@ function loadComponent(file) {
     },
   ).outputText;
   const mod = { exports: {} };
+  cache.set(file, mod.exports);
   const stub = ({ children }) => children;
   const resolve = (id) => {
+    if (id.startsWith(".")) {
+      const localModule = resolveLocalModule(file, id);
+      if (localModule) return loadComponent(localModule, cache);
+    }
     if (id === "react")
       return {
         ...React,
         useMemo: (fn) => fn(),
         useState: (value) => [value, () => {}],
+        useEffect: () => {},
       };
     if (id === "react/jsx-runtime") return require(id);
     if (id === "@/lib/property-image") return load("property-image.ts");

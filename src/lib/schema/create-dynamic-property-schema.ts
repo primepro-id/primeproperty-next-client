@@ -15,6 +15,7 @@ export function createDynamicPropertySchema(property: Property) {
     image: property.images.map(
       (image) => `${env.NEXT_PUBLIC_S3_ENDPOINT}${image.path}`,
     ),
+    ...(property.created_at && { datePosted: property.created_at }),
     about: { "@id": `${canonicalUrl}#place` },
     offers: {
       "@type": "Offer",

@@ -61,6 +61,24 @@ export function createPropertyPath(property: PropertyPathInput) {
   return `/properties/${property.id}-${encodeURIComponent(titleSlug)}`;
 }
 
+export type PropertyBreadcrumbSegment = {
+  name: string;
+  path: string;
+};
+
+export function createPropertyBreadcrumbSegments(
+  sitePath: string,
+): PropertyBreadcrumbSegment[] {
+  const segments = sitePath.split("/").filter(Boolean).slice(0, 5);
+
+  return segments.map((segment, index) => ({
+    name: segment
+      .replaceAll("-", " ")
+      .replace(/\b\w/g, (letter) => letter.toUpperCase()),
+    path: `/properties/filter/${segments.slice(0, index + 1).join("/")}`,
+  }));
+}
+
 export function createAgentPath(agent: AgentPathInput) {
   const fullnameSlug = agent.fullname.trim().replace(/\s+/g, "-");
 

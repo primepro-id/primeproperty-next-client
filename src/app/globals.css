@@ -135,6 +135,7 @@ div#goog-gt-tt {
   color: hsl(var(--background));
   border: none;
   font-weight: normal;
+  font-size: 0.875rem;
   border-radius: 0.25rem;
   padding: 8px 12px;
 }

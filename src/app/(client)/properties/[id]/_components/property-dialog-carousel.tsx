@@ -47,7 +47,8 @@ export const PropertyDialogCarousel = ({
                   }}
                   imageProps={{
                     src: getPropertyImageSrc(propImg.path),
-                    alt: propertyWithAgent[0].title,
+                    alt:
+                      propImg.indonesian_label || propertyWithAgent[0].title,
                     width: 1024,
                     height: 768,
                     className:
@@ -55,7 +56,7 @@ export const PropertyDialogCarousel = ({
                   }}
                 />
                 {propImg.indonesian_label && (
-                  <div className="bg-primary text-primary-foreground text-xs flex gap-1 absolute left-0 top-0 items-center px-1 py-0.5 rounded-md">
+                  <div className="bg-primary text-primary-foreground text-sm flex gap-1 absolute left-0 top-0 items-center px-2 py-0.5 rounded-md">
                     <LuTag />
                     <span>{propImg.indonesian_label}</span>
                   </div>
