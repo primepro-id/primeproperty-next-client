@@ -50,7 +50,7 @@ export const DynamicProperty = ({
       <JsonLdScript data={createPlaceSchema(listing)} />
       <JsonLdScript data={createRelatedAreaSchema(listing)} />
 
-      <PropertyToolbar property={listing}  />
+      <PropertyToolbar property={listing} />
       <PropertyImages id={PROPERTY_GALLERY_ID} propertyWithAgent={property} />
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-10">

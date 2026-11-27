@@ -18,16 +18,9 @@ export const generateMetadata = async ({
 
 const PropertiesPage = ({ searchParams }: PropertiesPageProps) => {
   return (
-    <>
-      <div className="container mx-auto px-2 pt-4 text-right">
-        <a className="underline" href="/properties/rss.xml">
-          RSS
-        </a>
-      </div>
       <Suspense fallback={<Loading />}>
         <PropertiesPageContent searchParams={searchParams} />
       </Suspense>
-    </>
   );
 };
 

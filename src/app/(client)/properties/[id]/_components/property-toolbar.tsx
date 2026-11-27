@@ -15,7 +15,6 @@ export const PropertyToolbar = ({
   className,
 }: PropertyToolbarProps) => {
   return (
-
     <div className={cn("hidden md:flex items-center gap-3", className)}>
       <BackButton className="hidden shrink-0 rounded-full lg:inline-flex" />
       <PropertyBreadcrumb property={property} className="flex-1" />
@@ -30,6 +29,5 @@ export const PropertyToolbar = ({
         />
       </div>
     </div>
-
   );
 };

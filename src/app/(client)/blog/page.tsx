@@ -50,9 +50,6 @@ const Blog = () => {
               Temukan tips dan trik properti terkini seputar properti dan ulasan
               mengenai rumah hingga gaya hidup dari PrimePro Indonesia
             </h2>
-            <a className="w-fit underline" href="/blog/rss.xml">
-              RSS
-            </a>
           </div>
         </div>
         <Suspense fallback={<Loading />}>
