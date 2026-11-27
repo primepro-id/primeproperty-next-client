@@ -44,15 +44,16 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
   return (
     <div className="flex min-w-0 flex-col gap-6">
       <div className="flex flex-col">
-
-      <GoogleTranslateElement />
-      <div className="flex flex-col gap-4">
-
-        <PropertyHeader property={listing} />
-        <PropertyKeyStats property={listing} />
-        <PropertySummary property={listing} />
-        <AgentAvatar property={property} className="border-y py-3 lg:hidden" />
-      </div>
+        <GoogleTranslateElement />
+        <div className="flex flex-col gap-4">
+          <PropertyHeader property={listing} />
+          <PropertyKeyStats property={listing} />
+          <PropertySummary property={listing} />
+          <AgentAvatar
+            property={property}
+            className="border-y py-3 lg:hidden"
+          />
+        </div>
       </div>
 
       <PropertySectionNav links={sectionLinks} />
