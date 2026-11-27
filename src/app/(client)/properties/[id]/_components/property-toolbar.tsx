@@ -1,4 +1,3 @@
-import { GoogleTranslateElement } from "@/components/custom-ui/google-translate-element";
 import type { Property } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { PropertyBookmarkButton } from "../../_components/property-bookmark-button";
@@ -16,11 +15,11 @@ export const PropertyToolbar = ({
   className,
 }: PropertyToolbarProps) => {
   return (
-    <div className={cn("flex items-center gap-3", className)}>
+
+    <div className={cn("hidden md:flex items-center gap-3", className)}>
       <BackButton className="hidden shrink-0 rounded-full lg:inline-flex" />
       <PropertyBreadcrumb property={property} className="flex-1" />
       <div className="flex shrink-0 items-center gap-2">
-        <GoogleTranslateElement />
         <PropertyShareButton
           title={property.title}
           className="hidden rounded-full lg:inline-flex"
@@ -31,5 +30,6 @@ export const PropertyToolbar = ({
         />
       </div>
     </div>
+
   );
 };
