@@ -1,107 +1,68 @@
-import {
-  Property,
-  PROPERTY_BUILDING_CONDITIONS,
-  PROPERTY_FURNITURE_CAPACITY,
-  PropertyPurchaseStatus,
-} from "@/lib/types";
+import { PROPERTY_FURNITURE_CAPACITY, type Property } from "@/lib/types";
+import { getBuildingConditionLabel } from "../_lib/property-labels";
 
-type KeyValueProps = {
-  label: string;
-  value: string;
-};
-
-const KeyValue = ({ label, value }: KeyValueProps) => {
-  return (
-    <div className="flex items-center gap-1">
-      <p className="w-32 text-muted-foreground">{label}</p>
-      <p>{value}</p>
-    </div>
-  );
-};
 type PropertyInformationProps = {
   property: Property;
 };
 
+type SpecificationItem = {
+  label: string;
+  value: string | null;
+};
+
 export const PropertyInformation = ({ property }: PropertyInformationProps) => {
+  const { specifications, measurements } = property;
+  const items: SpecificationItem[] = [
+    { label: "Tipe properti", value: property.building_type },
+    {
+      label: "Sertifikat",
+      value: property.building_certificate
+        ? property.building_certificate.toUpperCase()
+        : null,
+    },
+    { label: "Kondisi", value: getBuildingConditionLabel(property) },
+    {
+      label: "Tinggi bangunan",
+      value:
+        measurements.building_level > 0
+          ? `${measurements.building_level} lantai`
+          : null,
+    },
+    {
+      label: "Garasi",
+      value:
+        specifications.garage > 0 ? `${specifications.garage} mobil` : null,
+    },
+    {
+      label: "Carport",
+      value:
+        specifications.carport > 0 ? `${specifications.carport} mobil` : null,
+    },
+    {
+      label: "Daya listrik",
+      value:
+        specifications.electrical_power > 0
+          ? `${specifications.electrical_power.toLocaleString("id-ID")} Watt`
+          : null,
+    },
+    {
+      label: "Perabotan",
+      value: property.building_furniture_capacity
+        ? PROPERTY_FURNITURE_CAPACITY[property.building_furniture_capacity]
+        : null,
+    },
+  ];
+
   return (
-    <div className="flex flex-col gap-2">
-      <h3 className="uppercase font-sans">
-        INFORMASI {property.building_type}{" "}
-        {property.purchase_status === PropertyPurchaseStatus.ForSale
-          ? "DIJUAL"
-          : "DISEWA"}
-      </h3>
-
-      <div className="gap-2 flex flex-col  divide-y-2 capitalize">
-        <KeyValue label="Tipe" value={property.building_type} />
-        <KeyValue label="Sertifikat" value={property.building_certificate} />
-        <KeyValue
-          label="Kondisi"
-          value={PROPERTY_BUILDING_CONDITIONS[property.building_condition]}
-        />
-        <KeyValue
-          label="Luas Tanah"
-          value={`${property.measurements.land_area} m²`}
-        />
-        <KeyValue
-          label="Luas Bangunan"
-          value={`${property.measurements.building_area} m²`}
-        />
-
-        {property.measurements.building_level > 0 && (
-          <div className="flex items-center gap-1">
-            <p className="w-32 text-muted-foreground">Tinggi Bangunan</p>
-            <p className="capitalize">
-              {property.measurements.building_level} lantai
-            </p>
+    <dl className="grid grid-cols-2 gap-x-6 gap-y-3">
+      {items
+        .filter((item) => item.value)
+        .map((item) => (
+          <div key={item.label} className="flex flex-col border-b pb-2">
+            <dt className="text-sm text-muted-foreground">{item.label}</dt>
+            <dd className="capitalize">{item.value}</dd>
           </div>
-        )}
-        {property.specifications.bedrooms > 0 && (
-          <div className="flex items-center gap-1">
-            <p className="w-32 text-muted-foreground">Kamar Tidur</p>
-            <p>{property.specifications.bedrooms}</p>
-          </div>
-        )}
-        {property.specifications.bathrooms > 0 && (
-          <div className="flex items-center gap-1">
-            <p className="w-32 text-muted-foreground">Kamar Mandi</p>
-            <p>{property.specifications.bathrooms}</p>
-          </div>
-        )}
-        {property.specifications.garage > 0 && (
-          <div className="flex items-center gap-1">
-            <p className="w-32 text-muted-foreground">Garasi</p>
-            <p>{property.specifications.garage} Mobil</p>
-          </div>
-        )}
-        {property.specifications.carport > 0 && (
-          <div className="flex items-center gap-1">
-            <p className="w-32 text-muted-foreground">Carport</p>
-            <p>{property.specifications.carport} Mobil</p>
-          </div>
-        )}
-        {property.specifications.electrical_power > 0 && (
-          <div className="flex items-center gap-1">
-            <p className="w-32 text-muted-foreground">Daya Listrik</p>
-            <p>
-              {property.specifications.electrical_power.toLocaleString("id-ID")}{" "}
-              Watt
-            </p>
-          </div>
-        )}
-        {property.building_furniture_capacity && (
-          <div className="flex items-center gap-1">
-            <p className="w-32 text-muted-foreground">Perabotan</p>
-            <p className="capitalize">
-              {
-                PROPERTY_FURNITURE_CAPACITY[
-                  property.building_furniture_capacity
-                ]
-              }
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
+        ))}
+    </dl>
   );
 };

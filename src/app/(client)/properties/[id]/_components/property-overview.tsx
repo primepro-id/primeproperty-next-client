@@ -1,107 +1,102 @@
+import type { PropertyJoinAgent } from "@/lib/types";
+import { PROPERTY_SECTION_IDS } from "../_lib/property-labels";
+import { AgentAvatar } from "./agent-avatar";
+import { ExpandableText } from "./expandable-text";
+import { PropertyFacilities } from "./property-facilities";
+import { PropertyHeader } from "./property-header";
 import { PropertyInformation } from "./property-information";
-import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
-import { cn } from "@/lib/utils";
-import { GoogleTranslateElement } from "@/components/custom-ui/google-translate-element";
+import { PropertyKeyStats } from "./property-key-stats";
+import { PropertyLocation } from "./property-location";
+import { PropertySection } from "./property-section";
 import {
-  Property,
-  PropertyJoinAgent,
-  PropertyPurchaseStatus,
-} from "@/lib/types";
-import { FACILITY_ICON } from "@/lib/types/facilities";
-
-type PriceTagProps = {
-  property: Property;
-};
-
-const PriceTag = ({ property }: PriceTagProps) => {
-  return (
-    <div className="text-primary flex flex-row gap-2 font-bold">
-      <div className="text-2xl flex items-center gap-2">
-        <span className="capitalize">
-          {formatToCurrencyUnit(property.price, property.currency)}
-        </span>
-        {property.purchase_status === PropertyPurchaseStatus.ForRent &&
-          property.rent_time && <span>{property.rent_time}</span>}
-      </div>
-      <span
-        className={cn(
-          "text-md",
-          property.price_down_payment && property.price_down_payment > 0
-            ? "block"
-            : "hidden",
-        )}
-      >
-        (DP:{" "}
-        {property?.price_down_payment &&
-          property?.price_down_payment > 0 &&
-          formatToCurrencyUnit(property.price_down_payment, property.currency)}
-        )
-      </span>
-    </div>
-  );
-};
+  PropertySectionNav,
+  type PropertySectionLink,
+} from "./property-section-nav";
+import { PropertySummary } from "./property-summary";
+import { RelatedSearch } from "./related-search";
+import { ShareLinks } from "./share-links";
+import { GoogleTranslateElement } from "@/components/custom-ui/google-translate-element";
 
 type PropertyOverviewProps = {
   property: PropertyJoinAgent;
 };
 
 export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
+  const listing = property[0];
+  const hasDescription = listing.description.trim().length > 0;
+  const hasFacilities = listing.facilities.length > 0;
+  const hasLocation = Boolean(listing.gmap_iframe);
+
+  const optionalSectionLinks: (PropertySectionLink | null)[] = [
+    hasDescription
+      ? { id: PROPERTY_SECTION_IDS.description, label: "Deskripsi" }
+      : null,
+    { id: PROPERTY_SECTION_IDS.specifications, label: "Spesifikasi" },
+    hasFacilities
+      ? { id: PROPERTY_SECTION_IDS.facilities, label: "Fasilitas" }
+      : null,
+    hasLocation ? { id: PROPERTY_SECTION_IDS.location, label: "Lokasi" } : null,
+  ];
+  const sectionLinks = optionalSectionLinks.filter(
+    (link): link is PropertySectionLink => link !== null,
+  );
+
   return (
-    <div className="flex flex-col gap-8 flex-1 ">
-      <div>
-        <GoogleTranslateElement />
-        <PriceTag property={property[0]} />
-        <h1 className="font-sans uppercase">{property[0].title}</h1>
-        <p className="text-muted-foreground capitalize">
-          {property[0].building_type} {property[0].street},{" "}
-          {property[0].regency}
-        </p>
+    <div className="flex min-w-0 flex-col gap-6">
+      <div className="flex flex-col">
+
+      <GoogleTranslateElement />
+      <div className="flex flex-col gap-4">
+
+        <PropertyHeader property={listing} />
+        <PropertyKeyStats property={listing} />
+        <PropertySummary property={listing} />
+        <AgentAvatar property={property} className="border-y py-3 lg:hidden" />
+      </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        <PropertyInformation property={property[0]} />
-        <div
-          className={cn(
-            property[0].facilities.length === 0
-              ? "hidden"
-              : "flex flex-col gap-2",
-          )}
+      <PropertySectionNav links={sectionLinks} />
+
+      {hasDescription && (
+        <PropertySection
+          id={PROPERTY_SECTION_IDS.description}
+          title="Deskripsi"
         >
-          <h3 className="">FASILITAS</h3>
-          <ul className="grid grid-cols-2 gap-4">
-            {property[0].facilities.map((facility, index) => (
-              <li
-                key={`${index}-${facility.indonesian_label}`}
-                className="flex items-center text-lg gap-2 capitalize"
-              >
-                <span className="text-muted-foreground">
-                  {FACILITY_ICON[facility.value as keyof typeof FACILITY_ICON]}
-                </span>
-                <span>{facility.indonesian_label}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <h3>DESKRIPSI</h3>
-        <p className="whitespace-pre-wrap text-muted-foreground text-base">
-          {property[0].description}
-        </p>
-      </div>
-
-      {property[0].gmap_iframe && (
-        <div className="w-full overflow-hidden flex flex-col gap-2">
-          <p className="uppercase">Perkiraan Lokasi</p>
-
-          <div
-            title={property[0].title}
-            className="rounded-mg"
-            dangerouslySetInnerHTML={{ __html: property[0].gmap_iframe }}
-          />
-        </div>
+          <ExpandableText text={listing.description} />
+        </PropertySection>
       )}
+
+      <PropertySection
+        id={PROPERTY_SECTION_IDS.specifications}
+        title="Spesifikasi"
+      >
+        <PropertyInformation property={listing} />
+      </PropertySection>
+
+      {hasFacilities && (
+        <PropertySection id={PROPERTY_SECTION_IDS.facilities} title="Fasilitas">
+          <PropertyFacilities facilities={listing.facilities} />
+        </PropertySection>
+      )}
+
+      {listing.gmap_iframe && (
+        <PropertySection
+          id={PROPERTY_SECTION_IDS.location}
+          title="Perkiraan lokasi"
+        >
+          <PropertyLocation
+            title={listing.title}
+            gmapIframe={listing.gmap_iframe}
+          />
+        </PropertySection>
+      )}
+
+      <RelatedSearch property={listing} />
+      <ShareLinks
+        title={listing.title}
+        property={property}
+        className="mx-0 lg:hidden"
+      />
     </div>
   );
 };

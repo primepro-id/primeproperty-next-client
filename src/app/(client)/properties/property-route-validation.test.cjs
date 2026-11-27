@@ -208,11 +208,14 @@ test("property detail forwards its regency to related properties", () => {
       "./property-images": { PropertyImages: () => null },
       "../../_components/not-found": { PropertyNotFound: () => null },
       "./share-links": { ShareLinks: () => null },
-      "../../_components/contact-agent-dialog": {
-        ContactAgentDialog: () => null,
-      },
-      "./agent-avatar": { AgentAvatar: () => null },
       "./related-search": { RelatedSearch: () => null },
+      "./agent-card": { AgentCard: () => null },
+      "./mobile-contact-bar": { MobileContactBar: () => null },
+      "./mobile-sticky-header": { MobileStickyHeader: () => null },
+      "./property-breadcrumb": { PropertyBreadcrumb: () => null },
+      "./property-price": { PropertyPrice: () => null },
+      "./property-toolbar": { PropertyToolbar: () => null },
+      "../_lib/property-labels": { PROPERTY_GALLERY_ID: "property-gallery" },
       "../../_components": { RelatedProperties },
       "../../_components/faq": { Faq: () => null },
       "@/lib/schema/create-dynamic-property-schema": {

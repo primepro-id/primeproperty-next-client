@@ -12,14 +12,18 @@ import { PropertyJoinAgent } from "@/lib/types";
 
 type PropertyImagesProps = {
   propertyWithAgent: PropertyJoinAgent;
+  id?: string;
 };
 
-export const PropertyImages = ({ propertyWithAgent }: PropertyImagesProps) => {
+export const PropertyImages = ({
+  propertyWithAgent,
+  id,
+}: PropertyImagesProps) => {
   const [dialogCarouselindex, setDialogCarouselIndex] = useState<number | null>(
     null,
   );
   return (
-    <div>
+    <div id={id}>
       <PropertyCarousel
         propertyWithAgent={propertyWithAgent}
         onImageClick={(imgIndex) => setDialogCarouselIndex(imgIndex)}

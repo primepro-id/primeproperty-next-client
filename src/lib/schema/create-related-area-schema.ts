@@ -1,27 +1,20 @@
 import { env } from "@/lib/env";
-import { createPropertyPath } from "@/lib/metadata/seo-domain";
+import {
+  createPropertyBreadcrumbSegments,
+  createPropertyPath,
+} from "@/lib/metadata/seo-domain";
 import type { Property } from "@/lib/types";
-
-function formatBreadcrumbName(segment: string) {
-  return segment
-    .replaceAll("-", " ")
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
 
 export function createRelatedAreaSchema(property: Property) {
   const canonicalUrl = `${env.NEXT_PUBLIC_HOST_URL}${createPropertyPath(property)}`;
-  const filterSegments = property.site_path
-    .split("/")
-    .filter(Boolean)
-    .slice(0, 5);
-  const filterItems = filterSegments.map((segment, index) => ({
-    "@type": "ListItem",
-    position: index + 3,
-    name: formatBreadcrumbName(segment),
-    item: `${env.NEXT_PUBLIC_HOST_URL}/properties/filter/${filterSegments
-      .slice(0, index + 1)
-      .join("/")}`,
-  }));
+  const filterItems = createPropertyBreadcrumbSegments(property.site_path).map(
+    (segment, index) => ({
+      "@type": "ListItem",
+      position: index + 3,
+      name: segment.name,
+      item: `${env.NEXT_PUBLIC_HOST_URL}${segment.path}`,
+    }),
+  );
 
   return {
     "@context": "https://schema.org",

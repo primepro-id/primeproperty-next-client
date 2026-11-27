@@ -25,12 +25,16 @@ type ContactAgentDialogProps = {
   isWhatsapp: boolean;
   propertyWithAgent: PropertyJoinAgent;
   isPhotoRequest?: boolean;
+  iconOnly?: boolean;
+  className?: string;
 };
 
 export const ContactAgentDialog = ({
   isWhatsapp,
   isPhotoRequest,
   propertyWithAgent,
+  iconOnly = false,
+  className,
 }: ContactAgentDialogProps) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [open, setOpen] = useState(false);
@@ -123,9 +127,24 @@ export const ContactAgentDialog = ({
           isWhatsapp && !isPhotoRequest
             ? "bg-emerald-500 hover:bg-emerald-400 text-base text-background"
             : "",
+          iconOnly && "p-0",
+          className,
         )}
+        aria-label={
+          iconOnly
+            ? isWhatsapp
+              ? "Hubungi agen lewat WhatsApp"
+              : "Telepon agen"
+            : undefined
+        }
       >
-        {isWhatsapp && isPhotoRequest ? (
+        {iconOnly ? (
+          isWhatsapp ? (
+            <MdWhatsapp />
+          ) : (
+            <LuPhone />
+          )
+        ) : isWhatsapp && isPhotoRequest ? (
           <>
             <MdOutlinePhotoLibrary />
             Minta foto lainnya

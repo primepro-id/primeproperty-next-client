@@ -172,6 +172,60 @@ test("property detail schemas use canonical URLs and real filter breadcrumbs", (
   assertSerializable([detail, place, breadcrumb]);
 });
 
+test("property detail schemas expose posting date, floor size and room counts", () => {
+  const stubs = {
+    "@/lib/env": envStub,
+    "@/lib/metadata/seo-domain": seoDomain,
+  };
+  const residentialProperty = {
+    ...property,
+    created_at: "2026-08-01T10:00:00.000Z",
+    measurements: { building_area: 220, land_area: 180, building_level: 2 },
+    specifications: {
+      bedrooms: 4,
+      bathrooms: 3,
+      carport: 0,
+      garage: 2,
+      electrical_power: 3500,
+    },
+  };
+  const detail = loadTsModule(
+    "lib/schema/create-dynamic-property-schema.ts",
+    stubs,
+  ).createDynamicPropertySchema(residentialProperty);
+  const place = loadTsModule(
+    "lib/schema/create-place-schema.ts",
+    stubs,
+  ).createPlaceSchema(residentialProperty);
+
+  assert.equal(detail.datePosted, "2026-08-01T10:00:00.000Z");
+  assert.equal(place["@type"], "Accommodation");
+  assert.deepEqual(place.floorSize, {
+    "@type": "QuantitativeValue",
+    value: 220,
+    unitCode: "MTK",
+  });
+  assert.equal(place.numberOfBedrooms, 4);
+  assert.equal(place.numberOfRooms, 4);
+  assert.equal(place.numberOfBathroomsTotal, 3);
+
+  const landOnly = loadTsModule(
+    "lib/schema/create-place-schema.ts",
+    stubs,
+  ).createPlaceSchema({
+    ...residentialProperty,
+    measurements: { building_area: 0, land_area: 500, building_level: 0 },
+    specifications: {
+      ...residentialProperty.specifications,
+      bedrooms: 0,
+      bathrooms: 0,
+    },
+  });
+  assert.equal(landOnly["@type"], "Place");
+  assert.equal(landOnly.floorSize, undefined);
+  assertSerializable([detail, place, landOnly]);
+});
+
 test("organization and website schemas expose linked business identity and search fields", () => {
   const organization = loadTsModule(
     "lib/schema/create-organization-schema.ts",
