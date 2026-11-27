@@ -18,7 +18,10 @@ export const PropertyStatTile = ({
 }: PropertyStatTileProps) => {
   return (
     <div
-      className={cn("flex items-center gap-3 rounded-lg bg-muted p-3", className)}
+      className={cn(
+        "flex items-center gap-3 rounded-lg bg-muted p-3",
+        className,
+      )}
     >
       <span
         className="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary/25 text-lg text-amber-800 dark:text-primary"

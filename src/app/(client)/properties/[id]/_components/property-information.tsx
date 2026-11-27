@@ -30,7 +30,8 @@ export const PropertyInformation = ({ property }: PropertyInformationProps) => {
     },
     {
       label: "Garasi",
-      value: specifications.garage > 0 ? `${specifications.garage} mobil` : null,
+      value:
+        specifications.garage > 0 ? `${specifications.garage} mobil` : null,
     },
     {
       label: "Carport",

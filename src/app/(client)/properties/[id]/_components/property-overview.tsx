@@ -52,7 +52,10 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
       <PropertySectionNav links={sectionLinks} />
 
       {hasDescription && (
-        <PropertySection id={PROPERTY_SECTION_IDS.description} title="Deskripsi">
+        <PropertySection
+          id={PROPERTY_SECTION_IDS.description}
+          title="Deskripsi"
+        >
           <ExpandableText text={listing.description} />
         </PropertySection>
       )}
@@ -71,8 +74,14 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
       )}
 
       {listing.gmap_iframe && (
-        <PropertySection id={PROPERTY_SECTION_IDS.location} title="Perkiraan lokasi">
-          <PropertyLocation title={listing.title} gmapIframe={listing.gmap_iframe} />
+        <PropertySection
+          id={PROPERTY_SECTION_IDS.location}
+          title="Perkiraan lokasi"
+        >
+          <PropertyLocation
+            title={listing.title}
+            gmapIframe={listing.gmap_iframe}
+          />
         </PropertySection>
       )}
 

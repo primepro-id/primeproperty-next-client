@@ -18,7 +18,10 @@ export const PropertySection = ({
     <section
       id={id}
       aria-labelledby={`${id}-heading`}
-      className={cn("flex scroll-mt-32 flex-col gap-3 lg:scroll-mt-16", className)}
+      className={cn(
+        "flex scroll-mt-32 flex-col gap-3 lg:scroll-mt-16",
+        className,
+      )}
     >
       <h2 id={`${id}-heading`} className="font-sans text-lg font-semibold">
         {title}

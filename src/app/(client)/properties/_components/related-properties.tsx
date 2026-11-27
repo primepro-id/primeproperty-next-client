@@ -29,9 +29,7 @@ export const RelatedProperties = async ({
     return (
       <Carousel>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-sans text-lg font-semibold">
-            Properti terkait
-          </h2>
+          <h2 className="font-sans text-lg font-semibold">Properti terkait</h2>
           <div className="flex items-center gap-2">
             <CarouselPrevious className="static translate-y-0" />
             <CarouselNext className="static translate-y-0" />

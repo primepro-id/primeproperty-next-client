@@ -10,7 +10,10 @@ function withLazyLoading(iframeHtml: string) {
   return iframeHtml.replace(/<iframe/i, '<iframe loading="lazy"');
 }
 
-export const PropertyLocation = ({ title, gmapIframe }: PropertyLocationProps) => {
+export const PropertyLocation = ({
+  title,
+  gmapIframe,
+}: PropertyLocationProps) => {
   return (
     <div
       title={title}

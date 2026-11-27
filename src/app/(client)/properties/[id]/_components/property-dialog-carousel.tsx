@@ -47,8 +47,7 @@ export const PropertyDialogCarousel = ({
                   }}
                   imageProps={{
                     src: getPropertyImageSrc(propImg.path),
-                    alt:
-                      propImg.indonesian_label || propertyWithAgent[0].title,
+                    alt: propImg.indonesian_label || propertyWithAgent[0].title,
                     width: 1024,
                     height: 768,
                     className:

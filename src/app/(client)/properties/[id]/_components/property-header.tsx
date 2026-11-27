@@ -22,7 +22,9 @@ export const PropertyHeader = ({ property }: PropertyHeaderProps) => {
         <PropertyPrice property={property} />
       </p>
       {priceNotes.length > 0 && (
-        <p className="text-sm text-muted-foreground">{priceNotes.join(" · ")}</p>
+        <p className="text-sm text-muted-foreground">
+          {priceNotes.join(" · ")}
+        </p>
       )}
       <h1 className="mt-2 font-sans text-xl font-semibold leading-snug lg:text-2xl">
         {property.title}

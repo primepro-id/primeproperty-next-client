@@ -62,7 +62,9 @@ export const PropertyBentoGallery = ({
           alt={image.indonesian_label || property.title}
           label={image.indonesian_label}
           watermarkFontSize={24}
-          className={cn(shownImages.length === 4 && index === 0 && "col-span-2")}
+          className={cn(
+            shownImages.length === 4 && index === 0 && "col-span-2",
+          )}
           onClick={() => onImageClick(image.originalIndex)}
         />
       ))}

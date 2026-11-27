@@ -5,7 +5,9 @@ type PropertyFacilityChipProps = {
   facility: PropertyFacilities;
 };
 
-export const PropertyFacilityChip = ({ facility }: PropertyFacilityChipProps) => {
+export const PropertyFacilityChip = ({
+  facility,
+}: PropertyFacilityChipProps) => {
   const icon = FACILITY_ICON[facility.value as keyof typeof FACILITY_ICON];
 
   return (

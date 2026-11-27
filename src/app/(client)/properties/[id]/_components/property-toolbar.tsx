@@ -11,7 +11,10 @@ type PropertyToolbarProps = {
   className?: string;
 };
 
-export const PropertyToolbar = ({ property, className }: PropertyToolbarProps) => {
+export const PropertyToolbar = ({
+  property,
+  className,
+}: PropertyToolbarProps) => {
   return (
     <div className={cn("flex items-center gap-3", className)}>
       <BackButton className="hidden shrink-0 rounded-full lg:inline-flex" />

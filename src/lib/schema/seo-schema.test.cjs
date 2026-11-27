@@ -215,7 +215,11 @@ test("property detail schemas expose posting date, floor size and room counts", 
   ).createPlaceSchema({
     ...residentialProperty,
     measurements: { building_area: 0, land_area: 500, building_level: 0 },
-    specifications: { ...residentialProperty.specifications, bedrooms: 0, bathrooms: 0 },
+    specifications: {
+      ...residentialProperty.specifications,
+      bedrooms: 0,
+      bathrooms: 0,
+    },
   });
   assert.equal(landOnly["@type"], "Place");
   assert.equal(landOnly.floorSize, undefined);

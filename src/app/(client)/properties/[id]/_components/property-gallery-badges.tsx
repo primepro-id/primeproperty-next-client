@@ -38,7 +38,8 @@ export const PropertyGalleryBadges = ({
       )}
       <div className="flex flex-wrap gap-2">
         <span className="rounded-md bg-primary px-2 py-0.5 text-sm font-medium capitalize text-primary-foreground">
-          {property.building_type} · {getPurchaseStatusLabel(property.purchase_status)}
+          {property.building_type} ·{" "}
+          {getPurchaseStatusLabel(property.purchase_status)}
         </span>
         {property.configurations.is_njop_price && (
           <span className="rounded-md bg-background/90 px-2 py-0.5 text-sm font-medium">
