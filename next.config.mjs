@@ -2,9 +2,6 @@ import { withSentryConfig } from "@sentry/nextjs/config";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "standalone",
-  experimental: {
-    agentUpgrade: "latest",
-  },
   images: {
     minimumCacheTTL: 60,
     remotePatterns: [
@@ -40,10 +37,7 @@ export default withSentryConfig(nextConfig, {
   sourcemaps: {
     deleteSourcemapsAfterUpload: true,
   },
-  webpack: {
-    treeshake: {
-      removeDebugLogging: true,
-    },
-    automaticVercelMonitors: false,
+  bundleSizeOptimizations: {
+    excludeDebugStatements: true,
   },
 });
